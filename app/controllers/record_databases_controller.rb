@@ -1,0 +1,2 @@
+class RecordDatabasesController < ApplicationController
+end
