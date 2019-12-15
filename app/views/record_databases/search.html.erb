@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search Data</title>
+</head>
+<body>
+
+    <div class="container">
+    
+        <div class="row">
+          <div class="col-xs-12 col-sm-8 offset-sm-2">
+            <h1>Food Calorie</h1>
+            
+            <%= form_tag search_record_database_path, :method => 'get' do %>
+            <%= text_field_tag :search, @search %></h3>
+            <%= submit_tag "Search" %>
+            <% end %>
+
+
+            <% @food_databases.each do |food_database| %>
+            <h3> 食物名稱:<%= food_database.name %></h3>
+            <p>　卡洛里：<%= food_database.calories %></p>
+            <p>　蛋白質：<%= food_database.protein %></p>
+            <p>　體脂肪: <%= food_database.fat_content %></p>
+            <p>  碳水化合物: <%= food_database.carbohydrate %></p>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+
+    
+
+      
+</body>
+</html>
