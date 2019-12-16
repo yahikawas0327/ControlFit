@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  consume: MyString
+  consume_40kg: MyString
+  consume_50kg: MyString
+  consume_60kg: MyString
+  consume_70kg: MyString
+
+two:
+  name: MyString
+  consume: MyString
+  consume_40kg: MyString
+  consume_50kg: MyString
+  consume_60kg: MyString
+  consume_70kg: MyString
