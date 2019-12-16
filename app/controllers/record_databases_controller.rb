@@ -18,9 +18,8 @@ class RecordDatabasesController < ApplicationController
     end
 
     def search
-        @food_databases = FoodDatabase.all
         @search = params["search"]
-    
+        @food_databases = []
         if @search.present?
           @food_databases = FoodDatabase.where("name ILIKE ?", "%#{@search}%")
         end
