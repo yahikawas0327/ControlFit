@@ -17,12 +17,20 @@ class RecordDatabasesController < ApplicationController
     def destroy
     end
 
-    def search
-        @search = params["search"]
+    def search_food
+        @search_food = params["search_food"]
         @food_databases = []
-        if @search.present?
-          @food_databases = FoodDatabase.where("name ILIKE ?", "%#{@search}%")
+        if @search_food.present?
+          @food_databases = FoodDatabase.where("name ILIKE ?", "%#{@search_food}%")
         end
     end
+
+    def search_sport
+      @search_sport = params["search_sport"]
+      @sports = []
+      if @search_sport.present?
+        @sports= Sport.where("name ILIKE ?", "%#{@search_sport}%")
+      end
+  end
     
 end
