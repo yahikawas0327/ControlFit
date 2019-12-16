@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_13_110712) do
+ActiveRecord::Schema.define(version: 2019_12_16_140114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 2019_12_13_110712) do
     t.decimal "calories"
     t.integer "qty"
     t.string "eat_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sports", force: :cascade do |t|
+    t.string "name"
+    t.string "consume"
+    t.string "consume_40kg"
+    t.string "consume_50kg"
+    t.string "consume_60kg"
+    t.string "consume_70kg"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
