@@ -15,7 +15,7 @@ $(document).ready(function(){
       w = parseFloat(w)
       var bmi = w / (h * h);
       bmi = bmi.toFixed(2);
-      $(".box").append("身高" + h + "公尺！" + "體重" + w + "公斤!" + "\n BMI = " + bmi);
+      $(".box").append("\n BMI = " + bmi);
     }
   })
 })

@@ -1,17 +1,17 @@
 <%= javascript_pack_tag 'bmi', 'data-turbolinks-track': 'reload' %>
 
-<h1>test</h1>
+<h1 class="title">test</h1 cloa>
 <%= link_to 'NEW', new_user_path %>
 
 <div class="container">
   <div class="row">
-    <div class="col-12">
-      <input type="text" name="height" placeholder="cm" class="cm">
+    <div class="col-12 col-md-2">
+      <input type="text" name="height" placeholder="cm" class="cm input-group">
       <br>
-      <input type="text" name="weight" placeholder="kg" class="kg">
+      <input type="text" name="weight" placeholder="kg" class="kg input-group">
       <br>
-      <input type="submit" name="" class="submit">
-      <div class="box"></div>
+      <button class="btn btn-primary submit" type="submit">確認過眼神</button>
+      <div class="box card"></div>
     </div>
   </div>
 </div>
