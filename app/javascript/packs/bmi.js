@@ -1,6 +1,4 @@
-console.log('123')
-
-debugger
+import $ from 'jquery'
 
 $(document).ready(function(){
   $('.submit').click(function(){
