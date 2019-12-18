@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.7'
 
 # 2019.12.13
 gem 'bootstrap', '~> 4.4.1'
-gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
+# gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 gem 'simple_form', '~> 5.0', '>= 5.0.1'
 
 # Use Active Storage variant

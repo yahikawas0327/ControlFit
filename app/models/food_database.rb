@@ -1,2 +1,3 @@
 class FoodDatabase < ApplicationRecord
+      
 end

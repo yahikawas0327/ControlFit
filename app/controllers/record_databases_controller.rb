@@ -10,6 +10,10 @@ class RecordDatabasesController < ApplicationController
   
     def edit
     end
+
+    def create
+    end
+
   
     def updata
     end
