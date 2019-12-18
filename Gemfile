@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootstrap', '~> 4.4.1'
 # gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 gem 'simple_form', '~> 5.0', '>= 5.0.1'
+gem 'hirb-unicode'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -59,4 +60,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'hirb-unicode'

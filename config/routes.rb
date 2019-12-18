@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :users
+  root 'users#index'
   resources :record_databases
   resources :exercise_records
   resources :food_records
