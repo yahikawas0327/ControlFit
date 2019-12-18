@@ -30,7 +30,14 @@
     <form class="form-inline my-2 my-lg-0">
       <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-      <%= link_to '登入', '#',class:'nav-item' %>
+      <% if member_signed_in? %>
+        <%= current_member.email %>
+        <%= link_to "登出", destroy_member_session_path, method:"delete" %>
+      <% else %>
+        <%= link_to "註冊", new_member_registration_path %>
+        <%= link_to "登入", new_member_session_path, class:'nav-item' %>
+      <% end %> 
+      </li>
     </form>
   </div>
 </nav>
