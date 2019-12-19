@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 gem 'simple_form', '~> 5.0', '>= 5.0.1'
 gem 'hirb-unicode'
+gem 'devise', '~> 4.7', '>= 4.7.1' 
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -38,7 +39,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'foreman', '~> 0.86.0'
-  gem 'hirb-unicode' 
+  gem 'hirb-unicode'
 end
 
 group :development do
