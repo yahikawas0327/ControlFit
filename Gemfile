@@ -27,8 +27,10 @@ gem 'jbuilder', '~> 2.7'
 # gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 gem 'simple_form', '~> 5.0', '>= 5.0.1'
 gem 'hirb-unicode'
-gem 'devise', '~> 4.7', '>= 4.7.1' 
+gem 'devise', '~> 4.7', '>= 4.7.1'
+gem 'omniauth-google-oauth2', '~> 0.8.0'
 
+gem 'figaro', '~> 1.1', '>= 1.1.1'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
