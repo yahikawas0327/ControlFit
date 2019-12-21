@@ -17,20 +17,38 @@
             <%= form_tag search_food_record_database_path, :method => 'get' do %>
             <%= text_field_tag :search_food, @search_food %></h3>
             <%= submit_tag "Search" %>
+            <i class="fas fa-hammer"></i>
+            <button type="button" class="btn btn-info" id="Add_food_record_by_user">New</button>
             <% end %>
+          
+            <br>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">食物名稱</th>
+                  <th scope="col">卡洛里</th>
+                  <th scope="col">蛋白質</th>
+                  <th scope="col">體脂肪</th>
+                  <th scope="col">碳水化合物</th>
+                  <th scope="col">Add record</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @food_databases.each do |food_database| %>
+                <tr class="search_food_result" id="<%= food_database.id %>">
+                  <td><%= food_database.name %></td>
+                  <td><%= food_database.calories %></td>
+                  <td><%= food_database.protein %></td>
+                  <td><%= food_database.fat_content %></td>
+                  <td><%= food_database.carbohydrate %></td>
+                  <td><button type="submit" id="<%= food_database.id %>" class="fas fa-plus-square" ></button><td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
 
-
-            <% @food_databases.each do |food_database| %>
-            <div class="search_food_result">
-            <h3> 食物名稱:<%= food_database.name %></h3>
-            <p>　卡洛里：<%= food_database.calories %></p>
-            <p>　蛋白質：<%= food_database.protein %></p>
-            <p>　體脂肪: <%= food_database.fat_content %></p>
-            <p>  碳水化合物: <%= food_database.carbohydrate %></p>
-            <button type="submit" id="<%= food_database.id %>" class="fas fa-plus-square"></button>
+            <div class="form-row" id="Add_food_record">
             </div>
-
-            <% end %>
 
           </div>
         </div>
