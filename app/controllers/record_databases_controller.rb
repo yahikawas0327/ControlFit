@@ -22,11 +22,15 @@ class RecordDatabasesController < ApplicationController
     end
 
     def search_food
+
         @search_food = params["search_food"]
         @food_databases = []
         if @search_food.present?
           @food_databases = FoodDatabase.where("name ILIKE ?", "%#{@search_food}%")
         end
+        #---------------------------------------
+        @record_foods =FoodRecord.all
+  
     end
 
     def search_sport
