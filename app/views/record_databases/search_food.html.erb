@@ -12,8 +12,7 @@
     
         <div class="row">
           <div class="col-xs-12 col-sm-8 offset-sm-2">
-            <h1>Food Calorie</h1>
-            
+            <h1>Food Calorie</h1>           
             <%= form_tag search_food_record_database_path, :method => 'get' do %>
             <%= text_field_tag :search_food, @search_food %></h3>
             <%= submit_tag "Search" %>
@@ -22,7 +21,7 @@
             <% end %>
           
             <br>
-            <table class="table table-hover">
+            <table class="table table-hover" id="query-food">
               <thead>
                 <tr>
                   <th scope="col">食物名稱</th>
@@ -41,7 +40,7 @@
                   <td><%= food_database.protein %></td>
                   <td><%= food_database.fat_content %></td>
                   <td><%= food_database.carbohydrate %></td>
-                  <td><button type="submit" id="<%= food_database.id %>" class="fas fa-plus-square" ></button><td>
+                  <td><button type="submit" id="<%= food_database.id %>" class="fas fa-plus-square" ></button></td>
                 </tr>
                 <% end %>
               </tbody>
@@ -51,9 +50,51 @@
             </div>
             <div class="form-row" id="Add_food_record_type">
             </div>
-
           </div>
         </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-8 offset-sm-2">
+             <h3> Today Record </h3>
+             <section>
+               <i class="far fa-clock"></i> 
+               <p class="daytime"></i></p>
+             </section>
+             <table class="table table-sm" id="daliy-food">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Food Name</th>
+                  <th scope="col">Calories</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @record_foods.each_with_index do |record_food, index| %>
+                <tr class="search_food_result" >
+                  <td> <%= index+1 %></td>
+                  <td> <%= record_food.created_at.strftime("%F") %></td>
+                  <td> <%= record_food.eat_type %></td>                  
+                  <td> <%= record_food.name %></td>
+                  <td class="foodsum"> <%= record_food.total_calorie %></td>  
+                </tr>
+                <% end %>
+              </tbody>
+              <tfoot>
+                <tr>
+                    <td colspan="2">  Count : <%= @record_foods.size %></td>
+                    <td></td>
+                    <td colspan="2"> Total calories :  </td>
+                </tr>
+              </tfoot>
+            </table>
+            
+          </div>
+          
+          
+        </div>
+        
+
       </div>
 
     

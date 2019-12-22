@@ -7,6 +7,8 @@
 import './application.js'
 import $ from 'jquery'
 import axios from 'axios-on-rails'
+import moment from "moment";
+
 // const axios = require('axios');
  
  $(document).ready(function (){
@@ -14,7 +16,7 @@ import axios from 'axios-on-rails'
  
     // 新增每日食物資料 JQuery  
     $('tr').on('click','button',function(evt){
-      $('.table-hover').hide();
+      $('#query-food').hide();
       let food_name = $(evt.target).parent().siblings('td:first').text()
       let food_calorie = $(evt.target).parent().siblings('td:first').next().text()
       $('#Add_food_record_type').remove()
@@ -69,7 +71,8 @@ import axios from 'axios-on-rails'
     //----------------------------------------------------------
 
     $('#Add_food_record_by_user').on('click', function(){
-     $('.table-hover').remove();
+     // $('.table-hover').remove();
+     $('#query-food').remove();
      $('#Add_food_record').remove()  
      $('#Add_food_record_type').append(`
      <div class="col-md-3 mb-3 ">
@@ -122,9 +125,25 @@ import axios from 'axios-on-rails'
       })
 
     })
-      
+    // Now time and day
+    let time = moment().format('lll');
+    $('.daytime').html(time);
+    // --------------------------------
+    let cc = $('.foodsum').text();
 
+    console.log(cc )
+ 
 })
+
+
+
+
+
+
+
+
+
+
 
 
 
