@@ -30,7 +30,11 @@ class RecordDatabasesController < ApplicationController
         end
         #---------------------------------------
         @record_foods =FoodRecord.all
-  
+        @sum=0
+        @record_foods.each do |record_food|
+           @sum = @sum + record_food.total_calorie
+        end
+        puts @sum
     end
 
     def search_sport
