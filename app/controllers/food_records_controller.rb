@@ -22,8 +22,12 @@ class FoodRecordsController < ApplicationController
                           :qty => food_qty,
                           :eat_type => food_type,
                           :total_calorie => total_calories  )
+         
+        # Renodr json file 
+        @food_records = FoodRecord.where(created_at: Time.now.midnight..Time.now)
+
         
-        render json: {status: 'ok'}
+        render json: @food_records.last
                      
     end
 
