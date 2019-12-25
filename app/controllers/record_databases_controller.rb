@@ -22,6 +22,8 @@ class RecordDatabasesController < ApplicationController
     end
 
     def search_food
+          
+        # 搜尋食物
 
         @search_food = params["search_food"]
         @food_databases = []
@@ -29,8 +31,17 @@ class RecordDatabasesController < ApplicationController
           @food_databases = FoodDatabase.where("name ILIKE ?", "%#{@search_food}%")
         end
         #---------------------------------------
-        @record_foods =FoodRecord.all
-  
+        @record_foods = FoodRecord.where(created_at: Time.now.midnight..Time.now)
+        # 搜尋到現在時間為止的今天食物紀錄
+        @sum=0
+        @record_foods.each do |record_food|
+           @sum = @sum + record_food.total_calorie
+        end
+        
+        #---------------------------------------
+
+
+
     end
 
     def search_sport

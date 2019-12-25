@@ -64,7 +64,8 @@ import moment from "moment";
                  }
       axios.post("http://localhost:3000/food_records", food_hash)
            .then( response => {
-                  console.log('response=>',response); 
+                  console.log('response=>',response);
+                  $( "#daliy-food" ).load("search_food.html #daliy-food");
       })
     }) // 將資料傳送至後端 傳送 id / qty / type
  
@@ -121,8 +122,9 @@ import moment from "moment";
            }
        axios.post("http://localhost:3000/food_records", food_hash)
             .then( response => {
-                  console.log('response=>',response); 
-      })
+              console.log('response=>',response);
+              $( "#daliy-food" ).load( "search_food.html #daliy-food" );
+  })
 
     })
     // Now time and day
