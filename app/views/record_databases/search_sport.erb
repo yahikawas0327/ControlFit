@@ -1,40 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Search Data</title>
-</head>
-<body>
-
-    <div class="container">
-    
-        <div class="row">
-          <div class="col-xs-12 col-sm-8 offset-sm-2">
-            <h1>Exericse Calorie</h1>
-            
-            <%= form_tag search_sport_record_database_path, :method => 'get' do %>
-            <%= text_field_tag :search_sport, @search_sport %></h3>
-            <%= submit_tag "Search" %>
-            <% end %>
-
-
-            <% @sports.each do |sport| %>
-            <h3> 運動名稱:<%= sport.name %></h3>
-            <p>　卡洛里：<%= sport.consume %></p>
-            <p>　卡洛里(40KG)：<%= sport.consume_40kg %></p>
-            <p>　卡洛里(50kG): <%= sport.consume_50kg %></p>
-            <p>  卡洛里(60kG): <%= sport.consume_60kg %></p>
-            <p>  卡洛里(70kG): <%= sport.consume_70kg %></p>
-            <% end %>
-
-          </div>
-        </div>
-      </div>
-
-    
-
+ <div class="container" >  
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 offset-sm-2">
+      <h1>Exericse Calorie</h1>
       
-</body>
-</html>
+      <%= form_tag search_sport_record_database_path, :method => 'get' do %>
+        <%= text_field_tag :search_sport, @search_sport %>
+        <%= submit_tag "Search" %>
+      <% end %>
+      <br>
+      <table class="table table-hover" id="query-sport">
+        <thead>
+          <tr>
+            <th scope="col"><i class="fas fa-running"></i></th>
+            <th colspan="5">運動30分鐘所消耗熱量 單位:大卡</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> 運動項目 </td>
+            <td> 40 Kg   </td>
+            <td> 50 Kg   </td>
+            <td> 60 Kg   </td>
+            <td> 70 Kg   </td>
+            <td> 記錄自己 </td>
+          </tr>
+          <% @sports.each do |sport| %>
+          <tr class="search_sport_result" id="<%= sport.id %>">
+            <td> <%= sport.name %></td>
+            <td><%= sport.consume_40kg %></td>
+            <td><%= sport.consume_50kg %></td>
+            <td><%= sport.consume_60kg %></td>
+            <td><%= sport.consume_70kg %></td>
+            <td><button type="submit" id="<%= sport.id %>" class="fas fa-plus-circle" ></button></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="app">
+    <% @sports.each do |address_book|%>
+      <name-card :item="<%=address_book.to_json %>"></name-card>
+    <%end%>
+  </div>
+</div>
+
+
+
