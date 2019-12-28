@@ -48,8 +48,11 @@ class RecordDatabasesController < ApplicationController
       @search_sport = params["search_sport"]
       @sports = []
       if @search_sport.present?
-        @sports= Sport.where("name ILIKE ?", "%#{@search_sport}%")
+        @sports= Sport.where("name ILIKE ?", "%#{@search_sport}%")      
+        # render json: {status: 'ok', item:@sports}
+        render json: @sports 
       end
+
   end
     
 end
