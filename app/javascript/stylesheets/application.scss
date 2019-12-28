@@ -1,3 +1,105 @@
 
 // @import "bootstrap-sprockets";
 @import "bootstrap";
+
+h1,h2,h3,h4,a {
+  font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+  color: #2b2b1f;
+}
+a{
+  font-size: 16px;
+}
+body{
+  font-size: 14px;
+  color: #4F4F4F;
+}
+.navbar .container-fluid{
+  border-bottom: 1px solid 	#F0F0F0;
+}
+
+.navbar .row{
+  width: 100%;
+  margin: 0 15px;
+}
+@media screen and (min-width: 768px){
+  .navbar .col{
+    margin: 0 150px 8px 80px;
+  }
+  .navbar .collapse{
+    flex-grow: .2;
+  }
+}
+
+@media screen and (max-width: 767.98px){
+  .navbar .row{
+    width: 400px;
+    margin: 0 15px;
+  }
+  .navbar-toggler{
+    float: right;
+    margin: 15px 0;
+    background-color: #F00078;
+    border: 1px solid #F00078;
+    border-radius: 5px; 
+  }
+  .navbar .collapse{
+    background-color: #F00078;  
+  }
+  .navbar .collapse.show .navbar-nav{
+    margin: 0;
+  }
+  .navbar-toggler:hover{
+    border: 1px solid transparent;
+    background-color: #F00078;  
+  }
+}
+.navbar #brand-name{
+  text-decoration: none;
+}
+.navbar .site-title a{
+  color: 	#F00078;
+  padding: 0;
+  font-size: 20px;
+}
+.navbar .nav-item{
+  margin: 10px 20px;
+}
+.navbar .nav-item a{
+  text-decoration: none;
+}
+.navbar a{
+  padding: 0 20px 0 0;
+}
+.navbars .collapse .nav-link:hover,
+.nav-item a:hover{
+  color: rgba(240, 0, 120, 0.879);
+}
+.navbar-nav{
+  margin: 0 0 0 200px;
+}
+// banner
+
+.banner{
+  width: 100%;
+  height: 800px;
+  position: relative;
+  background: url('https://images.unsplash.com/photo-1468112014733-deb9e1f8ddd2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60');
+  background-size: cover;
+  background-attachment: fixed;
+}
+.banner.cover-image:before{
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.3);
+  box-sizing: border-box;
+}
+.banner .row {
+  color: #ffffff;
+  justify-content: center;
+  padding-top: 100px;
+}

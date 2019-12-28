@@ -1,5 +1,6 @@
 import Vue from 'vue/dist/vue.esm'
 // import SportRecord from '../sport_record.vue'
+import TurbolinksAdapter from 'vue-turbolinks'
 
 // ---Bootstrap Vue setting
 import 'bulma'
@@ -12,7 +13,7 @@ import axios from 'axios'
 Vue.prototype.$ajax = axios
 //  .
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
     el: '#app',
     data :{
