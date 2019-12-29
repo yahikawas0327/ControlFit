@@ -10,7 +10,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 //
 import axios from 'axios'
 Vue.prototype.$ajax = axios
-//  .
+//  
+import moment from "moment";
+//
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
@@ -20,10 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
       weight : "",
       min: 0,
       sports:[],
+      daily_sport:[],
+      daily_sum :0,
+      daily_count:0,
+      currentTime: null,
+      currentDay: null
     },
     methods: {
       submit: function(){
         var self = this;
+        //將key-word 發送至後端撈資料
         axios.get('http://localhost:3000/search_sport',{
                    params:{ search_sport: this.message}
                  })
@@ -31,12 +39,29 @@ document.addEventListener('DOMContentLoaded', () => {
                   let search_sport = response.data
                   for (var i in search_sport ){
                     self.sports.push(search_sport[i])
-                    console.log(search_sport[i])
-                    console.log(i)
+                    // console.log(search_sport[i])
+                    // console.log(i)
                   }
                 })        
              },
-      
+      sport_record(idx){
+        let  sport_hash = {
+          id :  this.sports[idx].id ,
+          min:  this.min,
+          weight: this.weight,
+          consume: this.sports[idx].computed
+        }
+        console.log(sport_hash) 
+        // 將紀錄資料送至後端資料庫
+        axios.post("http://localhost:3000/exercise_records",sport_hash)
+             .then(function(response){
+                  console.log(response)
+             })
+      },
+      updateCurrentTime() {
+        this.currentTime = moment().format('LTS');
+        this.currentDay = moment().format("MMM Do YY");
+      }
     },
     computed: {
       consume(){
@@ -50,6 +75,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
       }
+    },
+    created() {
+      // 當前時間
+      this.currentTime = moment().format('LTS');
+      this.currentDay = moment().format("MMM Do YY");
+      setInterval(() => this.updateCurrentTime(), 1 * 1000);
+  
+      // 今天資料
+      var self =this;
+      axios.get('http://localhost:3000/search_sport', {params:{ id : 0}
+               })
+           .then(function(response){
+               let daily_sport = response.data
+               for (var i in daily_sport ){
+                self.daily_sport.push(daily_sport[i])
+                var NowDate = new Date(daily_sport[i].created_at)
+                self.daily_sport[i].created_at = moment(NowDate).calendar(); // 時間格式轉換
+              }
+              self.daily_count = daily_sport.length
+              for (var i=0; i<self.daily_count;i++){
+                 self.daily_sum = Number(daily_sport[i].totalconsum) + self.daily_sum
+                 console.log(self.daily_sum)
+              }
+      })
+
+
     },
   })
 })
