@@ -58,6 +58,16 @@ document.addEventListener('turbolinks:load', () => {
              .then(function(response){
                   console.log(response)
              })
+        this.daily_sport.push({
+          id: this.sports[idx].id ,
+          name: this.sports[idx].name,
+          weight: this.weight,
+          min: Number(this.min).toFixed(1),
+          totalconsum: this.sports[idx].computed,
+          created_at: moment().calendar()
+        })
+        this.daily_count += 1;
+        this.daily_sum += Number(this.sports[idx].computed)
       },
       updateCurrentTime() {
         this.currentTime = moment().format('LTS');
@@ -89,6 +99,7 @@ document.addEventListener('turbolinks:load', () => {
                })
            .then(function(response){
                let daily_sport = response.data
+               console.log(daily_sport )
                for (var i in daily_sport ){
                 self.daily_sport.push(daily_sport[i])
                 var NowDate = new Date(daily_sport[i].created_at)
