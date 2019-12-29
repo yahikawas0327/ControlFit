@@ -1,7 +1,8 @@
 import $ from 'jquery'
 
-$(document).ready(function(){
-  $('.submit').click(function(){
+$(document).on('turbolinks:load',function(){
+  $('.submit').click(function(event){
+    event.preventDefault();
     let h = $(".cm").val();
     let w = $(".kg").val();
     if(isNaN(h)){
@@ -15,7 +16,7 @@ $(document).ready(function(){
       w = parseFloat(w);
       let bmi = w / (h * h);
       bmi = bmi.toFixed(2);
-      $(".box").append("\n BMI = " + bmi);
+      $(".box").html("\n BMI = " + bmi);
     }
   })
 })
