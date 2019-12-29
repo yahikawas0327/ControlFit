@@ -9,21 +9,21 @@
         <button class="button is-success" @click="submit">Search</button>
       </div>
       <div class="column is-9">
-            <table class="table table-hover" id="query-sport">
+        <table class="table table-hover" id="query-sport">
         <thead>
           <tr>
             <th scope="col"></i></th>
             <th scope="col"><i class="fas fa-running"></i></th>
-            <th colspan="4">運動30分鐘所消耗熱量(60Kg為例) 單位:大卡</th>
+            <th colspan="5">運動30分鐘所消耗熱量(60Kg為例) 單位:大卡</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td> # </td>
             <td> 運動項目 </td>
-            <td> 燃燒多少 </td>
+            <td> 甩多少 </td>
             <td> 體重   </td>
-            <td> 你奮鬥多久(min) </td>
+            <td> 奮鬥時間(min) </td>
             <td> 成果再這邊 </td>
             <td> 記起來!!! </td>
           </tr>
@@ -33,15 +33,54 @@
             <td>{{sport.consume_60kg}}</td>
             <td> <input class="input is-danger"  v-model="weight" type="password" placeholder="不能說的秘密"></td>
             <td> <input class="input is-primary" v-model="min"    type="number" placeholder="誠實的打下去"></td>
-            <td>{{sport.computed}}</td>
-            <td><button type="submit"  class="fas fa-plus-circle"  ></button></td>
+            <td :keyup="consume">{{sport.computed}}</td>
+            <td><button @click="sport_record(idx)"  class="fas fa-plus-circle"  ></button></td>
           </tr>
         </tbody>
             </table>  
       </div>  
-
     </div>
+    <div class="columns">
+      <div class="column is-three-fifths is-offset-one-fifth">
+         <h4 > Today   <i class="fas fa-calendar-day"></i> :  {{currentDay}} </h4>
+         <h4 > Now Time  <i class="fas fa-clock"></i> :  {{currentTime}} </h4>
+      </div>
     </div>
+    <div class="columns">
+      <div class="column is-three-fifths is-offset-one-fifth">
+        <table class="table table-hover" id="query-sport">
+          <thead>  
+            <tr>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th colspan="4"> 看看今天燃燒多少<i class="fas fa-fire"></i></th>
+            </tr>
+          </thead>
+          <tbody>  
+            <tr>
+              <td> # </td>
+              <td> 紀錄時間 </td>
+              <td> 運動項目 </td>
+              <td> 奮鬥時間 </td>
+              <td> 燃燒值   </td>
+            </tr>
+            <tr v-for="(record, index) in daily_sport" >
+              <td>{{index+1}}</td>
+              <td>{{record.created_at}}</td>
+              <td>{{record.name}}</td>
+              <td>{{record.min}}</td>
+              <td>{{record.totalconsum}}</td>
+            </tr>
+          </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2">  Count : {{daily_count}} </td>
+                <td></td>
+                <td colspan="2"> 今天燒多少: {{daily_sum}}</td>
+              </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
   </div>
-</div>
+ </div>
