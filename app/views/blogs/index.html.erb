@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>認識自己</title>
+</head>
+<body>
+     <div id="physical">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+            </div>
+            <div class="col">
+              <div class="col-md-6 mb-3">
+             <label for=""> Height : <i class="fas fa-ruler-vertical"></i> </label>
+             <input class="input is-success"  v-model="Height" type="text" placeholder="輸入公分喔!">
+              </div>
+              <div class="col-md-6 mb-3">
+             <label for=""> Weight : <i class="fas fa-weight"></i> </label>
+             <input class="input is-success"  v-model="Weight" type="text" placeholder="輸入公斤喔!">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for=""> Gender : <i class="fas fa-male"></i> <i class="fas fa-female"></i> </label>
+                <div class="select is-success" >
+                <select v-model="Gender">
+                    <option v-for="option in Genders" :value="option.value">
+                        {{ option.text }}
+                    </option>
+                </select>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for=""> Age : </label>
+                <input class="input is-success"  v-model="Age" type="text" placeholder="年齡是秘密">    
+              </div>
+              <div class="col-md-6 mb-3">
+              <button class="button is-success is-light" @click="lookfor"> <i class="fas fa-id-card-alt"></i> Check </button>
+              <button class="button is-danger  is-light is-rounded" @click="more">more</button>
+              </div>
+            </div>
+            <div class="col">
+              <div class="col-md-6 mb-3">
+              <label for=""> 看看自己的BMI囉: </label>
+              <ul>{{BMI}}</ul>
+              </div>
+              <div class="col-md-6 mb-3">
+              <label for=""> BMI是不是符合預期呢: </label>
+              <ul>{{BMI_range}}</ul>
+              </div>
+              <div class="col-md-6 mb-3">
+              <label for=""> 基礎代謝率長知識! </label>
+              <ul>{{Ree}}</ul>
+              </div>
+              <div class="col-md-6 mb-3">
+              <label for=""> 根據上述資料，每天最少消耗熱量如下: </label>
+              <ul>{{BMR}}</ul>
+              </div>
+              <div class="col-md-6 mb-3">
+                  <label for="">飲食取向!</label>
+                  <br>
+                  <input type="radio" id="one" value="維持體重" v-model="intention">
+                  <label for="one">維持體重</label>
+                  <br>
+                  <input type="radio" id="two" value="增加肌肉" v-model="intention">
+                  <label for="two">增加肌肉</label>
+                  <br>
+                  <input type="radio" id="three" value="減少脂肪" v-model="intention">
+                  <label for="two">減少脂肪</label>
+                  <br>
+                  <span>飲食取向: {{ intention }}</span>
+                </div>
+              <div class="col-md-6 mb-3">
+                   <label for="">運動習慣!</label>
+              </div>
+               
+
+              </div>
+            </div>  
+        </div>
+     </div>
+</body>
+</html>
