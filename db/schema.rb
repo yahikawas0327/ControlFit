@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_25_093149) do
+ActiveRecord::Schema.define(version: 2019_12_29_052145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(version: 2019_12_25_093149) do
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
 
+  create_table "sport_records", force: :cascade do |t|
+    t.string "name"
+    t.decimal "weight"
+    t.decimal "min"
+    t.decimal "totalconsum", default: "0.0"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "sports", force: :cascade do |t|
     t.string "name"
     t.string "consume"
@@ -69,6 +78,7 @@ ActiveRecord::Schema.define(version: 2019_12_25_093149) do
     t.string "consume_70kg"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "computed", default: "0.0"
   end
 
 end

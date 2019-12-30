@@ -10,6 +10,8 @@
     "axios-on-rails": "^0.0.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.4.1",
+    "bootstrap-vue": "^2.1.0",
+    "bulma": "^0.8.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
     "popper.js": "^1.16.0",
@@ -19,7 +21,8 @@
     "turbolinks": "^5.2.0",
     "vue": "^2.6.11",
     "vue-loader": "^15.8.3",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vue-turbolinks": "^2.0.4"
   },
   "version": "0.1.0",
   "devDependencies": {

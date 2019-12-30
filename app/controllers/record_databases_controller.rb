@@ -47,9 +47,18 @@ class RecordDatabasesController < ApplicationController
     def search_sport
       @search_sport = params["search_sport"]
       @sports = []
-      # if @search_sport.present?
-      #   @sports= Sport.where("name ILIKE ?", "%#{@search_sport}%")
-      # end
-    end
+      if @search_sport.present?
+        @sports= Sport.where("name ILIKE ?", "%#{@search_sport}%")      
+        render json: @sports 
+      end
+      
+      daily_sport = params["id"]
+      if daily_sport.present?
+        @record_sports = SportRecord.where(created_at: Time.now.midnight..Time.now)
+         render json: @record_sports
+      else
+      end
+
+  end
     
 end
