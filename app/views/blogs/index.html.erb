@@ -41,23 +41,19 @@
             </div>
             <div class="col">
               <div class="col-md-6 mb-3">
-              <label v-if = "BMI !== ''" for=""> 看看自己的BMI囉: </label>
-              <ul>{{BMI}}</ul>
+              <label v-if = "BMI !== ''" for=""> 看看自己的BMI囉 : {{BMI}} </label>
               </div>
               <div class="col-md-6 mb-3">
-              <label v-if = "BMI_range !== ''" for=""> BMI是不是符合預期呢: </label>
-              <ul>{{BMI_range}}</ul>
+              <label v-if = "BMI_range !== ''" for=""> BMI是不是符合預期呢: {{BMI_range}} </label>
               </div>
               <div class="col-md-6 mb-3">
-              <label v-if = "Ree !== ''" for=""> 基礎代謝率長知識!((大卡)) </label>
-              <ul>{{Ree}}</ul>
+              <label v-if = "Ree !== ''" for=""> 基礎代謝率長知識! {{Ree}} 大卡 </label>
               </div>
               <div class="col-md-6 mb-3">
-              <label v-if = "BMR !== ''" for=""> 根據上述資料，每天最少消耗熱量(大卡)如下: </label>
-              <ul>{{BMR}}</ul>
+              <label v-if = "BMR !== ''" for=""> 根據上述資料，每天最少消耗熱量如下: {{BMR}} 大卡 </label>
               </div>
               <div class="col-md-6 mb-3">
-                <label v-if = "BMR !== ''" for=""> 想知道更精確的熱量資訊嗎!! 請按 more  </label>
+                <label v-if = "BMR !== ''" for=""> 想知道Pro's 熱量資訊嗎!! 請按 more  </label>
                 <button v-if = "BMR !== ''" class="button is-danger  is-light is-rounded" @click="more">more</button>
               </div>
 

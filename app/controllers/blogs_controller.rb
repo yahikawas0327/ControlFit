@@ -1,10 +1,8 @@
 class BlogsController < ApplicationController
   def index
-    # @blogs = Blog.all
   end
 
   def new
-    # @blog = Blog.new
   end
 
   def create
@@ -14,14 +12,9 @@ class BlogsController < ApplicationController
        user_age = (params[:Age]).to_i
 
        user_bmi = bmiformula(user_height, user_weight)
-      #  puts "bmi ok"
        user_bmi_range = bmirange(user_bmi)
-      #  puts user_bmi_range
        user_ree = ree_formula(user_weight,user_height,user_gender,user_age)
-      #  puts "ree_ok"
-       user_bmr = bmr_formula(user_weight,user_height,user_age,user_gender)
-      #  puts "bmr_ok"
-
+       user_bmr = (bmr_formula(user_weight,user_height,user_age,user_gender)).round(2)
        physical_hash = { bmi: user_bmi,
                          bmi_range: user_bmi_range,
                          ree: user_ree,
