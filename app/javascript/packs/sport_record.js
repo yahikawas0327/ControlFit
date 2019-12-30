@@ -132,7 +132,9 @@ document.addEventListener('turbolinks:load', () => {
       BMI_range:"",
       Ree:"",
       BMR:"",
-      intention:"",
+      eatintention:"",
+      sportintention:"",
+      moreshow:false
     },
     methods: {
       lookfor: function(){
@@ -153,6 +155,7 @@ document.addEventListener('turbolinks:load', () => {
               })
       },
       more: function(){
+        this.moreshow = !this.moreshow
 
       }
     },
