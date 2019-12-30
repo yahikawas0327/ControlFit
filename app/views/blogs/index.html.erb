@@ -37,42 +37,64 @@
               </div>
               <div class="col-md-6 mb-3">
               <button class="button is-success is-light" @click="lookfor"> <i class="fas fa-id-card-alt"></i> Check </button>
-              <button class="button is-danger  is-light is-rounded" @click="more">more</button>
               </div>
             </div>
             <div class="col">
               <div class="col-md-6 mb-3">
-              <label for=""> 看看自己的BMI囉: </label>
+              <label v-if = "BMI !== ''" for=""> 看看自己的BMI囉: </label>
               <ul>{{BMI}}</ul>
               </div>
               <div class="col-md-6 mb-3">
-              <label for=""> BMI是不是符合預期呢: </label>
+              <label v-if = "BMI_range !== ''" for=""> BMI是不是符合預期呢: </label>
               <ul>{{BMI_range}}</ul>
               </div>
               <div class="col-md-6 mb-3">
-              <label for=""> 基礎代謝率長知識! </label>
+              <label v-if = "Ree !== ''" for=""> 基礎代謝率長知識!((大卡)) </label>
               <ul>{{Ree}}</ul>
               </div>
               <div class="col-md-6 mb-3">
-              <label for=""> 根據上述資料，每天最少消耗熱量如下: </label>
+              <label v-if = "BMR !== ''" for=""> 根據上述資料，每天最少消耗熱量(大卡)如下: </label>
               <ul>{{BMR}}</ul>
               </div>
               <div class="col-md-6 mb-3">
+                <label v-if = "BMR !== ''" for=""> 想知道更精確的熱量資訊嗎!! 請按 more  </label>
+                <button v-if = "BMR !== ''" class="button is-danger  is-light is-rounded" @click="more">more</button>
+              </div>
+
+              <div v-show="moreshow" class="col-md-6 mb-3">
                   <label for="">飲食取向!</label>
                   <br>
-                  <input type="radio" id="one" value="維持體重" v-model="intention">
+                  <input type="radio" id="one" value="維持體重" v-model="eatintention">
                   <label for="one">維持體重</label>
                   <br>
-                  <input type="radio" id="two" value="增加肌肉" v-model="intention">
+                  <input type="radio" id="two" value="增加肌肉" v-model="eatintention">
                   <label for="two">增加肌肉</label>
                   <br>
-                  <input type="radio" id="three" value="減少脂肪" v-model="intention">
-                  <label for="two">減少脂肪</label>
+                  <input type="radio" id="three" value="減少脂肪" v-model="eatintention">
+                  <label for="three">減少脂肪</label>
                   <br>
-                  <span>飲食取向: {{ intention }}</span>
+                  <span>飲食取向: {{ eatintention }}</span>
                 </div>
-              <div class="col-md-6 mb-3">
-                   <label for="">運動習慣!</label>
+              <div v-show="moreshow" class="col-md-6 mb-3">
+                  <label for="">選擇一下平常的運動習慣運動習慣!</label>
+                  <br>
+                  <input type="radio" id="s-one" value="久坐" v-model="sportintention">
+                  <label for="s-one">久坐</label>
+                  <br>
+                  <input type="radio" id="s-two" value="輕量活動" v-model="sportintention">
+                  <label for="s-two">輕量活動</label>
+                  <br>
+                  <input type="radio" id="s-three" value="中度活動" v-model="sportintention">
+                  <label for="s-three">中度活動</label>
+                  <br>
+                  <input type="radio" id="s-four" value="高強度活動" v-model="sportintention">
+                  <label for="s-four">高強度活動</label>
+                  <br>
+                  <input type="radio" id="s-five" value="極高強度活動" v-model="sportintention">
+                  <label for="s-five">極高強度活動</label>
+                  <br>
+                  <span>運動取向: {{ sportintention }}</span>
+
               </div>
                
 
