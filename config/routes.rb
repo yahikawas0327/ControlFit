@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :members, controllers: { omniauth_callbacks: 'members/omniauth_callbacks' }
-
+  resources :records
+  root 'records#index'
   resources :users
-  root 'users#index'
   resources :record_databases
   resources :exercise_records
   resources :food_records
