@@ -16,8 +16,9 @@ import moment from "moment";
 //
 
 document.addEventListener('turbolinks:load', () => {
-  const app = new Vue({
-    el: '#app',
+  //  sport query system and daily sport reord system
+  const sport = new Vue({
+    el: '#sport',
     data :{
       message : "",
       weight : "",
@@ -99,7 +100,7 @@ document.addEventListener('turbolinks:load', () => {
                })
            .then(function(response){
                let daily_sport = response.data
-               console.log(daily_sport )
+              //  console.log(daily_sport )
                for (var i in daily_sport ){
                 self.daily_sport.push(daily_sport[i])
                 var NowDate = new Date(daily_sport[i].created_at)
@@ -108,11 +109,54 @@ document.addEventListener('turbolinks:load', () => {
               self.daily_count = daily_sport.length
               for (var i=0; i<self.daily_count;i++){
                  self.daily_sum = Number(daily_sport[i].totalconsum) + self.daily_sum
-                 console.log(self.daily_sum)
+                //  console.log(self.daily_sum)
               }
       })
 
 
+    },
+  })
+  // 個人身體資訊
+  const physical = new Vue({
+    el: '#physical',
+    data :{
+      Height: "",
+      Weight: "",
+      Gender: "", // 取Gender選中的值
+      Genders:[
+        { text:'Man / 男', value:'Man'},
+        { text:'Woman / 女', value:'Woman'}
+      ],
+      Age:"",
+      BMI:"",
+      BMI_range:"",
+      Ree:"",
+      BMR:"",
+      intention:"",
+    },
+    methods: {
+      lookfor: function(){
+        let physical_hash = {
+          Height: this.Height,
+          Weight: this.Weight,
+          Gender: this.Gender,
+          Age: this.Age}
+        var self = this;
+        axios.post('http://localhost:3000/blogs', physical_hash)
+             .then(function(response){
+               let body = response.data
+               console.log(body)
+               self.BMI =body.bmi;
+               self.BMI_range=body.bmi_range;
+               self.Ree=body.ree;
+               self.BMR=body.bmr;
+              })
+      },
+      more: function(){
+
+      }
+    },
+    computed: {
     },
   })
 })
