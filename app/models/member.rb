@@ -5,6 +5,10 @@ class Member < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[google_oauth2]
 
+  
+  # has
+  has_many :food_records
+  has_many :sport_records
 
   def employee?
     role.in? ['staff', 'boss', 'admin']

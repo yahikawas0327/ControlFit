@@ -13,30 +13,58 @@
             <div class="col">
             </div>
             <div class="col">
-              <div class="col-md-6 mb-3">
-             <label for=""> Height : <i class="fas fa-ruler-vertical"></i> </label>
-             <input class="input is-success"  v-model="Height" type="text" placeholder="輸入公分喔!">
-              </div>
-              <div class="col-md-6 mb-3">
-             <label for=""> Weight : <i class="fas fa-weight"></i> </label>
-             <input class="input is-success"  v-model="Weight" type="text" placeholder="輸入公斤喔!">
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for=""> Gender : <i class="fas fa-male"></i> <i class="fas fa-female"></i> </label>
-                <div class="select is-success" >
-                <select v-model="Gender">
-                    <option v-for="option in Genders" :value="option.value">
-                        {{ option.text }}
-                    </option>
-                </select>
+              <div class="row">
+                <div class="col-md-1 mb-3"></div>
+                <div class="col-md-4 mb-3">
+                    <label for=""><i class="fas fa-user-circle"></i> </i>  {{user_info.name}} </label>
                 </div>
               </div>
-              <div class="col-md-6 mb-3">
-                <label for=""> Age : </label>
-                <input class="input is-success"  v-model="Age" type="text" placeholder="年齡是秘密">    
+              <div class="row">
+                <div class="col-md-1 mb-3"></div>
+                <div class="col-md-4 mb-3">
+                  <label for=""> Height : <i class="fas fa-ruler-vertical"></i> </label>
+                  <input v-if ="Height === '' || Height === null  " class="input is-danger"  v-model="Height" type="text" placeholder="輸入公分喔!">
+                  <input v-else class="input is-success"  v-model="Height" type="text" placeholder="輸入公分喔!">
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for=""> Weight : <i class="fas fa-weight"></i> </label>
+                  <input v-if =" Weight === '' || Weight === null " class="input is-danger"  v-model="Weight" type="text" placeholder="輸入公斤喔!">
+                  <input v-else class="input is-success"  v-model="Weight" type="text" placeholder="輸入公斤喔!">
+                </div>  
               </div>
-              <div class="col-md-6 mb-3">
-              <button class="button is-success is-light" @click="lookfor"> <i class="fas fa-id-card-alt"></i> Check </button>
+              <div class="row">
+                <div class="col-md-1 mb-3"></div>
+                <div class="col-md-5 mb-3">
+                 <label for=""> Gender : <i class="fas fa-male"></i> <i class="fas fa-female"></i> </label>
+                 </br>
+                 <div v-if =" Gender === '' || Gender === null " class="select is-danger">
+                 <select v-model="Gender">
+                    <option>Man</option>
+                    <option>Woman</option>
+                 </select>
+                 </div>
+                 <div v-else  class="select is-success">
+                    <select v-model="Gender">
+                       <option>Man</option>
+                       <option>Woman</option>
+                    </select>
+                </div>
+                </div>  
+                <div class="col-md-3 mb-3"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-1 mb-3"></div>
+                 <div class="col-md-4 mb-3">
+                    <label for=""> Age : </label>
+                    <input v-if =" Age === '' || Age === null " class="input is-danger"  v-model="Age" type="text" placeholder="年齡是秘密">
+                    <input v-else    class="input is-success"  v-model="Age" type="text" placeholder="年齡是秘密">   
+                 </div>
+              </div>
+              <div class="row">
+                <div class="col-md-1 mb-3"></div>
+                <div class="col-md-4 mb-3">
+                    <button class="button is-success is-light" @click="lookfor"> <i class="fas fa-id-card-alt"></i> Check </button>
+                </div>
               </div>
             </div>
             <div class="col">

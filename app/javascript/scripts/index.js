@@ -11,7 +11,7 @@ import moment from "moment";
 
 // const axios = require('axios');
  
- $(document).ready(function (){
+$(document).on('turbolinks:load', function(){
 
  
     // 新增每日食物資料 JQuery  

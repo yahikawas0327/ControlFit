@@ -79,11 +79,11 @@ document.addEventListener('turbolinks:load', () => {
       consume(){
         let search_length = this.sports.length
         for (var i=0; i<search_length;i++){
-          console.log(this.min)
-          console.log(this.weight)
+          // console.log(this.min)
+          // console.log(this.weight)
         let consume = ((this.min*Number(this.weight)*(Number(this.sports[i].consume)))/30).toFixed(2)
           this.sports[i].computed = consume
-          console.log(this.sports[i].computed)
+          // console.log(this.sports[i].computed)
         }
 
       }
@@ -127,12 +127,14 @@ document.addEventListener('turbolinks:load', () => {
         { text:'Man / 男', value:'Man'},
         { text:'Woman / 女', value:'Woman'}
       ],
+      user_info:{},
       Age:"",
       BMI:"",
       BMI_range:"",
       Ree:"",
       BMR:"",
       TDEE:0,
+      selcct_v:'select is-success',
       eatintention:"",
       sportintention:"",
       moreshow:false
@@ -188,8 +190,20 @@ document.addEventListener('turbolinks:load', () => {
             }
             return this.eatintention
 
-      }
-
+      },
     },
+    created() {
+      var self= this;
+      axios.get('http://localhost:3000/blogs',{params:{ id : 0}})
+           .then(function(response){
+             self.user_info = response.data
+             self.Height = response.data.height
+             self.Weight = response.data.weight
+             self.Gender = response.data.gender
+             self.Age    = response.data.age 
+             console.log(self.user_info) 
+           })
+    }         
+
   })
 })

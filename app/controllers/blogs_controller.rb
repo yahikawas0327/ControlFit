@@ -1,5 +1,20 @@
 class BlogsController < ApplicationController
   def index
+      personal_information = params["id"]
+      if personal_information.present?
+       user_name   = current_member.name
+       user_gender = current_member.gender
+       user_age    = current_member.age
+       user_height = current_member.cm
+       user_weight = current_member.kg
+       user_basic_information = { name: user_name,
+                                  gender: user_gender,
+                                  age: user_age,
+                                  height: user_height,
+                                  weight: user_weight}
+      render json: user_basic_information
+      else
+      end
   end
 
   def new
@@ -19,6 +34,7 @@ class BlogsController < ApplicationController
                          bmi_range: user_bmi_range,
                          ree: user_ree,
                          bmr: user_bmr}
+        # puts current_member.name
        render json: physical_hash
   end
  

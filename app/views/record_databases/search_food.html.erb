@@ -46,21 +46,23 @@
         <div class="row">
           <div class="col-xs-12 col-sm-8 offset-sm-2">
              <h3> Today Record </h3>
-             <section>
-               <i class="far fa-clock"></i> 
-               <p class="daytime"></i></p>
-             </section>
              <table class="table table-sm" id="daliy-food">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
+                  <th scope="col"><i class="far fa-clock"></th>
                   <th scope="col">Time</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Food Name</th>
-                  <th scope="col">Calories</th>
+                  <th class="daytime" scope="col">Time:</th>
+                  <th colspan="2"> 看看今天吃了甚麼 : <i class="fas fa-utensils"></i></th>
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <td scope="col">#</td>
+                  <td scope="col">Time</td>
+                  <td scope="col">Type</td>
+                  <td scope="col">Food Name</td>
+                  <td scope="col">Calories</td>
+                </tr>
                 <% @record_foods.each_with_index do |record_food, index| %>
                 <tr class="search_food_result" >
                   <td> <%= index+1 %></td>
@@ -75,7 +77,7 @@
                 <tr>
                     <td colspan="2">  Count : <%= @record_foods.size %></td>
                     <td></td>
-                    <td colspan="2"> Total calories : <%= @sum %>  </td>
+                    <td colspan="2"> Total calories : <%= @sum %> 大卡 </td>
                 </tr>
               </tfoot>
             </table>
