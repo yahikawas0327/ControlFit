@@ -20,9 +20,11 @@ class Members::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if Member.update(member_params)
+      redirect_to member_registration_path(id: current_member.id)
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -59,4 +61,8 @@ class Members::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  private
+  def member_params
+    params.require(:member).permit(:name, :gender, :age, :cm, :kg)
+  end
 end
