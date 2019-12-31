@@ -131,6 +131,7 @@ document.addEventListener('turbolinks:load', () => {
       BMI_range:"",
       Ree:"",
       BMR:"",
+      TDEE:0,
       eatintention:"",
       sportintention:"",
       moreshow:false
@@ -155,10 +156,39 @@ document.addEventListener('turbolinks:load', () => {
       },
       more: function(){
         this.moreshow = !this.moreshow
-
-      }
+      },
     },
     computed: {
+      exercise_choice(){
+            let  exercise_factor=0     
+            if (this.sportintention === '久坐'){
+                this.exercise_factor = 1.2
+            } else if (this.sportintention === '輕量活動') {
+                this.exercise_factor = 1.375
+            } else if (this.sportintention === '中度活動') {
+                this.exercise_factor = 1.55
+            } else if (this.sportintention === '高強度活動') {
+                this.exercise_factor = 1.725
+            } else if (this.sportintention === '極高強度活動') {
+                this.exercise_factor = 1.9
+            } else{
+                this.exercise_factor = 1
+            }
+            this.TDEE = (Number(this.BMR)*Number(this.exercise_factor)).toFixed(1)
+            return this.sportintention
+      },
+      food_choice(){
+            if (this.eatintention === '維持體重'){
+            } else if (this.eatintention === '增加肌肉') {
+                this.TDEE = Number(this.TDEE) + 300
+            } else if (this.eatintention === '減少脂肪') {
+                this.TDEE = Number(this.TDEE) - 300
+            } else {
+            }
+            return this.eatintention
+
+      }
+
     },
   })
 })
