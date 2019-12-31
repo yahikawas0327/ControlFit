@@ -64,6 +64,7 @@
         <ul class="col navbar-actions">
           <li class="nav-item">
             <% if member_signed_in? %>
+            <a rel="nofollow" data-method="get" href="/members/edit"><%= current_member.email %></a>
             <a rel="nofollow" data-method="delete" href="/members/sign_out">登出</a>
           </li>
             <% else %>
