@@ -13,7 +13,7 @@ li, a {
   text-decoration: none;
 }
 a:hover{
-  color: rgb(240, 45, 142);
+  color: #DB0267;
 }
 body{
   font-size: 14px;
@@ -47,6 +47,7 @@ body{
         font-weight: 300;
         margin-bottom: 0;
         padding: 0 10px;
+        color: #DB0267;
       }
     }
     img{
@@ -197,6 +198,7 @@ body{
           font-size: 20px;
           margin: 0;
           padding: 0 10px;
+          color: #DB0267;
         }
       }
       .login-block{
@@ -278,7 +280,7 @@ body{
   height: 700px;
   top: 60px;
   position: absolute;
-  background: url('https://images.unsplash.com/photo-1427384906349-30452365b5e8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60');
+  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('https://images.unsplash.com/photo-1480563597043-1c877e682fc7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1800&q=60');
   background-size: cover;
   background-attachment: fixed;
 }
