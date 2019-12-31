@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
   def show
-    @members = Member.find(params[:id])
+    @members = current_member
   end
 end

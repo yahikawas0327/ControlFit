@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :members, controllers: {registrations: 'members/registrations' ,omniauth_callbacks: 'members/omniauth_callbacks' }
-  get 'members(/:id)', to: 'members#show'
+  resource :member, only: :show
+
   resources :records
   root 'records#index'
   resources :users
