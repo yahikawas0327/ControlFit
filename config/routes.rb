@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   devise_for :members, controllers: {registrations: 'members/registrations' ,omniauth_callbacks: 'members/omniauth_callbacks' }
-  resource :member, only: :show
+  resource :member, only: :show do
+    member do
+      get :following, :followers
+    end
+  end
 
+  resource :relatiomships, only:[:create, :destroy]
+  
   resources :records
   root 'records#index'
   resources :users
