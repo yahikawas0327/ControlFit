@@ -1,5 +1,5 @@
 class RelationshipsController < ApplicationController
-  before_action :authenticate_member!
+  before_action :logged_in_member, only: [:create, :destroy]
 
   def create
     @member = Member.find(params[:followed_id])
@@ -16,6 +16,14 @@ class RelationshipsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @member }
       format.js
+    end
+  end
+  private
+  def logged_in_member
+    unless logged_in?
+      store_location
+      flash[:danger] = "Please log in."
+      redirect_to login_url
     end
   end
 end
