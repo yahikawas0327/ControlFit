@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>認識自己</title>
+    <title>To know you </title>
 </head>
 <body>
      <div id="physical">
         <div class="container">
           <div class="row">
-            <div class="col">
+            <div class="col-md-2">
             </div>
-            <div class="col">
+            <div class="col-md-5">
               <div class="row">
                 <div class="col-md-1 mb-3"></div>
                 <div class="col-md-4 mb-3">
@@ -62,12 +62,13 @@
               </div>
               <div class="row">
                 <div class="col-md-1 mb-3"></div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-7 mb-3">
                     <button class="button is-success is-light" @click="lookfor"> <i class="fas fa-id-card-alt"></i> Check </button>
+                    <button class="button is-info is-light"><i class="fas fa-pen"></i> Update</button>
                 </div>
               </div>
             </div>
-            <div class="col">
+            <div class="col-md-5">
               <div class="col-md-6 mb-3">
               <label v-if = "BMI !== ''" for=""> 看看自己的BMI囉 : {{BMI}} </label>
               </div>
@@ -77,15 +78,15 @@
               <div class="col-md-6 mb-3">
               <label v-if = "Ree !== ''" for=""> 基礎代謝率長知識! {{Ree}} 大卡 </label>
               </div>
-              <div class="col-md-6 mb-3">
-              <label v-if = "BMR !== ''" for=""> 根據上述資料，每天最少消耗熱量如下: {{BMR}} 大卡 </label>
+              <div class="col-md-8 mb-3">
+              <label v-if = "BMR !== ''" for=""> 每天最少消耗熱量如下: {{BMR}} 大卡 </label>
               </div>
               <div class="col-md-6 mb-3">
-                <label v-if = "BMR !== ''" for=""> 想知道Pro's 熱量資訊嗎!! 請按 more  </label>
+                <label v-if = "BMR !== ''" for=""> 更精確的身體密碼 請按 </label>
                 <button v-if = "BMR !== ''" class="button is-danger  is-light is-rounded" @click="more">more</button>
               </div>
               <div v-show="moreshow" class="col-md-6 mb-3">
-                  <label for="">選擇一下平常的運動習慣運動習慣!</label>
+                  <label for="">平常運動習慣!</label>
                   <br>
                   <input type="radio" id="s-one" value="久坐" v-model="sportintention">
                   <label for="s-one">久坐</label>
@@ -120,7 +121,10 @@
                   <span>飲食取向: {{ food_choice  }} </span>
               </div>
               <div v-show="moreshow" class="col-md-6 mb-3">
-                   <h2>根據活動及飲食有更精確的熱量值唷:{{TDEE}} 大卡</h2>
+                <label v-if = "exercise_choice === '' &&  food_choice !== '' " for=""> 根據飲食習慣更精確的熱量:{{TDEE}} 大卡</label>
+                <label v-if = "exercise_choice !== '' &&  food_choice === '' " for=""> 根據運動習慣更精確的熱量:{{TDEE}} 大卡</label>
+                <label v-if = "exercise_choice !== '' &&  food_choice !== '' " for=""> 根據運動及飲食習慣更精確熱量值唷:{{TDEE}} 大卡</label>
+                  <!-- <P>根據活動及飲食更精確的熱量值唷:{{TDEE}} 大卡</P> -->
               </div>
               </div>
             </div>  

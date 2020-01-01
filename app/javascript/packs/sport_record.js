@@ -22,6 +22,7 @@ document.addEventListener('turbolinks:load', () => {
     data :{
       message : "",
       weight : "",
+      user_info:{},
       min: 0,
       sports:[],
       daily_sport:[],
@@ -33,7 +34,7 @@ document.addEventListener('turbolinks:load', () => {
     methods: {
       submit: function(){
         var self = this;
-        //將key-word 發送至後端撈資料
+
         axios.get('http://localhost:3000/search_sport',{
                    params:{ search_sport: this.message}
                  })
@@ -79,11 +80,8 @@ document.addEventListener('turbolinks:load', () => {
       consume(){
         let search_length = this.sports.length
         for (var i=0; i<search_length;i++){
-          // console.log(this.min)
-          // console.log(this.weight)
-        let consume = ((this.min*Number(this.weight)*(Number(this.sports[i].consume)))/30).toFixed(2)
+          let consume = ((this.min*Number(this.weight)*(Number(this.sports[i].consume)))/30).toFixed(2)
           this.sports[i].computed = consume
-          // console.log(this.sports[i].computed)
         }
 
       }
@@ -93,14 +91,18 @@ document.addEventListener('turbolinks:load', () => {
       this.currentTime = moment().format('LTS');
       this.currentDay = moment().format("MMM Do YY");
       setInterval(() => this.updateCurrentTime(), 1 * 1000);
-  
-      // 今天資料
+      // User information
       var self =this;
-      axios.get('http://localhost:3000/search_sport', {params:{ id : 0}
-               })
+      axios.get('http://localhost:3000/blogs',{params:{ id : 0}})
+      .then(function(response){
+        self.user_info = response.data
+        self.weight    = response.data.weight
+      })
+      // 今天資料
+      axios.get('http://localhost:3000/search_sport',{params:{ id : 0}})
            .then(function(response){
                let daily_sport = response.data
-              //  console.log(daily_sport )
+               console.log(daily_sport)
                for (var i in daily_sport ){
                 self.daily_sport.push(daily_sport[i])
                 var NowDate = new Date(daily_sport[i].created_at)
@@ -109,7 +111,6 @@ document.addEventListener('turbolinks:load', () => {
               self.daily_count = daily_sport.length
               for (var i=0; i<self.daily_count;i++){
                  self.daily_sum = Number(daily_sport[i].totalconsum) + self.daily_sum
-                //  console.log(self.daily_sum)
               }
       })
 
@@ -123,10 +124,6 @@ document.addEventListener('turbolinks:load', () => {
       Height: "",
       Weight: "",
       Gender: "", // 取Gender選中的值
-      Genders:[
-        { text:'Man / 男', value:'Man'},
-        { text:'Woman / 女', value:'Woman'}
-      ],
       user_info:{},
       Age:"",
       BMI:"",
@@ -142,20 +139,30 @@ document.addEventListener('turbolinks:load', () => {
     methods: {
       lookfor: function(){
         let physical_hash = {
-          Height: this.Height,
-          Weight: this.Weight,
-          Gender: this.Gender,
-          Age: this.Age}
-        var self = this;
-        axios.post('http://localhost:3000/blogs', physical_hash)
-             .then(function(response){
-               let body = response.data
-               console.log(body)
-               self.BMI =body.bmi;
-               self.BMI_range=body.bmi_range;
-               self.Ree=body.ree;
-               self.BMR=body.bmr;
-              })
+                             Height: this.Height,
+                             Weight: this.Weight,
+                             Gender: this.Gender,
+                             Age: this.Age}
+
+        var physical_validate = Object.values(physical_hash).every(function(item, index, array){
+          return item !== '' // 當全部 item all exist  才能回傳 true
+        });
+        if (physical_validate === true) {
+          alert('以上資料沒錯的話! 那就把確定按下去')
+          var self = this;
+          axios.post('http://localhost:3000/blogs', physical_hash)
+          .then(function(response){
+            let body = response.data
+            self.BMI =body.bmi;
+            self.BMI_range=body.bmi_range;
+            self.Ree=body.ree;
+            self.BMR=body.bmr;
+           })
+           .catch((error) => {
+           })
+        } else {
+          alert('有資料還沒填! 看到紅色框的記得填')
+        }
       },
       more: function(){
         this.moreshow = !this.moreshow
@@ -201,7 +208,6 @@ document.addEventListener('turbolinks:load', () => {
              self.Weight = response.data.weight
              self.Gender = response.data.gender
              self.Age    = response.data.age 
-             console.log(self.user_info) 
            })
     }         
 
