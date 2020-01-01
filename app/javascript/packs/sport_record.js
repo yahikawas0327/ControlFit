@@ -29,7 +29,8 @@ document.addEventListener('turbolinks:load', () => {
       daily_sum :0,
       daily_count:0,
       currentTime: null,
-      currentDay: null
+      currentDay: null,
+      normalshow:[],
     },
     methods: {
       submit: function(){
@@ -42,8 +43,6 @@ document.addEventListener('turbolinks:load', () => {
                   let search_sport = response.data
                   for (var i in search_sport ){
                     self.sports.push(search_sport[i])
-                    // console.log(search_sport[i])
-                    // console.log(i)
                   }
                 })        
              },
@@ -74,7 +73,18 @@ document.addEventListener('turbolinks:load', () => {
       updateCurrentTime() {
         this.currentTime = moment().format('LTS');
         this.currentDay = moment().format("MMM Do YY");
-      }
+      },
+      edit_record(index){
+        alert("吃了誠實豆沙包要修改時間了嗎?")
+        this.normalshow[index] = false
+        console.log("edit")
+        console.log(index)
+      },
+      delete_record(index){
+        console.log("delete")
+        console.log(index)
+
+      },
     },
     computed: {
       consume(){
@@ -106,6 +116,9 @@ document.addEventListener('turbolinks:load', () => {
                for (var i in daily_sport ){
                 self.daily_sport.push(daily_sport[i])
                 var NowDate = new Date(daily_sport[i].created_at)
+                self.normalshow[i]=true
+                console.log(i)
+                console.log(self.normalshow[i])
                 self.daily_sport[i].created_at = moment(NowDate).calendar(); // 時間格式轉換
               }
               self.daily_count = daily_sport.length

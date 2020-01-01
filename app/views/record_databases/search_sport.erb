@@ -39,7 +39,7 @@
                 <td>{{idx+1}}</td>
                 <td>{{sport.name}}</td>
                 <td>{{sport.consume_60kg}}</td>
-                <td> <input class="input is-danger"  v-model="weight" type="password" placeholder="不能說的秘密"></td>
+                <td> <input class="input is-danger"  v-model="weight" type="password" placeholder="不能說的秘密" disabled="disabled"></td>
                 <td> <input class="input is-primary" v-model="min"    type="number" placeholder="誠實的打下去"></td>
                 <td :keyup="consume">{{sport.computed}}</td>
                 <td><button @click="sport_record(idx)"  class="fas fa-plus-circle"  ></button></td>
@@ -69,11 +69,12 @@
                   <td>{{index+1}}</td>
                   <td>{{record.created_at}}</td>
                   <td>{{record.name}}</td>
-                  <td>{{record.min}}</td>
+                  <td v-if="normalshow[index]">{{record.min}}</td>
+                  <td v-else><input class="input is-primary" v-model="daily_sport[index].min"    type="number" placeholder="誠實的打下去"></td>
                   <td>{{record.totalconsum}}</td>
                   <td>
-                    <button class="button is-warning is-small is-light"> <i class="fas fa-user-edit"> </i>Edit</button>
-                    <button class="button is-danger is-small is-light"> <i class="fas fa-cut"> </i> Delete </button>
+                    <button @click="edit_record(index)" class="button is-warning is-small is-light"> <i class="fas fa-user-edit"> </i>Edit</button>
+                    <button @click="delete_record(index)"class="button is-danger is-small is-light"> <i class="fas fa-cut"> </i> Delete </button>
                   </td>                 
                 </tr>
               </tbody>
