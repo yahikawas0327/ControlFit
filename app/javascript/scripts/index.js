@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // console.log('hi')
 
 // import 'bulma/css/bulma.css'
@@ -134,11 +135,7 @@ $(document).on('turbolinks:load', function(){
     let sum = $('.foodsum').text();
 
     console.log(sum )
- 
 })
-
-
-
 
 
 
