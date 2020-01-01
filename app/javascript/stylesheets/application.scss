@@ -551,9 +551,8 @@ a:hover{
 }
 //search_food
 .food .container-fluid {
-  display: flex;
   .search {
-    width: 700px;
+    width: 100%;
     margin: 20px 0 20px;
     form {
       display: flex;
@@ -592,8 +591,11 @@ a:hover{
 
   }
   .result {
-    width: 100%;
-    margin: 20px 0 20px;
+    width: 580px;
+    .daily-record {
+      width: 100%;
+      margin: 0 20px;
+    }
   }
 }
 

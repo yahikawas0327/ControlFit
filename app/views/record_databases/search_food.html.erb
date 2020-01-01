@@ -1,19 +1,16 @@
 <section class="food">
   <div class="container-fluid">
     <div class="row search">
-      <div class="col col-md-6">
+      <div class="col-12 col-sm-12 col-md-7">
         <h2 class="title">食品熱量分析</h2>  
-        <form>
           <div class="form-group">
             <%= form_tag search_food_record_database_path, :method => 'get' do %>
             <%= text_field_tag :search_food, @search_food %></h3>
             <%= submit_tag "Search" %>
-            <div class="add_item">
-              <i class="fas fa-hammer"></i>
-              <button type="button" class="btn btn-info" id="Add_food_record_by_user">分析</button>
-            </div>
+            <i class="fas fa-hammer"></i>
+            <button type="button" class="btn btn-info" id="Add_food_record_by_user">分析</button>
             <% end %>
-        </form> 
+    
         <table class="table table-hover" id="query-food">
           <thead>
             <tr>
@@ -22,7 +19,7 @@
               <th scope="col">蛋白質</th>
               <th scope="col">體脂肪</th>
               <th scope="col">碳水化合物</th>
-              <th scope="col">加入飲食紀錄</th>
+              <th scope="col">加入每日紀錄</th>
             </tr>
           </thead>
           <tbody>
@@ -44,21 +41,21 @@
         </div>
       </div>
     </div>
-    <div class="row result">
-      <div class="col col-md-6">
+    <div class="row result col-12 col-sm-12 col-md-5">
+      <div class="daily-record">
         <h2 class="title"> 當日攝取熱量紀錄 </h2>
-        <section class="time">
+        <div class="time">
           <i class="far fa-clock"></i> 
           <p class="daytime"></i></p>
-        </section>
+        </div>
         <table class="table table-sm" id="daliy-food">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Time</th>
-              <th scope="col">Type</th>
-              <th scope="col">Food Name</th>
-              <th scope="col">Calories</th>
+              <th scope="col">編號</th>
+              <th scope="col">時間</th>
+              <th scope="col">類型</th>
+              <th scope="col">食品名稱</th>
+              <th scope="col">卡洛里</th>
             </tr>
           </thead>
           <tbody>
