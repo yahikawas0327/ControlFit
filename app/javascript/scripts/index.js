@@ -131,15 +131,11 @@ import moment from "moment";
     let time = moment().format('lll');
     $('.daytime').html(time);
     // --------------------------------
-<<<<<<< HEAD
-    // let cc = $('.foodsum').text();
 
-    // console.log(cc )
-=======
     let sum = $('.foodsum').text();
 
     console.log(sum )
->>>>>>> Add Sport-record by vue version-1.0.0
+
  
 })
 
