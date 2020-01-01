@@ -1,5 +1,5 @@
 class RelationshipsController < ApplicationController
-  before_action :logged_in_member, only: [:create, :destroy]
+  before_action :authenticate_member!
 
   def create
     @member = Member.find(params[:followed_id])
