@@ -17,6 +17,8 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import axios from 'axios'
 // import "bootstrap-sprockets"
 import 'bootstrap';
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'popper.js';
 import moment from "moment";
 import './sport_record.js'
+import 'bulma'

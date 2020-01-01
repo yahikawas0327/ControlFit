@@ -1,47 +1,48 @@
  <div class="container" >  
-  <div class="row">
-    <div class="col-xs-12 col-sm-8 offset-sm-2">
-      <h1>Exericse Calorie</h1>
-      
-      <%= form_tag search_sport_record_database_path, :method => 'get' do %>
-        <%= text_field_tag :search_sport, @search_sport %>
-        <%= submit_tag "Search" %>
-      <% end %>
-      <br>
-      <table class="table table-hover" id="query-sport">
+
+  <div id="app">
+    <div class="columns">
+      <div class="column is-2">
+        <input class="input" type="text" v-model="message" placeholder="來個運動吧">
+      </div>
+      <div class="column is-1">
+        <button class="button is-success" @click="submit">Search</button>
+      </div>
+      <div class="column is-9">
+            <table class="table table-hover" id="query-sport">
         <thead>
           <tr>
+            <th scope="col"></i></th>
             <th scope="col"><i class="fas fa-running"></i></th>
-            <th colspan="5">運動30分鐘所消耗熱量 單位:大卡</th>
+            <th colspan="4">運動30分鐘所消耗熱量(60Kg為例) 單位:大卡</th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td> # </td>
             <td> 運動項目 </td>
-            <td> 40 Kg   </td>
-            <td> 50 Kg   </td>
-            <td> 60 Kg   </td>
-            <td> 70 Kg   </td>
-            <td> 記錄自己 </td>
+            <td> 燃燒多少 </td>
+            <td> 體重   </td>
+            <td> 你奮鬥多久(min) </td>
+            <td> 成果再這邊 </td>
+            <td> 記起來!!! </td>
           </tr>
-          <% @sports.each do |sport| %>
-          <tr class="search_sport_result" id="<%= sport.id %>">
-            <td> <%= sport.name %></td>
-            <td><%= sport.consume_40kg %></td>
-            <td><%= sport.consume_50kg %></td>
-            <td><%= sport.consume_60kg %></td>
-            <td><%= sport.consume_70kg %></td>
-            <td><button type="submit" id="<%= sport.id %>" class="fas fa-plus-circle" ></button></td>
+          <tr v-for="(sport, idx) in sports" >
+            <td>{{idx+1}}</td>
+            <td>{{sport.name}}</td>
+            <td>{{sport.consume_60kg}}</td>
+            <td> <input class="input is-danger"  v-model="weight" type="password" placeholder="不能說的秘密"></td>
+            <td> <input class="input is-primary" v-model="min"    type="number" placeholder="誠實的打下去"></td>
+            <td>{{sport.computed}}</td>
+            <td><button type="submit"  class="fas fa-plus-circle"  ></button></td>
           </tr>
-          <% end %>
         </tbody>
-      </table>
+            </table>  
+      </div>  
+
     </div>
-  </div>
-  <div id="app">
-    <% @sports.each do |address_book|%>
-      <name-card :item="<%=address_book.to_json %>"></name-card>
-    <%end%>
+    </div>
+    </div>
   </div>
 </div>
 
