@@ -27,7 +27,9 @@ class FoodRecordsController < ApplicationController
         @food_records = FoodRecord.where(created_at: Time.now.midnight..Time.now)
 
         
+        #回傳json 至前端
         render json: @food_records.last
+
                      
     end
 

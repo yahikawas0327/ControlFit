@@ -19,3 +19,4 @@ import axios from 'axios'
 import 'bootstrap';
 import 'popper.js';
 import moment from "moment";
+import './sport_record.js'
