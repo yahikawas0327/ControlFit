@@ -18,9 +18,12 @@
 </head>
 <body>
   <%= render 'shared/navbar' %>
-  <%= yield %>
+  <div id="main">
+    <%= yield %>
+  </div>
+  <%= render 'shared/footer' %>
+  
   <%= yield :scripts %>
-  </section>
 </body>
 <<<<<<< HEAD
 =======
