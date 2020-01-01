@@ -22,7 +22,7 @@ class Members::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
   def update
     if Member.update(member_params)
-      redirect_to member_registration_path(id: current_member.id)
+      redirect_to member_path(id: current_member.id)
     end
   end
 
