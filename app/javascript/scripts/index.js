@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 // console.log('hi')
 
 // import 'bulma/css/bulma.css'
