@@ -34,7 +34,7 @@
          </span>
        </ul>
         <div class="logo">
-          <a class="nav-link" href="<%= root_path %>" >
+          <a class="nav-link" href="<%= root_path %>" >  
             <img src="https://thumb1.shutterstock.com/thumb_large/2794804/776316079/stock-photo-rugby-sport-game-competition-icon-summer-sport-games-symbols-sport-pictogram-branding-identity-776316079.jpg" class="img-fluid rounded" width="50" height="50" alt="logo">
             <h1>健康管家</h1>
           </a>
@@ -44,13 +44,13 @@
             <li class="nav-item active">
               <a class="nav-link" href="<%= search_food_record_database_path %>">
                 <i class="fas fa-hamburger icon-5x"></i>
-                <span>食物熱量</span>
+                <span>食品熱量分析</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href=" <%= search_sport_record_database_path %>">
                 <i class="fas fa-dumbbell"></i>
-                <span>消耗熱量</span>
+                <span>運動消耗分析</span>
               </a>
             </li>
             <li class="nav-item">
@@ -62,9 +62,7 @@
           </ul>
         </div>
         <ul class="col navbar-actions">
-
           <% if member_signed_in? %>
-
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <%= current_member.email %>
