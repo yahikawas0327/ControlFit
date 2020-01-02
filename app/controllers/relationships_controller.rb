@@ -5,7 +5,7 @@ class RelationshipsController < ApplicationController
     @member = Member.find(params[:followed_id])
     current_member.follow(@member)
     respond_to do |format|
-      format.html { redirect_to @member }
+      format.html { redirect_to user_path(id: @member.id) }
     end
   end
 
@@ -13,7 +13,7 @@ class RelationshipsController < ApplicationController
     @member = Member.find(params[:id])
     current_member.unfollow(@member)
     respond_to do |format|
-      format.html { redirect_to @member }
+      format.html { redirect_to user_path(id: @member.id) }
     end
   end
 end
