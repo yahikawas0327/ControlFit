@@ -14,8 +14,7 @@
          </li>
          <li class="navbar-togller-item logo-block">
           <a class="nav-link" href="<%= root_path %>" >
-            <img src="https://thumb1.shutterstock.com/thumb_large/2794804/776316079/stock-photo-rugby-sport-game-competition-icon-summer-sport-games-symbols-sport-pictogram-branding-identity-776316079.jpg" class="img-fluid rounded" width="50" height="50" alt="logo">
-            <h1>健康管家</h1>
+            <%= image_tag("logo.png") %>
           </a>
          </li>
          <span class="navbar-togller-item login-block">
@@ -34,9 +33,8 @@
          </span>
        </ul>
         <div class="logo">
-          <a class="nav-link" href="<%= root_path %>" >  
-            <img src="https://thumb1.shutterstock.com/thumb_large/2794804/776316079/stock-photo-rugby-sport-game-competition-icon-summer-sport-games-symbols-sport-pictogram-branding-identity-776316079.jpg" class="img-fluid rounded" width="50" height="50" alt="logo">
-            <h1>健康管家</h1>
+          <a class="nav-link" href="<%= root_path %>" > 
+            <%= image_tag("logo.png") %>
           </a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-main">
@@ -44,19 +42,19 @@
             <li class="nav-item active">
               <a class="nav-link" href="<%= search_food_record_database_path %>">
                 <i class="fas fa-hamburger icon-5x"></i>
-                <span>食品熱量分析</span>
+                <span>食品</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href=" <%= search_sport_record_database_path %>">
                 <i class="fas fa-dumbbell"></i>
-                <span>運動消耗分析</span>
+                <span>運動</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <i class="far fa-newspaper icon-5x"></i>
-                <span>文章</span>
+                <span>知識</span>
             </a>
             </li>
             <li class="nav-item">
