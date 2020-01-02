@@ -551,50 +551,47 @@ a:hover{
 }
 //search_food
 .food .container-fluid {
+  display: flex;
+  padding: 0;
   .search {
     width: 100%;
     margin: 20px 0 20px;
-    form {
-      display: flex;
-      width: 680px;
-      #search_food {
-        width: 400px;
-        height: 50px;
-      }
-      .btn {
-        width: 100px;
-        height: 50px;
-        display: block;
+    h2 {
+      text-align: center;
+    }
+    .food-content {
+      height: 100px;
+      .add_item {
+        width: 100%;
+        display: flex;
+        margin-top: 20px;
+        i {
+          margin: 5px 10px 0 0;
+          font-size: 25px;
+        }
+        p {
+          line-height: 2.5;
+          margin-right: 10px;
+        }
+        .btn-analyze {
+          height: 40px;
+          width: 130px;
+        }
       }
     }
-    .add_item {
-      width: 680px;
-      display: flex;
-      padding: 10px 0;
-      i {
-        font-size: 30px;
-        margin-top: 5px;
-      }
-      p {
-        width: 150px;
-        height: 45px;
-        text-align: center;
-        line-height: 3;
-      }
-      .btn {
-        height: 45px;
-      }
-    }
+  }
     table.table-hover {
       width: 680px;
    }
-
-  }
-  .result {
-    width: 580px;
+  .row.result {
+    width: 100%;
+    margin-top: 20px;
     .daily-record {
       width: 100%;
       margin: 0 20px;
+      h2 {
+        text-align: center;
+      }
     }
   }
 }
