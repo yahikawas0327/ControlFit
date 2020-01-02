@@ -160,7 +160,7 @@ a:hover{
     }
     .navbar-header{
       display: block;
-      width: 414px;
+      width: 400px;
       height: 60px;
       top: 0;
       padding: 0;
@@ -185,7 +185,7 @@ a:hover{
             width: 20px;
             height: 1px;
             right: 8px;
-            background-color: #ffffff;
+            background-color: rgba(0,0,0,.84);
             border-radius: .5px;
             z-index: 4;
           }
@@ -229,9 +229,6 @@ a:hover{
         width: 100px;
         height: 60px;
         align-items: center;
-        justify-content: space-between;
-        padding: 0 10px;
-        
       }
     }
     .logo{
@@ -245,9 +242,11 @@ a:hover{
   }  
   #navbar-control:checked + .navbar .navbar-toggler .icon-bar:first-child{
     transform: rotate(45deg) translateY(0px);
+    background-color: #DB0267;
   }
   #navbar-control:checked + .navbar .navbar-toggler .icon-bar:last-child{
     transform: rotate(-45deg) translateY(0px);
+    background-color: #DB0267;
   }
   #navbar-control:checked + .navbar .navbar-collapse{
     visibility: visible;
@@ -260,14 +259,14 @@ a:hover{
       box-sizing: border-box;
       z-index: 1;
       width: auto;
-      height: 675px;
+      height: 800px;
       padding: 45px 40px 8px;
-      transition: visibility 0s linear 1s;
+      transition: visibility 0s linear 1.5s;
       top: 60px;
       right: 0;
       bottom: 0;
       left: 0;
-      margin: 0;
+      margin: 0!important;
       .nav-item{
         width: 100%;
         height: 80px;
@@ -275,26 +274,20 @@ a:hover{
         left: 0;
         a{
           align-items: flex-start;
-          border-right: 1px solid transparent;
-          border-bottom: 1px solid #2b2a2a;
+          color: rgba(255,255,255,.9)!important;
           font-size: .95rem;
+        }
+        i {
+          color: rgba(255,255,255,.9)!important;
         }
       }
       .nav-item:first-child a{
         border-left: 1px solid transparent;
       }
-      .nav-item + .nav-item a+ a:after{
-        content: '';
-        position: absolute;
-        left: 20px;
-        right: 20px;
-        height: 1px;
-        background-color: #ffff;
-        top: 0;
-      } 
     }
   }
 }
+
 // banner
 .banner{
   width: 100%;

@@ -20,14 +20,20 @@
          <span class="navbar-togller-item login-block">
           <li class="nav-item">
             <% if member_signed_in? %>
-            <a rel="nofollow" data-method="delete" href="/members/sign_out">登出</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_member.email %>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a rel="nofollow" data-method="get" href="<%= member_path %>", class="dropdown-item">個人資料</a>
+                <a rel="nofollow" data-method="get" href="/members/edit", class="dropdown-item">修改資料</a>
+                <div class="dropdown-divider"></div>  
+                  <a rel="nofollow" data-method="delete" href="/members/sign_out", class="dropdown-item">登出</a>
+              </div>
           </li>
             <% else %>
           <li class="nav-item">
-            <a href="<%= new_member_registration_path %>">註冊</a>
-          </li>
-          <li class="nav-item">
-            <a href="<%= new_member_session_path %>">登入</a>
+            <a href="<%= new_member_session_path %>">登入/註冊</a>
           </li>
             <% end %>
          </span>
