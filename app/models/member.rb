@@ -20,7 +20,6 @@ class Member < ApplicationRecord
   # Follows a user.
   def follow(other_member)
     following << other_member
-    redirect_to user_path(current_member)
   end
 
   # Unfollows a user.
