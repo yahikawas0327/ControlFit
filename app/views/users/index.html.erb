@@ -1,3 +1,11 @@
-<% @member.each do |m| %>
-  <%= link_to m.name, user_path(m) %>
-<% end %>
+<div class="card">
+  <ul>
+    <div class="card-body">
+      <% @member.each do |m| %>
+        <li>
+          <%= link_to m.name, user_path(m) %>
+        </li>
+      <% end %>
+    </div>
+  </ul>
+</div>
