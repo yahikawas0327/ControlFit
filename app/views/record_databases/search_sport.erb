@@ -73,9 +73,9 @@
                   <td width="110px" v-else ><input class="input is-primary" v-model= "daily_sport[index].min" type="number" placeholder=""></td>
                   <td>{{record.totalconsum}}</td>
                   <td>
-                    <button @click="edit_record(index)" class="button is-warning is-small is-light"> <i class="fas fa-user-edit"> </i>Edit</button>
+                    <button @click="edit_record(index)" class="button is-warning is-small is-light"> <i class="fas fa-pencil-alt"> </i></button>
                     <button v-if="editstatus[index] === true" @click="update_record(index)"class="button is-success is-small is-light"> <i class="fas fa-save"></i></button>
-                    <button @click="delete_record(index)"class="button is-danger is-small is-light"> <i class="fas fa-cut"> </i> Del </button>
+                    <button @click="delete_record(index)"class="button is-danger is-small is-light"> <i class="fas fa-trash"> </i></button>
                   </td>                 
                 </tr>
               </tbody>

@@ -37,7 +37,6 @@ document.addEventListener('turbolinks:load', () => {
     methods: {
       submit: function(){
         var self = this;
-
         axios.get('http://localhost:3000/search_sport',{
                    params:{ search_sport: this.message}
                  })
@@ -84,24 +83,33 @@ document.addEventListener('turbolinks:load', () => {
         }else{ alert("不要在按了!!! You r in Edit status")}
       },
       delete_record(index){
+        alert("確定要刪除這筆資料嗎???")
+        let delete_id = { id : this.daily_sport[index].id }
+        axios.delete(`http://localhost:3000/exercise_records/${this.daily_sport[index].id}`, delete_id)
+             .then(function(response){
+              console.log(response)
+             })
       },
       update_record(index){
-        alert("確定一切都沒問題了嗎?")
-        this.editstatus[index] = false
-        let tempsum =Number(this.daily_sum)- Number(this.daily_sport[index].totalconsum)
-        let newtotalconsum = ((Number(this.daily_sport[index].totalconsum) / Number(this.tempindex[index])) * this.daily_sport[index].min).toFixed(2)
-        let newdaily_sum = (Number(newtotalconsum) + Number(tempsum)).toFixed(2)
-        this.daily_sport[index].totalconsum = newtotalconsum
-        this.daily_sum = newdaily_sum
-        let update_daily = { 
-                             id : this.daily_sport[index].id,
-                             min: this.daily_sport[index].min,
-                             totalconsum: newtotalconsum }
-        axios.patch(`http://localhost:3000/exercise_records/${this.daily_sport[index].id}`, update_daily)
-             .then(function(response){
-               console.log(response)
-             })
-
+        if (Number(this.daily_sport[index].min)>=1){
+          alert("確定一切都沒問題了嗎?")
+          this.editstatus[index] = false
+          let tempsum =Number(this.daily_sum)- Number(this.daily_sport[index].totalconsum)
+          let newtotalconsum = (Number(this.daily_sport[index].consume)*Number(this.daily_sport[index].min)).toFixed(2)
+          let newdaily_sum = (Number(newtotalconsum) + Number(tempsum)).toFixed(2)
+          this.daily_sport[index].totalconsum = newtotalconsum
+          this.daily_sum = newdaily_sum
+          let update_daily = { 
+                               id : this.daily_sport[index].id,
+                               min: this.daily_sport[index].min,
+                               totalconsum: newtotalconsum }
+          axios.patch(`http://localhost:3000/exercise_records/${this.daily_sport[index].id}`, update_daily)
+               .then(function(response){
+                 console.log(response)
+               })
+        } else{
+          alert("分鐘數必須要大於1 min")
+        }
       },
     },
     computed: {

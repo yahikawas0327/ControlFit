@@ -9,21 +9,29 @@ class ExerciseRecordsController < ApplicationController
            current_data.update(
                                :min => update_min,
                                :totalconsum => update_sum)
-           puts "update successful"
-           puts current_data
-           puts update_min
-           puts min
-           puts update_sum
-           puts sum
+        #    puts "update successful"
+        #    puts current_data
+        #    puts update_min
+        #    puts min
+        #    puts update_sum
+        #    puts sum
            
+    end
+    def destroy
+          delete_data = SportRecord.find_by(id:params[:id])
+          delete_data.destroy
+          puts "delete finish"
+
+
     end
     def create
         # Obtain Post data from Query system && Sport database
            sport_record  = Sport.find_by(id:params[:id])
            sport_name    = sport_record.name
+           sport_consume = sport_record.consume
            sport_min     = params[:min]
            sport_weight  = (params[:weight]).to_i
-           sport_consume = (params[:consume]).to_i
+           sport_tolconsume = (params[:consume]).to_i
            puts "----------------------"
            puts sport_consume.class
            puts "----------------------"
@@ -32,7 +40,8 @@ class ExerciseRecordsController < ApplicationController
            SportRecord.create(:name => sport_name , 
            :weight => sport_weight,
            :min => sport_min,
-           :totalconsum => sport_consume )
+           :consume => sport_consume,
+           :totalconsum => sport_tolconsume )
      
          # Renodr json file 
            @sport_records = SportRecord.where(created_at: Time.now.midnight..Time.now)
