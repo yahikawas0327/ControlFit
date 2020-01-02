@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_01_044943) do
+ActiveRecord::Schema.define(version: 2020_01_02_021615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,16 +20,6 @@ ActiveRecord::Schema.define(version: 2020_01_01_044943) do
     t.string "area"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "followships", force: :cascade do |t|
-    t.string "follower_id"
-    t.string "followed_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["followed_id"], name: "index_followships_on_followed_id"
-    t.index ["follower_id", "followed_id"], name: "index_followships_on_follower_id_and_followed_id", unique: true
-    t.index ["follower_id"], name: "index_followships_on_follower_id"
   end
 
   create_table "food_databases", force: :cascade do |t|
