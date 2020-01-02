@@ -54,7 +54,7 @@ document.addEventListener('turbolinks:load', () => {
           weight: this.weight,
           consume: this.sports[idx].computed
         }
-        console.log(sport_hash) 
+        // console.log(sport_hash) 
         // 將紀錄資料送至後端資料庫
         axios.post("http://localhost:3000/exercise_records",sport_hash)
              .then(function(response){
@@ -68,6 +68,7 @@ document.addEventListener('turbolinks:load', () => {
           totalconsum: this.sports[idx].computed,
           created_at: moment().calendar()
         })
+        this.editstatus[this.daily_count]=false // fix add data can't edit bug
         this.daily_count += 1;
         this.daily_sum += Number(this.sports[idx].computed)
       },
@@ -85,10 +86,17 @@ document.addEventListener('turbolinks:load', () => {
       delete_record(index){
         alert("確定要刪除這筆資料嗎???")
         let delete_id = { id : this.daily_sport[index].id }
+        let delete_index = index ;
+        console.log(index)
+        // console.log(deletedata)
+        this.daily_sum = Number(this.daily_sum) - Number(this.daily_sport[index].totalconsum)
         axios.delete(`http://localhost:3000/exercise_records/${this.daily_sport[index].id}`, delete_id)
              .then(function(response){
-              console.log(response)
              })
+        this.daily_sport = this.daily_sport.filter(function(item, index, array){
+          return index !== delete_index ;       // 取得大於五歲的
+        });
+        
       },
       update_record(index){
         if (Number(this.daily_sport[index].min)>=1){

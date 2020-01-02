@@ -1,29 +1,21 @@
 class ExerciseRecordsController < ApplicationController
     def update
         # Update daily record system
-           current_data = SportRecord.find_by(id:params[:id])
-           update_min = params[:min]
-           update_sum = params[:totalconsum]
-           min=current_data.min
-           sum=current_data.totalconsum
-           current_data.update(
-                               :min => update_min,
-                               :totalconsum => update_sum)
-        #    puts "update successful"
-        #    puts current_data
-        #    puts update_min
-        #    puts min
-        #    puts update_sum
-        #    puts sum
-           
+      current_data = SportRecord.find_by(id:params[:id])
+      update_min = params[:min]
+      update_sum = params[:totalconsum]
+      min=current_data.min
+      sum=current_data.totalconsum
+      current_data.update(
+                          :min => update_min,
+                          :totalconsum => update_sum)
     end
     def destroy
-          delete_data = SportRecord.find_by(id:params[:id])
-          delete_data.destroy
-          puts "delete finish"
-
-
+      delete_data = SportRecord.find_by(id:params[:id])
+      delete_data.destroy
+      puts "delete finish"
     end
+
     def create
         # Obtain Post data from Query system && Sport database
            sport_record  = Sport.find_by(id:params[:id])
