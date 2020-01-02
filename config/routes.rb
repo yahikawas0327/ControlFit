@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :relatiomships, only:[:create, :destroy]
+  resource :relationships, only:[:create, :destroy]
   
   resources :records
   root 'records#index'
