@@ -30,7 +30,9 @@ document.addEventListener('turbolinks:load', () => {
       daily_count:0,
       currentTime: null,
       currentDay: null,
-      normalshow:[],
+      tempindex:[],
+      editstatus:[],
+      savestatus:[],
     },
     methods: {
       submit: function(){
@@ -75,14 +77,30 @@ document.addEventListener('turbolinks:load', () => {
         this.currentDay = moment().format("MMM Do YY");
       },
       edit_record(index){
-        alert("吃了誠實豆沙包要修改時間了嗎?")
-        this.normalshow[index] = false
-        console.log("edit")
-        console.log(index)
+        if(this.editstatus[index]===false){
+          alert("吃了誠實豆沙包要修改時間了嗎?")
+          this.editstatus[index] = true
+          this.tempindex[index] = this.daily_sport[index].min
+        }else{ alert("不要在按了!!! You r in Edit status")}
       },
       delete_record(index){
-        console.log("delete")
-        console.log(index)
+      },
+      update_record(index){
+        alert("確定一切都沒問題了嗎?")
+        this.editstatus[index] = false
+        let tempsum =Number(this.daily_sum)- Number(this.daily_sport[index].totalconsum)
+        let newtotalconsum = ((Number(this.daily_sport[index].totalconsum) / Number(this.tempindex[index])) * this.daily_sport[index].min).toFixed(2)
+        let newdaily_sum = (Number(newtotalconsum) + Number(tempsum)).toFixed(2)
+        this.daily_sport[index].totalconsum = newtotalconsum
+        this.daily_sum = newdaily_sum
+        let update_daily = { 
+                             id : this.daily_sport[index].id,
+                             min: this.daily_sport[index].min,
+                             totalconsum: newtotalconsum }
+        axios.patch(`http://localhost:3000/exercise_records/${this.daily_sport[index].id}`, update_daily)
+             .then(function(response){
+               console.log(response)
+             })
 
       },
     },
@@ -93,8 +111,7 @@ document.addEventListener('turbolinks:load', () => {
           let consume = ((this.min*Number(this.weight)*(Number(this.sports[i].consume)))/30).toFixed(2)
           this.sports[i].computed = consume
         }
-
-      }
+      },
     },
     created() {
       // 當前時間
@@ -116,9 +133,8 @@ document.addEventListener('turbolinks:load', () => {
                for (var i in daily_sport ){
                 self.daily_sport.push(daily_sport[i])
                 var NowDate = new Date(daily_sport[i].created_at)
-                self.normalshow[i]=true
-                console.log(i)
-                console.log(self.normalshow[i])
+                self.editstatus[i]=false
+                self.savestatus[i]=false
                 self.daily_sport[i].created_at = moment(NowDate).calendar(); // 時間格式轉換
               }
               self.daily_count = daily_sport.length

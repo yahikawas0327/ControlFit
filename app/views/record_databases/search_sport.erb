@@ -40,8 +40,8 @@
                 <td>{{idx+1}}</td>
                 <td>{{sport.name}}</td>
                 <td>{{sport.consume_60kg}}</td>
-                <td> <input class="input is-danger"  v-model="weight" type="password" placeholder="不能說的秘密" disabled="disabled"></td>
-                <td> <input class="input is-primary" v-model="min"    type="number" placeholder="誠實的打下去"></td>
+                <td width="80px"> <input class="input is-danger"  v-model="weight" type="password" placeholder="不能說的秘密" disabled="disabled"></td>
+                <td width="110px"> <input class="input is-primary" v-model="min"    type="number" placeholder="誠實的打下去"></td>
                 <td :keyup="consume">{{sport.computed}}</td>
                 <td><button @click="sport_record(idx)"  class="fas fa-plus-circle"  ></button></td>
               </tr>
@@ -70,12 +70,13 @@
                   <td>{{index+1}}</td>
                   <td>{{record.created_at}}</td>
                   <td>{{record.name}}</td>
-                  <td v-if="normalshow[index]">{{record.min}}</td>
-                  <td v-else><input class="input is-primary" v-model="daily_sport[index].min"    type="number" placeholder="誠實的打下去"></td>
+                  <td v-if="editstatus[index] !== true">{{record.min}}</td>
+                  <td width="110px" v-else ><input class="input is-primary" v-model= "daily_sport[index].min" type="number" placeholder=""></td>
                   <td>{{record.totalconsum}}</td>
                   <td>
                     <button @click="edit_record(index)" class="button is-warning is-small is-light"> <i class="fas fa-user-edit"> </i>Edit</button>
-                    <button @click="delete_record(index)"class="button is-danger is-small is-light"> <i class="fas fa-cut"> </i> Delete </button>
+                    <button v-if="editstatus[index] === true" @click="update_record(index)"class="button is-success is-small is-light"> <i class="fas fa-save"></i></button>
+                    <button @click="delete_record(index)"class="button is-danger is-small is-light"> <i class="fas fa-cut"> </i> Del </button>
                   </td>                 
                 </tr>
               </tbody>
