@@ -48,31 +48,40 @@
       <div class="col-12">
         <div class="daily-record">
           <h2 class="title"> 每天攝取熱量紀錄 </h2>
-          <div class="time">
-            <i class="far fa-clock"></i> 
-            <p class="daytime"></i></p>
-          </div>
           <table class="table table-sm" id="daliy-food">
             <thead>
+              <tr>
+                <th colspan="1"><i class="far fa-clock"></i></th>
+                <th class="daytime" scope="col"></th>
+                <th></th>
+                <th colspan="3">今天吃了甚麼好料 <i class="fas fa-utensils"></i> </th>
+              </tr>
+            </thead>
+            <tbody>
               <tr>
                 <th scope="col">編號</th>
                 <th scope="col">時間</th>
                 <th scope="col">類型</th>
                 <th scope="col">食品名稱</th>
-                <th scope="col">卡洛里</th>
-              </tr>
-            </thead>
-            <tbody>
+                <th scope="col">吃多少</th>
+                <th scope="col">懺悔時間</th>
+              </tr>               
               <% @record_foods.each_with_index do |record_food, index| %>
-              <tr class="search_food_result" >
+              <tr class="daily_food_result" >
                 <td> <%= index+1 %></td>
                 <td> <%= record_food.created_at.strftime("%F") %></td>
                 <td> <%= record_food.eat_type %></td>                  
                 <td> <%= record_food.name %></td>
-                <td class="foodsum"> <%= record_food.total_calorie %></td>  
+                <td class="foodsum"> <%= record_food.total_calorie %></td>
+                <td>
+                  <button data-id="<%= record_food.id %>" class="button is-warning is-small is-light js-edit"><i class="fas fa-pencil-alt"> </i></button>
+                  <button data-id="<%= record_food.id %>" class="button is-success is-small is-light js-save"><i class="fas fa-save"> </i></button>
+                  <button data-id="<%= record_food.id %>" class="button is-danger is-small is-light js-del"><i class="fas fa-trash"> </i></button>
+                </td>
               </tr>
               <% end %>
             </tbody>
+
             <tfoot>
               <tr>
                 <td colspan="2">  項目數量 : <%= @record_foods.size %></td>

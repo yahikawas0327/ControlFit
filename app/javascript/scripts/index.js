@@ -15,7 +15,7 @@ import moment from "moment";
 $(document).on('turbolinks:load', function(){
 
     // 新增每日食物資料 JQuery  
-    $('tr').on('click','button',function(evt){
+    $('.search_food_result').on('click','button',function(evt){
       $('#query-food').hide();
       let food_name = $(evt.target).parent().siblings('td:first').text()
       let food_calorie = $(evt.target).parent().siblings('td:first').next().text()
@@ -43,10 +43,10 @@ $(document).on('turbolinks:load', function(){
        <div class="col-md-3 mb-3">
             <label for="exampleFormControlInput1">型態</label>
             <select class="custom-select" id="foodtype">
-            <option selected>早餐</option>
-            <option value="1">午餐</option>
-            <option value="2">晚餐</option>
-            <option value="3">點心/其他</option>
+                <option selected>早餐</option>
+                <option value="1">午餐</option>
+                <option value="2">晚餐</option>
+                <option value="3">點心/其他</option>
             </select>
        </div>
        <button type="submit" class="fas fa-cloud-upload-alt" id="${evt.target.id}"></button>
@@ -126,6 +126,18 @@ $(document).on('turbolinks:load', function(){
               $( "#daliy-food" ).load( "search_food.html #daliy-food" );
   })
 
+    })
+    // Edit daily record data function 
+    $('.daily_food_result').on('click','.js-edit',function(){
+       alert(this.dataset.id);
+    })
+    // Save edit daily record data function 
+    $('.daily_food_result').on('click','.js-save',function(){
+       alert(this.dataset.id);
+    })
+    // Save edit daily record data function 
+    $('.daily_food_result').on('click','.js-del',function(){
+       alert(this.dataset.id);
     })
     // Now time and day
     let time = moment().format('lll');
