@@ -14,7 +14,6 @@ import moment from "moment";
  
 $(document).on('turbolinks:load', function(){
 
- 
     // 新增每日食物資料 JQuery  
     $('tr').on('click','button',function(evt){
       $('#query-food').hide();
@@ -131,7 +130,8 @@ $(document).on('turbolinks:load', function(){
     // Now time and day
     let time = moment().format('lll');
     $('.daytime').html(time);
-    // --------------------------------
+
+    // -------------------------------
     let sum = $('.foodsum').text();
 
     console.log(sum )
