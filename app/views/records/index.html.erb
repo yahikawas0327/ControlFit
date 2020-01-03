@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%= javascript_pack_tag 'bmi', 'data-turbolinks-track': 'reload' %>
 <section class="section banner cover-image">
   <div class="container">
@@ -20,3 +21,27 @@
 
      
 
+=======
+<%= javascript_pack_tag 'bmi', 'data-turbolinks-track': 'reload' %>
+<section class="section banner cover-image">
+  <div class="container">
+    <div class="row">
+      <form>
+        <div class="form-group" id="BMI">
+          <label for="formGroupExampleInput">身高</label>
+          <input type="text" class="form-control cm" name="height" id="formGroupExampleInput" placeholder="請輸入身高（公分）" onkeypress="if (event.keyCode == 13) {return false;}" v-model="height">
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">體重</label>
+          <input type="text" class="form-control kg" name="weight" id="formGroupExampleInput2" placeholder="請輸入體重（公斤）" onkeypress="if (event.keyCode == 13) {return false;}" v-model="eight">
+        </div>
+        <button type="submit" class="btn btn-primary submit">開始計算</button>
+        <div class="box list-group-item"></div>
+      </form>
+    </div>
+  </div> 
+</section>
+
+     
+
+>>>>>>> origin/master

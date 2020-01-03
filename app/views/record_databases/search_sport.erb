@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div id="sport">
   <div class="container" >
     <div class="row">
@@ -94,3 +95,93 @@
     </div>
   </div>
 </div>
+=======
+<section class="section sport" >
+  <div class="container-fluid" >  
+    <div class="row" id="sport">
+      <div class="col-12 col-md-6">
+          <h2 class="title text-center">運動消耗分析</h2>
+          <div class="form-group sport-content d-flex">
+            <input class="input sport-item" type="text" v-model="message" placeholder="輸入運動項目，如：慢跑"> 
+            <button class="button is-success btn-sport" @click="submit">分析</button>
+        </div>
+        <div class="column">
+          <table class="table table-hover" id="query-sport">
+            <thead>
+              <tr>
+                <th scope="col"></i></th>
+                <th scope="col" style="font-size: x-large;"><i class="fas fa-running"></i></th>
+                <th colspan="4" class="text-center">消耗熱量/30分鐘 (以體重：60 kg 為例) <br> 單位:大卡</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> # </td>
+                <td> 運動項目 </td>
+                <td> 甩多少 </td>
+                <td> 體重   </td>
+                <td> 奮鬥時間(min) </td>
+                <td> 成果再這邊 </td>
+                <td> 記起來!!! </td>
+              </tr>
+              <tr v-for="(sport, idx) in sports" >
+                <td>{{idx+1}}</td>
+                <td>{{sport.name}}</td>
+                <td>{{sport.consume_60kg}}</td>
+                <td><input class="input is-danger"  v-model="weight" type="password" placeholder="不能說的秘密"></td>
+                <td><input class="input is-primary" v-model="min" type="number" placeholder="誠實的打下去"></td>
+                <td :keyup="consume">{{sport.computed}}</td>
+                <td><button @click="sport_record(idx)"  class="fas fa-plus-circle"  ></button></td>
+              </tr>
+            </tbody>
+          </table>  
+        </div>  
+      </div>
+      <div class="col-12 col-md-6">
+        <h3 class="title text-center">看看今天燃燒多少?</h3>
+        <div class="column time">
+          <h4> 時間 <i class="fas fa-clock"></i> : {{currentTime}} </h4>
+          <h4> 日期 <i class="fas fa-calendar-day"></i> : {{currentDay}} </h4>
+        </div>
+        <div class="column sport-record ">
+          <table class="table table-hover" id="query-sport">
+            <thead>  
+              <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>  
+              <tr>
+                <td> # </td>
+                <td> 紀錄時間 </td>
+                <td> 運動項目 </td>
+                <td> 奮鬥時間 </td>
+                <td> 燃燒值   </td>
+              </tr>
+              <tr v-for="(record, index) in daily_sport" >
+                <td>{{index+1}}</td>
+                <td>{{record.created_at}}</td>
+                <td>{{record.name}}</td>
+                <td>{{record.min}}</td>
+                <td>{{record.totalconsum}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                  <td colspan="2">  項目數量小計 : {{daily_count}} </td>
+                  <td></td>
+                  <td colspan="2"> 今日燃燒總熱量: {{daily_sum}} 大卡</td>
+                </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+>>>>>>> origin/master

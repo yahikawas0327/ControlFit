@@ -4,11 +4,37 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[google_oauth2]
-
   
   # has
   has_many :food_records
   has_many :sport_records
+
+  has_many :active_relationships, class_name:  "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent:   :destroy
+                                  
+  has_many :following, through: :active_relationships, source: :followed
+
+  has_many :passive_relationships, class_name:  "Relationship",
+                                   foreign_key: "followed_id",
+                                   dependent:   :destroy
+
+  has_many :followers, through: :passive_relationships, source: :follower
+
+  # Follows a user.
+  def follow(other_member)
+    following << other_member
+  end
+
+  # Unfollows a user.
+  def unfollow(other_member)
+    following.delete(other_member)
+  end
+
+  # Returns true if the current user is following the other user.
+  def following?(other_member)
+    following.include?(other_member)
+  end
 
   def employee?
     role.in? ['staff', 'boss', 'admin']
