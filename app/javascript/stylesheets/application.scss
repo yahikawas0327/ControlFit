@@ -79,7 +79,7 @@ a:hover{
     align-items: center;
     margin: 0 50px;
     .nav-item {
-      width: 100px;
+      width: 120px;
       &:hover {
         color: rgb(240, 45, 142);
       }
@@ -90,6 +90,7 @@ a:hover{
         align-items: center;
         font-size: 1rem;
         color: rgba(0,0,0,.84);
+        width: 120px;
         span {
           font-size: 20px;
         }
