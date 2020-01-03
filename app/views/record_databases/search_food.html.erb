@@ -5,8 +5,8 @@
         <h2 class="title">食品熱量分析</h2>  
         <div class="form-group food-content">
           <%= form_tag search_food_record_database_path, :method => 'get' do %>
-          <%= text_field_tag :search_food, @search_food %></h3>
-          <%= submit_tag "Search" %>
+          <%= text_field_tag :search_food, @search_food, class: 'food-text' %></h3>
+          <%= submit_tag "Search", class:'search-tag' %>
           <div class="add_item">
             <i class="fas fa-hammer"></i>
             <p>找不到食品項目嗎？</p>
