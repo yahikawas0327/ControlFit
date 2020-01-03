@@ -73,7 +73,7 @@ a:hover{
   .navbar-header {
     display: none;
   }
-  .collapse .navbar-nav {
+  .collapsing .navbar-nav, .collapse .navbar-nav {
     display: flex;
     width: 400px;
     align-items: center;
@@ -142,10 +142,6 @@ a:hover{
       width: 100%;
       height: 75px;
     }
-    .brand {
-      justify-content: center;
-      align-items: center;
-     }
   }
 }
 @media only screen and (max-width: 767px){
@@ -154,6 +150,7 @@ a:hover{
     background-color: rgba(0,0,0,.92);
     .row{
       margin: 0;
+      background-color: #fff;
     }
     .row .logo, 
     .row .navbar-actions{
@@ -226,10 +223,19 @@ a:hover{
       .login-block{
         display: block;
         display: flex;
-        float: right;
-        width: 100px;
-        height: 60px;
         align-items: center;
+        float: right;
+        width: auto;
+        height: 60px;
+        right: 0;
+        .dropdown-menu.show{
+          width: 120px;
+          left: auto;
+          right: 0;
+          span {
+            padding-left: 16px;
+          }
+        }
       }
     }
     .logo{
@@ -254,14 +260,14 @@ a:hover{
   }
   .navbar-collapse {
     .navbar-nav{
-      position: absolute;
+      display: flex!important;
+      align-items: center!important;
       background-color: rgba(0,0,0,.88);
       display: block;
       box-sizing: border-box;
       z-index: 1;
-      width: auto;
-      height: 800px;
-      padding: 45px 40px 8px;
+      width: 100%!important;
+      height: calc(100vh);
       transition: visibility 0s linear 1.5s;
       top: 60px;
       right: 0;
@@ -269,18 +275,31 @@ a:hover{
       left: 0;
       margin: 0!important;
       .nav-item{
-        width: 100%;
+        width: 100%!important;
         height: 80px;
+        display: flex;
+        justify-content: center;
         line-height: 1rem;
         left: 0;
+        position: relative;
         a{
-          align-items: flex-start;
+          display: flex;
+          flex-direction: column!important;
+          height: 80px;
           color: rgba(255,255,255,.9)!important;
-          font-size: .95rem;
+          font-size: 18px;
         }
         i {
+          padding-bottom: 10px;
           color: rgba(255,255,255,.9)!important;
         }
+      }
+      .nav-item + .nav-item:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background-color: rgba(255,255,255,.4);
       }
       .nav-item:first-child a{
         border-left: 1px solid transparent;
