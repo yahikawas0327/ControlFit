@@ -1,10 +1,9 @@
-
 <div class="container">
   <div class="row">
-    <div class="col-12 col-md-12 d-flex">
-      <div class="card" style="width: 18rem;">
+    <div class="col-12 col-md-12">
+      <div class="card d-flex " style="width: 18rem;">
         <% @member.each do |m| %>
-          <img src="https://picsum.photos/300/200/?random=1">
+          <img src="https://picsum.photos/300/200/?random=23">
             <div class="card-body">
               <h5 class="card-title"><%= m.name %></h5>
             <%= link_to '來瞧瞧！', user_path(m) %>
