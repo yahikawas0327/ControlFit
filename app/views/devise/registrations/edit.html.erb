@@ -1,25 +1,4 @@
-<<<<<<< HEAD
-<h2>個人資料</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.label :name, '姓名' %>
-  <%= f.text_field :name %>
-  <br>
-  <%= f.label :gender, '性別' %>
-  <%= f.select :gender, ['Man', 'Woman'], :prompt => '請選擇' %>
-  <br>
-  <%= f.label :age, '年齡' %>
-  <%= f.number_field :age %>
-  <br>
-  <%= f.label :cm, '身高' %>
-  <%= f.number_field :cm %>
-  <br>
-  <%= f.label :kg, '公斤' %>
-  <%= f.number_field :kg %>
-  <br>
-  <%= f.submit %>
-<% end %>
-=======
 <h2>個人資料</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -40,4 +19,4 @@
   <br>
   <%= f.submit %>
 <% end %>
->>>>>>> origin/master
+
