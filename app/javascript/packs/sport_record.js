@@ -65,6 +65,7 @@ document.addEventListener('turbolinks:load', () => {
           name: this.sports[idx].name,
           weight: this.weight,
           min: Number(this.min).toFixed(1),
+          consume: this.sports[idx].consume,
           totalconsum: this.sports[idx].computed,
           created_at: moment().calendar()
         })
@@ -96,7 +97,7 @@ document.addEventListener('turbolinks:load', () => {
         this.daily_sport = this.daily_sport.filter(function(item, index, array){
           return index !== delete_index ;       // 取得大於五歲的
         });
-        
+        this.daily_count = this.daily_count -1 
       },
       update_record(index){
         if (Number(this.daily_sport[index].min)>=1){
@@ -105,6 +106,7 @@ document.addEventListener('turbolinks:load', () => {
           let tempsum =Number(this.daily_sum)- Number(this.daily_sport[index].totalconsum)
           let newtotalconsum = (Number(this.daily_sport[index].consume)*Number(this.daily_sport[index].min)).toFixed(2)
           let newdaily_sum = (Number(newtotalconsum) + Number(tempsum)).toFixed(2)
+          console.log(newdaily_sum)
           this.daily_sport[index].totalconsum = newtotalconsum
           this.daily_sum = newdaily_sum
           let update_daily = { 
