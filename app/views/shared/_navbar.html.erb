@@ -14,29 +14,33 @@
          </li>
          <li class="navbar-togller-item logo-block">
           <a class="nav-link" href="<%= root_path %>" >
-            <img src="https://thumb1.shutterstock.com/thumb_large/2794804/776316079/stock-photo-rugby-sport-game-competition-icon-summer-sport-games-symbols-sport-pictogram-branding-identity-776316079.jpg" class="img-fluid rounded" width="50" height="50" alt="logo">
-            <h1>健康管家</h1>
+            <%= image_tag("logo.png") %>
           </a>
          </li>
          <span class="navbar-togller-item login-block">
           <li class="nav-item">
             <% if member_signed_in? %>
-            <a rel="nofollow" data-method="delete" href="/members/sign_out">登出</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_member.email %>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a rel="nofollow" data-method="get" href="<%= member_path %>", class="dropdown-item">個人資料</a>
+                <a rel="nofollow" data-method="get" href="/members/edit", class="dropdown-item">修改資料</a>
+                <div class="dropdown-divider"></div>  
+                  <a rel="nofollow" data-method="delete" href="/members/sign_out", class="dropdown-item">登出</a>
+              </div>
           </li>
             <% else %>
           <li class="nav-item">
-            <a href="<%= new_member_registration_path %>">註冊</a>
-          </li>
-          <li class="nav-item">
-            <a href="<%= new_member_session_path %>">登入</a>
+            <a href="<%= new_member_session_path %>">登入/註冊</a>
           </li>
             <% end %>
          </span>
        </ul>
         <div class="logo">
-          <a class="nav-link" href="<%= root_path %>" >  
-            <img src="https://thumb1.shutterstock.com/thumb_large/2794804/776316079/stock-photo-rugby-sport-game-competition-icon-summer-sport-games-symbols-sport-pictogram-branding-identity-776316079.jpg" class="img-fluid rounded" width="50" height="50" alt="logo">
-            <h1>健康管家</h1>
+          <a class="nav-link" href="<%= root_path %>" > 
+            <%= image_tag("logo.png") %>
           </a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-main">
@@ -44,19 +48,19 @@
             <li class="nav-item active">
               <a class="nav-link" href="<%= search_food_record_database_path %>">
                 <i class="fas fa-hamburger icon-5x"></i>
-                <span>食品熱量分析</span>
+                <span>食品</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href=" <%= search_sport_record_database_path %>">
                 <i class="fas fa-dumbbell"></i>
-                <span>運動消耗分析</span>
+                <span>運動</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
                 <i class="far fa-newspaper icon-5x"></i>
-                <span>文章</span>
+                <span>知識</span>
             </a>
             </li>
             <li class="nav-item">
