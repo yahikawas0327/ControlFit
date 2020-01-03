@@ -16,6 +16,8 @@ class Member < ApplicationRecord
                                    dependent:   :destroy
 
   has_many :followers, through: :passive_relationships, source: :follower
+  belongs_to :food_record
+  belongs_to :sport_record
 
   # Follows a user.
   def follow(other_member)
@@ -31,7 +33,7 @@ class Member < ApplicationRecord
   def following?(other_member)
     following.include?(other_member)
   end
-
+  
   def employee?
     role.in? ['staff', 'boss', 'admin']
   end
