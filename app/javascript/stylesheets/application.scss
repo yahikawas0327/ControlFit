@@ -138,6 +138,7 @@ a:hover{
 @media only screen and (min-width: 768px) {
   .navbar {
     height: 75px;
+    border-bottom: 1px solid rgba(0,0,0,.2) ;
     .row {
       width: 100%;
       height: 75px;
@@ -147,10 +148,11 @@ a:hover{
 @media only screen and (max-width: 767px){
   .navbar{
     height: 50px;
-    background-color: rgba(0,0,0,.92);
+    background-color: rgba(0,0,0,.8);
     .row{
       margin: 0;
       background-color: #fff;
+      width: 100%;
     }
     .row .logo, 
     .row .navbar-actions{
@@ -158,6 +160,7 @@ a:hover{
     }
     .navbar-header{
       display: block;
+      border-bottom: 1px solid rgba(0,0,0,.2);
       width: 400px;
       height: 60px;
       top: 0;
@@ -228,6 +231,14 @@ a:hover{
         width: auto;
         height: 60px;
         right: 0;
+        .nav-item.sign-in {
+          width: 90px;
+          margin-right: 10px;
+          a {
+            font-size: 15px;
+            padding-right: 10px;
+          }
+        }
         .dropdown-menu.show{
           width: 120px;
           left: auto;
@@ -262,7 +273,7 @@ a:hover{
     .navbar-nav{
       display: flex!important;
       align-items: center!important;
-      background-color: rgba(0,0,0,.88);
+      background-color: rgba(255,255,255,.4);
       display: block;
       box-sizing: border-box;
       z-index: 1;
@@ -286,12 +297,15 @@ a:hover{
           display: flex;
           flex-direction: column!important;
           height: 80px;
-          color: rgba(255,255,255,.9)!important;
+          color: rgba(0,0,0,.8)!important;
           font-size: 18px;
+          &:hover {
+            color: #DB0267;
+          }
         }
         i {
           padding-bottom: 10px;
-          color: rgba(255,255,255,.9)!important;
+          color: rgba(0,0,0,.8)!important;
         }
       }
       .nav-item + .nav-item:after {
@@ -299,11 +313,19 @@ a:hover{
         position: absolute;
         width: 100%;
         height: 1px;
-        background-color: rgba(255,255,255,.4);
+        background-color: rgba(0,0,0,.3);
       }
       .nav-item:first-child a{
         border-left: 1px solid transparent;
       }
+    }
+  }
+
+  .footer {
+    height: auto;
+    .footer-copyright {
+      text-align: center;
+      font-size: 14px;
     }
   }
 }
@@ -346,13 +368,13 @@ a:hover{
 .login{
   width: 100%;
   height: 800px;
-  padding: 30px 0;
   top: 0;
   margin: 20px 0;
   .login-block{
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 100%;
     height: 100%;
   }
   .title{
@@ -438,6 +460,30 @@ a:hover{
       .sign-up-btn{
         color: #FF5C66;
       }
+    }
+  }
+}
+@media only screen and (min-width: 321px) and (max-width: 767px){
+  .login .login-block{
+    width: 100%;
+    .btn-google {
+      width: 360px;
+      margin-left: 16px;
+    }
+    .separator {
+      width: 360px;
+      margin: 30px 20px;
+    }
+    .form-group.email, 
+    .form-group.email input,
+    .form-group.password,
+    .form-group.password input {
+      width: 360px;
+      margin-left: 10px;
+    }
+    .form-group .btn {
+      width: 360px;
+      margin-left: 16px;
     }
   }
 }
