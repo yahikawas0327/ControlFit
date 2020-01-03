@@ -1,11 +1,16 @@
-<div class="card">
-  <ul>
-    <div class="card-body">
-      <% @member.each do |m| %>
-        <li>
-          <%= link_to m.name, user_path(m) %>
-        </li>
-      <% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-12 d-flex">
+      <div class="card" style="width: 18rem;">
+        <% @member.each do |m| %>
+          <img src="https://picsum.photos/300/200/?random=1">
+            <div class="card-body">
+              <h5 class="card-title"><%= m.name %></h5>
+            <%= link_to '來瞧瞧！', user_path(m) %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </ul>
+  </div>
 </div>
