@@ -1,15 +1,15 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12 col-md-12">
-      <div class="card d-flex " style="width: 18rem;">
-        <% @member.each do |m| %>
-          <img src="https://picsum.photos/300/200/?random=23">
-            <div class="card-body">
-              <h5 class="card-title"><%= m.name %></h5>
+  <div class="row row-cols-1 row-cols-md-4">
+    <% @member.each do |m| %>
+      <div class="col mb-4">
+        <div class="card">
+          <img src="https://picsum.photos/200/200/?random=1">
+          <div class="card-body">
+            <h5 class="card-title"><%= m.name %></h5>
             <%= link_to '來瞧瞧！', user_path(m) %>
           </div>
-        <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
