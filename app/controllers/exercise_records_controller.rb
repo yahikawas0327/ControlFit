@@ -27,9 +27,6 @@ class ExerciseRecordsController < ApplicationController
           sport_weight  = (params[:weight]).to_i
           sport_tolconsume = (params[:consume]).to_i
           sport_user    = params[:user_id]
-          # puts "----------------------"
-          # puts sport_consume.class
-          # puts "----------------------"
 
          # Write Daily food data to FoodRecord database
           SportRecord.create(:name => sport_name , 

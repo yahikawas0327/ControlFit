@@ -21,16 +21,16 @@ class RecordDatabasesController < ApplicationController
     def destroy
     end
 
-    def search_food         
-        # 搜尋食物
-
+    def search_food
+      
         @search_food = params["search_food"]
         @food_databases = []
         if @search_food.present?
           @food_databases = FoodDatabase.where("name ILIKE ?", "%#{@search_food}%")
         end
         #---------------------------------------
-        @record_foods = FoodRecord.where(created_at: Time.now.midnight..Time.now)
+
+        @record_foods = FoodRecord.where(member_id: current_member.id ,created_at: Time.now.midnight..Time.now)
         # 搜尋到現在時間為止的今天食物紀錄
         @sum=0
         @record_foods.each do |record_food|

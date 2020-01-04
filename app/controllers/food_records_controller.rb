@@ -21,7 +21,8 @@ class FoodRecordsController < ApplicationController
                           :calories => food_calories,
                           :qty => food_qty,
                           :eat_type => food_type,
-                          :total_calorie => total_calories  )
+                          :total_calorie => total_calories,
+                          :member_id => current_member.id)
          
         # Renodr json file 
         @food_records = FoodRecord.where(created_at: Time.now.midnight..Time.now)
