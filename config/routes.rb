@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   resources :food_records
   resources :demands
   resources :blogs
-
+  
+  get '/search_sport/statistics' => 'exercise_records#statistics', :as => 'statistics_exercise_record'
+  get '/search_food/statistics' => 'food_records#statistics', :as => 'statistics_food_record'
   get '/search_food' => 'record_databases#search_food', :as => 'search_food_record_database'
   get '/search_sport' => 'record_databases#search_sport', :as => 'search_sport_record_database'
 end

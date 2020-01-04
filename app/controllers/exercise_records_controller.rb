@@ -44,4 +44,7 @@ class ExerciseRecordsController < ApplicationController
          #回傳json 至前端
           render json:  @sport_records.last    
     end
+    
+    def statistics
+    end
 end

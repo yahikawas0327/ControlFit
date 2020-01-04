@@ -55,4 +55,7 @@ class FoodRecordsController < ApplicationController
         delete_data.destroy
     end
 
+    def statistics
+    end
+
 end

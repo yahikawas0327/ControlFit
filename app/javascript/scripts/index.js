@@ -77,7 +77,7 @@ document.addEventListener('turbolinks:load', () => {
            .then( response => {
                   console.log('response=>',response);
                   // window.location.reload();
-                  $( "#daliy-food" ).load("search_food.html #daliy-food");
+                  // $( "#daliy-food" ).load("search_food.html #daliy-food");
                   deleteEvent()
                   editEvent()
                   // $( "#Add_food_record_by_user" ).load("search_food.html #Add_food_record_by_user");
