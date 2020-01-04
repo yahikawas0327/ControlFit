@@ -47,6 +47,7 @@ class FoodRecordsController < ApplicationController
                             :qty           => update_qty,
                             :total_calorie => update_total)
          puts "finish"
+         render json: current_data
     end
 
     def destroy

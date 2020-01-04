@@ -13,8 +13,7 @@ import { element } from 'prop-types';
 
 // const axios = require('axios');
  
-$(document).ready(function(){
-
+document.addEventListener('turbolinks:load', () => {
     // 新增每日食物資料 JQuery  
     $('.search_food_result').on('click','button',function(evt){
       $('#query-food').hide();
@@ -77,7 +76,11 @@ $(document).ready(function(){
       axios.post("http://localhost:3000/food_records", food_hash)
            .then( response => {
                   console.log('response=>',response);
+                  // window.location.reload();
                   $( "#daliy-food" ).load("search_food.html #daliy-food");
+                  // $( "#Add_food_record_by_user" ).load("search_food.html #Add_food_record_by_user");
+                  // $( ".js-edit").load("search_food.html .js-edit");
+                  
       })
     }) // 將資料傳送至後端 傳送 id / qty / type
  
@@ -149,8 +152,6 @@ $(document).ready(function(){
             .then( response => {
               console.log('response=>',response);
               $( "#daliy-food" ).load( "search_food.html #daliy-food" )
-              deleteEvent()
-              editEvent()
             })
 
     }) // Add New food data
@@ -221,11 +222,20 @@ $(document).ready(function(){
       $(`.js-edit[data-id="${this.dataset.id}"]`).removeAttr('disabled')
       $(this).parent().parent('.form-row').remove()
       // $(`.js-edit`).filter(`[data-id="${this.dataset.id}"]`).removeAttr('disabled')
-
+      let before_edit_sum = $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text()
+      // console.log(before_edit_sum)
       axios.patch(`http://localhost:3000/food_records/${this.dataset.id}`,editfood_hash)
            .then( response => {
-                console.log('response=>',response);
-                $( "#daliy-food" ).load("search_food.html #daliy-food");
+                // console.log('response=>',response);
+                // console.log(response.data)
+                let edit_sum = response.data.total_calorie
+                let origin_sum = Number($(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text())
+                $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text(edit_sum)
+                $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.type:eq(0)').text(editfoodtype)
+                $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.qty:eq(0)').text(editfoodqty)
+                let total = Number($('.totalsum').text())
+                let new_sum = total - origin_sum + Number($(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text())
+                $('.totalsum').text(new_sum)
                 })
     })
 
@@ -245,15 +255,10 @@ $(document).ready(function(){
     }
     deleteEvent()
     editEvent()
-    //
+
     // Now time and day
     let time = moment().format('lll');
     $('.daytime').html(time);
-
-    // -------------------------------
-    let sum = $('.foodsum').text();
-
-    console.log(sum )
 })
 
 
