@@ -136,28 +136,30 @@ document.addEventListener('turbolinks:load', () => {
       setInterval(() => this.updateCurrentTime(), 1 * 1000);
       // User information
       var self =this;
-      axios.get('http://localhost:3000/blogs',{params:{ id : 0}})
+      axios.get('http://localhost:3000/blogs',{params:{ member_id: self.user_id}})
            .then(function(response){
-              self.user_info = response.data
-              self.weight    = response.data.weight
-              self.user_id   = response.data.id
-              
+             console.log(response)
+              // self.user_info = response.data
+              // self.weight    = response.data.weight
+              // self.user_id   = response.data.id
+
             if (self.user_id !== 0 ){
                 axios.get('http://localhost:3000/search_sport',{params:{ member_id: self.user_id}})
                       .then(function(response){
-                          let daily_sport = response.data
-                          console.log(daily_sport)
-                         for (var i in daily_sport ){
-                          self.daily_sport.push(daily_sport[i])
-                          var NowDate = new Date(daily_sport[i].created_at)
-                          self.editstatus[i]=false
-                          self.savestatus[i]=false
-                          self.daily_sport[i].created_at = moment(NowDate).calendar(); // 時間格式轉換
-                        }
-                        self.daily_count = daily_sport.length
-                        for (var i=0; i<self.daily_count;i++){
-                           self.daily_sum = Number(daily_sport[i].totalconsum) + self.daily_sum
-                        }
+                        // console.log(self.user_id)
+                        //   let daily_sport = response.data
+                        //   console.log(daily_sport)
+                        //  for (var i in daily_sport ){
+                        //   self.daily_sport.push(daily_sport[i])
+                        //   var NowDate = new Date(daily_sport[i].created_at)
+                        //   self.editstatus[i]=false
+                        //   self.savestatus[i]=false
+                        //   self.daily_sport[i].created_at = moment(NowDate).calendar(); // 時間格式轉換
+                        // }
+                        // self.daily_count = daily_sport.length
+                        // for (var i=0; i<self.daily_count;i++){
+                        //    self.daily_sum = Number(daily_sport[i].totalconsum) + self.daily_sum
+                        // }
                 })        
             }else{}
             })
@@ -249,11 +251,15 @@ document.addEventListener('turbolinks:load', () => {
       var self= this;
       axios.get('http://localhost:3000/blogs',{params:{ id : 0}})
            .then(function(response){
-             self.user_info = response.data
-             self.Height = response.data.height
-             self.Weight = response.data.weight
-             self.Gender = response.data.gender
-             self.Age    = response.data.age 
+            
+            //  self.user_info = response.data
+            //  self.Height = response.data.height
+            //  self.Weight = response.data.weight
+            //  self.Gender = response.data.gender
+            //  self.Age    = response.data.age 
+           })
+           .catch(function (error) {
+             console.log(error)
            })
     }         
   })

@@ -36,6 +36,8 @@ class RecordDatabasesController < ApplicationController
              @sum = @sum + record_food.total_calorie
           end
         else
+
+          
           
         end
         # @record_foods = FoodRecord.where(created_at: (Time.now.midnight)..(Time.now))

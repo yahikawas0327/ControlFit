@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   def index
       personal_information = params["id"]
-      if personal_information.present?
+      if current_member.present?
        user_name   = current_member.name
        user_gender = current_member.gender
        user_age    = current_member.age
