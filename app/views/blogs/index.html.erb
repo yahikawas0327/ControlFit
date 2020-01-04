@@ -1,134 +1,123 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>To know you </title>
-</head>
-<body>
-     <div id="physical">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-5">
-              <div class="row">
-                <div class="col-md-1 mb-3"></div>
-                <div class="col-md-4 mb-3">
-                    <label for=""><i class="fas fa-user-circle"></i> </i>  {{user_info.name}} </label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-1 mb-3"></div>
-                <div class="col-md-4 mb-3">
-                  <label for=""> Height : <i class="fas fa-ruler-vertical"></i> </label>
-                  <input v-if ="Height === '' || Height === null  " class="input is-danger"  v-model="Height" type="text" placeholder="輸入公分喔!">
-                  <input v-else class="input is-success"  v-model="Height" type="text" placeholder="輸入公分喔!">
-                </div>
-                <div class="col-md-4 mb-3">
-                  <label for=""> Weight : <i class="fas fa-weight"></i> </label>
-                  <input v-if =" Weight === '' || Weight === null " class="input is-danger"  v-model="Weight" type="text" placeholder="輸入公斤喔!">
-                  <input v-else class="input is-success"  v-model="Weight" type="text" placeholder="輸入公斤喔!">
-                </div>  
-              </div>
-              <div class="row">
-                <div class="col-md-1 mb-3"></div>
-                <div class="col-md-5 mb-3">
-                 <label for=""> Gender : <i class="fas fa-male"></i> <i class="fas fa-female"></i> </label>
-                 </br>
-                 <div v-if =" Gender === '' || Gender === null " class="select is-danger">
-                 <select v-model="Gender">
-                    <option>Man</option>
-                    <option>Woman</option>
-                 </select>
-                 </div>
-                 <div v-else  class="select is-success">
-                    <select v-model="Gender">
-                       <option>Man</option>
-                       <option>Woman</option>
-                    </select>
-                </div>
-                </div>  
-                <div class="col-md-3 mb-3"></div>
-              </div>
-              <div class="row">
-                <div class="col-md-1 mb-3"></div>
-                 <div class="col-md-4 mb-3">
-                    <label for=""> Age : </label>
-                    <input v-if =" Age === '' || Age === null " class="input is-danger"  v-model="Age" type="text" placeholder="年齡是秘密">
-                    <input v-else    class="input is-success"  v-model="Age" type="text" placeholder="年齡是秘密">   
-                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-1 mb-3"></div>
-                <div class="col-md-7 mb-3">
-                    <button class="button is-success is-light" @click="lookfor"> <i class="fas fa-id-card-alt"></i> Check </button>
-                    <button class="button is-info is-light"><i class="fas fa-pen"></i> Update</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-5">
-              <div class="col-md-6 mb-3">
-              <label v-if = "BMI !== ''" for=""> 看看自己的BMI囉 : {{BMI}} </label>
-              </div>
-              <div class="col-md-6 mb-3">
-              <label v-if = "BMI_range !== ''" for=""> BMI是不是符合預期呢: {{BMI_range}} </label>
-              </div>
-              <div class="col-md-6 mb-3">
-              <label v-if = "Ree !== ''" for=""> 基礎代謝率長知識! {{Ree}} 大卡 </label>
-              </div>
-              <div class="col-md-8 mb-3">
-              <label v-if = "BMR !== ''" for=""> 每天最少消耗熱量如下: {{BMR}} 大卡 </label>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label v-if = "BMR !== ''" for=""> 更精確的身體密碼 請按 </label>
-                <button v-if = "BMR !== ''" class="button is-danger  is-light is-rounded" @click="more">more</button>
-              </div>
-              <div v-show="moreshow" class="col-md-6 mb-3">
-                  <label for="">平常運動習慣!</label>
-                  <br>
-                  <input type="radio" id="s-one" value="久坐" v-model="sportintention">
-                  <label for="s-one">久坐</label>
-                  <br>
-                  <input type="radio" id="s-two" value="輕量活動" v-model="sportintention">
-                  <label for="s-two">輕量活動</label>
-                  <br>
-                  <input type="radio" id="s-three" value="中度活動" v-model="sportintention">
-                  <label for="s-three">中度活動</label>
-                  <br>
-                  <input type="radio" id="s-four" value="高強度活動" v-model="sportintention">
-                  <label for="s-four">高強度活動</label>
-                  <br>
-                  <input type="radio" id="s-five" value="極高強度活動" v-model="sportintention">
-                  <label for="s-five">極高強度活動</label>
-                  <br>
-                  <span>運動取向: {{exercise_choice }} </span>
-
-              </div>
-              <div v-show="moreshow" class="col-md-6 mb-3">
-                  <label for="">飲食取向!</label>
-                  <br>
-                  <input type="radio" id="one" value="維持體重" v-model="eatintention">
-                  <label for="one">維持體重</label>
-                  <br>
-                  <input type="radio" id="two" value="增加肌肉" v-model="eatintention">
-                  <label for="two">增加肌肉</label>
-                  <br>
-                  <input type="radio" id="three" value="減少脂肪" v-model="eatintention">
-                  <label for="three">減少脂肪</label>
-                  <br>
-                  <span>飲食取向: {{ food_choice  }} </span>
-              </div>
-              <div v-show="moreshow" class="col-md-6 mb-3">
-                <label v-if = "exercise_choice === '' &&  food_choice !== '' " for=""> 根據飲食習慣更精確的熱量:{{TDEE}} 大卡</label>
-                <label v-if = "exercise_choice !== '' &&  food_choice === '' " for=""> 根據運動習慣更精確的熱量:{{TDEE}} 大卡</label>
-                <label v-if = "exercise_choice !== '' &&  food_choice !== '' " for=""> 根據運動及飲食習慣更精確熱量值唷:{{TDEE}} 大卡</label>
-                  <!-- <P>根據活動及飲食更精確的熱量值唷:{{TDEE}} 大卡</P> -->
-              </div>
-              </div>
-            </div>  
+<section class="section self-check" id="physical">
+  <div class="container-fluid col-12">
+    <div class="row">
+      <div class="col-10 col-md-4">
+        <div class="row">
+          <div class="col-md-1 mb-3"></div>
+          <div class="col-md-4 mb-3">
+              <label for=""><i class="fas fa-user-circle"></i> </i>  {{user_info.name}} </label>
+          </div>
         </div>
-     </div>
-</body>
-</html>
+        <div class="row">
+          <div class="col-md-1 mb-3"></div>
+          <div class="col-md-4 mb-3">
+            <label for=""> 身高（公分） <i class="fas fa-ruler-vertical"></i> </label>
+            <input v-if ="Height === '' || Height === null  " class="input is-danger"  v-model="Height" type="text" placeholder="輸入公分喔!">
+            <input v-else class="input is-success"  v-model="Height" type="text" placeholder="輸入公分喔!">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for=""> 體重（公斤） <i class="fas fa-weight"></i> </label>
+            <input v-if =" Weight === '' || Weight === null " class="input is-danger"  v-model="Weight" type="text" placeholder="輸入公斤喔!">
+            <input v-else class="input is-success"  v-model="Weight" type="text" placeholder="輸入公斤喔!">
+          </div>  
+        </div>
+        <div class="row">
+          <div class="col-md-1 mb-3"></div>
+          <div class="col-md-5 mb-3">
+            <label for=""> 性別 <i class="fas fa-male"></i> <i class="fas fa-female"></i> </label>
+            </br>
+            <div v-if =" Gender === '' || Gender === null " class="select is-danger">
+            <select v-model="Gender">
+              <option>男性</option>
+              <option>女性</option>
+            </select>
+            </div>
+            <div v-else  class="select is-success">
+              <select v-model="Gender">
+                  <option>男性</option>
+                  <option>女性</option>
+              </select>
+          </div>
+          </div>  
+          <div class="col-md-3 mb-3"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-1 mb-3"></div>
+            <div class="col-md-4 mb-3">
+              <label for=""> 年齡（歲） </label>
+              <input v-if =" Age === '' || Age === null " class="input is-danger"  v-model="Age" type="text" placeholder="年齡是秘密">
+              <input v-else    class="input is-success"  v-model="Age" type="text" placeholder="年齡是秘密">   
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1 mb-3"></div>
+          <div class="col-md-7 mb-3">
+              <button class="button is-success is-light" @click="lookfor"> <i class="fas fa-id-card-alt"></i> 檢測 </button>
+              <button class="button is-info is-light"><i class="fas fa-pen"></i> 修改</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-10 col-md-4">
+        <div class="col-md-6 mb-3">
+        <label v-if = "BMI !== ''" for=""> 看看自己的BMI囉 : {{BMI}} </label>
+        </div>
+        <div class="col-md-6 mb-3">
+        <label v-if = "BMI_range !== ''" for=""> BMI是不是符合預期呢: {{BMI_range}} </label>
+        </div>
+        <div class="col-md-6 mb-3">
+        <label v-if = "Ree !== ''" for=""> 基礎代謝率長知識! {{Ree}} 大卡 </label>
+        </div>
+        <div class="col-md-8 mb-3">
+        <label v-if = "BMR !== ''" for=""> 每天最少消耗熱量如下: {{BMR}} 大卡 </label>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label v-if = "BMR !== ''" for=""> 更精確的身體密碼 請按 </label>
+          <button v-if = "BMR !== ''" class="button is-danger  is-light is-rounded" @click="more">more</button>
+        </div>
+      </div>
+      <div class="col-10 col-md-4">
+        <div v-show="moreshow" class="col-md-6 mb-3">
+          <label for="">平常運動習慣!</label>
+          <br>
+          <input type="radio" id="s-one" value="久坐" v-model="sportintention">
+          <label for="s-one">久坐</label>
+          <br>
+          <input type="radio" id="s-two" value="輕量活動" v-model="sportintention">
+          <label for="s-two">輕量活動</label>
+          <br>
+          <input type="radio" id="s-three" value="中度活動" v-model="sportintention">
+          <label for="s-three">中度活動</label>
+          <br>
+          <input type="radio" id="s-four" value="高強度活動" v-model="sportintention">
+          <label for="s-four">高強度活動</label>
+          <br>
+          <input type="radio" id="s-five" value="極高強度活動" v-model="sportintention">
+          <label for="s-five">極高強度活動</label>
+          <br>
+          <span>運動取向: {{exercise_choice }} </span>
+        </div>
+        <div v-show="moreshow" class="col-md-6 mb-3">
+          <label for="">飲食取向!</label>
+          <br>
+          <input type="radio" id="one" value="維持體重" v-model="eatintention">
+          <label for="one">維持體重</label>
+          <br>
+          <input type="radio" id="two" value="增加肌肉" v-model="eatintention">
+          <label for="two">增加肌肉</label>
+          <br>
+          <input type="radio" id="three" value="減少脂肪" v-model="eatintention">
+          <label for="three">減少脂肪</label>
+          <br>
+          <span>飲食取向: {{ food_choice  }} </span>
+        </div>
+        <div v-show="moreshow" class="col-md-6 mb-3">
+          <label v-if = "exercise_choice === '' &&  food_choice !== '' " for=""> 根據飲食習慣更精確的熱量:{{TDEE}} 大卡</label>
+          <label v-if = "exercise_choice !== '' &&  food_choice === '' " for=""> 根據運動習慣更精確的熱量:{{TDEE}} 大卡</label>
+          <label v-if = "exercise_choice !== '' &&  food_choice !== '' " for=""> 根據運動及飲食習慣更精確熱量值唷:{{TDEE}} 大卡</label>
+            <!-- <P>根據活動及飲食更精確的熱量值唷:{{TDEE}} 大卡</P> -->
+        </div>
+      </div>
+    </div> 
+  </div> 
+</section>
+
