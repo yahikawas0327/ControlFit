@@ -1,3 +1,3 @@
 class FoodRecord < ApplicationRecord
-  has_many :members
+  # belongs_to :member
 end

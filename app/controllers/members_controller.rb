@@ -12,3 +12,4 @@ class MembersController < ApplicationController
     @members = Member.find(params[:id]).followers
   end
 end
+
