@@ -21,8 +21,7 @@ class RecordDatabasesController < ApplicationController
     def destroy
     end
 
-    def search_food
-          
+    def search_food         
         # 搜尋食物
 
         @search_food = params["search_food"]
@@ -39,9 +38,6 @@ class RecordDatabasesController < ApplicationController
         end
         
         #---------------------------------------
-
-
-
     end
 
     def search_sport
@@ -54,7 +50,7 @@ class RecordDatabasesController < ApplicationController
       
       daily_sport = params["id"]
       if daily_sport.present?
-        @record_sports = SportRecord.where(created_at: Time.now.midnight..Time.now)
+        @record_sports = SportRecord.where(created_at: (Time.now.midnight)..(Time.now))
          render json: @record_sports
       else
       end
