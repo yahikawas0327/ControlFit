@@ -11,10 +11,10 @@ require.context('../images', true)
 
 
 
+import '@fortawesome/fontawesome-free/css/all.css'
 import '../stylesheets'
 import '../scripts'
 import $ from 'jquery'
-import '@fortawesome/fontawesome-free/css/all.css'
 import axios from 'axios'
 // import "bootstrap-sprockets"
 import 'bootstrap';
