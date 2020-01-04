@@ -1,8 +1,6 @@
 import Vue from 'vue/dist/vue.esm'
 // import SportRecord from '../sport_record.vue'
-
 import TurbolinksAdapter from 'vue-turbolinks'
-
 
 // ---Bootstrap Vue setting
 import 'bulma'
@@ -24,18 +22,21 @@ document.addEventListener('turbolinks:load', () => {
     data :{
       message : "",
       weight : "",
+      user_info:{},
       min: 0,
       sports:[],
       daily_sport:[],
       daily_sum :0,
       daily_count:0,
       currentTime: null,
-      currentDay: null
+      currentDay: null,
+      tempindex:[],
+      editstatus:[],
+      savestatus:[],
     },
     methods: {
       submit: function(){
         var self = this;
-        //將key-word 發送至後端撈資料
         axios.get('http://localhost:3000/search_sport',{
                    params:{ search_sport: this.message}
                  })
@@ -43,8 +44,6 @@ document.addEventListener('turbolinks:load', () => {
                   let search_sport = response.data
                   for (var i in search_sport ){
                     self.sports.push(search_sport[i])
-                    // console.log(search_sport[i])
-                    // console.log(i)
                   }
                 })        
              },
@@ -55,7 +54,7 @@ document.addEventListener('turbolinks:load', () => {
           weight: this.weight,
           consume: this.sports[idx].computed
         }
-        console.log(sport_hash) 
+        // console.log(sport_hash) 
         // 將紀錄資料送至後端資料庫
         axios.post("http://localhost:3000/exercise_records",sport_hash)
              .then(function(response){
@@ -66,52 +65,99 @@ document.addEventListener('turbolinks:load', () => {
           name: this.sports[idx].name,
           weight: this.weight,
           min: Number(this.min).toFixed(1),
+          consume: this.sports[idx].consume,
           totalconsum: this.sports[idx].computed,
           created_at: moment().calendar()
         })
+        this.editstatus[this.daily_count]=false // fix add data can't edit bug
         this.daily_count += 1;
         this.daily_sum += Number(this.sports[idx].computed)
       },
       updateCurrentTime() {
         this.currentTime = moment().format('LTS');
         this.currentDay = moment().format("MMM Do YY");
-      }
+      },
+      edit_record(index){
+        if(this.editstatus[index]===false){
+          alert("吃了誠實豆沙包要修改時間了嗎?")
+          this.editstatus[index] = true
+          this.tempindex[index] = this.daily_sport[index].min
+        }else{ alert("不要在按了!!! You r in Edit status")}
+      },
+      delete_record(index){
+        alert("確定要刪除這筆資料嗎???")
+        let delete_id = { id : this.daily_sport[index].id }
+        let delete_index = index ;
+        console.log(index)
+        // console.log(deletedata)
+        this.daily_sum = Number(this.daily_sum) - Number(this.daily_sport[index].totalconsum)
+        axios.delete(`http://localhost:3000/exercise_records/${this.daily_sport[index].id}`, delete_id)
+             .then(function(response){
+             })
+        this.daily_sport = this.daily_sport.filter(function(item, index, array){
+          return index !== delete_index ;       // 取得大於五歲的
+        });
+        this.daily_count = this.daily_count -1 
+      },
+      update_record(index){
+        if (Number(this.daily_sport[index].min)>=1){
+          alert("確定一切都沒問題了嗎?")
+          this.editstatus[index] = false
+          let tempsum =Number(this.daily_sum)- Number(this.daily_sport[index].totalconsum)
+          let newtotalconsum = (Number(this.daily_sport[index].consume)*Number(this.daily_sport[index].min)).toFixed(2)
+          let newdaily_sum = (Number(newtotalconsum) + Number(tempsum)).toFixed(2)
+          console.log(newdaily_sum)
+          this.daily_sport[index].totalconsum = newtotalconsum
+          this.daily_sum = newdaily_sum
+          let update_daily = { 
+                               id : this.daily_sport[index].id,
+                               min: this.daily_sport[index].min,
+                               totalconsum: newtotalconsum }
+          axios.patch(`http://localhost:3000/exercise_records/${this.daily_sport[index].id}`, update_daily)
+               .then(function(response){
+                 console.log(response)
+               })
+        } else{
+          alert("分鐘數必須要大於1 min")
+        }
+      },
     },
     computed: {
       consume(){
         let search_length = this.sports.length
         for (var i=0; i<search_length;i++){
-          console.log(this.min)
-          console.log(this.weight)
-        let consume = ((this.min*Number(this.weight)*(Number(this.sports[i].consume)))/30).toFixed(2)
+          let consume = ((this.min*Number(this.weight)*(Number(this.sports[i].consume)))/30).toFixed(2)
           this.sports[i].computed = consume
-          console.log(this.sports[i].computed)
         }
-
-      }
+      },
     },
     created() {
       // 當前時間
       this.currentTime = moment().format('LTS');
       this.currentDay = moment().format("MMM Do YY");
       setInterval(() => this.updateCurrentTime(), 1 * 1000);
-  
-      // 今天資料
+      // User information
       var self =this;
-      axios.get('http://localhost:3000/search_sport', {params:{ id : 0}
-               })
+      axios.get('http://localhost:3000/blogs',{params:{ id : 0}})
+      .then(function(response){
+        self.user_info = response.data
+        self.weight    = response.data.weight
+      })
+      // 今天資料
+      axios.get('http://localhost:3000/search_sport',{params:{ id : 0}})
            .then(function(response){
                let daily_sport = response.data
-              //  console.log(daily_sport )
+               console.log(daily_sport)
                for (var i in daily_sport ){
                 self.daily_sport.push(daily_sport[i])
                 var NowDate = new Date(daily_sport[i].created_at)
+                self.editstatus[i]=false
+                self.savestatus[i]=false
                 self.daily_sport[i].created_at = moment(NowDate).calendar(); // 時間格式轉換
               }
               self.daily_count = daily_sport.length
               for (var i=0; i<self.daily_count;i++){
                  self.daily_sum = Number(daily_sport[i].totalconsum) + self.daily_sum
-                //  console.log(self.daily_sum)
               }
       })
 
@@ -125,16 +171,14 @@ document.addEventListener('turbolinks:load', () => {
       Height: "",
       Weight: "",
       Gender: "", // 取Gender選中的值
-      Genders:[
-        { text:'Man / 男', value:'Man'},
-        { text:'Woman / 女', value:'Woman'}
-      ],
+      user_info:{},
       Age:"",
       BMI:"",
       BMI_range:"",
       Ree:"",
       BMR:"",
       TDEE:0,
+      selcct_v:'select is-success',
       eatintention:"",
       sportintention:"",
       moreshow:false
@@ -142,20 +186,30 @@ document.addEventListener('turbolinks:load', () => {
     methods: {
       lookfor: function(){
         let physical_hash = {
-          Height: this.Height,
-          Weight: this.Weight,
-          Gender: this.Gender,
-          Age: this.Age}
-        var self = this;
-        axios.post('http://localhost:3000/blogs', physical_hash)
-             .then(function(response){
-               let body = response.data
-               console.log(body)
-               self.BMI =body.bmi;
-               self.BMI_range=body.bmi_range;
-               self.Ree=body.ree;
-               self.BMR=body.bmr;
-              })
+                             Height: this.Height,
+                             Weight: this.Weight,
+                             Gender: this.Gender,
+                             Age: this.Age}
+
+        var physical_validate = Object.values(physical_hash).every(function(item, index, array){
+          return item !== '' // 當全部 item all exist  才能回傳 true
+        });
+        if (physical_validate === true) {
+          alert('以上資料沒錯的話! 那就把確定按下去')
+          var self = this;
+          axios.post('http://localhost:3000/blogs', physical_hash)
+          .then(function(response){
+            let body = response.data
+            self.BMI =body.bmi;
+            self.BMI_range=body.bmi_range;
+            self.Ree=body.ree;
+            self.BMR=body.bmr;
+           })
+           .catch((error) => {
+           })
+        } else {
+          alert('有資料還沒填! 看到紅色框的記得填')
+        }
       },
       more: function(){
         this.moreshow = !this.moreshow
@@ -190,8 +244,18 @@ document.addEventListener('turbolinks:load', () => {
             }
             return this.eatintention
 
-      }
-
+      },
     },
+    created() {
+      var self= this;
+      axios.get('http://localhost:3000/blogs',{params:{ id : 0}})
+           .then(function(response){
+             self.user_info = response.data
+             self.Height = response.data.height
+             self.Weight = response.data.weight
+             self.Gender = response.data.gender
+             self.Age    = response.data.age 
+           })
+    }         
   })
 })

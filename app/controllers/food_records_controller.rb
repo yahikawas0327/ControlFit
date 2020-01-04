@@ -33,4 +33,29 @@ class FoodRecordsController < ApplicationController
                      
     end
 
+    def update
+        current_data = FoodRecord.find_by(id:params[:edit_id])
+        update_type    = (params[:edit_type]).to_s
+        update_qty     = (params[:edit_qty]).to_i
+        origin_type    = current_data.eat_type
+        origin_qty     = (current_data.qty).to_i
+        origin_calories= (current_data.calories).round(2)
+        origin_total   = (current_data.total_calorie).round(2)
+        update_total   =  (update_qty * origin_calories).round(2)
+        current_data.update(
+                            :eat_type      => update_type,
+                            :qty           => update_qty,
+                            :total_calorie => update_total)
+         puts "finish"
+         render json: current_data
+    end
+
+    def destroy
+        delete_data = FoodRecord.find_by(id:params[:id])
+        delete_data.destroy
+    end
+
+    def statistics
+    end
+
 end

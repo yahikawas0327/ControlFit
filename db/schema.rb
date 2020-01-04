@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 2020_01_02_064325) do
+=======
 ActiveRecord::Schema.define(version: 2020_01_02_021615) do
+>>>>>>> origin/master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +85,7 @@ ActiveRecord::Schema.define(version: 2020_01_02_021615) do
     t.decimal "totalconsum", default: "0.0"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "consume"
   end
 
   create_table "sports", force: :cascade do |t|

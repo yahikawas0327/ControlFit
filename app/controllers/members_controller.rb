@@ -4,3 +4,4 @@ class MembersController < ApplicationController
     @members = current_member
   end
 end
+
