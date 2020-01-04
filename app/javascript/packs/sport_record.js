@@ -20,6 +20,7 @@ document.addEventListener('turbolinks:load', () => {
   const sport = new Vue({
     el: '#sport',
     data :{
+      user_id:0,
       message : "",
       weight : "",
       user_info:{},
@@ -52,14 +53,11 @@ document.addEventListener('turbolinks:load', () => {
           id :  this.sports[idx].id ,
           min:  this.min,
           weight: this.weight,
-          consume: this.sports[idx].computed
-        }
-        // console.log(sport_hash) 
+          consume: this.sports[idx].computed,
+          user_id: this.user_id}
         // 將紀錄資料送至後端資料庫
         axios.post("http://localhost:3000/exercise_records",sport_hash)
-             .then(function(response){
-                  console.log(response)
-             })
+             .then(function(response){})
         this.daily_sport.push({
           id: this.sports[idx].id ,
           name: this.sports[idx].name,
@@ -69,7 +67,7 @@ document.addEventListener('turbolinks:load', () => {
           totalconsum: this.sports[idx].computed,
           created_at: moment().calendar()
         })
-        this.editstatus[this.daily_count]=false // fix add data can't edit bug
+        this.editstatus[this.daily_count]=false 
         this.daily_count += 1;
         this.daily_sum += Number(this.sports[idx].computed)
       },
@@ -139,29 +137,30 @@ document.addEventListener('turbolinks:load', () => {
       // User information
       var self =this;
       axios.get('http://localhost:3000/blogs',{params:{ id : 0}})
-      .then(function(response){
-        self.user_info = response.data
-        self.weight    = response.data.weight
-      })
-      // 今天資料
-      axios.get('http://localhost:3000/search_sport',{params:{ id : 0}})
            .then(function(response){
-               let daily_sport = response.data
-               console.log(daily_sport)
-               for (var i in daily_sport ){
-                self.daily_sport.push(daily_sport[i])
-                var NowDate = new Date(daily_sport[i].created_at)
-                self.editstatus[i]=false
-                self.savestatus[i]=false
-                self.daily_sport[i].created_at = moment(NowDate).calendar(); // 時間格式轉換
-              }
-              self.daily_count = daily_sport.length
-              for (var i=0; i<self.daily_count;i++){
-                 self.daily_sum = Number(daily_sport[i].totalconsum) + self.daily_sum
-              }
-      })
-
-
+              self.user_info = response.data
+              self.weight    = response.data.weight
+              self.user_id   = response.data.id
+              
+            if (self.user_id !== 0 ){
+                axios.get('http://localhost:3000/search_sport',{params:{ member_id: self.user_id}})
+                      .then(function(response){
+                          let daily_sport = response.data
+                          console.log(daily_sport)
+                         for (var i in daily_sport ){
+                          self.daily_sport.push(daily_sport[i])
+                          var NowDate = new Date(daily_sport[i].created_at)
+                          self.editstatus[i]=false
+                          self.savestatus[i]=false
+                          self.daily_sport[i].created_at = moment(NowDate).calendar(); // 時間格式轉換
+                        }
+                        self.daily_count = daily_sport.length
+                        for (var i=0; i<self.daily_count;i++){
+                           self.daily_sum = Number(daily_sport[i].totalconsum) + self.daily_sum
+                        }
+                })        
+            }else{}
+            })
     },
   })
   // 個人身體資訊

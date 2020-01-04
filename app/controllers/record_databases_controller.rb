@@ -48,10 +48,10 @@ class RecordDatabasesController < ApplicationController
         render json: @sports 
       end
       
-      daily_sport = params["id"]
+      daily_sport = params["member_id"]
       if daily_sport.present?
-        @record_sports = SportRecord.where(created_at: (Time.now.midnight)..(Time.now))
-         render json: @record_sports
+        @record_sports = SportRecord.where( member_id: params[:member_id], created_at: (Time.now.midnight)..(Time.now))
+        render json: @record_sports
       else
       end
 

@@ -26,6 +26,7 @@ class ExerciseRecordsController < ApplicationController
           sport_min     = params[:min]
           sport_weight  = (params[:weight]).to_i
           sport_tolconsume = (params[:consume]).to_i
+          sport_user    = params[:user_id]
           # puts "----------------------"
           # puts sport_consume.class
           # puts "----------------------"
@@ -35,7 +36,8 @@ class ExerciseRecordsController < ApplicationController
           :weight => sport_weight,
           :min => sport_min,
           :consume => sport_consume,
-          :totalconsum => sport_tolconsume )
+          :totalconsum => sport_tolconsume,
+          :member_id => sport_user )
      
          # Renodr json file 
           @sport_records = SportRecord.where(created_at: Time.now.midnight..Time.now)

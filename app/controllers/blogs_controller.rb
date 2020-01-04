@@ -7,7 +7,9 @@ class BlogsController < ApplicationController
        user_age    = current_member.age
        user_height = current_member.cm
        user_weight = current_member.kg
-       user_basic_information = { name: user_name,
+       user_id     = current_member.id
+       user_basic_information = { id: user_id,
+                                  name: user_name,
                                   gender: user_gender,
                                   age: user_age,
                                   height: user_height,
