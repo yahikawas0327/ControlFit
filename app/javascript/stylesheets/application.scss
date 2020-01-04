@@ -99,9 +99,9 @@ a:hover{
           align-items: center;
           font-size: 1rem;
           color: rgba(0,0,0,.84);
-          width: 120px;
+          width: 150px;
           span {
-            font-size: 20px;
+            font-size: 19px;
           }
         }
         a + a:after {
@@ -626,6 +626,67 @@ a:hover{
     }
   }
 }  
+//personal-info
+.section.personal-info {
+  .community {
+    height: 60px;
+    .following {
+      padding-left: 8px;
+      a {
+        height: 50px;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+      }
+    }
+    .follower {
+      padding-left: 73px;
+      a {
+        height: 50px;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+      }
+    }
+  }
+}
+.section.edit-info {
+  select#member_gender{
+    margin-left: 10px;
+    width: 100px;
+    height: 30px;
+  }
+  input.btn {
+    width: 190px;
+  }
+}
+@media screen and (min-width: 768px){
+  .section.personal-info,
+  .section.edit-info {
+    padding-left: 100px;
+  }
+}
+@media screen and (max-width: 767px){ 
+  .section.edit-info {
+    h2.title {
+      text-align: center;
+    }
+    .row {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      box-sizing: border-box;
+      form{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
 //team
 .section.team {
   .title {
@@ -718,6 +779,7 @@ a:hover{
     }
   }
 }
+
 // footer
 .section.footer {
   background: #F4F4F4;
