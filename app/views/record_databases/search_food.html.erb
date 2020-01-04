@@ -67,30 +67,36 @@
                 <th scope="col">份數</th>
                 <th scope="col">吃多少</th>
                 <th scope="col">懺悔時間</th>
-              </tr>               
-              <% @record_foods.each_with_index do |record_food, index| %>
-              <tr class="daily_food_result" >
-                <td> <%= index+1 %></td>
-                <td> <%= record_food.created_at.strftime("%F") %></td>
-                <td class="type"> <%= record_food.eat_type %></td>                  
-                <td class="name"> <%= record_food.name %></td>
-                <td class="qty"> <%= record_food.qty %></td>
-                <td class="foodsum"> <%= record_food.total_calorie %></td>
-                <td>
-                  <button data-id="<%= record_food.id %>" class="button is-warning is-small is-light js-edit"><i class="fas fa-pencil-alt"> </i></button>
-                  <button data-id="<%= record_food.id %>" class="button is-danger is-small is-light js-del"><i class="fas fa-trash"> </i></button>
-                </td>
               </tr>
+              <% if @record_foods.present? %>              
+                <% @record_foods.each_with_index do |record_food, index| %>
+                <tr class="daily_food_result" >
+                  <td> <%= index+1 %></td>
+                  <td> <%= record_food.created_at.strftime("%F") %></td>
+                  <td class="type"> <%= record_food.eat_type %></td>                  
+                  <td class="name"> <%= record_food.name %></td>
+                  <td class="qty"> <%= record_food.qty %></td>
+                  <td class="foodsum"> <%= record_food.total_calorie %></td>
+                  <td>
+                    <button data-id="<%= record_food.id %>" class="button is-warning is-small is-light js-edit"><i class="fas fa-pencil-alt"> </i></button>
+                    <button data-id="<%= record_food.id %>" class="button is-danger is-small is-light js-del"><i class="fas fa-trash"> </i></button>
+                  </td>
+                </tr>
+                <% end %>
+              <% else %>
               <% end %>
             </tbody>
             <tfoot>
-              <tr>
-                <td colspan="2">  項目數量 : <%= @record_foods.size %></td>
-                <td></td>
-                <td></td>
-                <td>總計:</td>
-                <td class="totalsum" colspan="2"> <%= @sum %>  </td>
-              </tr>
+q             <% if @record_foods.present? %>
+                <tr>
+                  <td colspan="2">  項目數量 : <%= @record_foods.size %></td>
+                  <td></td>
+                  <td></td>
+                  <td>總計:</td>
+                  <td class="totalsum" colspan="2"> <%= @sum %>  </td>
+                </tr>
+              <% else %>
+              <% end %>
             </tfoot>
           </table>
         </div>
