@@ -1,34 +1,36 @@
 <section class="section login">
-  <div class="container-fluid login-block">
+  <div class="container-fluid login-block col-12 col-md-12">
     <h2 class="title">會員帳號</h2>
     <div class="row">
-      <a class="btn-google" href="/members/auth/google_oauth2">
-        <span class="google-icon"></span>
-        <span class="label">用Google登入</span>
-      </a>
-      <div class="separator">
-        或
-      </div>
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-group email">
-        <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control', placeholder: "example@mail.com" %>
-        <small id="emailHelp" class="form-text text-muted">我們不會洩漏您的電子郵件地址給其他人</small>
-      </div>
-    
-      <div class="form-group password">
-        <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control', placeholder: "至少6位數密碼，請區分大小寫" %>
-      </div>
-      <div class="form-group foreget">
-        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-          <%= link_to "已忘記密碼?", new_password_path(resource_name), class: 'forget-pw' %><br />
-        <% end %>
-      </div>
-      <div class="form-group">
-        <%= f.submit "登入", class: 'btn btn-primary btn-login' %>
-      </div>
-      <% end %>
-      <div class="text-links"> 
-        <%= render "devise/shared/links" %>
+      <div class="col-12 col-md-12">
+      	<a class="btn-google" href="/members/auth/google_oauth2">
+      	  <span class="google-icon"></span>
+      	  <span class="label">用Google登入</span>
+      	</a>
+      	<div class="separator">
+      	  或
+      	</div>
+      	<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      	<div class="form-group email">
+      	  <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control', placeholder: "example@mail.com" %>
+      	  <small id="emailHelp" class="form-text text-muted">我們不會洩漏您的電子郵件地址給其他人</small>
+      	</div>
+          
+      	<div class="form-group password">
+      	  <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control', placeholder: "至少6位數密碼，請區分大小寫" %>
+      	</div>
+      	<div class="form-group foreget">
+      	  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+      	    <%= link_to "已忘記密碼?", new_password_path(resource_name), class: 'forget-pw' %><br />
+      	  <% end %>
+      	</div>
+      	<div class="form-group">
+      	  <%= f.submit "登入", class: 'btn btn-primary btn-login' %>
+      	</div>
+      	<% end %>
+      	<div class="text-links"> 
+      	  <%= render "devise/shared/links" %>
+      	</div>
       </div>
     </div>
   </div>
