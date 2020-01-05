@@ -180,7 +180,7 @@ document.addEventListener('turbolinks:load', () => {
            .catch((error) => { console.error(error) })
     },
   })
-  // 個人身體資訊 ---------------------------------------------------
+  // --個人身體資訊---------------------------------------------------
   const physical = new Vue({
     el: '#physical',
     data :{
