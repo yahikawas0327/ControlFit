@@ -230,7 +230,6 @@ document.addEventListener('turbolinks:load', () => {
                                      update_weight:  this.Weight,
                                      update_gender:  this.Gender,
                                      update_age   :  this.Age,}
-
         var update_physical_validate = Object.values(update_physical_data).every(function(item, index, array){
           return item !== '' // 當全部 item all exist  才能回傳 true
         });

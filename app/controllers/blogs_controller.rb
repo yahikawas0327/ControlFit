@@ -19,27 +19,42 @@ class BlogsController < ApplicationController
                                    member_exist:true
                                   }
        render json: user_basic_information
-       else
+      else
        render json:{member_exist:false}
-       end
+      end
   end
 
-  def create
-    user_height = (params[:Height]).to_i
-    user_weight = (params[:Weight]).to_i
-    user_gender = params[:Gender]
-    user_age = (params[:Age]).to_i
+  def create     
+     user_secret = Membersecret.find_by(member_id:current_member.id)
+     user_height = (params[:Height]).to_i
+     user_weight = (params[:Weight]).to_i
+     user_gender = params[:Gender]
+     user_age    = (params[:Age]).to_i
+     user_bmi = bmiformula(user_height, user_weight)
+     user_bmi_range = bmirange(user_bmi)
+     user_ree = ree_formula(user_weight,user_height,user_gender,user_age)
+     user_bmr = (bmr_formula(user_weight,user_height,user_age,user_gender)).round
+     physical_hash = { bmi: user_bmi,
+                       bmi_range: user_bmi_range,
+                       ree: user_ree,
+                       bmr: user_bmr}
+     if user_secret.present?
+        # 若資料存在及更新資料
+        user_secret.update(:bmi => user_bmi , 
+                            :bmistatus => user_bmi_range,
+                            :ree => user_ree,
+                            :bmr => user_bmr,
+                            :member_id => current_member.id)
+     else
+        # 若資料不存在則新建資料
+        Membersecret.create(:bmi => user_bmi , 
+                            :bmistatus => user_bmi_range,
+                            :ree => user_ree,
+                            :bmr => user_bmr,
+                            :member_id => current_member.id)
+     end 
 
-    user_bmi = bmiformula(user_height, user_weight)
-    user_bmi_range = bmirange(user_bmi)
-    user_ree = ree_formula(user_weight,user_height,user_gender,user_age)
-    user_bmr = (bmr_formula(user_weight,user_height,user_age,user_gender)).round
-    physical_hash = { bmi: user_bmi,
-                      bmi_range: user_bmi_range,
-                      ree: user_ree,
-                      bmr: user_bmr}
-    # puts current_member.name
-    render json: physical_hash
+     render json: physical_hash
   end
 
   def update
