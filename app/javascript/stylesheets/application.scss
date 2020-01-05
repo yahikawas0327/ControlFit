@@ -55,6 +55,7 @@ a:hover{
     border-bottom: 1px solid rgba(0,0,0,8) ;
     .container-fluid {
       background-color: rgba(255,255,255,1);
+      box-shadow: 0 2px 2px 0px rgba(0,0,0,.2);
       .row {
         width: 100%;
         height: 75px;
@@ -70,7 +71,7 @@ a:hover{
         width: 200px;
         img {
           width: 200px;
-          margin-top: 17px;
+          margin-top: 18px;
           margin-left: 50px;
         }
       }
@@ -84,14 +85,11 @@ a:hover{
     }
     .collapsing .navbar-nav, .collapse .navbar-nav {
       display: flex;
-      width: 400px;
+      width: 700px;
       align-items: center;
-      margin: 0 50px;
+      justify-content: center;
+      margin-left: 37px;
       .nav-item {
-        width: 120px;
-        &:hover {
-          color: #33ABE6;
-        }
         a {
           display: flex;
           flex-direction: row;
@@ -99,10 +97,19 @@ a:hover{
           align-items: center;
           font-size: 1rem;
           color: rgba(0,0,0,.84);
-          width: 150px;
+          width: 90px;
+          padding: 0;
+          &:hover {
+            color:#33ABE6;
+            transition: all 0.3s ease-in-out;
+          }
           span {
             font-size: 19px;
           }
+        }
+        a.food {
+          width: 70px;
+          padding-left: 20px;
         }
         a + a:after {
           content: '';
@@ -111,35 +118,30 @@ a:hover{
           height: 1px;
           background-color: rgba(0,0,0,.84);
         }
-        i {
-          display: block;
-          color: rgba(0,0,0,.84);
-          padding-right: 3px;
-          &:hover {
-            color:#33ABE6;
-          }
-        }
-      }
-      i.fas.fa-hamburger::before,
-      i.fas.fa-dumbbell::before,
-      i.far.fa-newspaper::before,
-      i.fas.fa-utensils::before{
-        font-size: 25px; 
       }
     }
     .navbar-actions {
       display: flex;
-      right: 30px;
+      right: 3px;
       align-items: center;
       padding: 0 25px;
       margin-bottom: 0;
       justify-content: flex-end;
+      a:hover {
+        color: #33ABE6;
+        transition: all 0.3s ease-in-out;
+      }
       .nav-item {
         padding: 0 10px;
       }
       .dropdown-menu {
+        width: 185px;
+        left: -22px;
         a {
           color: #2b2a2a;
+        }
+        span {
+          padding-left: 14px;
         }
       }
     }
@@ -226,9 +228,15 @@ a:hover{
         width: auto;
         height: 60px;
         right: 0;
+        .nav-item.dropdown {
+          a {
+            color: rgba(0,0,0,.84);
+          }  
+        }
         .nav-item.sign-in {
           width: 50px;
           a {
+            color: rgba(0,0,0,.84);
             font-size: 15px;
             padding-right: 10px;
           }
@@ -293,6 +301,7 @@ a:hover{
           font-size: 19px;
           &:hover {
             color: #33ABE6;
+            transition: all 0.3s ease-in-out;
           }
         }
         i {
@@ -327,16 +336,19 @@ a:hover{
 // banner
 .banner{
   width: 100%;
-  height: 600px;
+  height: 100vh;
   top: 60px;
   background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1492093502190-25c0c7b3094c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1800&q=60');
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  h2 {
+    display: block;
+    color: #fff;
+  }
 }
 @media screen and (max-width: 767px){
  .banner{
    width: 100%;
-   position: absolute;
    background-size: 500px 740px;
  }
 }
@@ -680,7 +692,7 @@ a:hover{
 .section.team {
   .title {
     .subtitle {
-      color: #DB0267;
+      color: #33ABE6;
       margin-bottom: 8px;
       font-size: 18px;
     }
