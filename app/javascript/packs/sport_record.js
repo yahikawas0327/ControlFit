@@ -37,6 +37,7 @@ document.addEventListener('turbolinks:load', () => {
       savestatus:[],
       member_status:false,
       search_status:false,
+      daily_record_status:false,
     },
     methods: {
       submit: function(){
@@ -132,6 +133,9 @@ document.addEventListener('turbolinks:load', () => {
       end_search(){
         this.premessage="";
         this.search_status=false;
+      },
+      more_record(){
+        this.daily_record_status = !this.daily_record_status
       }
     },
     computed: {

@@ -52,29 +52,28 @@
             </table>
           </div>
         </div>
+        </br>
         <div class="row">
           <div class="columns">
-            <div class="column">  
-            <table class="table table-hover" id="dailysport">
-              <thead>  
-                <tr>
-                  <th colspan="2"><i class="fas fa-calendar-day"></i> :  {{currentDay}} </th>
-                  <th colspan="2"><i class="fas fa-clock"></i> :  {{currentTime}}</th>
-                  <th colspan="1"> 今天燃燒多少 <i class="fas fa-fire"></i></th>
-                  <th></th>
-                </tr>
-              </thead>
-            </table> 
-          </div> 
+            <div class="column is-3 ">
+              <i class="fas fa-calendar-day"></i> :  {{currentDay}} 
+            </div>
+            <div class="column is-3 ">
+              <i class="fas fa-clock"></i> :  {{currentTime}}
+            </div>
+            <div class="column is-8 ">
+              今天燃燒 <i class="fas fa-fire"></i> {{daily_sum}} 大卡
+              共紀錄  {{daily_count}} 筆
+              <button class="button is-link is-small is-light is-rounded" @click="more_record">  <span> <i class="fas fa-comment-dots"></i> </span>    more</button>
+            </div>
           </div>
-          <div class="column">
-            <table class="table table-hover" id="record-sport">
+        </div>
+        </br>
+        <div class="row">
+            <table v-if="daily_record_status === true" class="table table-hover" id="record-sport">
               <thead>  
                 <tr>
-                  <th colspan="2"><i class="fas fa-calendar-day"></i> :  {{currentDay}} </th>
-                  <th colspan="2"><i class="fas fa-clock"></i> :  {{currentTime}}</th>
-                  <th colspan="1"> 今天燃燒多少 <i class="fas fa-fire"></i></th>
-                  <th></th>
+                  <th colspan="6"> <i class="fas fa-clipboard-list"></i> : 今天燃燒點將錄 </th>
                 </tr>
               </thead>
               <tbody>  
@@ -100,18 +99,9 @@
                   </td>                 
                 </tr>
               </tbody>
-              <tfoot>
-                  <tr>
-                    <td colspan="2">  Count : {{daily_count}} </td>
-                    <td></td>
-                    <td colspan="2"> 今天燒多少: {{daily_sum}} 大卡</td>
-                    <td></td>
-                  </tr>
-              </tfoot>
             </table>
-          </div>
         </div>
       </div>
-    </div>
+      </div>
   </div>
 </div>
