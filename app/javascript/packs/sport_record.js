@@ -22,6 +22,7 @@ document.addEventListener('turbolinks:load', () => {
     data :{
       user_id:0,
       message : "",
+      premessage:"",
       weight : "",
       user_info:{},
       min: 0,
@@ -35,24 +36,27 @@ document.addEventListener('turbolinks:load', () => {
       editstatus:[],
       savestatus:[],
       member_status:false,
+      search_status:false,
     },
     methods: {
       submit: function(){
         var self = this;
-        if (this.member_status===true){
-          axios.get('http://localhost:3000/search_sport',{
-                   params:{ search_sport: this.message}
-                 })
-             .then(function(response){
-                  let search_sport = response.data
-                  for (var i in search_sport ){
-                    self.sports.push(search_sport[i])
+        if (this.member_status===true && this.premessage !== this.message){
+          axios.get('http://localhost:3000/search_sport.json',{
+                   params:{ search_sport: this.message}})
+               .then(function(response){
+                  if (response.data.length ===0){alert("沒有資料喔!")}else{
+                      self.search_status = true;
+                      self.premessage=self.message
+                        let search_sport = response.data
+                        self.sports=[];
+                        for (var i in search_sport ){
+                            self.sports.push(search_sport[i])
+                      }
                   }
                 })        
-        }else{
-          alert("還不是會員喔!!! 先登入吧")
-        }
-        
+        }else if(this.member_status===true && this.premessage === this.message){ alert("不要重複搜尋!!!!")
+        }else{alert("還不是會員喔!!! 先登入吧")}
              },
       sport_record(idx){
         let  sport_hash = {
@@ -125,6 +129,10 @@ document.addEventListener('turbolinks:load', () => {
           alert("分鐘數必須要大於1 min")
         }
       },
+      end_search(){
+        this.premessage="";
+        this.search_status=false;
+      }
     },
     computed: {
       consume(){
@@ -142,7 +150,7 @@ document.addEventListener('turbolinks:load', () => {
       setInterval(() => this.updateCurrentTime(), 1 * 1000);
       // User information
       var self =this;
-      axios.get('http://localhost:3000/blogs/new')
+      axios.get('http://localhost:3000/blogs/new.json')
            .then(function(response){
             if (response.data.member_exist === true){
                  self.user_info = response.data
@@ -150,7 +158,7 @@ document.addEventListener('turbolinks:load', () => {
                  self.user_id   = response.data.user_id
                  self.member_status = true
               if (self.user_id !== 0 ){
-                  axios.get('http://localhost:3000/search_sport',{params:{ member_id: self.user_id}})
+                  axios.get('http://localhost:3000/search_sport.json',{params:{ member_id: self.user_id}})
                        .then(function(response){
                           let daily_sport = response.data
                           console.log(daily_sport)
@@ -279,7 +287,7 @@ document.addEventListener('turbolinks:load', () => {
     },
     created() {
       var self= this;
-      axios.get('http://localhost:3000/blogs/new')
+      axios.get('http://localhost:3000/blogs/new.json')
            .then(function(response){
             if (response.data.member_exist === true){
               self.user_info = response.data

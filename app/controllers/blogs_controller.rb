@@ -18,9 +18,11 @@ class BlogsController < ApplicationController
                                    user_id: user_id,
                                    member_exist:true
                                   }
-       render json: user_basic_information
+      respond_to do |format|
+        format.json { render json:user_basic_information}
+        format.html { render :new }
+      end                              
       else
-       render json:{member_exist:false}
       end
   end
 

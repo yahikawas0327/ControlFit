@@ -43,14 +43,21 @@ class RecordDatabasesController < ApplicationController
       @search_sport = params["search_sport"]
       @sports = []
       if @search_sport.present?
-        @sports= Sport.where("name ILIKE ?", "%#{@search_sport}%")      
-        render json: @sports 
+        @sports= Sport.where("name ILIKE ?", "%#{@search_sport}%")
+        respond_to do |format|
+          format.json { render json: @sports}
+          format.html { render :search_sport }
+        end      
+      else 
       end
       
       daily_sport = params["member_id"]
       if daily_sport.present?
         @record_sports = SportRecord.where(member_id: params[:member_id], created_at: (Time.now.midnight)..(Time.now))
-        render json: @record_sports
+        respond_to do |format|
+          format.json { render json: @record_sports}
+          format.html { render :search_sport }
+        end  
       else
       end
 
