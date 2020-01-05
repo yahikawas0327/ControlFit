@@ -37,7 +37,7 @@ li, a {
   text-decoration: none!important;
 }
 a:hover{
-  color: #3E9DD5;
+  color: #33ABE6;
 }
 
 // navbar
@@ -90,7 +90,7 @@ a:hover{
       .nav-item {
         width: 120px;
         &:hover {
-          color: #3E9DD5;
+          color: #33ABE6;
         }
         a {
           display: flex;
@@ -116,7 +116,7 @@ a:hover{
           color: rgba(0,0,0,.84);
           padding-right: 3px;
           &:hover {
-            color:#3E9DD5;
+            color:#33ABE6;
           }
         }
       }
@@ -217,12 +217,6 @@ a:hover{
           width: 180px;
           height: 30px;
         }
-        h1{
-          font-size: 20px;
-          margin: 0;
-          padding: 0 10px;
-          color: #DB0267;
-        }
       }
       .login-block{
         display: block;
@@ -255,11 +249,11 @@ a:hover{
   }  
   #navbar-control:checked + .navbar .navbar-toggler .icon-bar:first-child{
     transform: rotate(45deg) translateY(0px);
-    background-color: #3E9DD5;
+    background-color: #33ABE6;
   }
   #navbar-control:checked + .navbar .navbar-toggler .icon-bar:last-child{
     transform: rotate(-45deg) translateY(0px);
-    background-color: #3E9DD5;
+    background-color: #33ABE6;
   }
   #navbar-control:checked + .navbar .navbar-collapse{
     visibility: visible;
@@ -298,7 +292,7 @@ a:hover{
           color: rgba(0,0,0,.8)!important;
           font-size: 19px;
           &:hover {
-            color: #3E9DD5;
+            color: #33ABE6;
           }
         }
         i {
