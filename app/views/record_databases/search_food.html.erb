@@ -22,10 +22,18 @@
               <th scope="col">蛋白質</th>
               <th scope="col">體脂肪</th>
               <th scope="col">碳水化合物</th>
-              <th scope="col">加入每日紀錄</th>
+              <th scope="col">記起來</th>
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td scope="col">食品名稱</td>
+              <td scope="col">卡路里</td>
+              <td scope="col">蛋白質</td>
+              <td scope="col">體脂肪</td>
+              <td scope="col">碳水化合物</td>
+              <td scope="col">記起來</td>
+            </tr>
             <% @food_databases.each do |food_database| %>
             <tr class="search_food_result" id="<%= food_database.id %>">
               <td><%= food_database.name %></td>

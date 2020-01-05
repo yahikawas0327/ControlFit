@@ -41,6 +41,21 @@ class BlogsController < ApplicationController
         # puts current_member.name
        render json: physical_hash
   end
+
+  def update
+     # Obtain Post data from physical system
+     update_current_member  = Member.find_by(id:current_member.id)
+     update_height = (params[:update_height]).to_i
+     update_weight = (params[:update_weight]).to_i
+     update_age    = (params[:update_age]).to_i
+     update_gender = (params[:update_gender])
+     # Update member personal  data to Member database
+     update_current_member.update( :gender => update_gender,
+                                   :cm     => update_height,
+                                   :age    => update_age,
+                                   :kg     => update_weight)
+     puts "finish"
+  end
  
   private
   

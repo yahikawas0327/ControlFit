@@ -15,7 +15,6 @@ class ExerciseRecordsController < ApplicationController
     def destroy
           delete_data = SportRecord.find_by(id:params[:id])
           delete_data.destroy
-          #puts "delete finish"
     end
 
     def create

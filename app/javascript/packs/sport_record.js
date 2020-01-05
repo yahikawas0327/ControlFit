@@ -34,11 +34,13 @@ document.addEventListener('turbolinks:load', () => {
       tempindex:[],
       editstatus:[],
       savestatus:[],
+      member_status:false,
     },
     methods: {
       submit: function(){
         var self = this;
-        axios.get('http://localhost:3000/search_sport',{
+        if (this.member_status===true){
+          axios.get('http://localhost:3000/search_sport',{
                    params:{ search_sport: this.message}
                  })
              .then(function(response){
@@ -47,6 +49,10 @@ document.addEventListener('turbolinks:load', () => {
                     self.sports.push(search_sport[i])
                   }
                 })        
+        }else{
+          alert("還不是會員喔!!! 先登入吧")
+        }
+        
              },
       sport_record(idx){
         let  sport_hash = {
@@ -142,6 +148,7 @@ document.addEventListener('turbolinks:load', () => {
                  self.user_info = response.data
                  self.weight    = response.data.weight
                  self.user_id   = response.data.user_id
+                 self.member_status = true
               if (self.user_id !== 0 ){
                   axios.get('http://localhost:3000/search_sport',{params:{ member_id: self.user_id}})
                        .then(function(response){
@@ -165,7 +172,7 @@ document.addEventListener('turbolinks:load', () => {
            .catch((error) => { console.error(error) })
     },
   })
-  // 個人身體資訊
+  // 個人身體資訊 ---------------------------------------------------
   const physical = new Vue({
     el: '#physical',
     data :{
@@ -182,39 +189,63 @@ document.addEventListener('turbolinks:load', () => {
       selcct_v:'select is-success',
       eatintention:"",
       sportintention:"",
-      moreshow:false
+      moreshow:false,
+      member_status:false
     },
     methods: {
       lookfor: function(){
-        let physical_hash = {
+        if (this.member_status === true){
+                  let physical_hash = {
                              Height: this.Height,
                              Weight: this.Weight,
                              Gender: this.Gender,
                              Age: this.Age}
-
-        var physical_validate = Object.values(physical_hash).every(function(item, index, array){
-          return item !== '' // 當全部 item all exist  才能回傳 true
-        });
-        if (physical_validate === true) {
-          alert('以上資料沒錯的話! 那就把確定按下去')
-          var self = this;
-          axios.post('http://localhost:3000/blogs', physical_hash)
-          .then(function(response){
-            let body = response.data
-            self.BMI =body.bmi;
-            self.BMI_range=body.bmi_range;
-            self.Ree=body.ree;
-            self.BMR=body.bmr;
-           })
-           .catch((error) => {
-           })
-        } else {
-          alert('有資料還沒填! 看到紅色框的記得填')
+            var physical_validate = Object.values(physical_hash).every(function(item, index, array){
+              return item !== '' // 當全部 item all exist  才能回傳 true
+            });
+            if (physical_validate === true) {
+              alert('以上資料沒錯的話! 那就把確定按下去')
+              var self = this;
+              axios.post('http://localhost:3000/blogs', physical_hash)
+              .then(function(response){
+                let body = response.data
+                self.BMI =body.bmi;
+                self.BMI_range=body.bmi_range;
+                self.Ree=body.ree;
+                self.BMR=body.bmr;
+                })
+                .catch((error) => {})
+            } else {
+              alert('有資料還沒填! 看到紅色框的記得填')
+            }
+        }else{
+          alert("還沒登入喔!! 沒有登入不能使用喔!")
         }
       },
       more: function(){
         this.moreshow = !this.moreshow
       },
+      update: function(){
+        let update_physical_data = { update_height:  this.Height,
+                                     update_weight:  this.Weight,
+                                     update_gender:  this.Gender,
+                                     update_age   :  this.Age,}
+
+        var update_physical_validate = Object.values(update_physical_data).every(function(item, index, array){
+          return item !== '' // 當全部 item all exist  才能回傳 true
+        });
+        if (this.member_status === true){
+          if(update_physical_validate === true){
+             axios.patch(`http://localhost:3000/blogs/${this.user_info.user_id}`, update_physical_data)
+                  .then(function(response){
+                          console.log(response)})            
+          }else{
+            alert("資料有空白喔! 認真填完再送")
+          }          
+        }else{
+          alert("還不是會員喔!!! 不要亂寫資料 ")
+        }
+      }
     },
     computed: {
       exercise_choice(){
@@ -257,6 +288,8 @@ document.addEventListener('turbolinks:load', () => {
               self.Weight = response.data.weight
               self.Gender = response.data.gender
               self.Age    = response.data.age 
+              self.member_status = true
+              console.log(self.user_info)
             }
            })
            .catch(function (error) {

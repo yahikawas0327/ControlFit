@@ -35,20 +35,8 @@ class RecordDatabasesController < ApplicationController
           @record_foods.each do |record_food|
              @sum = @sum + record_food.total_calorie
           end
-        else
-
-          
-          
+        else       
         end
-        # @record_foods = FoodRecord.where(created_at: (Time.now.midnight)..(Time.now))
-        #member_id: current_member.id,
-        # 搜尋到現在時間為止的今天食物紀錄
-        # @sum=0
-        # @record_foods.each do |record_food|
-        #    @sum = @sum + record_food.total_calorie
-        # end
-        
-        #---------------------------------------
     end
 
     def search_sport
