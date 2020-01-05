@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def updata
+  def update
   end
 
   def destroy
