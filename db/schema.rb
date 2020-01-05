@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_04_080709) do
+ActiveRecord::Schema.define(version: 2020_01_05_042551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,18 @@ ActiveRecord::Schema.define(version: 2020_01_04_080709) do
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
 
+  create_table "membersecrets", force: :cascade do |t|
+    t.decimal "bmi"
+    t.string "bmistatus"
+    t.decimal "ree"
+    t.decimal "bmr"
+    t.decimal "tdee"
+    t.bigint "member_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_membersecrets_on_member_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -100,4 +112,5 @@ ActiveRecord::Schema.define(version: 2020_01_04_080709) do
     t.decimal "computed", default: "0.0"
   end
 
+  add_foreign_key "membersecrets", "members"
 end
