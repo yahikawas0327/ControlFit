@@ -63,10 +63,13 @@
             <thead>
               <tr>
                 <% if @record_foods.present? %>
-                <th  colspan="2" scope="col"> <i class="fas fa-clipboard-list"></i> : 今日飲食點將錄   共 : <%= @record_foods.size %> 筆 </th>
+                <th  colspan="2" scope="col"> <i class="fas fa-clipboard-list"></i> : 今日飲食點將錄   共 : <div class="totalcount" > <%= @record_foods.size %></div>   大卡 </th>
                 <th  colspan="2"></th>
                 <th  colspan="3">  <i class="fas fa-utensils"></i> : 共 <div class="totalsum" > <%= @sum %></div>  大卡  </th>
                 <% else %>
+                <th  colspan="2" scope="col"> <i class="fas fa-clipboard-list"></i> : 今日飲食點將錄   共 : <div class="totalcount" > 0 </div>  筆 </th>
+                <th  colspan="2" ></th>
+                <th  colspan="3"> <i class="fas fa-utensils"></i> : 共 <div class="totalsum" > 0 </div>  大卡  </th>
                 <% end %>
               </tr>
             </thead>

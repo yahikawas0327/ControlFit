@@ -14,54 +14,9 @@ document.addEventListener('turbolinks:load', () => {
     // 增加 Query system event
     $('#query-table').hide()
     $('#Add_food_record_type').hide()
-    // 新增每日食物資料 JQuery  
-    $('.search_food_result').on('click','button',function(evt){
-      $('#query-food').hide();
-      let food_name = $(evt.target).parent().siblings('td:first').text()
-      let food_calorie = $(evt.target).parent().siblings('td:first').next().text()
-      $('#Add_food_record_type').remove()
 
-       $('#Add_food_record').append( `
-       <div class="form-row" >
-       <div class="col-md-1 md-3"></div>
-       <div class="col-md-3 mb-3 ">
-        <label for="disabledTextInput">食物名稱</label>
-        <input class="form-control" type="text" placeholder="${food_name}" readonly>
-       </div>
-       <div class="col-md-2 mb-3">
-        <label for="disabledTextInput_1">卡洛里</label>
-        <input class="form-control" type="text" placeholder="${food_calorie}" readonly>
-       </div>
-       <div class="col-md-1 mb-3">
-        <label for="custom-select">份數</label>
-        <select class="custom-select" id="foodqty">
-            <option selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-       </div>
-       <div class="col-md-2 mb-3">
-        <label for="exampleFormControlInput1">型態</label>
-        <select class="custom-select" id="foodtype">
-            <option selected>早餐</option>
-            <option value="1">午餐</option>
-            <option value="2">晚餐</option>
-            <option value="3">點心/其他</option>
-        </select>
-       </div>
-       <div class="col-md-1 md-3">
-         <label for="exampleFormControlInput1">加進去</label>
-         <button type="submit" class="button is-success  is-light js-add" data-id="${evt.target.id}"><i class="fas fa-plus-square"></i></button>       
-       </div>
-       <div class="col-md-1 mb-3">
-       <label for="exampleFormControlInput1">回搜尋</label>
-       <button class="button  is-link is-light is-return" data-id="return_food"><i class="fas fa-undo-alt"></i></button>
-       </div>
-       </div>
-       `); // 增加使用者體驗 並接收 食物數量 / 型態
-    })              
+
+    search_item()           
     deleteEvent()
     editEvent()
     search()
@@ -79,6 +34,57 @@ document.addEventListener('turbolinks:load', () => {
 
 
 
+// search_food_item
+function search_item(){
+  $('.search_food_result').on('click','button',function(evt){
+    $('#query-food').hide();
+    let food_name = $(evt.target).parent().siblings('td:first').text()
+    let food_calorie = $(evt.target).parent().siblings('td:first').next().text()
+    $('#Add_food_record_type').remove()
+
+     $('#Add_food_record').append( `
+     <div class="form-row" >
+     <div class="col-md-1 md-3"></div>
+     <div class="col-md-3 mb-3 ">
+      <label for="disabledTextInput">食物名稱</label>
+      <input class="form-control" type="text" placeholder="${food_name}" readonly>
+     </div>
+     <div class="col-md-2 mb-3">
+      <label for="disabledTextInput_1">卡洛里</label>
+      <input class="form-control" type="text" placeholder="${food_calorie}" readonly>
+     </div>
+     <div class="col-md-1 mb-3">
+      <label for="custom-select">份數</label>
+      <select class="custom-select" id="foodqty">
+          <option selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+      </select>
+     </div>
+     <div class="col-md-2 mb-3">
+      <label for="exampleFormControlInput1">型態</label>
+      <select class="custom-select" id="foodtype">
+          <option selected>早餐</option>
+          <option value="1">午餐</option>
+          <option value="2">晚餐</option>
+          <option value="3">點心/其他</option>
+      </select>
+     </div>
+     <div class="col-md-1 md-3">
+       <label for="exampleFormControlInput1">加進去</label>
+       <button type="submit" class="button is-success  is-light js-add" data-id="${evt.target.id}"><i class="fas fa-plus-square"></i></button>       
+     </div>
+     <div class="col-md-1 mb-3">
+     <label for="exampleFormControlInput1">回搜尋</label>
+     <button class="button  is-link is-light is-return" data-id="return_food"><i class="fas fa-undo-alt"></i></button>
+     </div>
+     </div>
+     `); // 增加使用者體驗 並接收 食物數量 / 型態
+  })
+
+}
 
 // search food function
 function search(){
@@ -266,11 +272,28 @@ function click_create_new_record_by_user(){
                   `
                 )
                 let total = Number($('.totalsum').text())
+                count_plus()
                 let newtotal= (total + Number(response.data.calories)).toFixed(2)
-                $('.totalsum').text(newtotal) 
+                $('.totalsum').text(newtotal)
         })
    
 })
+}
+
+function count_plus(){
+  let count = Number($('.totalcount').text())
+  console.log(count)
+  let newcount = count + 1
+  $('.totalcount').text(newcount) 
+  console.log(newcount) 
+}
+function count_minus(){
+  let count = Number($('.totalcount').text())
+  console.log(count)
+  let newcount = count - 1
+  $('.totalcount').text(newcount) 
+  console.log(newcount) 
+
 }
 
 // Edit daily record data 
@@ -361,7 +384,7 @@ function saveEvent(){
 
 // Delete daily record data function
 function deleteEvent(){    
-  $('.daily_food_result').on('click','.js-del',function(evt){
+  $('#daliy-food').on('click','.js-del',function(evt){
     console.log(this.dataset.id);
     let delete_id = {id: this.dataset.id}
     axios.delete(`http://localhost:5000/food_records/${this.dataset.id}`, delete_id )
@@ -369,10 +392,9 @@ function deleteEvent(){
         console.log('response=>',response);
         let del_sum = $(`.js-del[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text()
         let total = Number($('.totalsum').text())
-        console.log(total) 
         let new_sum = (total - Number(del_sum)).toFixed(2)
-        console.log(new_sum)
         $('.totalsum').text(new_sum)
+        count_minus()
         $(this).parent().parent('.daily_food_result').remove()
         })
   })
@@ -415,9 +437,12 @@ function query_add(){
                 let total = Number($('.totalsum').text())
                 let newtotal= (total + Number(response.data.calories)).toFixed(2)
                 $('.totalsum').text(newtotal)
+                count_plus()
     })
   })
 }
+
+
 
 
 
