@@ -8,6 +8,7 @@
   <div class="row">
     <div class="col-12 col-md-12">
       <form>
+        <%= image_tag @member.cover_image.variant(resize_to_limit: [300, 300]) if @member.cover_image.attached? %>
         <div class="form-group row">
           <label for="staticEmail" class="col-sm-2 col-form-label">姓名</label>
           <div class="col-sm-10">

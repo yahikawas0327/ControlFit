@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @member = Member.find(params[:id])
+    @member = Member.all.find(params[:id])
   end
 
   def new
