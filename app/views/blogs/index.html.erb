@@ -32,6 +32,7 @@
               <option>女性</option>
             </select>
             </div>
+
             <div v-else  class="select is-success">
               <select v-model="Gender">
                   <option>男性</option>
@@ -53,7 +54,7 @@
           <div class="col-md-1 mb-3"></div>
           <div class="col-md-7 mb-3">
               <button class="button is-success is-light" @click="lookfor"> <i class="fas fa-id-card-alt"></i> 檢測 </button>
-              <button class="button is-info is-light"><i class="fas fa-pen"></i> 修改</button>
+              <button class="button is-info is-light" @click="update"><i class="fas fa-pen"></i> 修改</button>
           </div>
         </div>
       </div>
