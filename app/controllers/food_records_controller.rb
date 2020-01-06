@@ -29,7 +29,7 @@ class FoodRecordsController < ApplicationController
 
         
         #回傳json 至前端
-        render json: @food_records.last
+        render json: @food_records.last(2)
 
                      
     end

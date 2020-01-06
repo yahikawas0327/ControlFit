@@ -66,7 +66,7 @@
                 <th colspan="4">今天吃了甚麼好料 <i class="fas fa-utensils"></i> </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="dailyfood">
               <tr>
                 <th scope="col">編號</th>
                 <th scope="col">時間</th>
@@ -79,8 +79,8 @@
               <% if @record_foods.present? %>              
                 <% @record_foods.each_with_index do |record_food, index| %>
                 <tr class="daily_food_result" >
-                  <td> <%= index+1 %></td>
-                  <td> <%= record_food.created_at.strftime("%F") %></td>
+                  <td class="index"> <%= index+1 %></td>
+                  <td class="time"> <%= record_food.created_at.strftime("%F") %></td>
                   <td class="type"> <%= record_food.eat_type %></td>                  
                   <td class="name"> <%= record_food.name %></td>
                   <td class="qty"> <%= record_food.qty %></td>

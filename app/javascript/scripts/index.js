@@ -62,28 +62,7 @@ document.addEventListener('turbolinks:load', () => {
        </div>
        `); // 增加使用者體驗 並接收 食物數量 / 型態
     })
-    
-    // $('.form-row').on('click','.js-add',function(evt){
-    //   evt.stopPropagation();
-    //   let foodqty=$("#foodqty :selected").text();
-    //   let foodtype=$("#foodtype :selected").text();
-    //   let food_hash = {
-    //             food_id : `${this.dataset.id}`,
-    //             food_qty: foodqty,
-    //             food_type: foodtype
-    //              }
-    //    $(this).parent().parent('.form-row').remove()
-    //   axios.post("http://localhost:5000/food_records", food_hash)
-    //        .then( response => {
-    //               console.log('response=>',response);
-    //               // window.location.reload();
-    //               // $( "#daliy-food" ).load("search_food.html #daliy-food");
-    //               // $( "#Add_food_record_by_user" ).load("search_food.html #Add_food_record_by_user");
-    //               // $( ".js-edit").load("search_food.html .js-edit");
-                  
-    //   })
-    // }) // 將資料傳送至後端 傳送 id / qty / type
-          
+              
     deleteEvent()
     editEvent()
     search()
@@ -268,7 +247,31 @@ function click_create_new_record_by_user(){
    axios.post("http://localhost:5000/food_records", food_hash)
         .then( response => {
           console.log('response=>',response);
-          $( "#daliy-food" ).load( "search_food.html #daliy-food" )
+          let pre_time =   $(`.js-edit[data-id="${response.data[0].id}"]`).parent().siblings('.time:eq(0)').text()
+            let pre_index =   $(`.js-edit[data-id="${response.data[0].id}"]`).parent().siblings('.index:eq(0)').text()
+            let pre_index_number =Number(pre_index)
+                $('#dailyfood').append(
+                  `
+                  <tr class="daily_food_result" >
+                      <td> ${pre_index_number + 1}</td>
+                      <td> ${pre_time} </td>
+                      <td class="type">${response.data[1].eat_type}</td>                  
+                      <td class="name">${response.data[1].name}</td>
+                      <td class="qty"> ${response.data[1].qty}</td>
+                      <td class="foodsum"> ${response.data[1].calories}</td>
+                      <td>
+                        <button data-id="${response.data[1].id}" class="button is-warning is-small is-light js-edit"><i class="fas fa-pencil-alt"> </i></button>
+                        <button data-id="${response.data[1].id}" class="button is-danger is-small is-light js-del"><i class="fas fa-trash"> </i></button>
+                      </td>
+                  </tr>
+                  `
+                )
+                let total = Number($('.totalsum').text())
+                let newtotal= total + Number(response.data[1].calories)
+                $('.totalsum').text(newtotal)
+                deleteEvent()
+                editEvent()
+          
         })
 
 })
@@ -362,13 +365,17 @@ function saveEvent(){
 
 // Delete daily record data function
 function deleteEvent(){    
-
   $('.daily_food_result').on('click','.js-del',function(evt){
     console.log(this.dataset.id);
     let delete_id = {id: this.dataset.id}
     axios.delete(`http://localhost:5000/food_records/${this.dataset.id}`, delete_id )
     .then( response => {
         console.log('response=>',response);
+        let del_sum = $(`.js-del[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text()
+        let total = Number($('.totalsum').text()) 
+        let new_sum = total - Number(del_sum)
+        console.log(new_sum)
+        $('.totalsum').text(new_sum)
         $(this).parent().parent('.daily_food_result').remove()
         })
   })
@@ -386,15 +393,35 @@ function query_add(){
               food_qty: foodqty,
               food_type: foodtype
                }
+    
      $(this).parent().parent('.form-row').remove()
     axios.post("http://localhost:5000/food_records", food_hash)
          .then( response => {
-                console.log('response=>',response);
-                // window.location.reload();
-                // $( "#daliy-food" ).load("search_food.html #daliy-food");
-                // $( "#Add_food_record_by_user" ).load("search_food.html #Add_food_record_by_user");
-                // $( ".js-edit").load("search_food.html .js-edit");
-                
+                console.log(response)
+            let pre_time =   $(`.js-edit[data-id="${response.data[0].id}"]`).parent().siblings('.time:eq(0)').text()
+            let pre_index =  $(`.js-edit[data-id="${response.data[0].id}"]`).parent().siblings('.index:eq(0)').text()
+            let pre_index_number =Number(pre_index)
+                $('#dailyfood').append(
+                  `
+                  <tr class="daily_food_result" >
+                      <td> <button class="button is-danger is-small is-light is-rounded "><i class="fab fa-hotjar"></i></button></td>
+                      <td> ${pre_time} </td>
+                      <td class="type">${response.data[1].eat_type}</td>                  
+                      <td class="name">${response.data[1].name}</td>
+                      <td class="qty"> ${response.data[1].qty}</td>
+                      <td class="foodsum"> ${response.data[1].calories}</td>
+                      <td>
+                        <button data-id="${response.data[1].id}" class="button is-warning is-small is-light js-edit"><i class="fas fa-pencil-alt"> </i></button>
+                        <button data-id="${response.data[1].id}" class="button is-danger is-small is-light js-del"><i class="fas fa-trash"> </i></button>
+                      </td>
+                  </tr>
+                  `
+                )
+                let total = Number($('.totalsum').text())
+                let newtotal= total + Number(response.data[1].calories)
+                $('.totalsum').text(newtotal)
+                deleteEvent()
+                editEvent()
     })
   })
 }
