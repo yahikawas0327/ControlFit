@@ -46,7 +46,7 @@
               </tr>
               <tfoot>
                 <td colspan="6"> </td>
-                <td> <button @click="end_search" class="button is-primary is-small is-light">結束紀錄</button@click="sport_record(idx)"></td>
+                <td> <button @click="end_search" class="button is-primary is-small is-light">結束紀錄</button></td>
               </tfoot>
             </tbody>
             </table>
@@ -73,7 +73,8 @@
             <table v-if="daily_record_status === true" class="table table-hover" id="record-sport">
               <thead>  
                 <tr>
-                  <th colspan="6"> <i class="fas fa-clipboard-list"></i> : 今天燃燒點將錄 </th>
+                  <th colspan="4"> <i class="fas fa-clipboard-list"></i> : 今日運動點將錄 </th>
+                  <th colspan="2"> <i class="far fa-grin-beam-sweat"></i> 總共燃燒 :  {{daily_sum}} 大卡 </th>
                 </tr>
               </thead>
               <tbody>  

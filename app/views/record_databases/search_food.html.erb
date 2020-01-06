@@ -2,50 +2,50 @@
   <div class="container-fluid">
     <div class="row search">
       <div class="col-12 col-sm-12">
-        <h2 class="title">食品熱量分析</h2>  
-        <div class="form-group food-content">
-          <%= form_tag search_food_record_database_path, :method => 'get' do %>
-          <%= text_field_tag :search_food, @search_food, class: 'food-text' %></h3>
-          <%= submit_tag "Search", class:'search-tag' %>
-          <div class="add_item">
-            <i class="fas fa-hammer"></i>
-            <p>找不到食品項目嗎？</p>
-            <button type="button" class="btn btn-info btn-analyze" id="Add_food_record_by_user">新增食品項目</button>
+        <h2 class="title">食品熱量分析</h2> 
+          <div class="form-row">
+            <div class="column is-2"></div>
+            <div class="column is-6 js-type">
+              <input class="input" id="searchfood" type="text" placeholder="來個食物吧!">
+            </div>
+            <div class="column is-2">
+              <button class="button is-success is-light js-search" data-id="searchfood" > <i class="fas fa-search"></i></button>
+            </div>
+            <div class="column is-2"></div>
           </div>
-          <% end %>
+          <div class="form-row">
+            <div class="column is-2">
+            </div>
+            <div class="column is-3 add_item">
+                <p>找不到食物資料嗎 ?</p>
+            </div>
+            <div class="column is-6 add_item">
+              <button type="button" class="button is-info is-small is-light" id="Add_food_record_by_user"> <i class="fas fa-hammer"></i> :: 新增飲食紀錄 </button>
+            </div>
+          </div>
+        <div class="form-row">
+          <div class="col-md md-3 " id="query-table">
+            <table class="table table-hover" id="query-food">
+              <thead>
+                <tr>
+                  <th colspan="6" scope="col"> <i class="fas fa-list"></i> 食物點將錄</th>
+                  <th scope="col"><button class="button is-primary is-small is-light" id="End_search" > <i class="fas fa-arrow-circle-left"></i>  "結束搜尋"</button></th>
+                </tr>
+                <tr>
+                  <td scope="col">#</td>
+                  <td scope="col">食品名稱</td>
+                  <td scope="col">卡路里</td>
+                  <td scope="col">蛋白質</td>
+                  <td scope="col">體脂肪</td>
+                  <td scope="col">碳水化合物</td>
+                  <td scope="col"><i class="fas fa-clipboard"></i> 加入紀錄</td>
+                </tr>
+              </thead>
+              <tbody id="foodresult">
+              </tbody>
+            </table>
+          </div>
         </div>
-        <table class="table table-hover" id="query-food">
-          <thead>
-            <tr>
-              <th scope="col">食品名稱</th>
-              <th scope="col">卡路里</th>
-              <th scope="col">蛋白質</th>
-              <th scope="col">體脂肪</th>
-              <th scope="col">碳水化合物</th>
-              <th scope="col">記起來</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td scope="col">食品名稱</td>
-              <td scope="col">卡路里</td>
-              <td scope="col">蛋白質</td>
-              <td scope="col">體脂肪</td>
-              <td scope="col">碳水化合物</td>
-              <td scope="col">記起來</td>
-            </tr>
-            <% @food_databases.each do |food_database| %>
-            <tr class="search_food_result" id="<%= food_database.id %>">
-              <td><%= food_database.name %></td>
-              <td><%= food_database.calories %></td>
-              <td><%= food_database.protein %></td>
-              <td><%= food_database.fat_content %></td>
-              <td><%= food_database.carbohydrate %></td>
-              <td><button type="submit" id="<%= food_database.id %>" class="fas fa-plus-square" ></button></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
         <div class="form-row" id="Add_food_record">
         </div>
         <div class="form-row" id="Add_food_record_type">

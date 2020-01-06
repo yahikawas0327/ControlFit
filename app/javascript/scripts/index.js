@@ -1,6 +1,3 @@
-
-// console.log('hi')
-
 // import 'bulma/css/bulma.css'
 // import  '@fortawesome/fontawesome-free/css/all.css'
 
@@ -14,6 +11,7 @@ import { element } from 'prop-types';
 // const axios = require('axios');
  
 document.addEventListener('turbolinks:load', () => {
+    // 增加 Query system event
     // 新增每日食物資料 JQuery  
     $('.search_food_result').on('click','button',function(evt){
       $('#query-food').hide();
@@ -257,14 +255,38 @@ document.addEventListener('turbolinks:load', () => {
     }
     deleteEvent()
     editEvent()
-
+    search()
     // Now time and day
     let time = moment().format('lll');
     $('.daytime').html(time);
 })
 
-
-
+$(document).ready(function() {
+  // search()
+});
+function search(){
+  $('.form-row').on('click','.js-search',function(evt){
+    evt.stopPropagation();
+    let searchfood_hash = {searchfood: $('#searchfood').val()}
+    axios.get('http://localhost:3000/search_food.json', {params:{ search_food: $('#searchfood').val()}})
+         .then( response => {
+           let query_data = response.data.length
+           for ( var i = 0; i < query_data; i++) {
+            $('#foodresult').append( `
+            <tr class="search_food_result" id="${response.data[i].id}">
+              <td>${i+1}</td>
+              <td>${response.data[i].name}</td>
+              <td>${response.data[i].calories}</td>
+              <td>${response.data[i].protein}</td>
+              <td>${response.data[i].fat_content}</td>
+              <td>${response.data[i].carbohydrate}</td>
+              <td><button type="submit" id="${response.data[i].id}" class="fas fa-plus-square" ></button></td>
+            </tr>
+           `) 
+          }
+         })
+  })
+}
 
 
 
