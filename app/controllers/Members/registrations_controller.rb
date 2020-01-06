@@ -63,6 +63,6 @@ class Members::RegistrationsController < Devise::RegistrationsController
   # end
   private
   def member_params
-    params.require(:member).permit(:name, :gender, :age, :cm, :kg)
+    params.require(:member).permit(:name, :gender, :age, :cm, :kg, :cover_image)
   end
 end
