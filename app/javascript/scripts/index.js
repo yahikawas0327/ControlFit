@@ -135,7 +135,7 @@ document.addEventListener('turbolinks:load', () => {
     }) // Create New food record data
 
     $('.form-row').on('click','.is-add', function(){
-        // evt.stopPropagation();
+        evt.stopPropagation();
         console.log(this.dataset.id)
        let foodname=$('#foodname').val();
        let foodcalories=$('#foodcalories').val();
