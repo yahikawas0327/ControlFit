@@ -1,3 +1,4 @@
+
 {
   "name": "astrocamp",
   "private": true,
@@ -7,6 +8,7 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
+    "aos": "^3.0.0-beta.6",
     "axios-on-rails": "^0.0.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.4.1",
@@ -22,7 +24,8 @@
     "vue": "^2.6.11",
     "vue-loader": "^15.8.3",
     "vue-template-compiler": "^2.6.11",
-    "vue-turbolinks": "^2.0.4"
+    "vue-turbolinks": "^2.0.4",
+    "@fortawesome/fontawesome-free": "^5.12.0"
   },
   "version": "0.1.0",
   "devDependencies": {

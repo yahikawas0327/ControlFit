@@ -1,37 +1,33 @@
-
-<section class="stats">
-  <%= render 'shared/stats' %>
+<section class="section personal-info col-12 col-md-4">
+  <h2 class="title text-center">健康個人檔案</h2>
+  <%= render 'shared/states' %>
+  <span><%= render 'follow_form' if signed_in? %></span>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-danger">
+        <th scope="row">姓名</th>
+        <td><%= current_member.name %></td>
+      </tr>
+      <tr>
+        <th scope="row">性別</th>
+        <td><%= current_member.gender %></td>
+      </tr>
+      <tr class="table-danger">
+        <th scope="row">年齡</th>
+        <td><%= current_member.age %></td>
+      </tr>
+      <tr>
+        <th scope="row">身高</th>
+        <td><%= current_member.cm %> 公分</td>
+      </tr>
+      <tr class="table-danger">
+        <th scope="row">體重</th>
+        <td><%= current_member.kg %> 公斤</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
-<%= render 'follow_form' if signed_in? %>
-<form>
-  <div class="form-group row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">姓名</label>
-    <div class="col-sm-10">
-      <%= current_member.name %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">性別</label>
-    <div class="col-sm-10">
-      <%= current_member.gender %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">年齡</label>
-    <div class="col-sm-10">
-      <%= current_member.age %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">身高</label>
-    <div class="col-sm-10">
-      <%= current_member.cm %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">體重</label>
-    <div class="col-sm-10">
-      <%= current_member.kg %>
-    </div>
-  </div>
-</form>

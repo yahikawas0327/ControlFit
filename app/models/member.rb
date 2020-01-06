@@ -8,6 +8,8 @@ class Member < ApplicationRecord
   # has
   has_many :food_records
   has_many :sport_records
+  has_one  :membersecret
+  has_one_attached :cover_image
 
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",

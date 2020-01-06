@@ -7,53 +7,74 @@
         </div>
         <div class="row">
           <div class="column is-6">
-            <input class="input" type="text" v-model="message" placeholder="來個運動吧!">
+            <input class="input" type="text" v-model="message" placeholder="來個運動 !">
           </div>
           <div class="column is-2">
-            <button class="button is-success" @click="submit">搜起來</button>
+            <button class="button is-success is-light" @click="submit"> <i class="fas fa-search"></i></button>
           </div>
         </div>
       </div>
       <div class="col-md-8">
         <div class="row">
           <div class="column">
-            <table class="table table-hover" id="query-sport">
+            <table  v-if='search_status===true'  class="table table-hover" id="query-sport">
             <thead>
               <tr>
-                <th scope="col"></i></th>
+                <th scope="col"></th>
                 <th scope="col"><i class="fas fa-running"></i></th>
                 <th colspan="5">運動30分鐘所消耗熱量(60Kg為例) 單位:大卡</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td> # </td>
+                <td> <i class="fas fa-list-alt"></i> </td>
                 <td> 運動項目 </td>
                 <td> 甩多少 </td>
                 <td> 體重   </td>
                 <td> 奮鬥時間(min) </td>
-                <td> 成果再這邊 </td>
-                <td> 記起來!!! </td>
+                <td> 預計成果 </td>
+                <td> 記起來! </td>
               </tr>
               <tr v-for="(sport, idx) in sports" >
                 <td>{{idx+1}}</td>
                 <td>{{sport.name}}</td>
                 <td>{{sport.consume_60kg}}</td>
-                <td width="80px"> <input class="input is-danger"  v-model="weight" type="password" placeholder="不能說的秘密" disabled="disabled"></td>
+                <td width="80px"> <input class="input is-danger"  v-model="weight" type="number" placeholder="不能說的秘密" disabled="disabled"></td>
                 <td width="110px"> <input class="input is-primary" v-model="min"    type="number" placeholder="誠實的打下去"></td>
                 <td :keyup="consume">{{sport.computed}}</td>
                 <td><button @click="sport_record(idx)"  class="fas fa-plus-circle"  ></button></td>
               </tr>
+              <tfoot>
+                <td colspan="6"> </td>
+                <td> <button @click="end_search" class="button is-primary is-small is-light">結束紀錄</button></td>
+              </tfoot>
             </tbody>
             </table>
-            </br>
-            <table class="table table-hover" id="record-sport">
+          </div>
+        </div>
+        </br>
+        <div class="row">
+          <div class="columns">
+            <div class="column is-3 ">
+              <i class="fas fa-calendar-day"></i> :  {{currentDay}} 
+            </div>
+            <div class="column is-3 ">
+              <i class="fas fa-clock"></i> :  {{currentTime}}
+            </div>
+            <div class="column is-8 ">
+              今天燃燒 <i class="fas fa-fire"></i> {{daily_sum}} 大卡
+              共紀錄  {{daily_count}} 筆
+              <button class="button is-link is-small is-light is-rounded" @click="more_record">  <span> <i class="fas fa-comment-dots"></i> </span>    more</button>
+            </div>
+          </div>
+        </div>
+        </br>
+        <div class="row">
+            <table v-if="daily_record_status === true" class="table table-hover" id="record-sport">
               <thead>  
                 <tr>
-                  <th colspan="2"><i class="fas fa-calendar-day"></i> :  {{currentDay}} </th>
-                  <th colspan="2"><i class="fas fa-clock"></i> :  {{currentTime}}</th>
-                  <th colspan="1"> 今天燃燒多少 <i class="fas fa-fire"></i></th>
-                  <th></th>
+                  <th colspan="4"> <i class="fas fa-clipboard-list"></i> : 今日運動點將錄 </th>
+                  <th colspan="2"> <i class="far fa-grin-beam-sweat"></i> 總共燃燒 :  {{daily_sum}} 大卡 </th>
                 </tr>
               </thead>
               <tbody>  
@@ -79,18 +100,9 @@
                   </td>                 
                 </tr>
               </tbody>
-              <tfoot>
-                  <tr>
-                    <td colspan="2">  Count : {{daily_count}} </td>
-                    <td></td>
-                    <td colspan="2"> 今天燒多少: {{daily_sum}} 大卡</td>
-                    <td></td>
-                  </tr>
-              </tfoot>
             </table>
-          </div>
         </div>
       </div>
-    </div>
+      </div>
   </div>
 </div>

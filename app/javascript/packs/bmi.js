@@ -1,7 +1,6 @@
 import $ from 'jquery'
 
 $(document).on('turbolinks:load',function(){
-  $('.box').hide();
   $('.submit').click(function(event){
     $('.box').show();
     event.preventDefault();

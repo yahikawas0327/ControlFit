@@ -15,7 +15,6 @@ class ExerciseRecordsController < ApplicationController
     def destroy
           delete_data = SportRecord.find_by(id:params[:id])
           delete_data.destroy
-          #puts "delete finish"
     end
 
     def create
@@ -26,16 +25,15 @@ class ExerciseRecordsController < ApplicationController
           sport_min     = params[:min]
           sport_weight  = (params[:weight]).to_i
           sport_tolconsume = (params[:consume]).to_i
-          # puts "----------------------"
-          # puts sport_consume.class
-          # puts "----------------------"
+          sport_user    = params[:user_id]
 
          # Write Daily food data to FoodRecord database
           SportRecord.create(:name => sport_name , 
           :weight => sport_weight,
           :min => sport_min,
           :consume => sport_consume,
-          :totalconsum => sport_tolconsume )
+          :totalconsum => sport_tolconsume,
+          :member_id => sport_user )
      
          # Renodr json file 
           @sport_records = SportRecord.where(created_at: Time.now.midnight..Time.now)

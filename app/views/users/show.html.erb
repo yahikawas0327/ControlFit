@@ -1,38 +1,45 @@
+<div class="col-12 col-md-12">
 <section class="stats">
-  <%= render 'shared/stats' %>
+  <%= render 'shared/states' %>
 </section>
-  <%= render 'members/follow_form' if member_signed_in? %>
-  <%= render 'members/follow' %>
-  <%= render 'members/unfollow' %>
-<form>
-  <div class="form-group row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">姓名</label>
-    <div class="col-sm-10">
-      <%= @member.name %>
+  <%= render 'members/follow_form' %>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-12">
+      <form>
+        <%= image_tag @member.cover_image.variant(resize_to_limit: [300, 300]) if @member.cover_image.attached? %>
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">姓名</label>
+          <div class="col-sm-10">
+            <%= @member.name %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">性別</label>
+          <div class="col-sm-10">
+            <%= @member.gender %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">年齡</label>
+          <div class="col-sm-10">
+            <%= @member.age %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">身高</label>
+          <div class="col-sm-10">
+            <%= @member.cm %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">體重</label>
+          <div class="col-sm-10">
+            <%= @member.kg %>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
-  <div class="form-group row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">性別</label>
-    <div class="col-sm-10">
-      <%= @member.gender %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">年齡</label>
-    <div class="col-sm-10">
-      <%= @member.age %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">身高</label>
-    <div class="col-sm-10">
-      <%= @member.cm %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">體重</label>
-    <div class="col-sm-10">
-      <%= @member.kg %>
-    </div>
-  </div>
-</form>
+</div>
