@@ -25,8 +25,14 @@ class RecordDatabasesController < ApplicationController
 
         @search_food = params["search_food"]
         @food_databases = []
+
         if @search_food.present?
           @food_databases = FoodDatabase.where("name ILIKE ?", "%#{@search_food}%")
+          respond_to do |format|
+            format.json { render json: @food_databases}
+            format.html { render :search_food}
+          end
+        else
         end
         #---------------------------------------
         if current_member.present?

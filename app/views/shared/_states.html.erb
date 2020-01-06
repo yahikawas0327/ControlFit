@@ -1,7 +1,7 @@
 <% @member ||= current_member %>
 <div class="community d-flex ">
   <span class="following">
-    <a href="<%= following_member_path(@member) %>">
+    <a href="<%= following_member_path(id: @member.id) %>">
       <strong id="following" class="community">
         <%= @member.following.count %>
       </strong>
@@ -9,7 +9,7 @@
     </a>
   </span>
   <span class="follower">
-    <a href="<%= followers_member_path(@member) %>">
+    <a href="<%= followers_member_path(id: @member.id) %>">
       <strong id="followers" class="community">
         <%= @member.followers.count %>
       </strong>
