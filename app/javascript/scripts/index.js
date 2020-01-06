@@ -61,8 +61,7 @@ document.addEventListener('turbolinks:load', () => {
        </div>
        </div>
        `); // 增加使用者體驗 並接收 食物數量 / 型態
-    })
-              
+    })              
     deleteEvent()
     editEvent()
     search()
@@ -247,31 +246,26 @@ function click_create_new_record_by_user(){
    axios.post("http://localhost:5000/food_records", food_hash)
         .then( response => {
           console.log('response=>',response);
-          let pre_time =   $(`.js-edit[data-id="${response.data[0].id}"]`).parent().siblings('.time:eq(0)').text()
-            let pre_index =   $(`.js-edit[data-id="${response.data[0].id}"]`).parent().siblings('.index:eq(0)').text()
-            let pre_index_number =Number(pre_index)
+            let pre_time =  moment().format('LT'); 
                 $('#dailyfood').append(
                   `
                   <tr class="daily_food_result" >
-                      <td> ${pre_index_number + 1}</td>
+                  <td> <button class="button is-success is-small is-light is-rounded "><i class="fab fa-hotjar"></i>New</button></td>
                       <td> ${pre_time} </td>
-                      <td class="type">${response.data[1].eat_type}</td>                  
-                      <td class="name">${response.data[1].name}</td>
-                      <td class="qty"> ${response.data[1].qty}</td>
-                      <td class="foodsum"> ${response.data[1].calories}</td>
+                      <td class="type">${response.data.eat_type}</td>                  
+                      <td class="name">${response.data.name}</td>
+                      <td class="qty"> ${response.data.qty}</td>
+                      <td class="foodsum"> ${response.data.calories}</td>
                       <td>
-                        <button data-id="${response.data[1].id}" class="button is-warning is-small is-light js-edit"><i class="fas fa-pencil-alt"> </i></button>
-                        <button data-id="${response.data[1].id}" class="button is-danger is-small is-light js-del"><i class="fas fa-trash"> </i></button>
+                        <button data-id="${response.data.id}" class="button is-warning is-small is-light js-edit"><i class="fas fa-pencil-alt"> </i></button>
+                        <button data-id="${response.data.id}" class="button is-danger is-small is-light js-del"><i class="fas fa-trash"> </i></button>
                       </td>
                   </tr>
                   `
                 )
                 let total = Number($('.totalsum').text())
-                let newtotal= total + Number(response.data[1].calories)
-                $('.totalsum').text(newtotal)
-                deleteEvent()
-                editEvent()
-          
+                let newtotal= (total + Number(response.data.calories)).toFixed(2)
+                $('.totalsum').text(newtotal)  
         })
 
 })
@@ -283,10 +277,7 @@ function editEvent(){
     console.log(this)
     $(this).attr('disabled', 'disabled')
     alert(this.dataset.id);
-    evt.stopPropagation();
     let edit_food_id = this.dataset.id
-    $('#Add_food_record_type').remove()
-    $('#query-food').remove();
     let edit_food_qty = $(this).parent().siblings('.qty:eq(0)').text()
     let edit_food_name = $(this).parent().siblings('.name:eq(0)').text()
     let edit_food_calorie = $(this).parent().siblings('.foodsum:eq(0)').text()
@@ -327,14 +318,15 @@ function editEvent(){
     <button data-id="${edit_food_id}" class="button is-success is-small is-light js-save"><i class="fas fa-save"> </i></button>
     </div>
     </div>
-    `)       
+    `)
+    search()
+    add_food_record_by_user()
  })
 }
 
 // Save edit daily record data function 
 function saveEvent(){
   $('.form-row').on('click','.js-save',function(evt){
-    // console.log(this.dataset.id)
     let editfoodqty=$("#editfoodqty :selected").text();
     let editfoodtype=$("#editfoodtype :selected").text();
     let editfood_hash = {
@@ -357,9 +349,11 @@ function saveEvent(){
               $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.type:eq(0)').text(editfoodtype)
               $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.qty:eq(0)').text(editfoodqty)
               let total = Number($('.totalsum').text())
-              let new_sum = total - origin_sum + Number($(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text())
+              let new_sum = (total - origin_sum + Number($(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text())).toFixed(2)
               $('.totalsum').text(new_sum)
               })
+              add_food_record_by_user()
+              search()
   })
 }
 
@@ -373,8 +367,7 @@ function deleteEvent(){
         console.log('response=>',response);
         let del_sum = $(`.js-del[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text()
         let total = Number($('.totalsum').text()) 
-        let new_sum = total - Number(del_sum)
-        console.log(new_sum)
+        let new_sum = (total - Number(del_sum)).toFixed(2)
         $('.totalsum').text(new_sum)
         $(this).parent().parent('.daily_food_result').remove()
         })
@@ -398,30 +391,26 @@ function query_add(){
     axios.post("http://localhost:5000/food_records", food_hash)
          .then( response => {
                 console.log(response)
-            let pre_time =   $(`.js-edit[data-id="${response.data[0].id}"]`).parent().siblings('.time:eq(0)').text()
-            let pre_index =  $(`.js-edit[data-id="${response.data[0].id}"]`).parent().siblings('.index:eq(0)').text()
-            let pre_index_number =Number(pre_index)
+            let pre_time =  moment().format('LT'); 
                 $('#dailyfood').append(
                   `
                   <tr class="daily_food_result" >
-                      <td> <button class="button is-danger is-small is-light is-rounded "><i class="fab fa-hotjar"></i></button></td>
+                      <td> <button class="button is-success is-small is-light is-rounded "><i class="fab fa-hotjar"></i>New</button></td>
                       <td> ${pre_time} </td>
-                      <td class="type">${response.data[1].eat_type}</td>                  
-                      <td class="name">${response.data[1].name}</td>
-                      <td class="qty"> ${response.data[1].qty}</td>
-                      <td class="foodsum"> ${response.data[1].calories}</td>
+                      <td class="type">${response.data.eat_type}</td>                  
+                      <td class="name">${response.data.name}</td>
+                      <td class="qty"> ${response.data.qty}</td>
+                      <td class="foodsum"> ${response.data.calories}</td>
                       <td>
-                        <button data-id="${response.data[1].id}" class="button is-warning is-small is-light js-edit"><i class="fas fa-pencil-alt"> </i></button>
-                        <button data-id="${response.data[1].id}" class="button is-danger is-small is-light js-del"><i class="fas fa-trash"> </i></button>
+                        <button data-id="${response.data.id}" class="button is-warning is-small is-light js-edit"><i class="fas fa-pencil-alt"> </i></button>
+                        <button data-id="${response.data.id}" class="button is-danger is-small is-light js-del"><i class="fas fa-trash"> </i></button>
                       </td>
                   </tr>
                   `
                 )
                 let total = Number($('.totalsum').text())
-                let newtotal= total + Number(response.data[1].calories)
+                let newtotal= (total + Number(response.data.calories)).toFixed(2)
                 $('.totalsum').text(newtotal)
-                deleteEvent()
-                editEvent()
     })
   })
 }
