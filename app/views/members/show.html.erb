@@ -3,13 +3,13 @@
     <h2 class="title text-center">健康個人檔案</h2>
     <%= render 'shared/states' %>
     <span><%= render 'follow_form' if signed_in? %></span>
-    <table class="table table-bordered">
+    <table class="table table-hover table-info">
       <thead>
         <tr>
         </tr>
       </thead>
       <tbody>
-        <tr class="table-primary">
+        <tr class="table-info">
           <th scope="row">姓名</th>
           <td><%= current_member.name %></td>
         </tr>
@@ -17,7 +17,7 @@
           <th scope="row">性別</th>
           <td><%= current_member.gender %></td>
         </tr>
-        <tr class="table-primary">
+        <tr class="table-info">
           <th scope="row">年齡</th>
           <td><%= current_member.age %></td>
         </tr>
@@ -25,7 +25,7 @@
           <th scope="row">身高</th>
           <td><%= current_member.cm %> 公分</td>
         </tr>
-        <tr class="table-primary">
+        <tr class="table-info">
           <th scope="row">體重</th>
           <td><%= current_member.kg %> 公斤</td>
         </tr>
