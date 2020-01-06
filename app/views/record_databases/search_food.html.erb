@@ -1,3 +1,4 @@
+
 <section class="food">
   <div class="container-fluid">
     <div class="row search">
@@ -61,9 +62,12 @@
           <table class="table table-sm" id="daliy-food">
             <thead>
               <tr>
-                <th  colspan="2" class="daytime" scope="col"></th>
-                <th></th>
-                <th colspan="4">今天吃了甚麼好料 <i class="fas fa-utensils"></i> </th>
+                <% if @record_foods.present? %>
+                <th  colspan="2" scope="col"> <i class="fas fa-clipboard-list"></i> : 今日飲食點將錄   共 : <%= @record_foods.size %> 筆 </th>
+                <th  colspan="2"></th>
+                <th  colspan="3">  <i class="fas fa-utensils"></i> : 共 <div class="totalsum" > <%= @sum %></div>  大卡  </th>
+                <% else %>
+                <% end %>
               </tr>
             </thead>
             <tbody id="dailyfood">
@@ -96,13 +100,6 @@
             </tbody>
             <tfoot>
               <% if @record_foods.present? %>
-                <tr>
-                  <td colspan="2">  項目數量 : <%= @record_foods.size %></td>
-                  <td></td>
-                  <td></td>
-                  <td>總計:</td>
-                  <td class="totalsum" colspan="2"> <%= @sum %>  </td>
-                </tr>
               <% else %>
               <% end %>
             </tfoot>

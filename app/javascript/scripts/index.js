@@ -168,7 +168,8 @@ function search_add(){
      <button class="button  is-link is-light is-return" data-id="return_food"><i class="fas fa-undo-alt"></i></button>
      </div>
      </div>
-     `); // 增加使用者體驗 並接收 食物數量 / 型態
+     `); 
+     // 增加使用者體驗 並接收 食物數量 / 型態
   })
 }
 // back_search function
@@ -221,7 +222,8 @@ function add_food_record_by_user(){
     </div>
     </div>
   ` 
-  $('#Add_food_record_type').html(temp) 
+  $('#Add_food_record_type').html(temp)
+
   })
 }
 
@@ -250,7 +252,7 @@ function click_create_new_record_by_user(){
                 $('#dailyfood').append(
                   `
                   <tr class="daily_food_result" >
-                  <td> <button class="button is-success is-small is-light is-rounded "><i class="fab fa-hotjar"></i>New</button></td>
+                    <td> <button class="button is-success is-small is-light is-rounded "><i class="fab fa-hotjar"></i>New</button></td>
                       <td> ${pre_time} </td>
                       <td class="type">${response.data.eat_type}</td>                  
                       <td class="name">${response.data.name}</td>
@@ -259,21 +261,21 @@ function click_create_new_record_by_user(){
                       <td>
                         <button data-id="${response.data.id}" class="button is-warning is-small is-light js-edit"><i class="fas fa-pencil-alt"> </i></button>
                         <button data-id="${response.data.id}" class="button is-danger is-small is-light js-del"><i class="fas fa-trash"> </i></button>
-                      </td>
+                    </td>
                   </tr>
                   `
                 )
                 let total = Number($('.totalsum').text())
                 let newtotal= (total + Number(response.data.calories)).toFixed(2)
-                $('.totalsum').text(newtotal)  
+                $('.totalsum').text(newtotal) 
         })
-
+   
 })
 }
 
 // Edit daily record data 
 function editEvent(){
-  $('.daily_food_result').on('click','.js-edit',function(evt){
+  $('#daliy-food').on('click','.js-edit',function(evt){
     console.log(this)
     $(this).attr('disabled', 'disabled')
     alert(this.dataset.id);
@@ -366,8 +368,10 @@ function deleteEvent(){
     .then( response => {
         console.log('response=>',response);
         let del_sum = $(`.js-del[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text()
-        let total = Number($('.totalsum').text()) 
+        let total = Number($('.totalsum').text())
+        console.log(total) 
         let new_sum = (total - Number(del_sum)).toFixed(2)
+        console.log(new_sum)
         $('.totalsum').text(new_sum)
         $(this).parent().parent('.daily_food_result').remove()
         })
