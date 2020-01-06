@@ -71,7 +71,7 @@ document.addEventListener('turbolinks:load', () => {
                 food_type: foodtype
                  }
        $(this).parent().parent('.form-row').remove()
-      axios.post("http://localhost:3000/food_records", food_hash)
+      axios.post("http://localhost:5000/food_records", food_hash)
            .then( response => {
                   console.log('response=>',response);
                   // window.location.reload();
@@ -148,7 +148,7 @@ document.addEventListener('turbolinks:load', () => {
            }
            console.log(food_hash)
            $(this).parent().parent('.form-row').remove()
-       axios.post("http://localhost:3000/food_records", food_hash)
+       axios.post("http://localhost:5000/food_records", food_hash)
             .then( response => {
               console.log('response=>',response);
               $( "#daliy-food" ).load( "search_food.html #daliy-food" )
@@ -224,7 +224,7 @@ document.addEventListener('turbolinks:load', () => {
       // $(`.js-edit`).filter(`[data-id="${this.dataset.id}"]`).removeAttr('disabled')
       let before_edit_sum = $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text()
       // console.log(before_edit_sum)
-      axios.patch(`http://localhost:3000/food_records/${this.dataset.id}`,editfood_hash)
+      axios.patch(`http://localhost:5000/food_records/${this.dataset.id}`,editfood_hash)
            .then( response => {
                 // console.log('response=>',response);
                 // console.log(response.data)
@@ -245,7 +245,7 @@ document.addEventListener('turbolinks:load', () => {
       $('.daily_food_result').on('click','.js-del',function(evt){
         console.log(this.dataset.id);
         let delete_id = {id: this.dataset.id}
-        axios.delete(`http://localhost:3000/food_records/${this.dataset.id}`, delete_id )
+        axios.delete(`http://localhost:5000/food_records/${this.dataset.id}`, delete_id )
         .then( response => {
             console.log('response=>',response);
             $(this).parent().parent('.daily_food_result').remove()
@@ -268,7 +268,7 @@ function search(){
   $('.form-row').on('click','.js-search',function(evt){
     evt.stopPropagation();
     let searchfood_hash = {searchfood: $('#searchfood').val()}
-    axios.get('http://localhost:3000/search_food.json', {params:{ search_food: $('#searchfood').val()}})
+    axios.get('http://localhost:5000/search_food.json', {params:{ search_food: $('#searchfood').val()}})
          .then( response => {
            let query_data = response.data.length
            for ( var i = 0; i < query_data; i++) {

@@ -43,7 +43,7 @@ document.addEventListener('turbolinks:load', () => {
       submit: function(){
         var self = this;
         if (this.member_status===true && this.premessage !== this.message){
-          axios.get('http://localhost:3000/search_sport.json',{
+          axios.get('http://localhost:5000/search_sport.json',{
                    params:{ search_sport: this.message}})
                .then(function(response){
                   if (response.data.length ===0){alert("沒有資料喔!")}else{
@@ -67,7 +67,7 @@ document.addEventListener('turbolinks:load', () => {
           consume: this.sports[idx].computed,
           user_id: this.user_id}
         // 將紀錄資料送至後端資料庫
-        axios.post("http://localhost:3000/exercise_records",sport_hash)
+        axios.post("http://localhost:5000/exercise_records",sport_hash)
              .then(function(response){})
         this.daily_sport.push({
           id: this.sports[idx].id ,
@@ -100,7 +100,7 @@ document.addEventListener('turbolinks:load', () => {
         console.log(index)
         // console.log(deletedata)
         this.daily_sum = Number(this.daily_sum) - Number(this.daily_sport[index].totalconsum)
-        axios.delete(`http://localhost:3000/exercise_records/${this.daily_sport[index].id}`, delete_id)
+        axios.delete(`http://localhost:5000/exercise_records/${this.daily_sport[index].id}`, delete_id)
              .then(function(response){
              })
         this.daily_sport = this.daily_sport.filter(function(item, index, array){
@@ -122,7 +122,7 @@ document.addEventListener('turbolinks:load', () => {
                                id : this.daily_sport[index].id,
                                min: this.daily_sport[index].min,
                                totalconsum: newtotalconsum }
-          axios.patch(`http://localhost:3000/exercise_records/${this.daily_sport[index].id}`, update_daily)
+          axios.patch(`http://localhost:5000/exercise_records/${this.daily_sport[index].id}`, update_daily)
                .then(function(response){
                  console.log(response)
                })
@@ -154,7 +154,7 @@ document.addEventListener('turbolinks:load', () => {
       setInterval(() => this.updateCurrentTime(), 1 * 1000);
       // User information
       var self =this;
-      axios.get('http://localhost:3000/blogs/new.json')
+      axios.get('http://localhost:5000/blogs/new.json')
            .then(function(response){
             if (response.data.member_exist === true){
                  self.user_info = response.data
@@ -162,7 +162,7 @@ document.addEventListener('turbolinks:load', () => {
                  self.user_id   = response.data.user_id
                  self.member_status = true
               if (self.user_id !== 0 ){
-                  axios.get('http://localhost:3000/search_sport.json',{params:{ member_id: self.user_id}})
+                  axios.get('http://localhost:5000/search_sport.json',{params:{ member_id: self.user_id}})
                        .then(function(response){
                           let daily_sport = response.data
                           console.log(daily_sport)
@@ -218,7 +218,7 @@ document.addEventListener('turbolinks:load', () => {
             if (physical_validate === true) {
               alert('以上資料沒錯的話! 那就把確定按下去')
               var self = this;
-              axios.post('http://localhost:3000/blogs', physical_hash)
+              axios.post('http://localhost:5000/blogs', physical_hash)
               .then(function(response){
                 let body = response.data
                 self.BMI =body.bmi;
@@ -247,7 +247,7 @@ document.addEventListener('turbolinks:load', () => {
         });
         if (this.member_status === true){
           if(update_physical_validate === true){
-             axios.patch(`http://localhost:3000/blogs/${this.user_info.user_id}`, update_physical_data)
+             axios.patch(`http://localhost:5000/blogs/${this.user_info.user_id}`, update_physical_data)
                   .then(function(response){
                           console.log(response)})            
           }else{
@@ -291,7 +291,7 @@ document.addEventListener('turbolinks:load', () => {
     },
     created() {
       var self= this;
-      axios.get('http://localhost:3000/blogs/new.json')
+      axios.get('http://localhost:5000/blogs/new.json')
            .then(function(response){
             if (response.data.member_exist === true){
               self.user_info = response.data
