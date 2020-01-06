@@ -1,12 +1,12 @@
 <section class="section others">
-  <div class="col-12 col-md-12">
-  <section class="states">
-    <%= render 'shared/states' %>
-  </section>
-    <%= render 'members/follow_form' %>
-  </div>
   <div class="container">
     <div class="row">
+      <div class="col-12 col-md-12">
+        <section class="states">
+          <%= render 'shared/states' %>
+        </section>
+          <%= render 'members/follow_form' %>
+      </div>
       <div class="col-12 col-md-12">
         <form>
           <%= image_tag @member.cover_image.variant(resize_to_limit: [300, 300]) if @member.cover_image.attached? %>
