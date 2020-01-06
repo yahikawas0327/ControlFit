@@ -3,7 +3,7 @@
     <div class="row">
       <div class="item basic">
         <div class="col">
-          <label for=""><i class="fas fa-user-circle"></i> </i>  {{user_info.name}} </label>
+          <label for=""><i class="fas fa-user-circle"></i> {{user_info.name}} </label>
         </div>
         <div class="col gender">
           <label for=""> 性別 <i class="fas fa-male"></i> <i class="fas fa-female"></i></label>
@@ -23,7 +23,7 @@
         <div class="col age">
           <label for=""> 年齡（歲） </label>
           <input v-if =" Age === '' || Age === null " class="input is-danger"  v-model="Age" type="text" placeholder="年齡是秘密">
-          <input v-else    class="input is-success"  v-model="Age" type="text" placeholder="年齡是秘密">   
+          <input v-else class="input is-success" v-model="Age" type="text" placeholder="年齡是秘密">   
         </div>
         <div class="col height">
           <label for=""> 身高（公分） <i class="fas fa-ruler-vertical"></i> </label>

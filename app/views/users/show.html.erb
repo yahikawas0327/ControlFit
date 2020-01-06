@@ -1,13 +1,14 @@
 <section class="section others">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-md-12">
-        <section class="states">
-          <%= render 'shared/states' %>
-        </section>
-          <%= render 'members/follow_form' %>
+  <div class="container-fluid">
+    <div class="row col-12 col-md-12">
+      <div class="col image">
+          <img src="https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="following photo">
       </div>
-      <div class="col-12 col-md-12">
+      <div class="col other">
+        <div class="col number-follwers d-flex align-items-center">
+          <span><%= render 'shared/states' %></span>
+          <span><%= render 'members/follow_form' %></span>
+      </div>
         <form>
           <%= image_tag @member.cover_image.variant(resize_to_limit: [300, 300]) if @member.cover_image.attached? %>
           <div class="form-group row">
