@@ -1,4 +1,4 @@
 class FoodRecord < ApplicationRecord
-    # belongs_to :member
+    belongs_to :member
 
 end
