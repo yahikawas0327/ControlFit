@@ -263,7 +263,7 @@ function click_create_new_record_by_user(){
                       <td class="type">${response.data.eat_type}</td>                  
                       <td class="name">${response.data.name}</td>
                       <td class="qty"> ${response.data.qty}</td>
-                      <td class="foodsum"> ${response.data.calories}</td>
+                      <td class="foodsum"> ${response.data.total_calorie}</td>
                       <td>
                         <button data-id="${response.data.id}" class="button is-warning is-small is-light js-edit"><i class="fas fa-pencil-alt"> </i></button>
                         <button data-id="${response.data.id}" class="button is-danger is-small is-light js-del"><i class="fas fa-trash"> </i></button>
@@ -272,11 +272,13 @@ function click_create_new_record_by_user(){
                   `
                 )
                 let total = Number($('.totalsum').text())
+                let daily_delta= Number($('.tdee').text())
                 count_plus()
-                let newtotal= (total + Number(response.data.calories)).toFixed(2)
+                let newtotal= (total + Number(response.data.total_calorie)).toFixed(2)
+                let new_daily_delta = (newtotal - daily_delta).toFixed(2)
                 $('.sum_message').text(newtotal)
                 $('.totalsum').text(newtotal)
-                
+                $('.delta_message').text(new_daily_delta)
                 
         })
    
@@ -379,9 +381,12 @@ function saveEvent(){
               $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.type:eq(0)').text(editfoodtype)
               $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.qty:eq(0)').text(editfoodqty)
               let total = Number($('.totalsum').text())
+              let daily_delta= Number($('.tdee').text())
               let new_sum = (total - origin_sum + Number($(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text())).toFixed(2)
+              let new_daily_delta = (new_sum - daily_delta).toFixed(2)
               $('.totalsum').text(new_sum)
               $('.sum_message').text(new_sum)
+              $('.delta_message').text(new_daily_delta)
               })
               add_food_record_by_user()
               search()
@@ -398,9 +403,12 @@ function deleteEvent(){
         console.log('response=>',response);
         let del_sum = $(`.js-del[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text()
         let total = Number($('.totalsum').text())
+        let daily_delta= Number($('.tdee').text())
         let new_sum = (total - Number(del_sum)).toFixed(2)
+        let new_daily_delta = (new_sum - daily_delta).toFixed(2)
         $('.totalsum').text(new_sum)
         $('.sum_message').text(new_sum)
+        $('.delta_message').text(new_daily_delta)
         count_minus()
         $(this).parent().parent('.daily_food_result').remove()
         })
@@ -433,7 +441,7 @@ function query_add(){
                       <td class="type">${response.data.eat_type}</td>                  
                       <td class="name">${response.data.name}</td>
                       <td class="qty"> ${response.data.qty}</td>
-                      <td class="foodsum"> ${response.data.calories}</td>
+                      <td class="foodsum"> ${response.data.total_calorie}</td>
                       <td>
                         <button data-id="${response.data.id}" class="button is-warning is-small is-light js-edit"><i class="fas fa-pencil-alt"> </i></button>
                         <button data-id="${response.data.id}" class="button is-danger is-small is-light js-del"><i class="fas fa-trash"> </i></button>
@@ -442,9 +450,12 @@ function query_add(){
                   `
                 )
                 let total = Number($('.totalsum').text())
-                let newtotal= (total + Number(response.data.calories)).toFixed(2)
+                let daily_delta= Number($('.tdee').text())
+                let newtotal= (total + Number(response.data.total_calorie)).toFixed(2)
+                let new_daily_delta = (newtotal - daily_delta).toFixed(2)
                 $('.totalsum').text(newtotal)
                 $('.sum_message').text(newtotal)
+                $('.delta_message').text(new_daily_delta)
                 count_plus()
     })
   })

@@ -37,12 +37,9 @@ class RecordDatabasesController < ApplicationController
         #---------------------------------------
         if current_member.present?
           @record_foods = FoodRecord.where(member_id: current_member.id, created_at: (Time.now.midnight)..(Time.now))
-          @sum=0
-          @record_foods.each do |record_food|
-             @sum = @sum + record_food.total_calorie
-          end
-
+          food_sum
           @current_user_secret = Membersecret.find_by( member_id: current_member.id)
+          daily_target
         else       
         end
     end
@@ -69,6 +66,21 @@ class RecordDatabasesController < ApplicationController
       else
       end
 
-  end
+    end
+     
+    private 
+
+    def food_sum
+        @sum=0
+        @record_foods.each do |record_food|
+        @sum = @sum + record_food.total_calorie
+     end
+    end
+
+    def daily_target
+        tdee = @current_user_secret.tdee
+        @daily_delta = @sum - tdee
+    end
+
     
 end
