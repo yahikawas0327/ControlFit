@@ -73,6 +73,19 @@ class BlogsController < ApplicationController
                                    :kg     => update_weight)
      puts "finish"
   end
+
+  def tdee
+     tdee_current_member = Membersecret.find_by( member_id: current_member.id)
+     update_food_intent  = params[:eat]
+     update_sport_intent = params[:sport]
+     update_tdee         = (params[:tdee]).to_f
+     
+     tdee_current_member.update( :tdee           => update_tdee,
+                                 :foodintention  => update_food_intent,
+                                 :sportintention => update_sport_intent)
+     puts "tdee finish"
+      
+  end
  
   private
   

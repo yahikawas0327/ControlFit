@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   end
 
   resources :relationships, only:[:create, :destroy]
+
+  resources :blogs  do 
+    member do 
+       patch :tdee  #/api/books/:id/favorite
+    end
+   end
   
   resources :records
   root 'records#index'
@@ -15,7 +21,7 @@ Rails.application.routes.draw do
   resources :exercise_records
   resources :food_records
   resources :demands
-  resources :blogs
+  # resources :blogs
   
   get '/search_sport/statistics' => 'exercise_records#statistics', :as => 'statistics_exercise_record'
   get '/search_food/statistics' => 'food_records#statistics', :as => 'statistics_food_record'

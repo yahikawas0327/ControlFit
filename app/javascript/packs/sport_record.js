@@ -256,7 +256,18 @@ document.addEventListener('turbolinks:load', () => {
         }else{
           alert("還不是會員喔!!! 不要亂寫資料 ")
         }
-      }
+      },
+      add_tdee: function(){
+        let intention = { eat  : this.eatintention,
+                          sport: this.sportintention,
+                          tdee : this.TDEE}
+        console.log(intention)
+        if (this.member_status === true){
+             axios.patch(`http://localhost:5000/blogs/${this.user_info.user_id}/tdee`, intention)
+                  .then(function(response){
+                          console.log(response)})                     
+        }else{}
+      },
     },
     computed: {
       exercise_choice(){
