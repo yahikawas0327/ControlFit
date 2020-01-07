@@ -216,7 +216,6 @@ document.addEventListener('turbolinks:load', () => {
               return item !== '' // 當全部 item all exist  才能回傳 true
             });
             if (physical_validate === true) {
-              alert('以上資料沒錯的話! 那就把確定按下去')
               var self = this;
               axios.post('http://localhost:5000/blogs', physical_hash)
               .then(function(response){
@@ -235,7 +234,7 @@ document.addEventListener('turbolinks:load', () => {
         }
       },
       more: function(){
-        this.moreshow = !this.moreshow
+         this.moreshow = !this.moreshow
       },
       update: function(){
         let update_physical_data = { update_height:  this.Height,
@@ -288,6 +287,9 @@ document.addEventListener('turbolinks:load', () => {
             return this.eatintention
 
       },
+      showResult() {
+        return (this.BMI && this.BMI_range && this.Ree && this.BMR)
+      }
     },
     created() {
       var self= this;

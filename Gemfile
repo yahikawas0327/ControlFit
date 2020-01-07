@@ -27,7 +27,7 @@ gem 'aws-sdk', '~> 3.0', '>= 3.0.1'
 gem 'bootstrap', '~> 4.4.1'
 # gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 gem 'simple_form', '~> 5.0', '>= 5.0.1'
-gem 'hirb-unicode'
+
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
 

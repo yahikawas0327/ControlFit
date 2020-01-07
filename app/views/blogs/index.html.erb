@@ -40,7 +40,7 @@
           <button class="button is-info is-light" @click="update"><i class="fas fa-pen"></i>  更新個人資料</button>
         </div>
       </div>
-      <div class="item result">
+      <div class="item result" v-show="showResult">
         <table class="table table-borderless">
           <thead>
           </thead>
@@ -68,7 +68,7 @@
           <button v-if = "BMR !== ''" class="button is-success  is-light is-rounded" @click="more">MORE</button>
         </div>
       </div>
-      <div class="item deeper-check">
+      <div class="item deeper-check" v-show="showResult && moreshow">
         <div v-show="moreshow" class="col">
           <label class="title" for="">平常運動習慣</label>
           <br>
