@@ -6,6 +6,7 @@ class RelationshipsController < ApplicationController
     current_member.follow(@member)
     respond_to do |format|
       format.html { redirect_to user_path(id: @member.id) }
+      format.js
     end
   end
 
@@ -14,6 +15,7 @@ class RelationshipsController < ApplicationController
     current_member.unfollow(@member)
     respond_to do |format|
       format.html { redirect_to user_path(id: @member.id) }
+      format.js
     end
   end
 end
