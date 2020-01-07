@@ -958,4 +958,7 @@ a:hover{
     width: 100px;
   }
 }
-
+.card-image{
+  height: 300px;
+  object-fit: cover;
+}
