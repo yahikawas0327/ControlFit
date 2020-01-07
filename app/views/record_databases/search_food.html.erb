@@ -3,7 +3,13 @@
   <div class="container-fluid">
     <div class="row search">
       <div class="col-12 col-sm-12">
-        <h2 class="title">食品熱量分析</h2> 
+        <!-- <h2 class="title">飲食點將錄</h2>  -->
+          <div class="form-row">
+            <div class="column is-2"></div>
+            <div class="column is-6 js-type">
+              <div class="col-md-6 mb-3"><i class="fas fa-user-circle"></i> <%= current_member.name %> </div>
+            </div>
+          </div>
           <div class="form-row">
             <div class="column is-2"></div>
             <div class="column is-6 js-type">
@@ -25,7 +31,7 @@
             </div>
           </div>
         <div class="form-row">
-          <div class="col-md md-3 " id="query-table">
+          <div class="col-md-9 md-3 " id="query-table">
             <table class="table table-hover" id="query-food">
               <thead>
                 <tr>
@@ -59,6 +65,34 @@
       <div class="col-12 col-sm-12">
         <div class="daily-record">
           <h2 class="title"> 每天攝取熱量紀錄 </h2>
+          <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+              <article class="message is-info ">
+              <div class="message-body">
+                <i class="fas fa-user-circle"></i> <%= current_member.name %> </br>
+                    
+                    <% if @current_user_secret.foodintention.blank? %>
+                       根據飲食傾向 : 還沒有資料喔 ! <i class="far fa-sad-cry"></i> </br>
+                    <% else %>
+                       根據飲食傾向 : <%=@current_user_secret.foodintention %> </br>
+                    <% end %>
+                    <% if @current_user_secret.sportintention.blank? %>
+                       根據運動傾向 :  還沒有資料喔 ! <i class="far fa-sad-cry"></i> </br>
+                    <% else %>
+                       根據運動傾向 : <%= @current_user_secret.sportintention %></br>
+                    <% end %>
+                    <li>每日所需的熱量為 : <%= @current_user_secret.tdee %> 大卡</li></br>
+                    <i class="fas fa-clipboard-list"></i> 共 : <li class="count_message"> <%= @record_foods.size %></li> 筆 </br>
+                    <i class="fas fa-utensils"></i> 共 : <li class="sum_message">   <%= @sum %></li> 大卡 </br>
+                     
+              </div>
+              </article>
+            </div>
+            <div class="col-1"></div>
+
+          </div>
+          </br>
           <table class="table table-sm" id="daliy-food">
             <thead>
               <tr>

@@ -274,7 +274,10 @@ function click_create_new_record_by_user(){
                 let total = Number($('.totalsum').text())
                 count_plus()
                 let newtotal= (total + Number(response.data.calories)).toFixed(2)
+                $('.sum_message').text(newtotal)
                 $('.totalsum').text(newtotal)
+                
+                
         })
    
 })
@@ -284,14 +287,16 @@ function count_plus(){
   let count = Number($('.totalcount').text())
   console.log(count)
   let newcount = count + 1
-  $('.totalcount').text(newcount) 
+  $('.totalcount').text(newcount)
+  $('.count_message').text(newcount)
   console.log(newcount) 
 }
 function count_minus(){
   let count = Number($('.totalcount').text())
   console.log(count)
   let newcount = count - 1
-  $('.totalcount').text(newcount) 
+  $('.totalcount').text(newcount)
+  $('.count_message').text(newcount)
   console.log(newcount) 
 
 }
@@ -376,6 +381,7 @@ function saveEvent(){
               let total = Number($('.totalsum').text())
               let new_sum = (total - origin_sum + Number($(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text())).toFixed(2)
               $('.totalsum').text(new_sum)
+              $('.sum_message').text(new_sum)
               })
               add_food_record_by_user()
               search()
@@ -394,6 +400,7 @@ function deleteEvent(){
         let total = Number($('.totalsum').text())
         let new_sum = (total - Number(del_sum)).toFixed(2)
         $('.totalsum').text(new_sum)
+        $('.sum_message').text(new_sum)
         count_minus()
         $(this).parent().parent('.daily_food_result').remove()
         })
@@ -437,6 +444,7 @@ function query_add(){
                 let total = Number($('.totalsum').text())
                 let newtotal= (total + Number(response.data.calories)).toFixed(2)
                 $('.totalsum').text(newtotal)
+                $('.sum_message').text(newtotal)
                 count_plus()
     })
   })

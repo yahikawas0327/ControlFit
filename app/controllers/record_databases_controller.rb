@@ -41,6 +41,8 @@ class RecordDatabasesController < ApplicationController
           @record_foods.each do |record_food|
              @sum = @sum + record_food.total_calorie
           end
+
+          @current_user_secret = Membersecret.find_by( member_id: current_member.id)
         else       
         end
     end

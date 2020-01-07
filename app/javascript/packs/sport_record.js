@@ -35,6 +35,9 @@ document.addEventListener('turbolinks:load', () => {
       tempindex:[],
       editstatus:[],
       savestatus:[],
+      foodintention:"",
+      sportintention:"",
+      tdee:0,
       member_status:false,
       search_status:false,
       daily_record_status:false,
@@ -179,9 +182,10 @@ document.addEventListener('turbolinks:load', () => {
                         }
                   })
                   axios.get(`http://localhost:5000/blogs/${self.user_id}/secret`)
-                  .then(function(response){
-                    console.log(response.data)
-                  })   
+                       .then(function(response){
+                         self.foodintention  = response.data.foodintention;
+                         self.sportintention = response.data.sportintention;
+                         self.tdee           = response.data.tdee;})   
               }else{}
               if (self.user_id !== 0 ){
                   }
@@ -267,11 +271,9 @@ document.addEventListener('turbolinks:load', () => {
         let intention = { eat  : this.eatintention,
                           sport: this.sportintention,
                           tdee : this.TDEE}
-        console.log(intention)
         if (this.member_status === true){
              axios.patch(`http://localhost:5000/blogs/${this.user_info.user_id}/tdee`, intention)
-                  .then(function(response){
-                          console.log(response)})                     
+                  .then(function(response){})                     
         }else{}
       },
     },
