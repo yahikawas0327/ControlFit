@@ -10,9 +10,10 @@ Rails.application.routes.draw do
 
   resources :blogs  do 
     member do 
-       patch :tdee  #/api/books/:id/favorite
+       patch :tdee   #/blog/:id/tdee
+       get   :secret #/blog/:id/secret
     end
-   end
+  end
   
   resources :records
   root 'records#index'

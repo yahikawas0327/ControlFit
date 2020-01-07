@@ -177,8 +177,14 @@ document.addEventListener('turbolinks:load', () => {
                         for (var i=0; i<self.daily_count;i++){
                            self.daily_sum = Number(daily_sport[i].totalconsum) + self.daily_sum
                         }
-                })    
-            }
+                  })
+                  axios.get(`http://localhost:5000/blogs/${self.user_id}/secret`)
+                  .then(function(response){
+                    console.log(response.data)
+                  })   
+              }else{}
+              if (self.user_id !== 0 ){
+                  }
             }else{} 
             })
            .catch((error) => { console.error(error) })
