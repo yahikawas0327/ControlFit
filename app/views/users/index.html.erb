@@ -12,6 +12,9 @@
             <div class="card-body">
               <h5 class="card-title"><%= m.name %></h5>
               <%= link_to '來瞧瞧！', user_path(m) %>
+              <%= link_to relationships_path(followed_id: m.id), remote: true ,method: :post, data: {id: m.id}, class: 'btn-gray', style: 'float: right; color: gray;' do %>
+                <i class="far fa-heart"></i>
+              <% end %>
             </div>
           </div>
         </div>

@@ -24,3 +24,5 @@ import moment from "moment";
 import './sport_record.js'
 import 'bulma'
 import './follow.js'
+
+window.jQuery = window.$ = $
