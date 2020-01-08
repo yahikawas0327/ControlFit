@@ -1,2 +1,2 @@
-$("#follow_form").html("<%= escape_javascript(render('members/unfollow')) %>");
-$("#followers").html('<%= @member.followers.count %>');
+var btn = $('[data-id="<%= @member.id %>"]');
+btn.replaceWith('<%= j(link_to(relationship_path(@member), method: 'delete', data: {id: @member.id}, class: 'btn-red') { ('<i class="far fa-heart"></i>').html_safe }) %>')
