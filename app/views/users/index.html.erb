@@ -1,19 +1,26 @@
-<section class="section">
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-4">
-      <% @member.each do |m| %>
-        <% if m != current_member %>
-          <div class="col mb-4">
-            <div class="card">
-              <% if m.cover_image.attached? %>
-                <%= image_tag m.cover_image.variant(resize_to_limit: [300, 300]) %>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-4">
+    <% @member.each do |m| %>
+      <% if m != current_member %>
+        <div class="col mb-4">
+          <div class="card">
+            <% if m.cover_image.attached? %>
+              <%= image_tag m.cover_image.variant(resize_to_limit: [300, 300]), class: 'card-image' %>
+            <% else %>
+              <img src="https://picsum.photos/300/300/?random=1">
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= m.name %></h5>
+              <%= link_to '來瞧瞧！', user_path(m) %>
+              <% if current_member.following?(m) %>
+                <%= link_to relationship_path(m), remote: true ,method: :delete, data: {id: m.id}, class: 'btn-red' do%>
+                <i class="far fa-heart"></i>
+                <% end %>
               <% else %>
-                <img src="https://picsum.photos/200/200/?random=1">
+                <%= link_to relationships_path(followed_id: m.id), remote: true ,method: :post, data: {id: m.id}, class: 'btn-gray' do%>
+                <i class="far fa-heart"></i>
+                <% end %>
               <% end %>
-              <div class="card-body">
-                <h5 class="card-title"><%= m.name %></h5>
-                <%= link_to '來瞧瞧！', user_path(m) %>
-              </div>
             </div>
           </div>
         <% end %>

@@ -990,23 +990,15 @@ a:hover{
     width: 100px;
   }
 }
-//others
-.others {
-  .col.image img{
-    width: 100%;
-    height: 500px;
-    box-shadow: 10px 10px 0px 0px #33ABE6;
-  }
-  .col.other {
-    width: 80%;
-    padding: 15px 30px;
-    .number-follwers{
-      span {
-        padding-right: 20px;
-      }
-    }
-    form {
-      padding: 15px;
-    }
-  }
+.card-image{
+  height: 300px;
+  object-fit: cover;
+}
+.btn-gray{
+  float: right;
+  color: gray;
+}
+.btn-red{
+  float: right;
+  color: red;
 }
