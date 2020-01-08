@@ -14,7 +14,7 @@ document.addEventListener('turbolinks:load', () => {
     // 增加 Query system event
     $('#query-table').hide()
     $('#Add_food_record_type').hide()
-
+    $('#daliy-food').hide()
 
     search_item()           
     deleteEvent()
@@ -27,6 +27,7 @@ document.addEventListener('turbolinks:load', () => {
     add_food_record_by_user()
     click_create_new_record_by_user()
     saveEvent()
+    more()
     // Now time and day
     let time = moment().format('lll');
     $('.daytime').html(time);
@@ -459,6 +460,15 @@ function query_add(){
                 count_plus()
     })
   })
+}
+
+// more funtion 
+function more(){
+  $('.message-body').on('click','.js-more',function(evt){
+
+    // var isShow =  $('#daliy-food').is(":visable");
+    $('#daliy-food').toggle()
+  }) 
 }
 
 

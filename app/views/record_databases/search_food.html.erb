@@ -84,7 +84,9 @@
                     每日所需的熱量為 : <li class="tdee"><%= @current_user_secret.tdee %> </li>大卡</br>
                     <i class="fas fa-clipboard-list"></i> 共 : <li class="count_message"> <%= @record_foods.size %></li> 筆 </br>
                     <i class="fas fa-utensils"></i> 共 : <li class="sum_message">   <%= @sum %></li> 大卡 </br>
-                       今天狀態  : <i class="far fa-arrow-alt-circle-right"></i> <li class="delta_message"><%= @daily_delta %> </li> 大卡</br>                     
+                       今天狀態  : <i class="far fa-arrow-alt-circle-right"></i> <li class="delta_message"><%= @daily_delta %> </li>大卡 
+                    <button class="button is-link is-warning is-small is-light is-rounded js-more"><i class="fas fa-comment-dots"></i> more</button></br>
+
               </div>
               </article>
             </div>
