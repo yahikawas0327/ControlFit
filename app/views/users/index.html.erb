@@ -13,11 +13,11 @@
               <h5 class="card-title"><%= m.name %></h5>
               <%= link_to '來瞧瞧！', user_path(m) %>
               <% if current_member.following?(m) %>
-                <%= link_to relationship_path(m), remote: true ,method: :delete, data: {id: m.id}, class: 'btn-gray' do%>
+                <%= link_to relationship_path(m), remote: true ,method: :delete, data: {id: m.id}, class: 'btn-red' do%>
                 <i class="far fa-heart"></i>
                 <% end %>
               <% else %>
-                <%= link_to relationships_path(followed_id: m.id), remote: true ,method: :post, data: {id: m.id}, class: 'btn-red' do%>
+                <%= link_to relationships_path(followed_id: m.id), remote: true ,method: :post, data: {id: m.id}, class: 'btn-gray' do%>
                 <i class="far fa-heart"></i>
                 <% end %>
               <% end %>
