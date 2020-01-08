@@ -1,2 +1,2 @@
-$("#follow_form").html("<%= escape_javascript(render('members/follow')) %>");
-$("#followers").html('<%= @member.followers.count %>');
+var btn = $('[data-id="<%= @member.id %>"]');
+btn.replaceWith('<%= j(link_to (relationships_path(followed_id: @member.id)), method: 'post', data: {id: @member.id}, class: 'btn-red') { ('<i class="far fa-heart"></i>').html_safe }) %>')
