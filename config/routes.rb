@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resource :member, only: :show do
     member do
       get :following, :followers
+      get :day,:month,:week
     end
   end
 
@@ -22,7 +23,6 @@ Rails.application.routes.draw do
   resources :exercise_records
   resources :food_records
   resources :demands
-  # resources :blogs
   
   get '/search_sport/statistics' => 'exercise_records#statistics', :as => 'statistics_exercise_record'
   get '/search_food/statistics' => 'food_records#statistics', :as => 'statistics_food_record'

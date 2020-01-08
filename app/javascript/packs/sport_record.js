@@ -17,7 +17,6 @@ import echarts from 'echarts/dist/echarts.common.js'
 //
 
 document.addEventListener('turbolinks:load', () => {
-  //  sport query system and daily sport reord system
   const sport = new Vue({
     el: '#sport',
     data :{
@@ -195,7 +194,9 @@ document.addEventListener('turbolinks:load', () => {
            .catch((error) => { console.error(error) })
     },
   })
-  // --個人身體資訊---------------------------------------------------
+})
+
+document.addEventListener('turbolinks:load', () => {
   const physical = new Vue({
     el: '#physical',
     data :{
@@ -329,5 +330,41 @@ document.addEventListener('turbolinks:load', () => {
              console.log(error)
            })
     }         
+  })
+})
+
+document.addEventListener('turbolinks:load', () => {
+  const food_data = new Vue({
+    el: '#food_data',
+    data:{
+      data_type:""
+    },
+    methods:{
+      jsday:function(){
+        var self = this;
+          axios.get('http://localhost:5000/member/day')
+               .then(function(response){
+                   console.log(response)
+                  })
+               .catch((error) => {})
+      },
+      jsweek:function(){
+        var self = this;
+          axios.get('http://localhost:5000/member/week')
+               .then(function(response){
+                   console.log(response)
+                  })
+               .catch((error) => {})
+      },
+      jsmonth: function(){
+        var self = this;
+        axios.get('http://localhost:5000/member/month')
+             .then(function(response){
+                 console.log(response)
+                })
+             .catch((error) => {})
+      },
+    },
+
   })
 })
