@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sportsum: 9.99
+  sportcount: 1
+  foodsum: 9.99
+  foodcount: 1
+  member: one
+
+two:
+  sportsum: 9.99
+  sportcount: 1
+  foodsum: 9.99
+  foodcount: 1
+  member: two

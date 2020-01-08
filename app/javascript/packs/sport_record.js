@@ -38,6 +38,7 @@ document.addEventListener('turbolinks:load', () => {
       foodintention:"",
       sportintention:"",
       tdee:0,
+      tempid:0,
       member_status:false,
       search_status:false,
       daily_record_status:false,
@@ -70,20 +71,21 @@ document.addEventListener('turbolinks:load', () => {
           consume: this.sports[idx].computed,
           user_id: this.user_id}
         // 將紀錄資料送至後端資料庫
+        let daily_sport_length = this.daily_sport.length
+        console.log(daily_sport_length)
+        var self =this;
         axios.post("http://localhost:5000/exercise_records",sport_hash)
-             .then(function(response){})
-        this.daily_sport.push({
-          id: this.sports[idx].id ,
-          name: this.sports[idx].name,
-          weight: this.weight,
-          min: Number(this.min).toFixed(1),
-          consume: this.sports[idx].consume,
-          totalconsum: this.sports[idx].computed,
-          created_at: moment().calendar()
-        })
-        this.editstatus[this.daily_count]=false 
-        this.daily_count += 1;
-        this.daily_sum += Number(this.sports[idx].computed)
+             .then(function(response){
+                self.daily_sport.push(response.data)
+                var NowDate = new Date(self.daily_sport[daily_sport_length].created_at)
+                self.editstatus[daily_sport_length]=false
+                self.savestatus[daily_sport_length]=false
+                self.daily_sport[daily_sport_length].created_at = moment().calendar();
+                self.daily_count += 1;
+                self.daily_sum += Number(self.sports[idx].computed)
+                console.log(response.data)
+                console.log(self.daily_sport[daily_sport_length])
+              })
       },
       updateCurrentTime() {
         this.currentTime = moment().format('LTS');
@@ -118,16 +120,16 @@ document.addEventListener('turbolinks:load', () => {
           let tempsum =Number(this.daily_sum)- Number(this.daily_sport[index].totalconsum)
           let newtotalconsum = (Number(this.daily_sport[index].consume)*Number(this.daily_sport[index].min)).toFixed(2)
           let newdaily_sum = (Number(newtotalconsum) + Number(tempsum)).toFixed(2)
-          console.log(newdaily_sum)
           this.daily_sport[index].totalconsum = newtotalconsum
           this.daily_sum = newdaily_sum
+          console.log(this.daily_sport[index])
           let update_daily = { 
                                id : this.daily_sport[index].id,
                                min: this.daily_sport[index].min,
                                totalconsum: newtotalconsum }
+              console.log(update_daily)
           axios.patch(`http://localhost:5000/exercise_records/${this.daily_sport[index].id}`, update_daily)
                .then(function(response){
-                 console.log(response)
                })
         } else{
           alert("分鐘數必須要大於1 min")
@@ -168,7 +170,6 @@ document.addEventListener('turbolinks:load', () => {
                   axios.get('http://localhost:5000/search_sport.json',{params:{ member_id: self.user_id}})
                        .then(function(response){
                           let daily_sport = response.data
-                          console.log(daily_sport)
                          for (var i in daily_sport ){
                           self.daily_sport.push(daily_sport[i])
                           var NowDate = new Date(daily_sport[i].created_at)
@@ -332,17 +333,20 @@ document.addEventListener('turbolinks:load', () => {
 })
 
 document.addEventListener('turbolinks:load', () => {
-  const food_data = new Vue({
-    el: '#food_data',
+  const record_data = new Vue({
+    el: '#record_data',
     data:{
       user_id:0,
       data_type:"",
       member_status:false,
     },
     methods:{
-      jsday:function(){},
-      jsweek:function(){},
-      jsmonth: function(){},
+      foodday:function(){},
+      foodweek:function(){},
+      foodmonth: function(){},
+      sportday:function(){},
+      sportweek:function(){},
+      sportmonth: function(){},
     },
     created(){  
       var self = this;
@@ -355,7 +359,6 @@ document.addEventListener('turbolinks:load', () => {
                     // day
                       axios.get('http://localhost:5000/member/foodday')
                            .then(function(response){
-                                console.log(response)
                                 })
                            .catch((error) => {})
                       axios.get('http://localhost:5000/member/sportday')
@@ -389,6 +392,5 @@ document.addEventListener('turbolinks:load', () => {
             }else{}
            })
     }
-
   })
 })
