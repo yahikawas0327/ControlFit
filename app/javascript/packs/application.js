@@ -24,5 +24,7 @@ import moment from "moment";
 import './sport_record.js'
 import 'bulma'
 import './follow.js'
+import echarts from "echarts";
+
 
 window.jQuery = window.$ = $

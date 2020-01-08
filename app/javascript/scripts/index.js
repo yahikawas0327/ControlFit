@@ -7,6 +7,7 @@ import $ from 'jquery'
 import axios from 'axios-on-rails'
 import moment from "moment";
 import { element, func } from 'prop-types';
+import echarts from "echarts";
 
 // const axios = require('axios');
  
@@ -32,8 +33,6 @@ document.addEventListener('turbolinks:load', () => {
     let time = moment().format('lll');
     $('.daytime').html(time);
 })
-
-
 
 // search_food_item
 function search_item(){
@@ -465,15 +464,40 @@ function query_add(){
 // more funtion 
 function more(){
   $('.message-body').on('click','.js-more',function(evt){
-
-    // var isShow =  $('#daliy-food').is(":visable");
     $('#daliy-food').toggle()
   }) 
 }
 
 
+// test echart
 
+document.addEventListener('turbolinks:load', () => {
 
+  var myChart = echarts.init(document.getElementById('pic'));
+
+  // 指定图表的配置项和数据
+  var option = {
+      title: {
+          text: 'ECharts 入门示例'
+      },
+      tooltip: {},
+      legend: {
+          data:['销量']
+      },
+      xAxis: {
+          data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+      },
+      yAxis: {},
+      series: [{
+          name: '销量',
+          type: 'bar',
+          data: [5, 20, 36, 10, 10, 20]
+      }]
+  };
+
+  // 使用刚指定的配置项和数据显示图表。
+  myChart.setOption(option);
+})
 
 
 

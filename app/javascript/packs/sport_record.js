@@ -13,6 +13,7 @@ import axios from 'axios'
 Vue.prototype.$ajax = axios
 //  
 import moment from "moment";
+import echarts from 'echarts/dist/echarts.common.js'
 //
 
 document.addEventListener('turbolinks:load', () => {
