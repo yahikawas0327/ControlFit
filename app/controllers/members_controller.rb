@@ -13,20 +13,36 @@ class MembersController < ApplicationController
   end
 
 
-
-  def day
+# private
+  def foodday
       @food_record_byday = FoodRecord.where(created_at: Time.now.midnight..Time.now)
       render json:  @food_record_byday
   end
 
-  def week
+  def foodweek
       @food_record_byweek = FoodRecord.where(created_at: (7.days.ago.midnight)..Time.now)
       render json:  @food_record_byweek
   end
 
-  def month
+  def foodmonth
       @food_record_bymonth = FoodRecord.where(created_at: (1.months.ago.midnight)..Time.now)
       render json:  @food_record_bymonth
   end
+
+  def sportday
+      @sport_record_byday = SportRecord.where(created_at: Time.now.midnight..Time.now)
+      render json:  @sport_record_byday
+  end
+
+  def sportweek
+      @sport_record_byweek = SportRecord.where(created_at: (7.days.ago.midnight)..Time.now)
+      render json:  @sport_record_byweek
+  end
+
+  def sportmonth
+      @sport_record_bymonth = SportRecord.where(created_at: (1.months.ago.midnight)..Time.now)
+      render json:  @sport_record_bymonth
+  end
+
 end
 

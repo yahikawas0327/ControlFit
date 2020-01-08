@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resource :member, only: :show do
     member do
       get :following, :followers
-      get :day,:month,:week
+      get :foodday,:foodmonth,:foodweek  # food record by day/week/month
+      get :sportday,:sportmonth,:sportweek  # sport record by day/week/month
     end
   end
 
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
     end
   end
   
+
   resources :records
   root 'records#index'
   resources :users

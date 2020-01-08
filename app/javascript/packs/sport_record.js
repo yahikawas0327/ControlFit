@@ -187,8 +187,6 @@ document.addEventListener('turbolinks:load', () => {
                          self.sportintention = response.data.sportintention;
                          self.tdee           = response.data.tdee;})   
               }else{}
-              if (self.user_id !== 0 ){
-                  }
             }else{} 
             })
            .catch((error) => { console.error(error) })
@@ -337,34 +335,60 @@ document.addEventListener('turbolinks:load', () => {
   const food_data = new Vue({
     el: '#food_data',
     data:{
-      data_type:""
+      user_id:0,
+      data_type:"",
+      member_status:false,
     },
     methods:{
-      jsday:function(){
-        var self = this;
-          axios.get('http://localhost:5000/member/day')
-               .then(function(response){
-                   console.log(response)
-                  })
-               .catch((error) => {})
-      },
-      jsweek:function(){
-        var self = this;
-          axios.get('http://localhost:5000/member/week')
-               .then(function(response){
-                   console.log(response)
-                  })
-               .catch((error) => {})
-      },
-      jsmonth: function(){
-        var self = this;
-        axios.get('http://localhost:5000/member/month')
-             .then(function(response){
-                 console.log(response)
-                })
-             .catch((error) => {})
-      },
+      jsday:function(){},
+      jsweek:function(){},
+      jsmonth: function(){},
     },
+    created(){  
+      var self = this;
+      axios.get('http://localhost:5000/blogs/new.json')
+           .then(function(response){
+            if (response.data.member_exist === true){
+                 self.user_id   = response.data.user_id
+                 self.member_status = true
+                 if (self.user_id !== 0 ){
+                    // day
+                      axios.get('http://localhost:5000/member/foodday')
+                           .then(function(response){
+                                console.log(response)
+                                })
+                           .catch((error) => {})
+                      axios.get('http://localhost:5000/member/sportday')
+                           .then(function(response){
+                            console.log(response)
+                            })
+                           .catch((error) => {})
+                   //week
+                      axios.get('http://localhost:5000/member/foodweek')
+                           .then(function(response){
+                                 console.log(response)
+                                })
+                           .catch((error) => {})
+                      axios.get('http://localhost:5000/member/sportweek')
+                           .then(function(response){
+                                console.log(response)
+                              })
+                           .catch((error) => {})
+                   //month
+                      axios.get('http://localhost:5000/member/foodmonth')
+                           .then(function(response){
+                                 console.log(response)
+                                })
+                           .catch((error) => {})  
+                      axios.get('http://localhost:5000/member/sportmonth')
+                           .then(function(response){
+                            console.log(response)
+                                })
+                           .catch((error) => {})  
+                      }
+            }else{}
+           })
+    }
 
   })
 })
