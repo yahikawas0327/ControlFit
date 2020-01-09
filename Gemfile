@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -24,6 +25,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'aws-sdk', '~> 3.0', '>= 3.0.1'
 
 
+gem 'chart-js-rails', '~> 0.1.7'
 gem 'bootstrap', '~> 4.4.1'
 # gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 gem 'simple_form', '~> 5.0', '>= 5.0.1'
