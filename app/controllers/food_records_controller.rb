@@ -23,9 +23,28 @@ class FoodRecordsController < ApplicationController
                           :eat_type => food_type,
                           :total_calorie => total_calories,
                           :member_id => current_member.id)
-         
+        
+        # Write Daily sport sum count to Statistic database
+        statistic = Statistic.where(member_id: current_member.id, created_at: (Time.now.midnight)..(Time.now))
+        if statistic.blank?
+            Statistic.create(:foodsum => total_calories,
+                            :foodcount => 1,
+                            :member_id  => current_member.id )
+        else
+            statistic_sum   = statistic[0].foodsum
+            statistic_count = statistic[0].foodcount
+            statistic_id    = statistic[0].id
+            update_sum      = total_calories + (statistic_sum).to_i
+            update_count    = (statistic_count).to_i + 1
+            statistic_update_item =Statistic.find_by(id:statistic_id)
+            statistic_update_item.update(:foodsum => update_sum,
+                                         :foodcount => update_count)
+        end                  
+        
+
+
         # Renodr json file 
-        @food_records = FoodRecord.where(created_at: Time.now.midnight..Time.now)
+        @food_records = FoodRecord.where(member_id: current_member.id, created_at: Time.now.midnight..Time.now)
 
         
         #回傳json 至前端
@@ -47,13 +66,31 @@ class FoodRecordsController < ApplicationController
                             :eat_type      => update_type,
                             :qty           => update_qty,
                             :total_calorie => update_total)
-         puts "finish"
-         render json: current_data
+        # Update daily sum 
+        statistic = Statistic.where(member_id: current_member.id, created_at: (Time.now.midnight)..(Time.now))
+        statistic_sum   = statistic[0].foodsum
+        statistic_count = statistic[0].foodcount
+        statistic_id    = statistic[0].id
+        statistic_update_sum = statistic_sum - (origin_total).to_i + (update_total).to_i
+        statistic_update_item =Statistic.find_by(id:statistic_id)
+        statistic_update_item.update(:foodsum => statistic_update_sum)
+        render json: current_data
     end
 
     def destroy
         delete_data = FoodRecord.find_by(id:params[:id])
-        delete_data.destroy
+         # Update daily sum and reduce count
+         statistic = Statistic.where(member_id: current_member.id, created_at: (Time.now.midnight)..(Time.now))
+         statistic_sum   = statistic[0].foodsum
+         statistic_count = statistic[0].foodcount
+         statistic_id    = statistic[0].id
+
+         delete_data_sum = delete_data.total_calorie
+         statistic_update_sum = (statistic_sum) - (delete_data_sum).to_i
+         statistic_update_item =Statistic.find_by(id:statistic_id)
+         statistic_update_item.update(:foodsum => statistic_update_sum,
+                                      :foodcount => statistic_count - 1)
+         delete_data.destroy
     end
 
     def statistics
