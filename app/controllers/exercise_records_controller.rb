@@ -8,27 +8,39 @@ class ExerciseRecordsController < ApplicationController
           update_sum = params[:totalconsum]
           min=current_data.min
           sum=current_data.totalconsum
-          # current_data.update(
-          #                     :min => update_min,
-          #                     :totalconsum => update_sum)
+          current_data.update(
+                              :min => update_min,
+                              :totalconsum => update_sum)
         # Update daily sum 
           statistic = Statistic.where(member_id: current_member.id, created_at: (Time.now.midnight)..(Time.now))
           statistic_sum   = statistic[0].sportsum
           statistic_count = statistic[0].sportcount
           statistic_id    = statistic[0].id
           statistic_update_sum = (statistic_sum - current_data_sum) + (update_sum).to_i
-          puts  statistic_sum
-          puts  current_data_sum
-          puts  update_sum
-          puts statistic_update_sum
-
-          # statistic_update_item =Statistic.find_by(id:statistic_id)
-          # statistic_update_item.update(:sportsum => update_sum)
+          statistic_update_item =Statistic.find_by(id:statistic_id)
+          statistic_update_item.update(:sportsum => statistic_update_sum)
+          puts "---------------------------------------"
 
     end
 
     def destroy
           delete_data = SportRecord.find_by(id:params[:id])
+        
+        # Update daily sum and reduce count
+          statistic = Statistic.where(member_id: current_member.id, created_at: (Time.now.midnight)..(Time.now))
+          statistic_sum   = statistic[0].sportsum
+          statistic_count = statistic[0].sportcount
+          statistic_id    = statistic[0].id
+
+          delete_data_sum = delete_data.totalconsum
+          puts #--------------------------------------------------
+          puts delete_data.id
+          puts delete_data_sum
+          puts #--------------------------------------------------
+          statistic_update_sum = (statistic_sum) - (delete_data_sum).to_i
+          statistic_update_item =Statistic.find_by(id:statistic_id)
+          statistic_update_item.update(:sportsum => statistic_update_sum,
+                                       :sportcount => statistic_count - 1)
           delete_data.destroy
     end
 
