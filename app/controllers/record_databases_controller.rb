@@ -59,9 +59,11 @@ class RecordDatabasesController < ApplicationController
       daily_sport = params["member_id"]
       if daily_sport.present?
         @record_sports = SportRecord.where(member_id: params[:member_id], created_at: (Time.now.midnight)..(Time.now))
+        random_food(10)
         respond_to do |format|
           format.json { render json: @record_sports}
           format.html { render :search_sport }
+
         end  
       else
       end
@@ -81,6 +83,5 @@ class RecordDatabasesController < ApplicationController
         tdee = @current_user_secret.tdee
         @daily_delta = @sum - tdee
     end
-
     
 end

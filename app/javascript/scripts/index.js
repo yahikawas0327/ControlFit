@@ -16,7 +16,7 @@ document.addEventListener('turbolinks:load', () => {
     $('#query-table').hide()
     $('#Add_food_record_type').hide()
     $('#daliy-food').hide()
-
+    $('#recommend-food').hide()
     search_item()           
     deleteEvent()
     editEvent()
@@ -29,6 +29,8 @@ document.addEventListener('turbolinks:load', () => {
     click_create_new_record_by_user()
     saveEvent()
     more()
+    recommend()
+    recommendAdd()
     // Now time and day
     let time = moment().format('lll');
     $('.daytime').html(time);
@@ -466,5 +468,34 @@ function more(){
   $('.message-body').on('click','.js-more',function(evt){
     $('#daliy-food').toggle()
   }) 
+}
+
+// recommend function
+function recommend(){
+  $('.message-body').on('click','.js-recommend',function(evt){
+    $('#recommend-food').toggle()
+    axios.get('http://localhost:5000/search_food/random.json')
+         .then( response => {
+               var result = ""
+              for ( var i = 0; i < 5; i++) {
+                   result +=  `
+                     <tr class="recommend_food_result" id="${response.data[i].id}">
+                          <td>${i+1}</td>
+                          <td class="recommend_name">${response.data[i].name}</td>
+                          <td class="recommend_calories">${response.data[i].calories}</td>
+                          <td>${response.data[i].protein}</td>
+                          <td>${response.data[i].fat_content}</td>
+                          <td>${response.data[i].carbohydrate}</td>
+                          <td><button data-id="${response.data[i].id}" class="button is-success is-small is-light is-rounded js-recommend-add" ><i class="fas fa-plus-circle"></i></button></td>
+                     </tr>
+                          `}
+              $('#recommend').html(result)
+              })
+    }) 
+}
+
+// recommend food add 
+function recommendAdd(){
+  $('')
 }
 

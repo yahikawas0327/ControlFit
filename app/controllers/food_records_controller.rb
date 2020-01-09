@@ -103,4 +103,12 @@ class FoodRecordsController < ApplicationController
     def statistics
     end
 
+    def random 
+        @random = FoodDatabase.limit(5).order("RANDOM()")
+        respond_to do |format|
+            format.json { render json: @random}
+            format.html { render  }
+        end  
+    end
+
 end

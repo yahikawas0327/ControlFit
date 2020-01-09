@@ -1,59 +1,3 @@
-<<<<<<< HEAD
-<section class="section personal-info">
-  <div class="col-12 col-md-4">
-    <h2 class="title text-center">健康個人檔案</h2>
-    <%= render 'shared/states' %>
-    <span><%= render 'follow_form' if signed_in? %></span>
-    <table class="table table-hover table-info">
-      <thead>
-        <tr>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="table-info">
-          <th scope="row">姓名</th>
-          <td><%= current_member.name %></td>
-        </tr>
-        <tr>
-          <th scope="row">性別</th>
-          <td><%= current_member.gender %></td>
-        </tr>
-        <tr class="table-info">
-          <th scope="row">年齡</th>
-          <td><%= current_member.age %></td>
-        </tr>
-        <tr>
-          <th scope="row">身高</th>
-          <td><%= current_member.cm %> 公分</td>
-        </tr>
-        <tr class="table-info">
-          <th scope="row">體重</th>
-          <td><%= current_member.kg %> 公斤</td>
-        </tr>
-      </tbody>
-    </table>
-    <div id="record_data">
-      <div class="food">
-        食物吸收熱量:
-        <div class="buttons has-addons">
-          <button class="button is-small is-info is-light "  @click="foodday">日</button>
-          <button class="button is-small is-info is-light "  @click="foodweek">周</button>
-          <button class="button is-small is-info is-light "  @click="foodmonth" >月</button>
-        </div>
-      </div>
-      <div class="sport">
-        運動消耗熱量:
-        <div class="buttons has-addons">
-          <button class="button is-small is-info is-light "  @click="sportday">日</button>
-          <button class="button is-small is-info is-light "  @click="sportweek">周</button>
-          <button class="button is-small is-info is-light "  @click="sportmonth" >月</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-=======
 <section class="section personal-info">
   <div class="col-12 col-md-4">
     <h2 class="title text-center">健康個人檔案</h2>
@@ -90,7 +34,23 @@
     <div style="width:400px;">
       <canvas id="heyChart"></canvas>
     </div>
-    
+    <div id="record_data">
+      <div class="food">
+        食物吸收熱量:
+        <div class="buttons has-addons">
+          <button class="button is-small is-info is-light "  @click="foodday">日</button>
+          <button class="button is-small is-info is-light "  @click="foodweek">周</button>
+          <button class="button is-small is-info is-light "  @click="foodmonth" >月</button>
+        </div>
+      </div>
+      <div class="sport">
+        運動消耗熱量:
+        <div class="buttons has-addons">
+          <button class="button is-small is-info is-light "  @click="sportday">日</button>
+          <button class="button is-small is-info is-light "  @click="sportweek">周</button>
+          <button class="button is-small is-info is-light "  @click="sportmonth" >月</button>
+        </div>
+      </div>
     <script>
       var ctx = document.getElementById("heyChart");
       var myChart = new Chart(ctx, {
@@ -130,4 +90,4 @@
     </script>    
   </div>
 </section>
->>>>>>> origin/master
+

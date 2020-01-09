@@ -7,7 +7,11 @@
           <div class="form-row">
             <div class="column is-2"></div>
             <div class="column is-6 js-type">
+              <% if current_member.present? %>
               <div class="col-md-6 mb-3"><i class="fas fa-user-circle"></i> <%= current_member.name %> </div>
+              <% else %>
+              <div class="col-md-6 mb-3"><i class="fas fa-user-circle"></i></div>
+              <% end %>
             </div>
           </div>
           <div class="form-row">
@@ -64,12 +68,13 @@
     <div class="row result">
       <div class="col-12 col-sm-12">
         <div class="daily-record">
-          <h2 class="title"> 每天攝取熱量紀錄 </h2>
+          <h2 class="title"> 今日狀態點將錄</h2>
           <div class="row">
             <div class="col-1"></div>
             <div class="col-10">
               <article class="message is-info ">
               <div class="message-body">
+                <% if current_member.present? %>
                 <i class="fas fa-user-circle"></i> <%= current_member.name %> </br>    
                     <% if @current_user_secret.foodintention.blank? %>
                        根據飲食傾向 : 還沒有資料喔 ! <i class="far fa-sad-cry"></i> </br>
@@ -84,15 +89,20 @@
                     每日所需的熱量為 : <li class="tdee"><%= @current_user_secret.tdee %> </li>大卡</br>
                     <i class="fas fa-clipboard-list"></i> 共 : <li class="count_message"> <%= @record_foods.size %></li> 筆 </br>
                     <i class="fas fa-utensils"></i> 共 : <li class="sum_message">   <%= @sum %></li> 大卡 </br>
-                       今天狀態  : <i class="far fa-arrow-alt-circle-right"></i> <li class="delta_message"><%= @daily_delta %> </li>大卡 
-                    <button class="button is-link is-warning is-small is-light is-rounded js-more"><i class="fas fa-comment-dots"></i> more</button></br>
-
+                     今天狀態  : <i class="far fa-arrow-alt-circle-right"></i> <li class="delta_message"><%= @daily_delta %> </li>大卡 
+                    <button class="button is-link is-warning is-small is-light is-rounded js-more"><i class="fas fa-comment-dots"></i>更多資訊</button> <button class="button is-link is-success is-small is-light is-rounded js-recommend"><i class="far fa-thumbs-up"></i> 推薦食物清單</button>
+                    <button class="button is-link is-danger is-small is-light is-rounded js-favorite"><i class="far fa-heart"></i> 最愛食物 </<button> </br>
+                    
+                <% else %>
+                    還沒有登入喔!!!!!!!!!
+                <% end %>    
               </div>
               </article>
             </div>
             <div class="col-1"></div>
           </div>
           </br>
+          <div class="form-row">
           <table class="table table-sm" id="daliy-food">
             <thead>
               <tr>
@@ -141,6 +151,26 @@
               <% end %>
             </tfoot>
           </table>
+          <table class="table table-sm" id="recommend-food">
+            <thead>
+              <tr>
+                <th colspan="7" scope="col"> <i class="fas fa-list"></i> 推薦食物清單</th>
+              </tr>
+              <tr>
+                <td scope="col"># </td>
+                <td scope="col">食物名稱</td>
+                <td scope="col">卡路里</td>
+                <td scope="col">蛋白質</td>
+                <td scope="col">體脂肪</td>
+                <td scope="col">碳水化合物</td>
+                <td scope="col"><i class="fas fa-clipboard"></i> 加入紀錄</td>
+              </tr>
+            </thead>
+            <tbody id="recommend">
+            </tbody>
+          </table>            
+          </div>
+
         </div>
       </div>
     </div>
