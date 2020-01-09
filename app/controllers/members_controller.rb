@@ -2,6 +2,11 @@ class MembersController < ApplicationController
   before_action :authenticate_member!
   def show
     @members = current_member
+    @food = FoodRecord.where(member_id: current_member.id)
+    @calories = []
+    @food.each do |m|
+      @calories << m['calories']
+    end
   end
 
   def following
