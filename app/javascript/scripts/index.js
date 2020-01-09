@@ -32,6 +32,7 @@ document.addEventListener('turbolinks:load', () => {
     recommend()
     recommendAdd()
     end_recommend_search()
+    recommendLike()
     // Now time and day
     let time = moment().format('lll');
     $('.daytime').html(time);
@@ -485,7 +486,9 @@ function recommend(){
                           <td>${response.data[i].protein}</td>
                           <td>${response.data[i].fat_content}</td>
                           <td>${response.data[i].carbohydrate}</td>
-                          <td><button data-id="${response.data[i].id}" class="button is-success is-small is-light is-rounded js-recommend-add" ><i class="fas fa-plus-circle"></i></button></td>
+                          <td><button data-id="${response.data[i].id}" class="button is-success is-small is-light is-rounded js-recommend-add" ><i class="fas fa-plus-circle"></i></button>
+                          <button class="button  is-danger is-small is-light is-rounded js-recommend-like" data-id="${response.data[i].id}"><i class="far fa-heart"></i></button>
+                          </td>
                      </tr>
                           `}
               $('#recommend').html(result)
@@ -551,4 +554,11 @@ function end_recommend_search(){
   $('.form-row').on('click','.is-recommend', function(){
     $(this).parent().parent('.form-row').remove()
   })
+}
+
+function recommendLike(){
+  $('.form-row').on('click','.js-recommend-like',function(){
+    $(this).children().removeClass("far")
+    $(this).children().addClass("fas")
+})
 }
