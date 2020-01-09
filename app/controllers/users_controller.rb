@@ -6,6 +6,11 @@ class UsersController < ApplicationController
 
   def show
     @member = Member.all.find(params[:id])
+    @food = FoodRecord.where(member_id: @member.id)
+    @calories = []
+    @food.each do |f|
+      @calories << f['calories']
+    end
   end
 
   def new

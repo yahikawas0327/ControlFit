@@ -1,9 +1,9 @@
-
 {
   "name": "astrocamp",
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.7.4",
+    "@fortawesome/fontawesome-free": "^5.12.0",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
@@ -14,6 +14,7 @@
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.1.0",
     "bulma": "^0.8.0",
+    "chart.js": "^2.9.3",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
     "popper.js": "^1.16.0",
@@ -24,8 +25,7 @@
     "vue": "^2.6.11",
     "vue-loader": "^15.8.3",
     "vue-template-compiler": "^2.6.11",
-    "vue-turbolinks": "^2.0.4",
-    "@fortawesome/fontawesome-free": "^5.12.0"
+    "vue-turbolinks": "^2.0.4"
   },
   "version": "0.1.0",
   "devDependencies": {
