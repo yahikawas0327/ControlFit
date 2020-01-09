@@ -1,2 +1,7 @@
-var btn = $('[data-id="<%= @member.id %>"]');
-btn.replaceWith('<%= j(link_to(relationship_path(@member), method: 'delete', data: {id: @member.id}, class: 'follow-red') { ('<i class="far fa-heart"></i>').html_safe }) %>')
+var btn = $('[pos-id="<%= @member.id %>"]');
+btn.replaceWith('<%= j(link_to(relationship_path(@member),
+  remote: true,
+  method: 'delete',
+  'pos-id': @member.id,
+  class: 'follow-red'
+) { ('<i class="far fa-heart"></i>').html_safe }) %>')

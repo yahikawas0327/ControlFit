@@ -38,12 +38,12 @@
     <script>
       var ctx = document.getElementById("heyChart");
       var myChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
-          labels: ["熱量"],
+          labels: ["熱量","運動"],
           datasets: [{
-            label: ['熱量'],
-            data: [<%= @calories.sum %>],
+            label: ['熱量',],
+            data: [<%= @calories.sum %>, 3333],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',

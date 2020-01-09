@@ -5,6 +5,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    @following = Member.find(params[:id]).following
+    @followers = Member.find(params[:id]).followers
+
     @member = Member.all.find(params[:id])
     @food = FoodRecord.where(member_id: @member.id)
     @calories = []

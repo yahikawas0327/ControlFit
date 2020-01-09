@@ -17,7 +17,7 @@
                 <i class="far fa-heart"></i>
                 <% end %>
               <% else %>
-                <%= link_to relationships_path(followed_id: m.id), remote: true ,method: :post, data: {id: m.id}, class: 'follow-gray' do%>
+                <%= link_to relationships_path(followed_id: m.id), remote: true ,method: :post, 'pos-id': m.id, class: 'follow-gray' do%>
                 <i class="far fa-heart"></i>
                 <% end %>
               <% end %>

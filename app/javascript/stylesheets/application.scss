@@ -1077,3 +1077,12 @@ a:hover{
   float: right;
   color: red;
 }
+.modal{
+  z-index: 2000 !important;
+}
+.followers-image{
+  margin-bottom: 20px;
+}
+.following-image{
+  margin-bottom: 20px;
+}
