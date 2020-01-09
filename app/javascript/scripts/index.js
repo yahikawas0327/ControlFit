@@ -281,8 +281,7 @@ function click_create_new_record_by_user(){
                 let new_daily_delta = (newtotal - daily_delta).toFixed(2)
                 $('.sum_message').text(newtotal)
                 $('.totalsum').text(newtotal)
-                $('.delta_message').text(new_daily_delta)
-                
+                $('.delta_message').text(new_daily_delta)                
         })
    
 })
@@ -371,9 +370,7 @@ function saveEvent(){
     // console.log(editfood_hash)
     $(`.js-edit[data-id="${this.dataset.id}"]`).removeAttr('disabled')
     $(this).parent().parent('.form-row').remove()
-    // $(`.js-edit`).filter(`[data-id="${this.dataset.id}"]`).removeAttr('disabled')
     let before_edit_sum = $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text()
-    // console.log(before_edit_sum)
     axios.patch(`http://localhost:5000/food_records/${this.dataset.id}`, editfood_hash)
          .then( response => {
               // console.log('response=>',response);
