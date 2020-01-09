@@ -1108,3 +1108,18 @@ a:hover{
 .has-addons{
   display: inline-block;
 }
+.modal{
+  z-index: 2000 !important;
+}
+.follow-modal{
+  width: 300px !important;
+}
+.followers-image{
+  margin-bottom: 20px;
+}
+.following-image{
+  margin-bottom: 20px;
+}
+.followers-image-1{
+  width: 30px;
+}

@@ -1,19 +1,67 @@
 <% @member ||= current_member %>
-<div class="community d-flex ">
+<div class="community d-flex">
   <span class="following">
-    <a href="<%= following_member_path(id: @member.id) %>">
-      <strong id="following" class="community">
-        <%= @member.following.count %>
-      </strong>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+      <%= @member.following.count %>
       追蹤中
-    </a>
+    </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content follow-modal">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <% @following.each do |f| %>
+              <li>
+                <div class="following-image">
+                  <% if f.cover_image.attached? %>
+                    <%= image_tag f.cover_image.variant(resize_to_limit: [50, 50]) %>
+                  <% else %>
+                    <img src="https://picsum.photos/50/50/?random=12">
+                  <% end %>
+                  <%= link_to f.name, user_path(f) %>
+                </div c>
+              </li>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </span>
-  <span class="follower">
-    <a href="<%= followers_member_path(id: @member.id) %>">
-      <strong id="followers" class="community">
-        <%= @member.followers.count %>
-      </strong>
+  <span class="followers">
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">
+      <%= @member.followers.count %>
       追蹤者
-    </a>
+    </button>
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content follow-modal">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <% @followers.each do |f| %>
+              <li>
+                <div class="followers-image">
+                  <% if f.cover_image.attached? %>
+                    <%= image_tag f.cover_image.variant(resize_to_limit: [50, 50]) %>
+                  <% else %>
+                    <img src="https://picsum.photos/50/50/?random=12">
+                  <% end %>
+                  <%= link_to f.name, user_path(f) %>
+                </div>
+              </li>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </span>
 </div>

@@ -1,7 +1,8 @@
 class MembersController < ApplicationController
   before_action :authenticate_member!
   def show
-    @members = current_member
+    @following = current_member.following
+    @followers = current_member.followers
     @food = FoodRecord.where(member_id: current_member.id)
     @calories = []
     @food.each do |f|
