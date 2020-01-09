@@ -73,8 +73,7 @@ class ExerciseRecordsController < ApplicationController
             statistic_id    = statistic[0].id
             statistic_update_item =Statistic.find_by(id:statistic_id)
             statistic_update_item.update(:sportsum => sport_totalconsume,
-                                         :sportcount => 1,
-                                         :member_id  => sport_user )
+                                         :sportcount => 1,)
             end
           else
             statistic_sum   = statistic[0].sportsum

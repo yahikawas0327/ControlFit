@@ -26,10 +26,17 @@ class FoodRecordsController < ApplicationController
         
         # Write Daily sport sum count to Statistic database
         statistic = Statistic.where(member_id: current_member.id, created_at: (Time.now.midnight)..(Time.now))
-        if statistic.blank?
+        if (statistic[0].foodcount.blank?) && (statistic[0].foodsum.blank?)
+            if (statistic.blank?)
             Statistic.create(:foodsum => total_calories,
-                            :foodcount => 1,
-                            :member_id  => current_member.id )
+                             :foodcount => 1,
+                             :member_id  => current_member.id )
+            else
+            statistic_id    = statistic[0].id
+            statistic_update_item =Statistic.find_by(id:statistic_id)
+            statistic_update_item.update(:foodsum => total_calories,
+                                         :foodcount => 1,)
+            end
         else
             statistic_sum   = statistic[0].foodsum
             statistic_count = statistic[0].foodcount
