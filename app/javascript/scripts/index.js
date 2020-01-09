@@ -31,6 +31,7 @@ document.addEventListener('turbolinks:load', () => {
     more()
     recommend()
     recommendAdd()
+    end_recommend_search()
     // Now time and day
     let time = moment().format('lll');
     $('.daytime').html(time);
@@ -496,6 +497,60 @@ function recommend(){
 
 // recommend food add 
 function recommendAdd(){
-  $('')
+  $('.form-row').on('click','.js-recommend-add',function(){
+    let recommend_food_id = this.dataset.id
+    // console.log(recommend_food_id)
+    let recommend_food_name = $(this).parent().siblings('.recommend_name:eq(0)').text()
+    let recommend_food_calorie = $(this).parent().siblings('.recommend_calories:eq(0)').text()
+    // console.log(recommend_food_name)
+    // console.log(recommend_food_calorie)
+    $('#Add_food_record').append( `
+     </br>
+     <div class="form-row" >
+     <div class="col-md-1 md-3"></div>
+     <div class="col-md-3 mb-3 ">
+      <label for="disabledTextInput">食物名稱</label>
+      <input class="form-control" type="text" placeholder="${recommend_food_name}" readonly>
+     </div>
+     <div class="col-md-2 mb-3">
+      <label for="disabledTextInput_1">卡洛里</label>
+      <input class="form-control" type="text" placeholder="${recommend_food_calorie}" readonly>
+     </div>
+     <div class="col-md-1 mb-3">
+      <label for="custom-select">份數</label>
+      <select class="custom-select" id="foodqty">
+          <option selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+      </select>
+     </div>
+     <div class="col-md-2 mb-3">
+      <label for="exampleFormControlInput1">型態</label>
+      <select class="custom-select" id="foodtype">
+          <option selected>早餐</option>
+          <option value="1">午餐</option>
+          <option value="2">晚餐</option>
+          <option value="3">點心/其他</option>
+      </select>
+     </div>
+     <div class="col-md-1 md-3">
+       <label for="exampleFormControlInput1">加進去</label>
+       <button type="submit" class="button is-success  is-light js-add" data-id="${this.dataset.id}"><i class="fas fa-plus-square"></i></button>       
+     </div>
+     <div class="col-md-1 mb-3">
+     <label for="exampleFormControlInput1">結束</label>
+     <button class="button  is-link is-light is-recommend" data-id="delete_food"><i class="far fa-trash-alt"></i></button>
+     </div>
+     </div>
+     `); 
+  })
 }
 
+// back_recommend list
+function end_recommend_search(){
+  $('.form-row').on('click','.is-recommend', function(){
+    $(this).parent().parent('.form-row').remove()
+  })
+}
