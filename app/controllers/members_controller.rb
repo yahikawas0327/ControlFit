@@ -4,8 +4,8 @@ class MembersController < ApplicationController
     @members = current_member
     @food = FoodRecord.where(member_id: current_member.id)
     @calories = []
-    @food.each do |m|
-      @calories << m['calories']
+    @food.each do |f|
+      @calories << f['calories']
     end
   end
 
