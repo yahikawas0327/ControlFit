@@ -64,10 +64,18 @@ class ExerciseRecordsController < ApplicationController
 
           # Write Daily sport sum count to Statistic database
           statistic = Statistic.where(member_id: current_member.id, created_at: (Time.now.midnight)..(Time.now))
-          if statistic.blank?
+          if (statistic[0].sportcount.blank?) && (statistic[0].sportsum.blank?)
+            if (statistic.blank?)
             Statistic.create(:sportsum => sport_totalconsume,
                              :sportcount => 1,
                              :member_id  => sport_user )
+            else
+            statistic_id    = statistic[0].id
+            statistic_update_item =Statistic.find_by(id:statistic_id)
+            statistic_update_item.update(:sportsum => sport_totalconsume,
+                                         :sportcount => 1,
+                                         :member_id  => sport_user )
+            end
           else
             statistic_sum   = statistic[0].sportsum
             statistic_count = statistic[0].sportcount
@@ -77,10 +85,11 @@ class ExerciseRecordsController < ApplicationController
             statistic_update_item =Statistic.find_by(id:statistic_id)
             statistic_update_item.update(:sportsum => update_sum,
                                          :sportcount => update_count)
+
           end
      
-         # Renodr json file 
-          @sport_records = SportRecord.where(created_at: Time.now.midnight..Time.now)
+         # Render json file 
+          @sport_records = SportRecord.where(member_id: current_member.id, created_at: (Time.now.midnight)..(Time.now))
  
         
          #回傳json 至前端
