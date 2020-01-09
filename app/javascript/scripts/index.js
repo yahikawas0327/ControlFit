@@ -251,7 +251,7 @@ function click_create_new_record_by_user(){
        }
        console.log(food_hash)
        $(this).parent().parent('.form-row').remove()
-   axios.post("http://localhost:5000/food_records", food_hash)
+   axios.post("hhttp://localhost:5000/food_records", food_hash)
         .then( response => {
           console.log('response=>',response);
             let pre_time =  moment().format('LT'); 
@@ -364,7 +364,7 @@ function saveEvent(){
     // $(`.js-edit`).filter(`[data-id="${this.dataset.id}"]`).removeAttr('disabled')
     let before_edit_sum = $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text()
     // console.log(before_edit_sum)
-    axios.patch(`http://localhost:5000/food_records/${this.dataset.id}`,editfood_hash)
+    axios.patch(`hhttp://localhost:5000/food_records/${this.dataset.id}`,editfood_hash)
          .then( response => {
               // console.log('response=>',response);
               // console.log(response.data)
