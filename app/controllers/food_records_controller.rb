@@ -123,8 +123,13 @@ class FoodRecordsController < ApplicationController
                              foodlike: true)
             render json: {foodlike: true}
         else
-            favorite.update(foodlike: false)
-            render json: {foodlike: false}
+            if favorite[0].foodlike == true
+               favorite.update(foodlike: false)
+               render json: {foodlike: false}
+            else
+               favorite.update(foodlike: true)
+               render json: {foodlike: true}
+            end
         end
     end
 

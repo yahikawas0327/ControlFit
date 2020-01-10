@@ -32,6 +32,7 @@ document.addEventListener('turbolinks:load', () => {
     recommend()
     recommendAdd()
     end_recommend_search()
+    searchLike()
     recommendLike()
     // Now time and day
     let time = moment().format('lll');
@@ -99,6 +100,7 @@ function search(){
     let searchfood_hash = {searchfood: $('#searchfood').val()}
     axios.get('http://localhost:5000/search_food.json', {params:{ search_food: $('#searchfood').val()}})
          .then( response => {
+           console.log(response.data)
           let query_data = response.data.length
           let result = ""
           for ( var i = 0; i < query_data; i++) {
@@ -110,7 +112,10 @@ function search(){
                  <td>${response.data[i].protein}</td>
                  <td>${response.data[i].fat_content}</td>
                  <td>${response.data[i].carbohydrate}</td>
-                 <td><button data-id="${response.data[i].id}" class="fas fa-plus-square js-searchadd" ></button></td>
+                 <td>
+                  <button data-id="${response.data[i].id}" class="button is-success is-small is-light is-rounded js-searchadd" ><i class="fas fa-plus-circle"></i></button>
+                  <button class="button  is-danger is-small is-light is-rounded js-search-like" data-id="${response.data[i].id}" data-s= false ><i class="far fa-heart"></i></button>
+                 </td>
             </tr>
               `
           }
@@ -193,7 +198,7 @@ function back_search(){
 function add_food_record_by_user(){
   $('#Add_food_record_by_user').on('click', function(){
     $('#query-table').hide()
-    $('#Add_food_record_type').show()
+    $('#Add_food_record_type').toggle()
     let result = ""
     let temp = result + `
     <div class="form-row" >
@@ -487,7 +492,7 @@ function recommend(){
                           <td>${response.data[i].fat_content}</td>
                           <td>${response.data[i].carbohydrate}</td>
                           <td><button data-id="${response.data[i].id}" class="button is-success is-small is-light is-rounded js-recommend-add" ><i class="fas fa-plus-circle"></i></button>
-                          <button class="button  is-danger is-small is-light is-rounded js-recommend-like" data-id="${response.data[i].id}"><i class="far fa-heart"></i></button>
+                          <button class="button  is-danger is-small is-light is-rounded js-recommend-like" data-id="${response.data[i].id}" data-s= false><i class="far fa-heart"></i></button>
                           </td>
                      </tr>
                           `}
@@ -553,10 +558,32 @@ function end_recommend_search(){
   })
 }
 
+// Add Like function with recommend list
 function recommendLike(){
   $('.form-row').on('click','.js-recommend-like',function(){
-    // $(this).children().removeClass("far")
-    // $(this).children().addClass("fas")
+    let like_id = {likeid: this.dataset.id}
+    console.log(like_id)
+    if (this.dataset.s === "false"){
+        axios.post("/search_food/favorite", like_id)
+             .then( response => {
+            $(this).children().removeClass("far")
+            $(this).children().addClass("fas")
+            this.dataset.s = "ture"
+      })    
+    }else{
+        axios.post("/search_food/favorite", like_id)
+             .then( response => {
+            $(this).children().removeClass("fas")
+            $(this).children().addClass("far")
+            this.dataset.s = "false"
+      })    
+    }
+})
+}
+
+// Add Like function with search result 
+function searchLike(){
+  $('.form-row').on('click','.js-search-like',function(){
     let like_id = {likeid: this.dataset.id}
     axios.post("/search_food/favorite", like_id)
          .then( response => {
@@ -566,8 +593,10 @@ function recommendLike(){
                $(this).children().removeClass("far")
                $(this).children().addClass("fas")
            }else{
-               alert('already exist')
+                $(this).children().removeClass("fas")
+                $(this).children().addClass("far")
            }
-         })    
-})
+         })
+  })
+
 }

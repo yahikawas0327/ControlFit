@@ -3,7 +3,6 @@
   <div class="container-fluid">
     <div class="row search">
       <div class="col-12 col-sm-12">
-        <!-- <h2 class="title">飲食點將錄</h2>  -->
           <div class="form-row">
             <div class="column is-2"></div>
             <div class="column is-6 js-type">
@@ -25,17 +24,18 @@
             <div class="column is-2"></div>
           </div>
           <div class="form-row">
-            <div class="column is-2">
+            <div class="column is-1">
             </div>
-            <div class="column is-3 add_item">
-                <p>找不到食物資料嗎 ?</p>
-            </div>
-            <div class="column is-6 add_item">
-              <button type="button" class="button is-info is-small is-light" id="Add_food_record_by_user"> <i class="fas fa-hammer"></i> :: 新增飲食紀錄 </button>
-            </div>
+            <div class="column is-8 add_item">
+                <p>找不到食物資料嗎?
+                <button type="button" class="button is-info is-small is-rounded is-light" id="Add_food_record_by_user"> <i class="fas fa-hammer"></i> 新增食物資料 </button>
+                <button class="button is-link is-danger is-small is-light is-rounded js-favorite"><i class="far fa-heart"></i> 最愛食物 </<button>
+                </p>
+                </div>
           </div>
         <div class="form-row">
-          <div class="col-md-9 md-3 " id="query-table">
+          <div class="col-md-1md-3 "></div>
+          <div class="col-md-11 md-3 " id="query-table">
             <table class="table table-hover" id="query-food">
               <thead>
                 <tr>
@@ -90,8 +90,7 @@
                     <i class="fas fa-clipboard-list"></i> 共 : <li class="count_message"> <%= @record_foods.size %></li> 筆 </br>
                     <i class="fas fa-utensils"></i> 共 : <li class="sum_message">   <%= @sum %></li> 大卡 </br>
                      今天狀態  : <i class="far fa-arrow-alt-circle-right"></i> <li class="delta_message"><%= @daily_delta %> </li>大卡 
-                    <button class="button is-link is-warning is-small is-light is-rounded js-more"><i class="fas fa-comment-dots"></i>更多資訊</button> <button class="button is-link is-success is-small is-light is-rounded js-recommend"><i class="far fa-thumbs-up"></i> 推薦食物清單</button>
-                    <button class="button is-link is-danger is-small is-light is-rounded js-favorite"><i class="far fa-heart"></i> 最愛食物 </<button> </br>
+                    <button class="button is-link is-warning is-small is-light is-rounded js-more"><i class="fas fa-comment-dots"></i>更多資訊</button> <button class="button is-link is-success is-small is-light is-rounded js-recommend"><i class="far fa-thumbs-up"></i> 推薦食物清單</button></br>
                     
                 <% else %>
                     還沒有登入喔!!!!!!!!!

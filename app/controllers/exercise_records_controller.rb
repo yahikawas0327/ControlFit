@@ -86,15 +86,6 @@ class ExerciseRecordsController < ApplicationController
               statistic_update_item.update(:sportsum => update_sum,
                                            :sportcount => update_count)
             end
-            # statistic_sum   = statistic[0].sportsum
-            # statistic_count = statistic[0].sportcount
-            # statistic_id    = statistic[0].id
-            # update_sum      = sport_totalconsume + statistic_sum
-            # update_count    = statistic_count + 1
-            # statistic_update_item =Statistic.find_by(id:statistic_id)
-            # statistic_update_item.update(:sportsum => update_sum,
-            #                              :sportcount => update_count)
-
           end
      
          # Render json file 

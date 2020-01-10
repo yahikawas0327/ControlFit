@@ -28,6 +28,7 @@ class RecordDatabasesController < ApplicationController
 
         if @search_food.present?
           @food_databases = FoodDatabase.where("name ILIKE ?", "%#{@search_food}%")
+          
           respond_to do |format|
             format.json { render json: @food_databases}
             format.html { render :search_food}
@@ -58,8 +59,8 @@ class RecordDatabasesController < ApplicationController
       
       daily_sport = params["member_id"]
       if daily_sport.present?
-        @record_sports = SportRecord.where(member_id: params[:member_id], created_at: (Time.now.midnight)..(Time.now))
-        random_food(10)
+        @record_sports = SportRecord.where(member_id: params[:member_id], created_at: (Time.now.midnight)..(Time.now))  
+          
         respond_to do |format|
           format.json { render json: @record_sports}
           format.html { render :search_sport }
