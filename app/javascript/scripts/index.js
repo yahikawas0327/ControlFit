@@ -251,7 +251,7 @@ function click_create_new_record_by_user(){
        }
        console.log(food_hash)
        $(this).parent().parent('.form-row').remove()
-   axios.post("hhttp://localhost:5000/food_records", food_hash)
+   axios.post("http://localhost:5000/food_records", food_hash)
         .then( response => {
           console.log('response=>',response);
             let pre_time =  moment().format('LT'); 
