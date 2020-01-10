@@ -1089,6 +1089,17 @@ a:hover{
 .following-image{
   margin-bottom: 20px;
 }
-.followers-image-1{
-  width: 30px;
+.following-img{
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: cover !important;
+}
+.followers-img{
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: cover !important;
+}
+.following-link{
+  // display: none !important;
+  display: inline-block !important;
 }
