@@ -1,7 +1,7 @@
 <section class="section personal-info">
   <div class="col-12 col-md-4">
     <h2 class="title text-center">健康個人檔案</h2>
-    <%= render 'shared/states' %>
+    <div ><%= render 'shared/states' %></div>
     <span><%= render 'follow_form' if signed_in? %></span>
     <table class="table table-hover table-info">
       <thead>
@@ -43,7 +43,10 @@
           labels: ["熱量","運動"],
           datasets: [{
             label: ['熱量',],
-            data: [<%= @calories.sum %>, 3333],
+            data: [
+             '<%= @calories.sum %>',
+             '<%= @sprot_calories.sum %>',
+            ],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
@@ -71,6 +74,7 @@
           }
         }
       });
-    </script>    
+    </script>
+    今日還可攝取熱量 = <%= @a %>
   </div>
 </section>

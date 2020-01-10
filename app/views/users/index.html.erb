@@ -14,7 +14,7 @@
               <%= link_to '來瞧瞧！', user_path(m) %>
               <% if current_member.following?(m) %>
                 <%= link_to relationship_path(m), remote: true ,method: :delete, data: {id: m.id}, class: 'follow-red' do%>
-                <i class="far fa-heart"></i>
+                <i class="fas fa-heart"></i>
                 <% end %>
               <% else %>
                 <%= link_to relationships_path(followed_id: m.id), remote: true ,method: :post, 'pos-id': m.id, class: 'follow-gray' do%>
