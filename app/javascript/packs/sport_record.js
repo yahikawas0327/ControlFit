@@ -214,7 +214,10 @@ document.addEventListener('turbolinks:load', () => {
       sportintention:"",
       moreshow:false,
       introduce:true,
-      member_status:false
+      member_status:false,
+      bmishow:false,
+      reeshow:false,
+      bmrshow:false
     },
     methods: {
       lookfor: function(){
@@ -248,6 +251,15 @@ document.addEventListener('turbolinks:load', () => {
       more: function(){
          this.moreshow = !this.moreshow;
          this.introduce= !this.introduce;
+      },
+      bmistatus: function(){
+         this.bmishow= !this.bmishow;
+      },
+      reestatus: function(){
+        this.reeshow= !this.reeshow;
+      },
+      bmrstatus: function(){
+        this.bmrshow= !this.bmrshow;
       },
       update: function(){
         let update_physical_data = { update_height:  this.Height,

@@ -7,15 +7,54 @@
           <p>第一次使用須知:</br>
              使用者可以輸入年齡/身高/性別/體重</br> 
              按下檢測可獲得:</br>
-             BMI值狀態 <i class="fas fa-info-circle status"></i></br>
-             每日基礎代謝率 <i class="fas fa-info-circle status"></i></br>
-             每日所需最少消耗熱量 <i class="fas fa-info-circle status"></i></br>
-             更藉由飲食及運動習慣獲得精確每日熱量預估 <i class="fas fa-info-circle status"></i></br>
           </p>
-          </br>
-          <p>
-             並可透過更新個人資料將最新的身體資訊進行更新
+          <p>BMI值狀態 <i class="fas fa-info-circle status" @click="bmistatus"></i></p>
+            <table v-if="bmishow"  class="table table-borderless">
+              <tbody>
+                <tr>
+                  <td> 體重過輕 : BMI＜18.5</td>
+                </tr>
+                <tr>
+                  <td> 正常範圍:18.5≦BMI＜24</td>
+                </tr>
+                <tr>
+                  <td> 過重：24≦BMI＜27 </td>
+                </tr>
+                <tr>
+                  <td> 輕度肥胖：27≦BMI＜30</td>
+                </tr>
+                <tr>
+                  <td> 中度肥胖：30≦BMI＜35 </td>
+                </tr>
+                <tr>
+                  <td>  重度肥胖：BMI≧35</td>
+                </tr>
+              </tbody>
+            </table>
+          <p>每日基礎代謝率 <i class="fas fa-info-circle status" @click="reestatus" ></i></p>
+          <table v-if="reeshow"   class="table table-borderless">
+            <tbody>
+              <tr>
+                <td> 靜態能量消耗值</br>
+                     (Resting Energy Expenditure，簡稱REE)：
+                     一般人所需的最小熱能需求量。
+                </td>
+              </tr>
+            </tbody>
+          </table>
           </p>
+          <p>每日所需最少消耗熱量 <i class="fas fa-info-circle status" @click="bmrstatus"></i></p>
+          <table v-if="bmrshow"   class="table table-borderless">
+            <tbody>
+              <tr>
+                <td> 基礎代謝率(BMR)</br>
+                     (在安靜狀態下(通常為靜臥狀態)消耗的最低熱量，人的其他活動都建立在這個基礎上
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>更藉由飲食及運動習慣獲得精確每日熱量預估</p>
+          <p>並可透過更新個人資料將最新的身體資訊進行更新</p>
         </div>
       </div>
       <div class="item basic">
