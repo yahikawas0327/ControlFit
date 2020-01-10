@@ -25,7 +25,10 @@ Rails.application.routes.draw do
   resources :exercise_records
   resources :food_records
   resources :demands
-  
+
+
+  post '/search_sport/favorite' => 'exercise_records#favorite', :as => 'favorite_exercise_record' 
+  post '/search_food/favorite' => 'food_records#favorite', :as => 'favorite_food_record' 
   get '/search_sport/statistics' => 'exercise_records#statistics', :as => 'statistics_exercise_record'
   get '/search_food/statistics' => 'food_records#statistics', :as => 'statistics_food_record'
   get '/search_food' => 'record_databases#search_food', :as => 'search_food_record_database'

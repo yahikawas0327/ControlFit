@@ -255,7 +255,7 @@ function click_create_new_record_by_user(){
        }
        console.log(food_hash)
        $(this).parent().parent('.form-row').remove()
-   axios.post("hhttp://localhost:5000/food_records", food_hash)
+   axios.post("http://localhost:5000/food_records", food_hash)
         .then( response => {
           console.log('response=>',response);
             let pre_time =  moment().format('LT'); 
@@ -500,11 +500,8 @@ function recommend(){
 function recommendAdd(){
   $('.form-row').on('click','.js-recommend-add',function(){
     let recommend_food_id = this.dataset.id
-    // console.log(recommend_food_id)
     let recommend_food_name = $(this).parent().siblings('.recommend_name:eq(0)').text()
     let recommend_food_calorie = $(this).parent().siblings('.recommend_calories:eq(0)').text()
-    // console.log(recommend_food_name)
-    // console.log(recommend_food_calorie)
     $('#Add_food_record').append( `
      </br>
      <div class="form-row" >
@@ -558,7 +555,19 @@ function end_recommend_search(){
 
 function recommendLike(){
   $('.form-row').on('click','.js-recommend-like',function(){
-    $(this).children().removeClass("far")
-    $(this).children().addClass("fas")
+    // $(this).children().removeClass("far")
+    // $(this).children().addClass("fas")
+    let like_id = {likeid: this.dataset.id}
+    axios.post("/search_food/favorite", like_id)
+         .then( response => {
+           let favorite_state =response.data.foodlike
+           if ( favorite_state === true){
+               console.log(favorite_state)
+               $(this).children().removeClass("far")
+               $(this).children().addClass("fas")
+           }else{
+               alert('already exist')
+           }
+         })    
 })
 }

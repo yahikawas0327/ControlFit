@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_08_153153) do
+ActiveRecord::Schema.define(version: 2020_01_10_025942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(version: 2020_01_08_153153) do
     t.string "area"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "member_id", null: false
+    t.boolean "foodlike", default: false
+    t.integer "food_id"
+    t.boolean "sportlike", default: false
+    t.integer "sport_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_favorites_on_member_id"
   end
 
   create_table "food_databases", force: :cascade do |t|
@@ -147,6 +158,7 @@ ActiveRecord::Schema.define(version: 2020_01_08_153153) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "favorites", "members"
   add_foreign_key "membersecrets", "members"
   add_foreign_key "statistics", "members"
 end

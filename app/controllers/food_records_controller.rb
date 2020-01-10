@@ -111,4 +111,19 @@ class FoodRecordsController < ApplicationController
         end  
     end
 
+    def favorite
+        like_id = (params[:likeid]).to_i
+        favorite = Favorite.where(member_id: current_member.id, food_id: like_id)
+
+        if favorite.blank?
+            Favorite.create( member_id: current_member.id,
+                             food_id: like_id,
+                             foodlike: true)
+            render json: {foodlike: true}
+        else
+            favorite.update(foodlike: false)
+            render json: {foodlike: false}
+        end
+    end
+
 end
