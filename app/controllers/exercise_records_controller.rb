@@ -64,26 +64,36 @@ class ExerciseRecordsController < ApplicationController
 
           # Write Daily sport sum count to Statistic database
           statistic = Statistic.where(member_id: current_member.id, created_at: (Time.now.midnight)..(Time.now))
-          if (statistic[0].sportcount.blank?) && (statistic[0].sportsum.blank?)
-            if (statistic.blank?)
+          if statistic.blank?
             Statistic.create(:sportsum => sport_totalconsume,
                              :sportcount => 1,
-                             :member_id  => sport_user )
-            else
-            statistic_id    = statistic[0].id
-            statistic_update_item =Statistic.find_by(id:statistic_id)
-            statistic_update_item.update(:sportsum => sport_totalconsume,
-                                         :sportcount => 1,)
-            end
+                             :foodsum  => 0,
+                             :foodcount => 0,
+                             :member_id  => sport_user)
           else
-            statistic_sum   = statistic[0].sportsum
-            statistic_count = statistic[0].sportcount
-            statistic_id    = statistic[0].id
-            update_sum      = sport_totalconsume + statistic_sum
-            update_count    = statistic_count + 1
-            statistic_update_item =Statistic.find_by(id:statistic_id)
-            statistic_update_item.update(:sportsum => update_sum,
-                                         :sportcount => update_count)
+            if (statistic[0].sportcount == 0 ) && (statistic[0].sportsum == 0 )
+              statistic_id    = statistic[0].id
+              statistic_update_item =Statistic.find_by(id:statistic_id)
+              statistic_update_item.update(:sportsum => sport_totalconsume,
+                                            :sportcount => 1,)
+            else 
+              statistic_sum   = statistic[0].sportsum
+              statistic_count = statistic[0].sportcount
+              statistic_id    = statistic[0].id
+              update_sum      = sport_totalconsume + statistic_sum
+              update_count    = statistic_count + 1
+              statistic_update_item =Statistic.find_by(id:statistic_id)
+              statistic_update_item.update(:sportsum => update_sum,
+                                           :sportcount => update_count)
+            end
+            # statistic_sum   = statistic[0].sportsum
+            # statistic_count = statistic[0].sportcount
+            # statistic_id    = statistic[0].id
+            # update_sum      = sport_totalconsume + statistic_sum
+            # update_count    = statistic_count + 1
+            # statistic_update_item =Statistic.find_by(id:statistic_id)
+            # statistic_update_item.update(:sportsum => update_sum,
+            #                              :sportcount => update_count)
 
           end
      

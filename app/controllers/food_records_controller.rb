@@ -26,26 +26,28 @@ class FoodRecordsController < ApplicationController
         
         # Write Daily sport sum count to Statistic database
         statistic = Statistic.where(member_id: current_member.id, created_at: (Time.now.midnight)..(Time.now))
-        if (statistic[0].foodcount.blank?) && (statistic[0].foodsum.blank?)
-            if (statistic.blank?)
+        if statistic.blank?
             Statistic.create(:foodsum => total_calories,
                              :foodcount => 1,
+                             :sportsum => 0,
+                             :sportcount => 0,
                              :member_id  => current_member.id )
-            else
-            statistic_id    = statistic[0].id
-            statistic_update_item =Statistic.find_by(id:statistic_id)
-            statistic_update_item.update(:foodsum => total_calories,
-                                         :foodcount => 1,)
-            end
         else
-            statistic_sum   = statistic[0].foodsum
-            statistic_count = statistic[0].foodcount
-            statistic_id    = statistic[0].id
-            update_sum      = total_calories + (statistic_sum).to_i
-            update_count    = (statistic_count).to_i + 1
-            statistic_update_item =Statistic.find_by(id:statistic_id)
-            statistic_update_item.update(:foodsum => update_sum,
-                                         :foodcount => update_count)
+            if (statistic[0].foodcount == 0) && (statistic[0].foodsum == 0)
+                statistic_id    = statistic[0].id
+                statistic_update_item =Statistic.find_by(id:statistic_id)
+                statistic_update_item.update(:foodsum => total_calories,
+                                             :foodcount => 1,)
+            else
+                statistic_sum   = statistic[0].foodsum
+                statistic_count = statistic[0].foodcount
+                statistic_id    = statistic[0].id
+                update_sum      = total_calories + (statistic_sum).to_i
+                update_count    = (statistic_count).to_i + 1
+                statistic_update_item =Statistic.find_by(id:statistic_id)
+                statistic_update_item.update(:foodsum => update_sum,
+                                                :foodcount => update_count)
+            end
         end                  
         
 
