@@ -1,3 +1,4 @@
+
 // @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -1077,37 +1078,6 @@ a:hover{
   float: right;
   color: red;
 }
-
-// Henry add 2020/01/07 
-.count_message {
-
-  display: inline-block;
-
-}
-
-.sum_message {
-  display: inline-block;
-
-}
-
-.delta_message{
-  display: inline-block;
-
-}
-.totalcount{
-  display: inline-block;
-
-}
-.totalsum{
-  display: inline-block;
-
-}
-.tdee{
-  display: inline-block;
-}
-.has-addons{
-  display: inline-block;
-}
 .modal{
   z-index: 2000 !important;
 }
@@ -1120,7 +1090,30 @@ a:hover{
 .following-image{
   margin-bottom: 20px;
 }
-.followers-image-1{
-  width: 30px;
+.following-img{
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: cover !important;
 }
-
+.followers-img{
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: cover !important;
+}
+.following-link{
+  // display: none !important;
+  display: inline-block !important;
+}
+.follow-states{
+  width: 300px !important;
+  justify-content: space-between;
+}
+.show-img{
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+.show-card{
+  height: 200px;
+  width:300px;
+}

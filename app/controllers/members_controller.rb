@@ -8,6 +8,20 @@ class MembersController < ApplicationController
     @food.each do |f|
       @calories << f['calories']
     end
+
+    @sport = SportRecord.where(member_id: current_member.id)
+    @sprot_calories = []
+    @sport.each do |s|
+      @sprot_calories << s['totalconsum']
+    end
+
+    @membersecret = Membersecret.where(member_id: current_member.id)
+    @bmr = []
+    @membersecret.each do |m|
+      @bmr << m['bmr']
+    end
+    @a = @bmr.sum - @calories.sum
+
   end
 
   def following

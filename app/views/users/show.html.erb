@@ -1,88 +1,102 @@
-<section class="section others">
-  <div class="container-fluid">
-    <div class="row col-12 col-md-12">
-      <div class="col image">
-        <div style="width:400px;">
-          <canvas id="heyChart"></canvas>
+<container>
+  <div class="row mt-3 mb-5">
+    <div class="col-12 col-md-12 m-auto d-flex justify-content-center">
+      <%= image_tag @member.cover_image.variant(resize_to_limit: [300, 300]), class:'rounded-circle show-img' if @member.cover_image.attached? %>
+      <div>
+        <div class="mb-3 m-auto show-card" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-12">
+              <div class="card-body">
+                <div class="d-flex justify-content-between mb-5" style="width: 200px;">
+                  <h5 class="h5"><%= @member.name %></h5>
+                  <%= render 'members/follow_form' %>
+                </div>
+                <span><%= render 'shared/states' %></span>
+                <p class="card-text"></p>
+                <p class="card-text"><small class="text-muted"></small></p>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        <script>
-          var ctx = document.getElementById("heyChart");
-          var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: ["熱量"],
-              datasets: [{
-                label: ['熱量'],
-                data: [<%= @calories.sum %>],
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)'
-                ],
-                borderColor: [
-                  'rgba(255,99,132,1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)'
-                ],
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                yAxes: [{
-                  ticks: {
-                    beginAtZero:true,
-                  }
-                }]
-              }
-            }
-          });
-        </script> 
-      </div>
-      <div class="col other">
-        <div class="col number-follwers d-flex align-items-center">
-          <span><%= render 'shared/states' %></span>
-          <span><%= render 'members/follow_form' %></span>
-      </div>
-        <form>
-          <%= image_tag @member.cover_image.variant(resize_to_limit: [300, 300]) if @member.cover_image.attached? %>
-          <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">姓名</label>
-            <div class="col-sm-10">
-              <%= @member.name %>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">性別</label>
-            <div class="col-sm-10">
-              <%= @member.gender %>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">年齡</label>
-            <div class="col-sm-10">
-              <%= @member.age %>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">身高</label>
-            <div class="col-sm-10">
-              <%= @member.cm %>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">體重</label>
-            <div class="col-sm-10">
-              <%= @member.kg %>
-            </div>
-          </div>
-        </form>
       </div>
     </div>
   </div>
-</section>
+</container>
+
+<container>
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <div style="width:600px;">
+        <canvas id="heyChart"></canvas>
+      </div>
+      <script>
+        var ctx = document.getElementById("heyChart");
+        var myChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ["熱量", "運動"],
+            datasets: [{
+              label: ['消耗'],
+              data: [
+                '<%= @calories.sum %>',
+                '<%= @sprot_calories.sum %>',
+            ],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+              ],
+              borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero:true,
+                }
+              }]
+            }
+          }
+        });
+      </script> 
+    </div> 
+    <div class="col-12 col-md-6">
+      <% @foods.each do |f| %>
+        <li>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col-3"></th>
+                <th scope="col">名稱</th>
+                <th scope="col">品項</th>
+                <th scope="col">時間</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td><%= f.name %></td>
+                <td><%= f.eat_type %></td>
+                <td><%= f.created_at %></td>
+              </tr>
+          </table>
+        </li>
+      <% end %>
+    </div>
+  </div>
+</container>
+
+
+
+
+
