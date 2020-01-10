@@ -8,10 +8,13 @@ class UsersController < ApplicationController
     @following = Member.find(params[:id]).following
     @followers = Member.find(params[:id]).followers
 
-    @member = Member.all.find(params[:id])
-    @food = FoodRecord.where(member_id: @member.id)
+    @member = Member.find(params[:id])
+    start_time = Time.zone.now.beginning_of_day
+    end_time = Time.zone.now.end_of_day
+    @foods = FoodRecord.where(member_id: @member.id)
+    # .where('created_at BETWEEN ? AND ?', start_time, end_time)
     @calories = []
-    @food.each do |f|
+    @foods.each do |f|
       @calories << f['calories']
     end
 

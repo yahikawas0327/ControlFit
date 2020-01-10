@@ -19,7 +19,7 @@
               <li>
                 <div class="following-image">
                   <% if f.cover_image.attached? %>
-                    <%= image_tag f.cover_image.variant(resize_to_limit: [50, 50]), class: 'following-img' %>
+                    <%= image_tag f.cover_image.variant(resize_to_limit: [50, 50]), class: 'following-img rounded-circle' %>
                   <% else %>
                     <img src="https://picsum.photos/50/50/?random=12">
                   <% end %>
@@ -51,7 +51,7 @@
               <li>
                 <div class="followers-image">
                   <% if f.cover_image.attached? %>
-                    <%= image_tag f.cover_image.variant(resize_to_limit: [50, 50]), class:'followers-img' %>
+                    <%= image_tag f.cover_image.variant(resize_to_limit: [50, 50]), class:'followers-img rounded-circle' %>
                   <% else %>
                     <img src="https://picsum.photos/50/50/?random=12">
                   <% end %>
