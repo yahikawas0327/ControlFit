@@ -1,7 +1,7 @@
 <section class="section self-check" id="physical">
   <div class="container-fluid">
     <div class="row">
-      <div class="item introduce">
+      <div v-show="introduce" class="item introduce">
         <h1 class="physical_topic"> ControlFit - 認識自己 </h1>
         <div class="col">
           <p>第一次使用須知:</br>
@@ -82,11 +82,13 @@
               <td>{{BMR}}</td>
             </tr>
           </tbody>
+          <tfoot>
+            <!-- <div class="col more"> -->
+              <th class="more-text" v-if = "BMR !== ''"> 測量更精確的身體密碼 </th>
+              <td><button v-if = "BMR !== ''" class="button is-success is-small  is-light is-rounded" @click="more">MORE</button></td>
+            <!-- </div> -->
+          </tfoot>
         </table>
-        <div class="col more">
-          <span class="more-text" v-if = "BMR !== ''"> 測量更精確的身體密碼 </span>
-          <button v-if = "BMR !== ''" class="button is-success  is-light is-rounded" @click="more">MORE</button>
-        </div>
       </div>
       <div class="item deeper-check" v-show="showResult && moreshow">
         <div v-show="moreshow" class="col">
@@ -110,7 +112,8 @@
           <span>運動取向: {{exercise_choice }} </span>
         </div>
         <div v-show="moreshow" class="col">
-          <label for="">飲食取向!</label>
+
+          <label class="title" for="">飲食取向 </label>
           <br>
           <input type="radio" id="one" value="維持體重" v-model="eatintention">
           <label for="one">維持體重</label>
@@ -124,12 +127,12 @@
           <span>飲食取向: {{ food_choice  }} </span>
         </div>
         <div v-show="moreshow" class="col">
-          <label  v-if = "exercise_choice === '' &&  food_choice !== '' " for=""> 根據飲食習慣更精確的熱量: <p>{{TDEE}}</p> 大卡</label>
-          <button v-if= "exercise_choice === '' &&  food_choice !== '' " class="button is-danger is-small is-rounded is-light" @click="add_tdee"><i class="fas fa-thumbtack"></i></button>
-          <label  v-if = "exercise_choice !== '' &&  food_choice === '' " for=""> 根據運動習慣更精確的熱量: <p>{{TDEE}}</p> 大卡</label>
-          <button v-if= "exercise_choice !== '' &&  food_choice === '' " class="button is-danger is-small is-rounded is-light" @click="add_tdee"><i class="fas fa-thumbtack"></i></button>
-          <label  v-if = "exercise_choice !== '' &&  food_choice !== '' " for=""> 根據運動及飲食習慣更精確熱量值:<p>{{TDEE}}</p>大卡</label>
-          <button v-if= "exercise_choice !== '' &&  food_choice !== '' " class="button is-danger is-small is-rounded is-light" @click="add_tdee"><i class="fas fa-thumbtack"></i></button>
+          <label  v-if = "exercise_choice === '' &&  food_choice !== '' " for=""> 根據飲食習慣更精確的熱量: </br><p>{{TDEE}}</p> 大卡</label>
+          <button v-if= "exercise_choice === '' &&  food_choice !== '' " class="button is-danger is-small is-rounded is-light" @click="add_tdee"><i class="fas fa-save"></i></button>
+          <label  v-if = "exercise_choice !== '' &&  food_choice === '' " for=""> 根據運動習慣更精確的熱量: </br> <p>{{TDEE}}</p> 大卡</label>
+          <button v-if= "exercise_choice !== '' &&  food_choice === '' " class="button is-danger is-small is-rounded is-light" @click="add_tdee"><i class="fas fa-save"></i></button>
+          <label  v-if = "exercise_choice !== '' &&  food_choice !== '' " for=""> 根據運動及飲食習慣更精確熱量值:  </br> <p>{{TDEE}}</p>大卡</label>
+          <button v-if= "exercise_choice !== '' &&  food_choice !== '' " class="button is-danger is-small is-rounded is-light" @click="add_tdee"><i v-if= "exercise_choice !== '' &&  food_choice !== '' " class="fas fa-save" @click="add_tdee"></i></button>
         </div>
       </div>
     </div> 

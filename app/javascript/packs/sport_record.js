@@ -213,6 +213,7 @@ document.addEventListener('turbolinks:load', () => {
       eatintention:"",
       sportintention:"",
       moreshow:false,
+      introduce:true,
       member_status:false
     },
     methods: {
@@ -245,7 +246,8 @@ document.addEventListener('turbolinks:load', () => {
         }
       },
       more: function(){
-         this.moreshow = !this.moreshow
+         this.moreshow = !this.moreshow;
+         this.introduce= !this.introduce;
       },
       update: function(){
         let update_physical_data = { update_height:  this.Height,
@@ -305,7 +307,6 @@ document.addEventListener('turbolinks:load', () => {
             } else {
             }
             return this.eatintention
-
       },
       showResult() {
         return (this.BMI && this.BMI_range && this.Ree && this.BMR)
