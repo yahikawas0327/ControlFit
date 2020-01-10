@@ -1103,3 +1103,16 @@ a:hover{
   // display: none !important;
   display: inline-block !important;
 }
+.follow-states{
+  width: 300px !important;
+  justify-content: space-between;
+}
+.show-img{
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+.show-card{
+  height: 200px;
+  width:300px;
+}
