@@ -14,6 +14,12 @@ class UsersController < ApplicationController
     @food.each do |f|
       @calories << f['calories']
     end
+
+    @sport = SportRecord.where(member_id: @member.id)
+    @sprot_calories = []
+    @sport.each do |s|
+      @sprot_calories << s['totalconsum']
+    end
   end
 
   def new
