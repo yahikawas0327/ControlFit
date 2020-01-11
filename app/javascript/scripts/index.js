@@ -201,9 +201,8 @@ function add_food_record_by_user(){
     $('#Add_food_record_type').toggle()
     let result = ""
     let temp = result + `
-    <div class="form-row" >
-    <div class="col-md-1 mb-3">
-    </div>
+    <div class="form-row " >
+    <div class="col-md-1"></div>
     <div class="col-md-3 mb-3 ">
       <label for="exampleFormControlInput1">食物名稱</label>
       <input type="text" class="form-control" id="foodname"  placeholder="食物名稱">
@@ -232,8 +231,8 @@ function add_food_record_by_user(){
     </select>
     </div>
     <div class="col-md-1 mb-3">
-    <label for="exampleFormControlInput1">加進去</label>
-    <button class="button is-success is-small is-light is-add" data-id="Add_food_data_by_user"><i class="fas fa-plus-square"></i></button>
+    <label for="exampleFormControlInput1">加入</label>
+    <button class="button is-success is-light is-add" data-id="Add_food_data_by_user"><i class="fas fa-plus-square"></i></button>
     </div>
     </div>
   ` 
