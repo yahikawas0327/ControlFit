@@ -1,4 +1,3 @@
-
 // @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -849,35 +848,7 @@ a:hover{
         color: #404040;
       }
     }
-  }
-  .item.introduce {
-    background-color:#F0F0F0;
-    height: 100%;
-    border: 1px solid #F0F0F0;
-    border-radius: 5px;
-    .physical_topic{
-      margin-top: 10px;
-      text-align: center;
-      color:#359382;
-      font-size: 30px;
-    }
-    .col{
-    width: 380px;
-    padding: 10px; 
-    // height: 300px;
-    background-color:#F0F9F1;
-    border: 1px solid #F0F0F0;
-    border-radius:10px;
-    margin: auto;
-    margin-top: 10px;    
-    }
-    .status{
-      margin-left: 2px;
-      margin-right: 2px;
-      color: mediumturquoise;
-    }
-
-  }
+  }  
   .item.basic {
     background-color:#F0F0F0;
     height: 100%;
@@ -1131,6 +1102,7 @@ a:hover{
 .following-link{
   // display: none !important;
   display: inline-block !important;
+  color: #a9a9a9;
 }
 .follow-states{
   width: 300px !important;
@@ -1145,7 +1117,34 @@ a:hover{
   height: 200px;
   width:300px;
 }
+.item.introduce {
+  background-color:#F0F0F0;
+  height: 100%;
+  border: 1px solid #F0F0F0;
+  border-radius: 5px;
+  .physical_topic{
+    margin-top: 10px;
+    text-align: center;
+    color:#359382;
+    font-size: 30px;
+  }
+  .col{
+  width: 380px;
+  padding: 10px; 
+  // height: 300px;
+  background-color:#F0F9F1;
+  border: 1px solid #F0F0F0;
+  border-radius:10px;
+  margin: auto;
+  margin-top: 10px;    
+  }
+  .status{
+    margin-left: 2px;
+    margin-right: 2px;
+    color: mediumturquoise;
+  }
 
+}
 // Henry add 0111
 
 .food_create{

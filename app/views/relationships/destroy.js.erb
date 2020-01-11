@@ -5,3 +5,5 @@ btn.replaceWith('<%= j(link_to(relationships_path(followed_id: @member.id),
   'pos-id': @member.id,
   class: 'follow-gray'
 ) { ('<i class="far fa-heart"></i>').html_safe }) %>')
+
+<!-- btn.replaceWith('<a pos-id=\"3\" class=\"follow-gray\" data-remote=\"true\" rel=\"nofollow\" data-method=\"post\" href=\"/relationships?followed_id=3\"><i class=\"far fa-heart\"><\/i><\/a>') -->

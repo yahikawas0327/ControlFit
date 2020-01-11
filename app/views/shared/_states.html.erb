@@ -21,7 +21,7 @@
                   <% if f.cover_image.attached? %>
                     <%= image_tag f.cover_image.variant(resize_to_limit: [50, 50]), class: 'following-img rounded-circle' %>
                   <% else %>
-                    <img src="https://picsum.photos/50/50/?random=12">
+                    <img src="https://picsum.photos/50/50/?random=12", class="rounded-circle">
                   <% end %>
                   <%= link_to f.name, user_path(f), class:'following-link' %>
                 </div c>
@@ -53,9 +53,9 @@
                   <% if f.cover_image.attached? %>
                     <%= image_tag f.cover_image.variant(resize_to_limit: [50, 50]), class:'followers-img rounded-circle' %>
                   <% else %>
-                    <img src="https://picsum.photos/50/50/?random=12">
+                    <img src="https://picsum.photos/50/50/?random=12", class="rounded-circle">
                   <% end %>
-                  <%= link_to f.name, user_path(f), class:'followers-link' %>
+                  <%= link_to f.name, user_path(f), class:'following-link' %>
                 </div>
               </li>
             <% end %>
