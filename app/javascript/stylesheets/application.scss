@@ -89,7 +89,9 @@ a:hover{
       align-items: center;
       justify-content: center;
       margin-left: 37px;
+      padding-top: 8px;
       .nav-item {
+        padding: 0 6px;
         a {
           display: flex;
           flex-direction: row;
@@ -106,10 +108,6 @@ a:hover{
           span {
             font-size: 17px;
           }
-        }
-        a.food {
-          width: 70px;
-          padding-left: 20px;
         }
         a + a:after {
           content: '';
@@ -382,22 +380,32 @@ a:hover{
   background-color: #fafafa;
   padding: 50px 0 50px;
   .main-service {
-    margin-bottom: 40px;
-  }
-  .subtitle-about {
-    font-size: 22px;
-    margin: 0 0 10px;
-    letter-spacing: 1px;
+    .subtitle {
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: #33ABE6;
+    }
+    .subtitle-about {
+      font-size: 24px;
+      margin: 0 0 10px;
+      letter-spacing: 1px;
+    }
+    .description {
+      margin-bottom: 50px;
+      font-size: 20px;
+    }
   }
   .col-12.service-block{
     margin-bottom: 40px;
-    .icon-caption h2{
+    .icon-caption h2 a{
       font-size: 16px;
       color: #404040;
       line-height: 32px;
-      &:hover{
-        color: #33ABE6;
-        transition: all .6s ease-in-out;
+    }
+    h2:hover{
+      a {
+      color: #33ABE6;
+      transition: all .6s ease-in-out;
       }
     }
     .icon{
@@ -412,6 +420,7 @@ a:hover{
   }
   .service-text{
     margin: 15px 0 0;
+    font-size: 14px;
   }
   .clear-fix{
     clear: both;
@@ -423,17 +432,17 @@ a:hover{
     .subtitle {
       color: #33ABE6;
       margin-bottom: 8px;
-      font-size: 18px;
+      font-size: 14px;
     }
     .subtitle-about {
       color: #404040;
-      font-size: 30px;
+      font-size: 24px;
     }
     .description {
       padding: 15px 0 30px;
       margin: 0 0 12px 0;
       color: #606060;
-      font-size: 26px;
+      font-size: 20px;
     }  
   }
   .people {
