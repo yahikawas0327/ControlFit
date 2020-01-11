@@ -144,7 +144,6 @@ function search_add(){
 
     $('#query-table').hide()
      $('#Add_food_record').append( `
-     </br>
      <div class="form-row" >
      <div class="col-md-1 md-3"></div>
      <div class="col-md-3 mb-3 ">
@@ -175,11 +174,11 @@ function search_add(){
       </select>
      </div>
      <div class="col-md-1 md-3">
-       <label for="exampleFormControlInput1">加進去</label>
+       <label for="exampleFormControlInput1">加入</label>
        <button type="submit" class="button is-success  is-light js-add" data-id="${this.dataset.id}"><i class="fas fa-plus-square"></i></button>       
      </div>
      <div class="col-md-1 mb-3">
-     <label for="exampleFormControlInput1">回搜尋</label>
+     <label for="exampleFormControlInput1">Back</label>
      <button class="button  is-link is-light is-return" data-id="return_food"><i class="fas fa-undo-alt"></i></button>
      </div>
      </div>
@@ -201,8 +200,8 @@ function add_food_record_by_user(){
     $('#Add_food_record_type').toggle()
     let result = ""
     let temp = result + `
-    <div class="form-row " >
-    <div class="col-md-1"></div>
+    <div class="form-row ">
+    <div class="col-md-1 mb-3 "></div> 
     <div class="col-md-3 mb-3 ">
       <label for="exampleFormControlInput1">食物名稱</label>
       <input type="text" class="form-control" id="foodname"  placeholder="食物名稱">
@@ -232,8 +231,9 @@ function add_food_record_by_user(){
     </div>
     <div class="col-md-1 mb-3">
     <label for="exampleFormControlInput1">加入</label>
-    <button class="button is-success is-light is-add" data-id="Add_food_data_by_user"><i class="fas fa-plus-square"></i></button>
+    <button class="button is-success is-light is-add" data-id="Add_food_data_by_user"><i class="fas fa-plus-circle"></i></button>
     </div>
+    <div class="col-md-1 mb-3 "></div> 
     </div>
   ` 
   $('#Add_food_record_type').html(temp)
@@ -506,6 +506,7 @@ function recommendAdd(){
     let recommend_food_id = this.dataset.id
     let recommend_food_name = $(this).parent().siblings('.recommend_name:eq(0)').text()
     let recommend_food_calorie = $(this).parent().siblings('.recommend_calories:eq(0)').text()
+    $(this).attr('disabled', 'disabled')
     $('#Add_food_record').append( `
      </br>
      <div class="form-row" >
@@ -538,7 +539,7 @@ function recommendAdd(){
       </select>
      </div>
      <div class="col-md-1 md-3">
-       <label for="exampleFormControlInput1">加進去</label>
+       <label for="exampleFormControlInput1">加入</label>
        <button type="submit" class="button is-success  is-light js-add" data-id="${this.dataset.id}"><i class="fas fa-plus-square"></i></button>       
      </div>
      <div class="col-md-1 mb-3">
@@ -553,6 +554,7 @@ function recommendAdd(){
 // back_recommend list
 function end_recommend_search(){
   $('.form-row').on('click','.is-recommend', function(){
+    $(`.js-recommend-add[data-id="${this.dataset.id}"]`).removeAttr('disabled')
     $(this).parent().parent('.form-row').remove()
   })
 }
