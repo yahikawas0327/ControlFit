@@ -105,24 +105,33 @@
                       <td></td>
                     </tr>
                     <% end %>
+                  </tbody>
+                  <tfoot>
                     <tr>
                       <th scope="row">每日所需的熱量:</th>
                       <td><li class="tdee"><%= @current_user_secret.tdee %> </li>大卡</td>
+                      <td></td>
+                    </tr>
+                  </tfoot>
+                </table>
+                <table class="table user-food-info">
+                  <thead>
+                    <th colspan="1" scope="col"> <i class="fas fa-clipboard-list"></i> 本日記錄 </th>
+                    <th colspan="1" scope="col"> 共 : <li class="count_message"> <%= @record_foods.size %></li> 筆 </th>
+                    <th colspan="1" scope="col"> 共 : <li class="sum_message">   <%= @sum %></li> 大卡 </th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <!-- <td>今天狀態  : <li class="delta_message"><%= @daily_delta %> </li>大卡 </td> -->
+                      <td><button class="button is-link is-warning is-small is-light is-rounded js-more"><i class="fas fa-comment-dots"></i>更多資訊</button></td>
+                      <td> <button class="button is-link is-success is-small is-light is-rounded js-recommend"><i class="far fa-thumbs-up"></i> 推薦食物清單</button></td>
                     </tr>
                   </tbody>
                 </table>
                 <% else %>
                 還沒有登入喔!!!!!!!!!
-                <% end %>   
-                <% if current_member.present? %>
-                    <i class="fas fa-clipboard-list"></i> 共 : <li class="count_message"> <%= @record_foods.size %></li> 筆 </br>
-                    <i class="fas fa-utensils"></i> 共 : <li class="sum_message">   <%= @sum %></li> 大卡 </br>
-                     今天狀態  : <i class="far fa-arrow-alt-circle-right"></i> <li class="delta_message"><%= @daily_delta %> </li>大卡 
-                    <button class="button is-link is-warning is-small is-light is-rounded js-more"><i class="fas fa-comment-dots"></i>更多資訊</button> <button class="button is-link is-success is-small is-light is-rounded js-recommend"><i class="far fa-thumbs-up"></i> 推薦食物清單</button></br>
-                    
-                <% else %>
-                    還沒有登入喔!!!!!!!!!
-                <% end %>    
+                <% end %>     
               </div>
             </div>
           </div>

@@ -470,14 +470,14 @@ function query_add(){
 
 // more funtion 
 function more(){
-  $('.message-body').on('click','.js-more',function(evt){
+  $('.userfoodrecord').on('click','.js-more',function(evt){
     $('#daliy-food').toggle()
   }) 
 }
 
 // recommend function
 function recommend(){
-  $('.message-body').on('click','.js-recommend',function(evt){
+  $('.userfoodrecord').on('click','.js-recommend',function(evt){
     $('#recommend-food').toggle()
     axios.get('http://localhost:5000/search_food/random.json')
          .then( response => {
