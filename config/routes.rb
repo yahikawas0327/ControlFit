@@ -34,5 +34,6 @@ Rails.application.routes.draw do
   get '/search_food' => 'record_databases#search_food', :as => 'search_food_record_database'
   get '/search_sport' => 'record_databases#search_sport', :as => 'search_sport_record_database'
   get '/search_food/random' => 'food_records#random', :as => 'random_food_record'
+  get '/search_food/list' => 'food_records#list', :as => 'list_food_record'
 end
 

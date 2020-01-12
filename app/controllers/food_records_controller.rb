@@ -105,6 +105,11 @@ class FoodRecordsController < ApplicationController
     def statistics
     end
 
+    def list
+        favorite_data
+        render json: favorite_data
+    end
+
     def random 
         @random = FoodDatabase.limit(5).order("RANDOM()")
         respond_to do |format|
@@ -131,6 +136,17 @@ class FoodRecordsController < ApplicationController
                render json: {foodlike: true}
             end
         end
+    end
+
+    private
+    def favorite_data
+        user_favorite = Favorite.where(member_id: current_member.id, foodlike: true)
+        favorite_food = []
+        user_favorite.each do |favorite|
+            favorite_food_data = FoodDatabase.where(id: favorite.food_id)
+            favorite_food << favorite_food_data
+        end
+        return favorite_food
     end
 
 end

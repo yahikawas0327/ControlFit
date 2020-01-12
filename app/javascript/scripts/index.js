@@ -17,6 +17,7 @@ document.addEventListener('turbolinks:load', () => {
     $('#Add_food_record_type').hide()
     $('#daliy-food').hide()
     $('#recommend-food').hide()
+    $('#favorite_food_record').hide()
     search_item()           
     deleteEvent()
     editEvent()
@@ -34,6 +35,8 @@ document.addEventListener('turbolinks:load', () => {
     end_recommend_search()
     searchLike()
     recommendLike()
+    favorite()
+    favoriteAdd()
     // Now time and day
     let time = moment().format('lll');
     $('.daytime').html(time);
@@ -508,7 +511,6 @@ function recommendAdd(){
     let recommend_food_calorie = $(this).parent().siblings('.recommend_calories:eq(0)').text()
     $(this).attr('disabled', 'disabled')
     $('#Add_food_record').append( `
-     </br>
      <div class="form-row" >
      <div class="col-md-1 md-3"></div>
      <div class="col-md-3 mb-3 ">
@@ -598,6 +600,84 @@ function searchLike(){
                 $(this).children().addClass("far")
            }
          })
+  })
+
+}
+
+// favorite list 
+function favorite(){
+  $('#user_favorite_list').on('click',function(){ 
+    axios.get('http://localhost:5000/search_food/list')
+         .then( response => {
+           var result = ""
+           for ( var i = 0; i < response.data.length; i++) {
+                result +=  `
+                  <tr class="favorite_food_result" id="${response.data[i][0].id}">
+                       <td>${i+1}</td>
+                       <td class="favorite_name">${response.data[i][0].name}</td>
+                       <td class="favorite_calories">${response.data[i][0].calories}</td>
+                       <td>${response.data[i][0].protein}</td>
+                       <td>${response.data[i][0].fat_content}</td>
+                       <td>${response.data[i][0].carbohydrate}</td>
+                       <td>
+                       <button data-id="${response.data[i][0].id}" class="button is-success is-small is-light is-rounded js-like-list-add" ><i class="fas fa-plus-circle"></i></button><button class="button  is-danger is-small is-light is-rounded js-recommend-like" data-id="${response.data[i][0].id}" data-s= ture><i class="fas fa-heart"></i></button>
+                       </td>
+                  </tr>
+                       `}
+           $('#favorite_foodresult').html(result)
+         })
+         $('#favorite_food_record').toggle()
+  })
+
+}
+
+// favorite list add 
+function favoriteAdd(){
+  $('.form-row').on('click','.js-like-list-add',function(){
+      $('#favorite_food_record').hide()
+      let favorite_food_id = this.dataset.id
+      let favorite_food_name = $(this).parent().siblings('.favorite_name:eq(0)').text()
+      let favorite_food_calorie = $(this).parent().siblings('.favorite_calories:eq(0)').text()
+      $('#Add_food_record').append( `
+     <div class="form-row" >
+     <div class="col-md-1 md-3"></div>
+     <div class="col-md-3 mb-3 ">
+      <label for="disabledTextInput">食物名稱</label>
+      <input class="form-control" type="text" placeholder="${favorite_food_name}" readonly>
+     </div>
+     <div class="col-md-2 mb-3">
+      <label for="disabledTextInput_1">卡洛里</label>
+      <input class="form-control" type="text" placeholder="${favorite_food_calorie}" readonly>
+     </div>
+     <div class="col-md-1 mb-3">
+      <label for="custom-select">份數</label>
+      <select class="custom-select" id="foodqty">
+          <option selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+      </select>
+     </div>
+     <div class="col-md-2 mb-3">
+      <label for="exampleFormControlInput1">型態</label>
+      <select class="custom-select" id="foodtype">
+          <option selected>早餐</option>
+          <option value="1">午餐</option>
+          <option value="2">晚餐</option>
+          <option value="3">點心/其他</option>
+      </select>
+     </div>
+     <div class="col-md-1 md-3">
+       <label for="exampleFormControlInput1">加入</label>
+       <button type="submit" class="button is-success  is-light js-add" data-id="${this.dataset.id}"><i class="fas fa-plus-square"></i></button>       
+     </div>
+     <div class="col-md-1 mb-3">
+     <label for="exampleFormControlInput1">Back</label>
+     <button class="button  is-link is-light is-return" data-id="return_food"><i class="fas fa-undo-alt"></i></button>
+     </div>
+     </div>
+     `);
   })
 
 }
