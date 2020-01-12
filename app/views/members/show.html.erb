@@ -1,7 +1,16 @@
 <section class="section personal-info">
   <div class="col-12 col-md-4">
     <h2 class="title text-center">健康個人檔案</h2>
-    <div ><%= render 'shared/states' %></div>
+    <div>
+      <div class="text-center">
+        <% if current_member.cover_image.attached? %>
+            <%= image_tag current_member.cover_image.variant(resize_to_limit: [300, 300]), class:'rounded-circle show-img mb-3' %>
+          <% else %>
+            <img src="https://picsum.photos/300/300/?random=1" class="rounded-circle show-img"> 
+          <% end %>
+        </div>
+      <%= render 'shared/states' %>
+    </div>
     <span><%= render 'follow_form' if signed_in? %></span>
     <table class="table table-hover table-info">
       <thead>
