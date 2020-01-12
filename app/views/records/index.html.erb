@@ -13,8 +13,21 @@
           <label for="formGroupExampleInput2">體重</label>
           <input type="text" class="form-control kg" name="weight" id="formGroupExampleInput2" placeholder="請輸入體重（公斤）" onkeypress="if (event.keyCode == 13) {return false;}" v-model="eight">
         </div>
-        <button type="submit" class="btn btn-primary submit">開始計算</button>
-        <div class="box list-group-item" style="display: none;"></div>
+        <button type="submit" class="btn btn-primary submit" data-toggle="modal" data-target="#exampleModal">開始計算</button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content follow-modal">
+              <div class="modal-header">
+                <h5 class="modal-title text-danger" id="exampleModalLabel">快來看看你的BMI ヽ༼⊙_⊙༽ﾉ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="box text-center">
+              </div>
+            </div>
+          </div>
+        </div>
       </form>
     </div>
   </div> 

@@ -1,7 +1,16 @@
 <section class="section personal-info">
   <div class="col-12 col-md-4">
     <h2 class="title text-center">健康個人檔案</h2>
-    <div ><%= render 'shared/states' %></div>
+    <div>
+      <div class="text-center">
+        <% if current_member.cover_image.attached? %>
+            <%= image_tag current_member.cover_image.variant(resize_to_limit: [300, 300]), class:'rounded-circle show-img mb-3' %>
+          <% else %>
+            <img src="https://picsum.photos/300/300/?random=1" class="rounded-circle show-img"> 
+          <% end %>
+        </div>
+      <%= render 'shared/states' %>
+    </div>
     <span><%= render 'follow_form' if signed_in? %></span>
     <table class="table table-hover table-info">
       <thead>
@@ -34,23 +43,7 @@
     <div style="width:400px;">
       <canvas id="heyChart"></canvas>
     </div>
-    <div id="record_data">
-      <!-- <div class="food">
-        食物吸收熱量:
-        <div class="buttons has-addons">
-          <button class="button is-small is-info is-light "  @click="foodday">日</button>
-          <button class="button is-small is-info is-light "  @click="foodweek">周</button>
-          <button class="button is-small is-info is-light "  @click="foodmonth" >月</button>
-        </div>
-      </div>
-      <div class="sport">
-        運動消耗熱量:
-        <div class="buttons has-addons">
-          <button class="button is-small is-info is-light "  @click="sportday">日</button>
-          <button class="button is-small is-info is-light "  @click="sportweek">周</button>
-          <button class="button is-small is-info is-light "  @click="sportmonth" >月</button>
-        </div>
-      </div> -->
+    
     <script>
       var ctx = document.getElementById("heyChart");
       var myChart = new Chart(ctx, {
@@ -94,4 +87,4 @@
     今日還可攝取熱量 = <%= @a %>
   </div>
 </section>
-
+>>>>>>> origin/feature/willy
