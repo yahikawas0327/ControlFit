@@ -946,6 +946,10 @@ a:hover{
         }
       }
       .result {
+        .table,
+        .more {
+          width: 350px;
+        } 
         .more {
           display: flex;
           flex-wrap: wrap;
@@ -957,6 +961,9 @@ a:hover{
         }
       }
       .deeper-check {
+        .col {
+          width: 350px;
+        }
         .title {
           font-size: 19px;
         }
