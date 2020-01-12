@@ -1022,6 +1022,10 @@ a:hover{
             }
           }
         }
+        h2{
+          margin: auto;
+          margin-bottom: 10px;
+        }
         .actual-record {
           .total-calory {
             color: rgb(255, 0, 0);
@@ -1164,6 +1168,8 @@ a:hover{
 .user-food-info{
   background-color: #ECEEEE;
   width: 100%;
+  border-radius:10px;
+  justify-content: center;
 }
 .tdee{
   display: inline-block;
@@ -1208,4 +1214,26 @@ a:hover{
 }
 .end_food_search{
   padding-right: 10px;
+}
+.daily_sport_status{
+  width: 70%;
+  background-color:#EDFAFC;
+  border-radius:10px;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+}
+.user-sport-info{
+  background-color:#F0F0F0;
+  width: 95%;
+  margin: auto;
+  margin: 10px;
+  justify-content: center;
+  border-radius:10px;
+}
+.sport_more{
+  margin-right: 2px;
+}
+.sport_fire{
+  color: orangered;
 }

@@ -193,7 +193,7 @@ function search_add(){
 function back_search(){
   $('.form-row').on('click','.is-return', function(){
     $(this).parent().parent('.form-row').remove()
-    $('#query-table').show();
+    // $('#query-table').show();
     $('#Add_food_record_type').hide()
   })
 }

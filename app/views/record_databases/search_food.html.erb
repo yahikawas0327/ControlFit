@@ -14,7 +14,7 @@
           </div>
           <div class="form-row">
             <div class="column is-6 js-type d-flex">
-              <input class="input" id="searchfood" type="text" placeholder="來個食物吧!">
+              <input class="input" id="searchfood" type="text" placeholder="來個食物 加入今日紀錄">
               <button class="btn btn-outline-info is-light js-search" data-id="searchfood" > <i class="fas fa-search"></i></button>
             </div>
           </div>
@@ -88,7 +88,7 @@
           <div class="row">
             <div class="col-1"></div>
             <div class="col-10">
-              <h2 class="title"> 今日狀態點將錄 <i class="far fa-clipboard"></i> </h2>
+              <h2 class="title"> 今日飲食狀態點將錄 <i class="far fa-clipboard"></i> </h2>
               <div class="userfoodrecord">
                 <% if current_member.present? %>
                 <table class="table user-food-info">
@@ -135,7 +135,7 @@
                   <thead>
                     <th colspan="1" scope="col"> <i class="fas fa-clipboard-list"></i> 本日記錄 </th>
                     <th colspan="1" scope="col"> 共 : <li class="count_message"> <%= @record_foods.size %></li> 筆 </th>
-                    <th colspan="1" scope="col"> 共 : <li class="sum_message">   <%= @sum %></li> 大卡 </th>
+                    <th colspan="1" scope="col"> 共吸收 : <li class="sum_message">   <%= @sum %></li> 大卡 </th>
                   </thead>
                   <tbody>
                     <tr>
