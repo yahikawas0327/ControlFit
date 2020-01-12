@@ -325,9 +325,7 @@ function editEvent(){
     let edit_food_calorie = $(this).parent().siblings('.foodsum:eq(0)').text()
     let edit_food_type = $(this).parent().siblings('.type:eq(0)').text()
     $('#Edit_food_record').append( `
-    <div class="form-row" >
-    <div class="col-md-1 md-3 ">
-    </div>
+    <div class="form-row">
     <div class="col-md-3 mb-3 ">
     <label for="disabledTextInput">食物名稱</label>
     <input class="form-control" type="text" placeholder="${edit_food_name}" readonly>
