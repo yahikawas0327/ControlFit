@@ -1,15 +1,18 @@
 class MembersController < ApplicationController
   before_action :authenticate_member!
   def show
+    start_time = Time.zone.now.beginning_of_day
+    end_time = Time.zone.now.end_of_day
+
     @following = current_member.following
     @followers = current_member.followers
-    @food = FoodRecord.where(member_id: current_member.id)
+    @foods_today = FoodRecord.where(member_id: current_member.id).where('created_at BETWEEN ? AND ?', start_time, end_time)
     @calories = []
-    @food.each do |f|
+    @foods_today.each do |f|
       @calories << f['calories']
     end
 
-    @sport = SportRecord.where(member_id: current_member.id)
+    @sport = SportRecord.where(member_id: current_member.id).where('created_at BETWEEN ? AND ?', start_time, end_time)
     @sprot_calories = []
     @sport.each do |s|
       @sprot_calories << s['totalconsum']

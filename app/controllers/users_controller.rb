@@ -5,35 +5,23 @@ class UsersController < ApplicationController
   end
 
   def show
+    start_time = Time.zone.now.beginning_of_day
+    end_time = Time.zone.now.end_of_day
+
     @following = Member.find(params[:id]).following
     @followers = Member.find(params[:id]).followers
 
     @member = Member.find(params[:id])
-    start_time = Time.zone.now.beginning_of_day
-    end_time = Time.zone.now.end_of_day
-    @foods = FoodRecord.where(member_id: @member.id)
-    # .where('created_at BETWEEN ? AND ?', start_time, end_time)
+    @foods_today = FoodRecord.where(member_id: @member.id).where('created_at BETWEEN ? AND ?', start_time, end_time)
     @calories = []
-    @foods.each do |f|
+    @foods_today.each do |f|
       @calories << f['calories']
     end
 
-    @sport = SportRecord.where(member_id: @member.id)
+    @sports = SportRecord.where(member_id: @member.id).where('created_at BETWEEN ? AND ?', start_time, end_time)
     @sprot_calories = []
-    @sport.each do |s|
+    @sports.each do |s|
       @sprot_calories << s['totalconsum']
     end
-  end
-
-  def new
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
   end
 end
