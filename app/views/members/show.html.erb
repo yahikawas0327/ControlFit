@@ -6,7 +6,7 @@
         <% if current_member.cover_image.attached? %>
             <%= image_tag current_member.cover_image.variant(resize_to_limit: [300, 300]), class:'rounded-circle show-img mb-3' %>
           <% else %>
-            <img src="https://picsum.photos/300/300/?random=1" class="rounded-circle show-img"> 
+            <img src="https://picsum.photos/300/300/?random=30" class="rounded-circle show-img"> 
           <% end %>
         </div>
         <div class="col-12 col-md-6">

@@ -76,62 +76,58 @@
     </div> 
     <div class="col-12 col-md-5">
       <span>
-        <a class="btn bg-light text-secondary" data-toggle="collapse" href="#foodsExample" role="button" aria-expanded="true" aria-controls="collapseExample">
-          每日飲食紀錄
+        <a class="btn bg-light text-secondary" data-toggle="collapse" href="#foodsExample" role="button" aria-expanded="flase" aria-controls="collapseExample">
+          今日飲食紀錄
         </a>
         <a class="btn bg-light text-secondary" type="button" data-toggle="collapse" data-target="#sportsExample" aria-expanded="false" aria-controls="collapseExample">
-          每日運動紀錄
+          今日運動紀錄
         </a>
       </span>
       <div class="collapse" id="foodsExample">
-        <div class="">
-          <li>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">名稱</th>
-                  <th scope="col">熱量</th>
-                  <th scope="col">品項</th>
-                  <th scope="col">時間</th>
-                </tr>
-              </thead>
-                <tbody>
-                  <% @foods_today.each do |f| %>
-                    <tr>
-                      <td scopr="col"><%= f.name %></td>
-                      <td scopr="col"><%= f.calories %></td>
-                      <td scope="col"><%= f.eat_type %></td>
-                      <td scope="col"><%= f.created_at.strftime("%T") %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-            </table>
-          </li>
-        </div>
+        <li>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">名稱</th>
+                <th scope="col">熱量</th>
+                <th scope="col">品項</th>
+                <th scope="col">時間</th>
+              </tr>
+            </thead>
+              <tbody>
+                <% @foods_today.each do |f| %>
+                  <tr>
+                    <td scopr="col"><%= f.name %></td>
+                    <td scopr="col"><%= f.calories %></td>
+                    <td scope="col"><%= f.eat_type %></td>
+                    <td scope="col"><%= f.created_at.strftime("%T") %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>
+        </li>
       </div>
       <div class="collapse" id="sportsExample">
-        <div class="">
-          <li>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">名稱</th>
-                  <th scope="col">時間</th>
-                  <th scope="col">消耗</th>
-                </tr>
-              </thead>
-                <tbody>
-                  <% @sports.each do |s| %>
-                    <tr>
-                      <td scopr="col"><%= s.name %></td>
-                      <td scope="col"><%= s.min %></td>
-                      <td scope="col"><%= s.totalconsum %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-            </table>
-          </li>
-        </div>
+        <li>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">名稱</th>
+                <th scope="col">時間</th>
+                <th scope="col">消耗</th>
+              </tr>
+            </thead>
+              <tbody>
+                <% @sports.each do |s| %>
+                  <tr>
+                    <td scopr="col"><%= s.name %></td>
+                    <td scope="col"><%= s.min %></td>
+                    <td scope="col"><%= s.totalconsum %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>
+        </li>
       </div>
     </div>
   </div>
