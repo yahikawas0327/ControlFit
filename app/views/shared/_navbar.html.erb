@@ -69,6 +69,10 @@
             </li>
           </ul>
         </div>
+          <div class="nav-link mt-3 d-none d-sm-none d-md-block">
+            <%=  current_member.name if member_signed_in? %>
+            <%= @a %>
+          </div>
         <ul class="col navbar-actions">
           <% if member_signed_in? %>
             <li class="nav-item dropdown">
