@@ -1,46 +1,50 @@
 
 <%= javascript_pack_tag 'bmi', 'data-turbolinks-track': 'reload' %>
-<section class="section banner cover-image">
-  <div class="container-fluid">
-    <div class="row">
-      <h2 class="title">快速檢測 <br> 身高體重指數(BMI)</h2>
-      <form>
-        <div class="form-group" id="BMI">
-          <label for="formGroupExampleInput">身高</label>
-          <input type="text" class="form-control cm" name="height" id="formGroupExampleInput" placeholder="請輸入身高（公分）" onkeypress="if (event.keyCode == 13) {return false;}" v-model="height">
-        </div>
-        <div class="form-group">
-          <label for="formGroupExampleInput2">體重</label>
-          <input type="text" class="form-control kg" name="weight" id="formGroupExampleInput2" placeholder="請輸入體重（公斤）" onkeypress="if (event.keyCode == 13) {return false;}" v-model="eight">
-        </div>
-        <button type="submit" class="btn btn-primary submit" data-toggle="modal" data-target="#exampleModal">開始計算</button>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content bmi-modal">
-              <div class="modal-header">
-                <h5 class="modal-title text-muted" id="exampleModalLabel">
-                  快速檢測
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="box">
+<div class="col-12 col-md-12">
+  <div class="row">
+    <section class="section banner cover-image">
+      <div class="container-fluid">
+        <div class="row">
+          <h2 class="title">快速檢測 <br> 身高體重指數(BMI)</h2>
+          <form>
+            <div class="form-group" id="BMI">
+              <label for="formGroupExampleInput">身高</label>
+              <input type="text" class="form-control cm" name="height" id="formGroupExampleInput" placeholder="請輸入身高（公分）" onkeypress="if (event.keyCode == 13) {return false;}" v-model="height">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput2">體重</label>
+              <input type="text" class="form-control kg" name="weight" id="formGroupExampleInput2" placeholder="請輸入體重（公斤）" onkeypress="if (event.keyCode == 13) {return false;}" v-model="eight">
+            </div>
+            <button type="submit" class="btn btn-primary submit" data-toggle="modal" data-target="#exampleModal">開始計算</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content bmi-modal">
+                  <div class="modal-header">
+                    <h5 class="modal-title text-muted" id="exampleModalLabel">
+                      快速檢測
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="box">
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
-      </form>
-    </div>
-  </div> 
-</section>
+      </div> 
+    </section>
+  </div>
+</div>
 <section class="section service">
   <div class="container">
     <div class="row">
       <div class="col-12 main-service">
         <div class="subtitle text-center">您的需求</div>
         <h2 class="subtitle-about text-center">快速服務</h2>
-        <div class="description text-center">我們提供一系列的健康管理功能</div>
+        <div class="description text-center mb-5">我們提供一系列的健康管理功能</div>
       </div>
     </div>  
     <div class="row">

@@ -7,11 +7,10 @@
             <% if m.cover_image.attached? %>
               <%= image_tag m.cover_image.variant(resize_to_limit: [300, 300]), class: 'card-image' %>
             <% else %>
-              <img src="https://picsum.photos/300/300/?random=1">
+              <img src="https://picsum.photos/300/300/?random=23">
             <% end %>
             <div class="card-body">
-              <h5 class="card-title"><%= m.name %></h5>
-              <%= link_to 'GO ◉‿◉', user_path(m), class:'text-info' %>
+              <%= link_to m.name, user_path(m), class:'text-info' %>
               <% if current_member.following?(m) %>
                 <%= link_to relationship_path(m), remote: true ,method: :delete, 'pos-id': m.id, class: 'follow-red' do%>
                 <i class="fas fa-heart"></i>
