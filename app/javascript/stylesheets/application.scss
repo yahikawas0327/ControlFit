@@ -962,7 +962,7 @@ a:hover{
       }
       .deeper-check {
         .col {
-          width: 350px;
+          width: 345px;
         }
         .title {
           font-size: 19px;
@@ -978,6 +978,12 @@ a:hover{
   .search {
     width: 100%;
     margin: 20px 0 20px;
+    #Add_food_record_type .form-row {
+      background-color: #17a2b8;
+      padding-top: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
     h2 {
       text-align: center;
     }
@@ -1003,7 +1009,7 @@ a:hover{
     }
   }
     table.table-hover {
-      width: 680px;
+      width: 650px;
    }
   .row.result {
     width: 100%;
@@ -1013,6 +1019,20 @@ a:hover{
       margin: 0 20px;
       h2 {
         text-align: center;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px){
+  .food {
+    .container-fluid {
+      display: flex;
+      flex-wrap: wrap;
+      .result {
+        table.table-hover {
+          width: 345px;
+       }
       }
     }
   }
@@ -1080,6 +1100,40 @@ a:hover{
         }
         td {
         vertical-align: middle;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px){
+  .sport {
+    .daily-record {
+      .table {
+        th, td {
+          font-size: 16px;
+        }
+        td {
+        vertical-align: middle;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 767px){
+  .section.sport {
+    padding: 0;
+    .select-sport {
+      margin-bottom: 30px;
+    }
+    .daily-record {
+      .row.sport-record {
+        .table#query-sport {
+          width: 355px;
+          table-layout: fixed;
+          word-break: break-all;
+          th, td {
+          font-size: 12px;
+          }
         }
       }
     }
