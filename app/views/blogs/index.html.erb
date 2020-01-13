@@ -1,6 +1,62 @@
 <section class="section self-check" id="physical">
   <div class="container-fluid">
     <div class="row">
+      <div v-show="introduce" class="item introduce">
+        <h1 class="physical_topic"> ControlFit - 認識自己 </h1>
+        <div class="col">
+          <p>第一次使用須知:</br>
+             使用者可以輸入年齡/身高/性別/體重</br> 
+             按下檢測可獲得:</br>
+          </p>
+          <p>BMI值狀態 <i class="fas fa-info-circle status" @click="bmistatus"></i></p>
+            <table v-if="bmishow"  class="table table-borderless">
+              <tbody>
+                <tr>
+                  <td> 體重過輕 : BMI＜18.5</td>
+                </tr>
+                <tr>
+                  <td> 正常範圍:18.5≦BMI＜24</td>
+                </tr>
+                <tr>
+                  <td> 過重：24≦BMI＜27 </td>
+                </tr>
+                <tr>
+                  <td> 輕度肥胖：27≦BMI＜30</td>
+                </tr>
+                <tr>
+                  <td> 中度肥胖：30≦BMI＜35 </td>
+                </tr>
+                <tr>
+                  <td>  重度肥胖：BMI≧35</td>
+                </tr>
+              </tbody>
+            </table>
+          <p>每日基礎代謝率 <i class="fas fa-info-circle status" @click="reestatus" ></i></p>
+          <table v-if="reeshow"   class="table table-borderless">
+            <tbody>
+              <tr>
+                <td> 靜態能量消耗值</br>
+                     (Resting Energy Expenditure，簡稱REE)：
+                     一般人所需的最小熱能需求量。
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          </p>
+          <p>每日所需最少消耗熱量 <i class="fas fa-info-circle status" @click="bmrstatus"></i></p>
+          <table v-if="bmrshow"   class="table table-borderless">
+            <tbody>
+              <tr>
+                <td> 基礎代謝率(BMR)</br>
+                     (在安靜狀態下(通常為靜臥狀態)消耗的最低熱量，人的其他活動都建立在這個基礎上
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>更藉由飲食及運動習慣獲得精確每日熱量預估</p>
+          <p>並可透過更新個人資料將最新的身體資訊進行更新</p>
+        </div>
+      </div>
       <div class="item basic">
         <div class="col">
           <label for=""><i class="fas fa-user-circle"></i> {{user_info.name}} </label>
@@ -65,11 +121,13 @@
               <td>{{BMR}}</td>
             </tr>
           </tbody>
+          <tfoot>
+            <!-- <div class="col more"> -->
+              <th class="more-text" v-if = "BMR !== ''"> 測量更精確的身體密碼 </th>
+              <td><button v-if = "BMR !== ''" class="button is-success is-small  is-light is-rounded" @click="more">MORE</button></td>
+            <!-- </div> -->
+          </tfoot>
         </table>
-        <div class="col more">
-          <span class="more-text" v-if = "BMR !== ''"> 測量更精確的身體密碼 </span>
-          <button v-if = "BMR !== ''" class="button is-success  is-light is-rounded" @click="more">MORE</button>
-        </div>
       </div>
       <div class="item deeper-check" v-show="showResult && moreshow">
         <div v-show="moreshow" class="col">
@@ -93,7 +151,8 @@
           <span>運動取向: {{exercise_choice }} </span>
         </div>
         <div v-show="moreshow" class="col">
-          <label for="">飲食取向!</label>
+
+          <label class="title" for="">飲食取向 </label>
           <br>
           <input type="radio" id="one" value="維持體重" v-model="eatintention">
           <label for="one">維持體重</label>
@@ -107,10 +166,12 @@
           <span>飲食取向: {{ food_choice  }} </span>
         </div>
         <div v-show="moreshow" class="col">
-          <label v-if = "exercise_choice === '' &&  food_choice !== '' " for=""> 根據飲食習慣更精確的熱量: <p>{{TDEE}}</p> 大卡</label>
-          <label v-if = "exercise_choice !== '' &&  food_choice === '' " for=""> 根據運動習慣更精確的熱量: <p>{{TDEE}}</p> 大卡</label>
-          <label v-if = "exercise_choice !== '' &&  food_choice !== '' " for=""> 根據運動及飲食習慣更精確熱量值:<p>{{TDEE}}</p>大卡</label>
-            <!-- <P>根據活動及飲食更精確的熱量值唷:{{TDEE}} 大卡</P> -->
+          <label  v-if = "exercise_choice === '' &&  food_choice !== '' " for=""> 根據飲食習慣更精確的熱量: </br><p>{{TDEE}}</p> 大卡</label>
+          <button v-if= "exercise_choice === '' &&  food_choice !== '' " class="button is-danger is-small is-rounded is-light" @click="add_tdee"><i class="fas fa-save"></i></button>
+          <label  v-if = "exercise_choice !== '' &&  food_choice === '' " for=""> 根據運動習慣更精確的熱量: </br> <p>{{TDEE}}</p> 大卡</label>
+          <button v-if= "exercise_choice !== '' &&  food_choice === '' " class="button is-danger is-small is-rounded is-light" @click="add_tdee"><i class="fas fa-save"></i></button>
+          <label  v-if = "exercise_choice !== '' &&  food_choice !== '' " for=""> 根據運動及飲食習慣更精確熱量值:  </br> <p>{{TDEE}}</p>大卡</label>
+          <button v-if= "exercise_choice !== '' &&  food_choice !== '' " class="button is-danger is-small is-rounded is-light" @click="add_tdee"><i v-if= "exercise_choice !== '' &&  food_choice !== '' " class="fas fa-save" @click="add_tdee"></i></button>
         </div>
       </div>
     </div> 

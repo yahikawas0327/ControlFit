@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  member: one
+  foodlike: false
+  food_id: 1
+  sportlike: false
+  sport_id: 1
+
+two:
+  member: two
+  foodlike: false
+  food_id: 1
+  sportlike: false
+  sport_id: 1

@@ -8,6 +8,7 @@ class Member < ApplicationRecord
   # has
   has_many :food_records
   has_many :sport_records
+  has_many :statistics
   has_one  :membersecret
   has_one_attached :cover_image
 

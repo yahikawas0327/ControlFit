@@ -7,6 +7,7 @@ import $ from 'jquery'
 import axios from 'axios-on-rails'
 import moment from "moment";
 import { element, func } from 'prop-types';
+import echarts from "echarts";
 
 // const axios = require('axios');
  
@@ -14,8 +15,9 @@ document.addEventListener('turbolinks:load', () => {
     // 增加 Query system event
     $('#query-table').hide()
     $('#Add_food_record_type').hide()
-
-
+    $('#daliy-food').hide()
+    $('#recommend-food').hide()
+    $('#favorite_food_record').hide()
     search_item()           
     deleteEvent()
     editEvent()
@@ -27,12 +29,18 @@ document.addEventListener('turbolinks:load', () => {
     add_food_record_by_user()
     click_create_new_record_by_user()
     saveEvent()
+    more()
+    recommend()
+    recommendAdd()
+    end_recommend_search()
+    searchLike()
+    recommendLike()
+    favorite()
+    favoriteAdd()
     // Now time and day
     let time = moment().format('lll');
     $('.daytime').html(time);
 })
-
-
 
 // search_food_item
 function search_item(){
@@ -95,6 +103,7 @@ function search(){
     let searchfood_hash = {searchfood: $('#searchfood').val()}
     axios.get('http://localhost:5000/search_food.json', {params:{ search_food: $('#searchfood').val()}})
          .then( response => {
+           console.log(response.data)
           let query_data = response.data.length
           let result = ""
           for ( var i = 0; i < query_data; i++) {
@@ -106,7 +115,10 @@ function search(){
                  <td>${response.data[i].protein}</td>
                  <td>${response.data[i].fat_content}</td>
                  <td>${response.data[i].carbohydrate}</td>
-                 <td><button data-id="${response.data[i].id}" class="fas fa-plus-square js-searchadd" ></button></td>
+                 <td>
+                  <button data-id="${response.data[i].id}" class="button is-success is-small is-light is-rounded js-searchadd" ><i class="fas fa-plus-circle"></i></button>
+                  <button class="button  is-danger is-small is-light is-rounded js-search-like" data-id="${response.data[i].id}" data-s= false ><i class="far fa-heart"></i></button>
+                 </td>
             </tr>
               `
           }
@@ -135,7 +147,6 @@ function search_add(){
 
     $('#query-table').hide()
      $('#Add_food_record').append( `
-     </br>
      <div class="form-row" >
      <div class="col-md-1 md-3"></div>
      <div class="col-md-3 mb-3 ">
@@ -166,11 +177,11 @@ function search_add(){
       </select>
      </div>
      <div class="col-md-1 md-3">
-       <label for="exampleFormControlInput1">加進去</label>
+       <label for="exampleFormControlInput1">加入</label>
        <button type="submit" class="button is-success  is-light js-add" data-id="${this.dataset.id}"><i class="fas fa-plus-square"></i></button>       
      </div>
      <div class="col-md-1 mb-3">
-     <label for="exampleFormControlInput1">回搜尋</label>
+     <label for="exampleFormControlInput1">Back</label>
      <button class="button  is-link is-light is-return" data-id="return_food"><i class="fas fa-undo-alt"></i></button>
      </div>
      </div>
@@ -182,19 +193,18 @@ function search_add(){
 function back_search(){
   $('.form-row').on('click','.is-return', function(){
     $(this).parent().parent('.form-row').remove()
-    $('#query-table').show();
+    // $('#query-table').show();
     $('#Add_food_record_type').hide()
   })
 }
 function add_food_record_by_user(){
   $('#Add_food_record_by_user').on('click', function(){
     $('#query-table').hide()
-    $('#Add_food_record_type').show()
+    $('#Add_food_record_type').toggle()
     let result = ""
     let temp = result + `
-    <div class="form-row" >
-    <div class="col-md-1 mb-3">
-    </div>
+    <div class="form-row ">
+    <div class="col-md-1 mb-3 "></div> 
     <div class="col-md-3 mb-3 ">
       <label for="exampleFormControlInput1">食物名稱</label>
       <input type="text" class="form-control" id="foodname"  placeholder="食物名稱">
@@ -223,9 +233,10 @@ function add_food_record_by_user(){
     </select>
     </div>
     <div class="col-md-1 mb-3">
-    <label for="exampleFormControlInput1">加進去</label>
-    <button class="button is-success is-small is-light is-add" data-id="Add_food_data_by_user"><i class="fas fa-plus-square"></i></button>
+    <label for="exampleFormControlInput1">加入</label>
+    <button class="button is-success is-light is-add" data-id="Add_food_data_by_user"><i class="fas fa-plus-circle"></i></button>
     </div>
+    <div class="col-md-1 mb-3 "></div> 
     </div>
   ` 
   $('#Add_food_record_type').html(temp)
@@ -263,7 +274,7 @@ function click_create_new_record_by_user(){
                       <td class="type">${response.data.eat_type}</td>                  
                       <td class="name">${response.data.name}</td>
                       <td class="qty"> ${response.data.qty}</td>
-                      <td class="foodsum"> ${response.data.calories}</td>
+                      <td class="foodsum"> ${response.data.total_calorie}</td>
                       <td>
                         <button data-id="${response.data.id}" class="button is-warning is-small is-light js-edit"><i class="fas fa-pencil-alt"> </i></button>
                         <button data-id="${response.data.id}" class="button is-danger is-small is-light js-del"><i class="fas fa-trash"> </i></button>
@@ -272,9 +283,13 @@ function click_create_new_record_by_user(){
                   `
                 )
                 let total = Number($('.totalsum').text())
+                let daily_delta= Number($('.tdee').text())
                 count_plus()
-                let newtotal= (total + Number(response.data.calories)).toFixed(2)
+                let newtotal= (total + Number(response.data.total_calorie)).toFixed(2)
+                let new_daily_delta = (newtotal - daily_delta).toFixed(2)
+                $('.sum_message').text(newtotal)
                 $('.totalsum').text(newtotal)
+                $('.delta_message').text(new_daily_delta)                
         })
    
 })
@@ -284,14 +299,16 @@ function count_plus(){
   let count = Number($('.totalcount').text())
   console.log(count)
   let newcount = count + 1
-  $('.totalcount').text(newcount) 
+  $('.totalcount').text(newcount)
+  $('.count_message').text(newcount)
   console.log(newcount) 
 }
 function count_minus(){
   let count = Number($('.totalcount').text())
   console.log(count)
   let newcount = count - 1
-  $('.totalcount').text(newcount) 
+  $('.totalcount').text(newcount)
+  $('.count_message').text(newcount)
   console.log(newcount) 
 
 }
@@ -359,10 +376,9 @@ function saveEvent(){
     // console.log(editfood_hash)
     $(`.js-edit[data-id="${this.dataset.id}"]`).removeAttr('disabled')
     $(this).parent().parent('.form-row').remove()
-    // $(`.js-edit`).filter(`[data-id="${this.dataset.id}"]`).removeAttr('disabled')
     let before_edit_sum = $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text()
-    // console.log(before_edit_sum)
-    axios.patch(`hhttp://localhost:5000/food_records/${this.dataset.id}`,editfood_hash)
+    axios.patch(`http://localhost:5000/food_records/${this.dataset.id}`, editfood_hash)
+
          .then( response => {
               // console.log('response=>',response);
               // console.log(response.data)
@@ -372,8 +388,12 @@ function saveEvent(){
               $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.type:eq(0)').text(editfoodtype)
               $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.qty:eq(0)').text(editfoodqty)
               let total = Number($('.totalsum').text())
+              let daily_delta= Number($('.tdee').text())
               let new_sum = (total - origin_sum + Number($(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text())).toFixed(2)
+              let new_daily_delta = (new_sum - daily_delta).toFixed(2)
               $('.totalsum').text(new_sum)
+              $('.sum_message').text(new_sum)
+              $('.delta_message').text(new_daily_delta)
               })
               add_food_record_by_user()
               search()
@@ -390,8 +410,12 @@ function deleteEvent(){
         console.log('response=>',response);
         let del_sum = $(`.js-del[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text()
         let total = Number($('.totalsum').text())
+        let daily_delta= Number($('.tdee').text())
         let new_sum = (total - Number(del_sum)).toFixed(2)
+        let new_daily_delta = (new_sum - daily_delta).toFixed(2)
         $('.totalsum').text(new_sum)
+        $('.sum_message').text(new_sum)
+        $('.delta_message').text(new_daily_delta)
         count_minus()
         $(this).parent().parent('.daily_food_result').remove()
         })
@@ -424,7 +448,7 @@ function query_add(){
                       <td class="type">${response.data.eat_type}</td>                  
                       <td class="name">${response.data.name}</td>
                       <td class="qty"> ${response.data.qty}</td>
-                      <td class="foodsum"> ${response.data.calories}</td>
+                      <td class="foodsum"> ${response.data.total_calorie}</td>
                       <td>
                         <button data-id="${response.data.id}" class="button is-warning is-small is-light js-edit"><i class="fas fa-pencil-alt"> </i></button>
                         <button data-id="${response.data.id}" class="button is-danger is-small is-light js-del"><i class="fas fa-trash"> </i></button>
@@ -433,16 +457,225 @@ function query_add(){
                   `
                 )
                 let total = Number($('.totalsum').text())
-                let newtotal= (total + Number(response.data.calories)).toFixed(2)
+                let daily_delta= Number($('.tdee').text())
+                let newtotal= (total + Number(response.data.total_calorie)).toFixed(2)
+                let new_daily_delta = (newtotal - daily_delta).toFixed(2)
                 $('.totalsum').text(newtotal)
+                $('.sum_message').text(newtotal)
+                $('.delta_message').text(new_daily_delta)
                 count_plus()
     })
   })
 }
 
+// more funtion 
+function more(){
+  $('.userfoodrecord').on('click','.js-more',function(evt){
+    $('#daliy-food').toggle()
+  }) 
+}
 
+// recommend function
+function recommend(){
+  $('.userfoodrecord').on('click','.js-recommend',function(evt){
+    $('#recommend-food').toggle()
+    axios.get('http://localhost:5000/search_food/random.json')
+         .then( response => {
+               var result = ""
+              for ( var i = 0; i < 5; i++) {
+                   result +=  `
+                     <tr class="recommend_food_result" id="${response.data[i].id}">
+                          <td>${i+1}</td>
+                          <td class="recommend_name">${response.data[i].name}</td>
+                          <td class="recommend_calories">${response.data[i].calories}</td>
+                          <td>${response.data[i].protein}</td>
+                          <td>${response.data[i].fat_content}</td>
+                          <td>${response.data[i].carbohydrate}</td>
+                          <td><button data-id="${response.data[i].id}" class="button is-success is-small is-light is-rounded js-recommend-add" ><i class="fas fa-plus-circle"></i></button>
+                          <button class="button  is-danger is-small is-light is-rounded js-recommend-like" data-id="${response.data[i].id}" data-s= false><i class="far fa-heart"></i></button>
+                          </td>
+                     </tr>
+                          `}
+              $('#recommend').html(result)
+              })
+    }) 
+}
 
+// recommend food add 
+function recommendAdd(){
+  $('.form-row').on('click','.js-recommend-add',function(){
+    let recommend_food_id = this.dataset.id
+    let recommend_food_name = $(this).parent().siblings('.recommend_name:eq(0)').text()
+    let recommend_food_calorie = $(this).parent().siblings('.recommend_calories:eq(0)').text()
+    $(this).attr('disabled', 'disabled')
+    $('#Add_food_record').append( `
+     <div class="form-row" >
+     <div class="col-md-1 md-3"></div>
+     <div class="col-md-3 mb-3 ">
+      <label for="disabledTextInput">食物名稱</label>
+      <input class="form-control" type="text" placeholder="${recommend_food_name}" readonly>
+     </div>
+     <div class="col-md-2 mb-3">
+      <label for="disabledTextInput_1">卡洛里</label>
+      <input class="form-control" type="text" placeholder="${recommend_food_calorie}" readonly>
+     </div>
+     <div class="col-md-1 mb-3">
+      <label for="custom-select">份數</label>
+      <select class="custom-select" id="foodqty">
+          <option selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+      </select>
+     </div>
+     <div class="col-md-2 mb-3">
+      <label for="exampleFormControlInput1">型態</label>
+      <select class="custom-select" id="foodtype">
+          <option selected>早餐</option>
+          <option value="1">午餐</option>
+          <option value="2">晚餐</option>
+          <option value="3">點心/其他</option>
+      </select>
+     </div>
+     <div class="col-md-1 md-3">
+       <label for="exampleFormControlInput1">加入</label>
+       <button type="submit" class="button is-success  is-light js-add" data-id="${this.dataset.id}"><i class="fas fa-plus-square"></i></button>       
+     </div>
+     <div class="col-md-1 mb-3">
+     <label for="exampleFormControlInput1">結束</label>
+     <button class="button  is-link is-light is-recommend" data-id="delete_food"><i class="far fa-trash-alt"></i></button>
+     </div>
+     </div>
+     `); 
+  })
+}
 
+// back_recommend list
+function end_recommend_search(){
+  $('.form-row').on('click','.is-recommend', function(){
+    $(`.js-recommend-add[data-id="${this.dataset.id}"]`).removeAttr('disabled')
+    $(this).parent().parent('.form-row').remove()
+  })
+}
 
+// Add Like function with recommend list
+function recommendLike(){
+  $('.form-row').on('click','.js-recommend-like',function(){
+    let like_id = {likeid: this.dataset.id}
+    console.log(like_id)
+    if (this.dataset.s === "false"){
+        axios.post("/search_food/favorite", like_id)
+             .then( response => {
+            $(this).children().removeClass("far")
+            $(this).children().addClass("fas")
+            this.dataset.s = "ture"
+      })    
+    }else{
+        axios.post("/search_food/favorite", like_id)
+             .then( response => {
+            $(this).children().removeClass("fas")
+            $(this).children().addClass("far")
+            this.dataset.s = "false"
+      })    
+    }
+})
+}
 
+// Add Like function with search result 
+function searchLike(){
+  $('.form-row').on('click','.js-search-like',function(){
+    let like_id = {likeid: this.dataset.id}
+    axios.post("/search_food/favorite", like_id)
+         .then( response => {
+           let favorite_state =response.data.foodlike
+           if ( favorite_state === true){
+               console.log(favorite_state)
+               $(this).children().removeClass("far")
+               $(this).children().addClass("fas")
+           }else{
+                $(this).children().removeClass("fas")
+                $(this).children().addClass("far")
+           }
+         })
+  })
 
+}
+
+// favorite list 
+function favorite(){
+  $('#user_favorite_list').on('click',function(){ 
+    axios.get('http://localhost:5000/search_food/list')
+         .then( response => {
+           var result = ""
+           for ( var i = 0; i < response.data.length; i++) {
+                result +=  `
+                  <tr class="favorite_food_result" id="${response.data[i][0].id}">
+                       <td>${i+1}</td>
+                       <td class="favorite_name">${response.data[i][0].name}</td>
+                       <td class="favorite_calories">${response.data[i][0].calories}</td>
+                       <td>${response.data[i][0].protein}</td>
+                       <td>${response.data[i][0].fat_content}</td>
+                       <td>${response.data[i][0].carbohydrate}</td>
+                       <td>
+                       <button data-id="${response.data[i][0].id}" class="button is-success is-small is-light is-rounded js-like-list-add" ><i class="fas fa-plus-circle"></i></button><button class="button  is-danger is-small is-light is-rounded js-recommend-like" data-id="${response.data[i][0].id}" data-s= ture><i class="fas fa-heart"></i></button>
+                       </td>
+                  </tr>
+                       `}
+           $('#favorite_foodresult').html(result)
+         })
+         $('#favorite_food_record').toggle()
+  })
+
+}
+
+// favorite list add 
+function favoriteAdd(){
+  $('.form-row').on('click','.js-like-list-add',function(){
+      $('#favorite_food_record').hide()
+      let favorite_food_id = this.dataset.id
+      let favorite_food_name = $(this).parent().siblings('.favorite_name:eq(0)').text()
+      let favorite_food_calorie = $(this).parent().siblings('.favorite_calories:eq(0)').text()
+      $('#Add_food_record').append( `
+     <div class="form-row" >
+     <div class="col-md-1 md-3"></div>
+     <div class="col-md-3 mb-3 ">
+      <label for="disabledTextInput">食物名稱</label>
+      <input class="form-control" type="text" placeholder="${favorite_food_name}" readonly>
+     </div>
+     <div class="col-md-2 mb-3">
+      <label for="disabledTextInput_1">卡洛里</label>
+      <input class="form-control" type="text" placeholder="${favorite_food_calorie}" readonly>
+     </div>
+     <div class="col-md-1 mb-3">
+      <label for="custom-select">份數</label>
+      <select class="custom-select" id="foodqty">
+          <option selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+      </select>
+     </div>
+     <div class="col-md-2 mb-3">
+      <label for="exampleFormControlInput1">型態</label>
+      <select class="custom-select" id="foodtype">
+          <option selected>早餐</option>
+          <option value="1">午餐</option>
+          <option value="2">晚餐</option>
+          <option value="3">點心/其他</option>
+      </select>
+     </div>
+     <div class="col-md-1 md-3">
+       <label for="exampleFormControlInput1">加入</label>
+       <button type="submit" class="button is-success  is-light js-add" data-id="${this.dataset.id}"><i class="fas fa-plus-square"></i></button>       
+     </div>
+     <div class="col-md-1 mb-3">
+     <label for="exampleFormControlInput1">Back</label>
+     <button class="button  is-link is-light is-return" data-id="return_food"><i class="fas fa-undo-alt"></i></button>
+     </div>
+     </div>
+     `);
+  })
+
+}

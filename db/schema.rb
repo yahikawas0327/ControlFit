@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_06_035021) do
+ActiveRecord::Schema.define(version: 2020_01_10_025942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(version: 2020_01_06_035021) do
     t.string "area"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "member_id", null: false
+    t.boolean "foodlike", default: false
+    t.integer "food_id"
+    t.boolean "sportlike", default: false
+    t.integer "sport_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_favorites_on_member_id"
   end
 
   create_table "food_databases", force: :cascade do |t|
@@ -96,6 +107,8 @@ ActiveRecord::Schema.define(version: 2020_01_06_035021) do
     t.bigint "member_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "foodintention"
+    t.string "sportintention"
     t.index ["member_id"], name: "index_membersecrets_on_member_id"
   end
 
@@ -133,6 +146,19 @@ ActiveRecord::Schema.define(version: 2020_01_06_035021) do
     t.decimal "computed", default: "0.0"
   end
 
+  create_table "statistics", force: :cascade do |t|
+    t.decimal "sportsum"
+    t.integer "sportcount"
+    t.decimal "foodsum"
+    t.integer "foodcount"
+    t.bigint "member_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_statistics_on_member_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "favorites", "members"
   add_foreign_key "membersecrets", "members"
+  add_foreign_key "statistics", "members"
 end
