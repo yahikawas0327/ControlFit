@@ -1070,9 +1070,6 @@ a:hover{
       .row.sport-record {
         flex-direction: column;
         .columns {
-          width: 90%;
-          font-size: 1rem;
-          margin-left: 10px;
           .column.is-8 {
             button {
               margin-left: 10px;
@@ -1116,6 +1113,13 @@ a:hover{
         vertical-align: middle;
         }
       }
+      .row.sport-record {
+        .columns {
+          width: 90%;
+          font-size: 1rem;
+          margin-left: 10px;
+        }
+      }
     }
   }
 }
@@ -1127,12 +1131,29 @@ a:hover{
     }
     .daily-record {
       .row.sport-record {
+        .columns {
+          font-size: 14px;
+          .column {
+            justify-content: center;
+          }
+        }
         .table#query-sport {
-          width: 355px;
+          width: 380px;
           table-layout: fixed;
           word-break: break-all;
           th, td {
           font-size: 12px;
+          }
+        }
+        .actual-record {
+          padding: 0;
+          .table#record-sport{
+            width: 380px;
+            table-layout: fixed;
+            word-break: break-all;
+            th, td {
+              font-size: 12px;
+            }
           }
         }
       }
