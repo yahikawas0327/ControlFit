@@ -1,5 +1,3 @@
-
-<%= javascript_pack_tag 'bmi', 'data-turbolinks-track': 'reload' %>
 <div class="col-12 col-md-12">
   <div class="row">
     <section class="section banner cover-image">
@@ -15,7 +13,7 @@
               <label for="formGroupExampleInput2">體重</label>
               <input type="text" class="form-control kg" name="weight" id="formGroupExampleInput2" placeholder="請輸入體重（公斤）" onkeypress="if (event.keyCode == 13) {return false;}" v-model="eight">
             </div>
-            <button type="submit" class="btn btn-primary submit" data-toggle="modal" data-target="#exampleModal">開始計算</button>
+            <button type="button" class="btn btn-primary bmi-submit" data-toggle="modal" data-target="#exampleModal">開始計算</button>
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content bmi-modal">
