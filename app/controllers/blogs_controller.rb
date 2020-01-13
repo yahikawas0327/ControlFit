@@ -73,6 +73,27 @@ class BlogsController < ApplicationController
                                    :kg     => update_weight)
      puts "finish"
   end
+
+  def tdee
+     tdee_current_member = Membersecret.find_by( member_id: current_member.id)
+     update_food_intent  = params[:eat]
+     update_sport_intent = params[:sport]
+     update_tdee         = (params[:tdee]).to_f
+     
+     tdee_current_member.update( :tdee           => update_tdee,
+                                 :foodintention  => update_food_intent,
+                                 :sportintention => update_sport_intent)
+     puts "tdee finish"   
+  end
+
+  def secret
+      secret_current_member = Membersecret.find_by( member_id: current_member.id)
+      secret_hash = { member_id: secret_current_member.member_id,
+                      tdee: secret_current_member.tdee,
+                      foodintention: secret_current_member.foodintention,
+                      sportintention: secret_current_member.sportintention }
+      render json: secret_hash
+  end
  
   private
   

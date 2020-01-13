@@ -13,10 +13,10 @@ import axios from 'axios'
 Vue.prototype.$ajax = axios
 //  
 import moment from "moment";
+import echarts from 'echarts/dist/echarts.common.js'
 //
 
 document.addEventListener('turbolinks:load', () => {
-  //  sport query system and daily sport reord system
   const sport = new Vue({
     el: '#sport',
     data :{
@@ -35,6 +35,10 @@ document.addEventListener('turbolinks:load', () => {
       tempindex:[],
       editstatus:[],
       savestatus:[],
+      foodintention:"",
+      sportintention:"",
+      tdee:0,
+      tempid:0,
       member_status:false,
       search_status:false,
       daily_record_status:false,
@@ -67,20 +71,21 @@ document.addEventListener('turbolinks:load', () => {
           consume: this.sports[idx].computed,
           user_id: this.user_id}
         // 將紀錄資料送至後端資料庫
+        let daily_sport_length = this.daily_sport.length
+        console.log(daily_sport_length)
+        var self =this;
         axios.post("http://localhost:5000/exercise_records",sport_hash)
-             .then(function(response){})
-        this.daily_sport.push({
-          id: this.sports[idx].id ,
-          name: this.sports[idx].name,
-          weight: this.weight,
-          min: Number(this.min).toFixed(1),
-          consume: this.sports[idx].consume,
-          totalconsum: this.sports[idx].computed,
-          created_at: moment().calendar()
-        })
-        this.editstatus[this.daily_count]=false 
-        this.daily_count += 1;
-        this.daily_sum += Number(this.sports[idx].computed)
+             .then(function(response){
+                self.daily_sport.push(response.data)
+                var NowDate = new Date(self.daily_sport[daily_sport_length].created_at)
+                self.editstatus[daily_sport_length]=false
+                self.savestatus[daily_sport_length]=false
+                self.daily_sport[daily_sport_length].created_at = moment().calendar();
+                self.daily_count += 1;
+                self.daily_sum += Number(self.sports[idx].computed)
+                console.log(response.data)
+                console.log(self.daily_sport[daily_sport_length])
+              })
       },
       updateCurrentTime() {
         this.currentTime = moment().format('LTS');
@@ -115,16 +120,16 @@ document.addEventListener('turbolinks:load', () => {
           let tempsum =Number(this.daily_sum)- Number(this.daily_sport[index].totalconsum)
           let newtotalconsum = (Number(this.daily_sport[index].consume)*Number(this.daily_sport[index].min)).toFixed(2)
           let newdaily_sum = (Number(newtotalconsum) + Number(tempsum)).toFixed(2)
-          console.log(newdaily_sum)
           this.daily_sport[index].totalconsum = newtotalconsum
           this.daily_sum = newdaily_sum
+          console.log(this.daily_sport[index])
           let update_daily = { 
                                id : this.daily_sport[index].id,
                                min: this.daily_sport[index].min,
                                totalconsum: newtotalconsum }
+              console.log(update_daily)
           axios.patch(`http://localhost:5000/exercise_records/${this.daily_sport[index].id}`, update_daily)
                .then(function(response){
-                 console.log(response)
                })
         } else{
           alert("分鐘數必須要大於1 min")
@@ -165,7 +170,6 @@ document.addEventListener('turbolinks:load', () => {
                   axios.get('http://localhost:5000/search_sport.json',{params:{ member_id: self.user_id}})
                        .then(function(response){
                           let daily_sport = response.data
-                          console.log(daily_sport)
                          for (var i in daily_sport ){
                           self.daily_sport.push(daily_sport[i])
                           var NowDate = new Date(daily_sport[i].created_at)
@@ -177,14 +181,21 @@ document.addEventListener('turbolinks:load', () => {
                         for (var i=0; i<self.daily_count;i++){
                            self.daily_sum = Number(daily_sport[i].totalconsum) + self.daily_sum
                         }
-                })    
-            }
+                  })
+                  axios.get(`http://localhost:5000/blogs/${self.user_id}/secret`)
+                       .then(function(response){
+                         self.foodintention  = response.data.foodintention;
+                         self.sportintention = response.data.sportintention;
+                         self.tdee           = response.data.tdee;})   
+              }else{}
             }else{} 
             })
            .catch((error) => { console.error(error) })
     },
   })
-  // --個人身體資訊---------------------------------------------------
+})
+
+document.addEventListener('turbolinks:load', () => {
   const physical = new Vue({
     el: '#physical',
     data :{
@@ -202,7 +213,11 @@ document.addEventListener('turbolinks:load', () => {
       eatintention:"",
       sportintention:"",
       moreshow:false,
-      member_status:false
+      introduce:true,
+      member_status:false,
+      bmishow:false,
+      reeshow:false,
+      bmrshow:false
     },
     methods: {
       lookfor: function(){
@@ -234,7 +249,17 @@ document.addEventListener('turbolinks:load', () => {
         }
       },
       more: function(){
-         this.moreshow = !this.moreshow
+         this.moreshow = !this.moreshow;
+         this.introduce= !this.introduce;
+      },
+      bmistatus: function(){
+         this.bmishow= !this.bmishow;
+      },
+      reestatus: function(){
+        this.reeshow= !this.reeshow;
+      },
+      bmrstatus: function(){
+        this.bmrshow= !this.bmrshow;
       },
       update: function(){
         let update_physical_data = { update_height:  this.Height,
@@ -255,7 +280,16 @@ document.addEventListener('turbolinks:load', () => {
         }else{
           alert("還不是會員喔!!! 不要亂寫資料 ")
         }
-      }
+      },
+      add_tdee: function(){
+        let intention = { eat  : this.eatintention,
+                          sport: this.sportintention,
+                          tdee : this.TDEE}
+        if (this.member_status === true){
+             axios.patch(`http://localhost:5000/blogs/${this.user_info.user_id}/tdee`, intention)
+                  .then(function(response){})                     
+        }else{}
+      },
     },
     computed: {
       exercise_choice(){
@@ -285,7 +319,6 @@ document.addEventListener('turbolinks:load', () => {
             } else {
             }
             return this.eatintention
-
       },
       showResult() {
         return (this.BMI && this.BMI_range && this.Ree && this.BMR)
@@ -309,5 +342,68 @@ document.addEventListener('turbolinks:load', () => {
              console.log(error)
            })
     }         
+  })
+})
+
+document.addEventListener('turbolinks:load', () => {
+  const record_data = new Vue({
+    el: '#record_data',
+    data:{
+      user_id:0,
+      data_type:"",
+      member_status:false,
+    },
+    methods:{
+      foodday:function(){},
+      foodweek:function(){},
+      foodmonth: function(){},
+      sportday:function(){},
+      sportweek:function(){},
+      sportmonth: function(){},
+    },
+    created(){  
+      var self = this;
+      axios.get('http://localhost:5000/blogs/new.json')
+           .then(function(response){
+            if (response.data.member_exist === true){
+                 self.user_id   = response.data.user_id
+                 self.member_status = true
+                 if (self.user_id !== 0 ){
+                    // day
+                      axios.get('http://localhost:5000/member/foodday')
+                           .then(function(response){
+                                })
+                           .catch((error) => {})
+                      axios.get('http://localhost:5000/member/sportday')
+                           .then(function(response){
+                            console.log(response)
+                            })
+                           .catch((error) => {})
+                   //week
+                      axios.get('http://localhost:5000/member/foodweek')
+                           .then(function(response){
+                                 console.log(response)
+                                })
+                           .catch((error) => {})
+                      axios.get('http://localhost:5000/member/sportweek')
+                           .then(function(response){
+                                console.log(response)
+                              })
+                           .catch((error) => {})
+                   //month
+                      axios.get('http://localhost:5000/member/foodmonth')
+                           .then(function(response){
+                                 console.log(response)
+                                })
+                           .catch((error) => {})  
+                      axios.get('http://localhost:5000/member/sportmonth')
+                           .then(function(response){
+                            console.log(response)
+                                })
+                           .catch((error) => {})  
+                      }
+            }else{}
+           })
+    }
   })
 })

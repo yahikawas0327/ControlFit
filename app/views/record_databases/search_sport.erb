@@ -14,6 +14,27 @@
       </div> 
       <div class="col-md-8 daily-record">
         <div class="row sport-record">
+          <h2 class="title"> 今日運動狀態點將錄 <i class="far fa-clipboard"></i> </h2>
+          <div class="daily_sport_status">
+            <table class="table user-sport-info">
+              <thead>
+                <th colspan="2" scope="col">  <i class="far fa-address-card"></i>  {{user_info.name}}</th>
+                <th colspan="1" scope="col"> <i class="fas fa-clock"></i>:  {{currentTime}}</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="3"><i class="fas fa-calendar-day"></i> :  {{currentDay}}</td> 
+                </tr> 
+                <tr>
+                  <th scope="row"><i class="fas fa-clipboard-list"></i> : 今日運動點將錄</th>
+                  <td>共 : {{daily_count}} 筆 </td>
+                  <td>共燃燒: <i class="fas fa-fire sport_fire"></i>  {{daily_sum}} 大卡 
+                    <button class="button is-link is-small is-light is-rounded" @click="more_record">  <i class="fas fa-comment-dots sport_more"></i>MORE</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <div class="col table-sm">
             <table v-if='search_status===true'  class="table table-hover table-striped" id="query-sport">
               <thead>
@@ -46,19 +67,6 @@
                 </tfoot>
               </tbody>
             </table>
-          </div>
-          <div class="columns">
-            <div class="column is-2 d-flex align-items-center">
-              <i class="fas fa-calendar-day"></i> :  {{currentDay}} 
-            </div>
-            <div class="column is-3 d-flex align-items-center">
-              <i class="fas fa-clock"></i> :  {{currentTime}}
-            </div>
-            <div class="column is-8 d-flex align-items-center">
-              今天燃燒 <i class="fas fa-fire"></i> {{daily_sum}} 大卡，
-              共紀錄  {{daily_count}} 筆
-              <button class="button is-link is-small is-light is-rounded" @click="more_record"> <i class="fas fa-comment-dots"></i>MORE</button>
-            </div>
           </div>
           <div class="col actual-record">
             <table v-if="daily_record_status === true" class="table table-hover" id="record-sport">
