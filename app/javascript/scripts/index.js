@@ -18,6 +18,7 @@ document.addEventListener('turbolinks:load', () => {
     $('#daliy-food').hide()
     $('#recommend-food').hide()
     $('#favorite_food_record').hide()
+    $('#food-user-guide').hide()
     search_item()           
     deleteEvent()
     editEvent()
@@ -104,26 +105,38 @@ function search(){
     let searchfood_hash = {searchfood: $('#searchfood').val()}
     axios.get('http://localhost:5000/search_food.json', {params:{ search_food: $('#searchfood').val()}})
          .then( response => {
-           console.log(response.data)
           let query_data = response.data.length
-          let result = ""
-          for ( var i = 0; i < query_data; i++) {
-             result +=  `
-            <tr class="search_food_result" id="${response.data[i].id}">
-                 <td>${i+1}</td>
-                 <td class="search_name">${response.data[i].name}</td>
-                 <td class="search_calories">${response.data[i].calories}</td>
-                 <td>${response.data[i].protein}</td>
-                 <td>${response.data[i].fat_content}</td>
-                 <td>${response.data[i].carbohydrate}</td>
-                 <td>
-                  <button data-id="${response.data[i].id}" class="button is-success is-small is-light is-rounded js-searchadd" ><i class="fas fa-plus-circle"></i></button>
-                  <button class="button  is-danger is-small is-light is-rounded js-search-like" data-id="${response.data[i].id}" data-s= false ><i class="far fa-heart"></i></button>
-                 </td>
-            </tr>
-              `
+          if (query_data !== 0){
+            let result = ""
+            for ( var i = 0; i < query_data; i++) {
+               result +=  `
+              <tr class="search_food_result" id="${response.data[i].id}">
+                   <td>${i+1}</td>
+                   <td class="search_name">${response.data[i].name}</td>
+                   <td class="search_calories">${response.data[i].calories}</td>
+                   <td>${response.data[i].protein}</td>
+                   <td>${response.data[i].fat_content}</td>
+                   <td>${response.data[i].carbohydrate}</td>
+                   <td>
+                    <button data-id="${response.data[i].id}" class="button is-success is-small is-light is-rounded js-searchadd" ><i class="fas fa-plus-circle"></i></button>
+                    <button class="button  is-danger is-small is-light is-rounded js-search-like" data-id="${response.data[i].id}" data-s= false ><i class="far fa-heart"></i></button>
+                   </td>
+              </tr>
+                `
+            }
+            $('#foodresult').html(result)
+            
+          }else{
+            let result = ""
+            let no_data = result + `
+              <tr>
+              <td colspan="1" scope="col"></td>
+              <td colspan="6" scope="col"> <i class="far fa-sad-cry"></i>  很可惜資料庫沒有 ${$('#searchfood').val()} 資料，若想加這筆資料請使用 " 直接加入紀錄" 功能
+              </td>
+              </tr>
+            ` 
+            $('#foodresult').html(no_data)
           }
-          $('#foodresult').html(result) 
          })
   })
 }
@@ -685,3 +698,4 @@ function fooduserguide(){
     $('#food-user-guide').toggle()
   }) 
 }
+
