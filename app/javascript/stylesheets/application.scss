@@ -1272,7 +1272,27 @@ a:hover{
   
 }
 .section.food{
-  // background-image: url(../../assets/images/background.jpg);
-  background: linear-gradient(to right,#82DDEA 25%, #B8ECF3 70%);
+  background-image: url(../../assets/images/bg_2.jpg);
+  height: 100%;
+  object-fit: cover;
+  // background: linear-gradient(to right,#82DDEA 25%, #B8ECF3 70%);
   
+}
+.food_user_name{
+  // color: #4DCFE1;
+  font-size: 28px;
+  font-weight:bold;
+  display: inline;
+  background-color: #edfafc;
+  border-radius: 5px;
+}
+.daily_food_status{
+  font-size: 28px;
+  font-weight:bold;
+  display: inline;
+  background-color: #F5FCEF;
+  border-radius: 5px;
+  margin: auto;
+  justify-content: center;
+  padding: 5px;
 }
