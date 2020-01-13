@@ -18,7 +18,7 @@ document.addEventListener('turbolinks:load', () => {
     $('#daliy-food').hide()
     $('#recommend-food').hide()
     $('#favorite_food_record').hide()
-    $('#food-user-guide').hide()
+    // $('#food-user-guide').hide()
     search_item()           
     deleteEvent()
     editEvent()

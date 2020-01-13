@@ -1172,7 +1172,7 @@ a:hover{
   justify-content: center;
 }
 .control_fit_food_record{
-  background-color: #EDFBE3;
+  // background-color: #EDFBE3;
   margin:5px 5px;
   padding: 2px 2px;
   border-radius:7px;
@@ -1258,7 +1258,6 @@ a:hover{
     margin-top:10px;
   }
   .control_fit_food_record{
-   background-color: #E7F9D9;
    margin: 5px 2px;
    padding: 1px 1px;
    border-radius: 8px;
@@ -1270,5 +1269,10 @@ a:hover{
     display: inline-block;
     flex-wrap: wrap;
   }
+  
+}
+.section.food{
+  // background-image: url(../../assets/images/background.jpg);
+  background: linear-gradient(to right,#82DDEA 25%, #B8ECF3 70%);
   
 }
