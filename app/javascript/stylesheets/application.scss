@@ -54,7 +54,7 @@ a:hover{
     height: 75px;
     border-bottom: 1px solid rgba(0,0,0,8) ;
     .container-fluid {
-      background-color: rgba(255,255,255,1);
+      background-color:#fafafa;
       box-shadow: 0 2px 2px 0px rgba(0,0,0,.2);
       .row {
         width: 100%;
@@ -89,7 +89,9 @@ a:hover{
       align-items: center;
       justify-content: center;
       margin-left: 37px;
+      padding-top: 8px;
       .nav-item {
+        padding: 0 6px;
         a {
           display: flex;
           flex-direction: row;
@@ -104,12 +106,8 @@ a:hover{
             transition: all 0.3s ease-in-out;
           }
           span {
-            font-size: 19px;
+            font-size: 17px;
           }
-        }
-        a.food {
-          width: 70px;
-          padding-left: 20px;
         }
         a + a:after {
           content: '';
@@ -377,29 +375,84 @@ a:hover{
   background-color: rgba(0,0,0,.3);
   box-sizing: border-box;
 }
+//service
+.service {
+  background-color: #fafafa;
+  padding: 50px 0 50px;
+  .main-service {
+    .subtitle {
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: #33ABE6;
+    }
+    .subtitle-about {
+      font-size: 24px;
+      margin: 0 0 10px;
+      letter-spacing: 1px;
+    }
+    .description {
+      margin-bottom: 50px;
+      font-size: 20px;
+    }
+  }
+  .col-12.service-block{
+    margin-bottom: 40px;
+    .icon-caption h2 a{
+      font-size: 16px;
+      color: #404040;
+      line-height: 32px;
+    }
+    h2:hover{
+      a {
+      color: #33ABE6;
+      transition: all .6s ease-in-out;
+      }
+    }
+    .icon{
+      float: left;
+      height: 50px;
+      padding: 0 15px 10px 0;
+      margin: 0 15px 0 0;
+      border-right: 1px solid #e3e3e3;
+      font-size: 26px;
+      color: #33ABE6;
+    }
+  }
+  .service-text{
+    margin: 15px 0 0;
+    font-size: 14px;
+  }
+  .clear-fix{
+    clear: both;
+  }
+}
 //team
 .section.team {
   .title {
     .subtitle {
       color: #33ABE6;
       margin-bottom: 8px;
-      font-size: 18px;
+      font-size: 14px;
     }
     .subtitle-about {
       color: #404040;
-      font-size: 30px;
+      font-size: 24px;
     }
     .description {
       padding: 15px 0 30px;
       margin: 0 0 12px 0;
       color: #606060;
-      font-size: 26px;
+      font-size: 20px;
     }  
   }
   .people {
     .team-member{
       position: relative;
       cursor: pointer;
+      img {
+        height: 285px;
+        // width: 230px;
+      }
       &:hover{
         overflow: visible;
         .team-header{
@@ -832,7 +885,7 @@ a:hover{
 .self-check {
   width: 1400px;
   height: 100vh;
-  background-image: linear-gradient(100deg, transparent 50%, rgba(204, 204, 204, 0.95) 50%), url(https://images.unsplash.com/photo-1559064368-6f6d5ef84110?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=60);
+  background-image: linear-gradient(60deg, transparent 50%, rgba(204, 204, 204, 0.95) 50%), url(https://images.unsplash.com/photo-1559064368-6f6d5ef84110?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=60);
   background-size: cover;
   background-repeat: no-repeat;
   .row {
@@ -850,9 +903,9 @@ a:hover{
     }
   }  
   .item.basic {
-    background-color:#F0F0F0;
+    background-color:#fafafa;
     height: 100%;
-    border: 1px solid #F0F0F0;
+    border: 1px solid #fafafa;
     border-radius: 5px;
     .col {
       color: #404040!important;
@@ -881,7 +934,7 @@ a:hover{
   .item.result {
     margin-top: 10px;
     .table {
-      background-color: #F0F0F0!important;
+      background-color: #fafafa!important;
       border-radius: 5px;
     }
     .col.more {
@@ -938,6 +991,7 @@ a:hover{
 .food .container-fluid {
   display: flex;
   padding: 0;
+  font-size: 14px;
   .search {
     width: 100%;
     margin: 20px 0 20px;
@@ -982,7 +1036,6 @@ a:hover{
 }
 //search_sport
 .sport {
-  font-size: 14px;
   margin: 30px;
   .row.full {
     .select-sport {
