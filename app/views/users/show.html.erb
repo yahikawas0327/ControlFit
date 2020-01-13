@@ -12,7 +12,7 @@
             <div class="col-md-12">
               <div class="card-body">
                 <div class="d-flex justify-content-between mb-5" style="width: 200px;">
-                  <h5 class="h5"><%= @member.name %></h5>
+                  <h5 class="h5 font-weight-bold"><%= @member.name %></h5>
                   <%= render 'members/follow_form' %>
                 </div>
                 <span><%= render 'shared/states' %></span>
@@ -30,6 +30,7 @@
 <container>
   <div class="row">
     <div class="col-12 col-md-6 mb-5">
+      <span class="h2">攝取比例</span>
       <div>
         <canvas id="heyChart"></canvas>
       </div>
@@ -38,7 +39,7 @@
         var myChart = new Chart(ctx, {
           type: 'pie',
           data: {
-            labels: ["熱量", "運動"],
+            labels: ["攝取熱量", "運動消耗"],
             datasets: [{
               label: ['消耗'],
               data: [
@@ -75,27 +76,69 @@
       </script> 
     </div> 
     <div class="col-12 col-md-6">
-        <li>
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">名稱</th>
-                <th scope="col">品項</th>
-                <th scope="col">時間</th>
-              </tr>
-            </thead>
-              <tbody>
-                <% @foods.each do |f| %>
-                  <tr>
-                    <td scopr="col"><%= f.name %></td>
-                    <td scope="col"><%= f.eat_type %></td>
-                    <td scope="col"><%= f.created_at %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-          </table>
-        </li>
+      <span>
+        <a class="btn bg-light text-secondary" data-toggle="collapse" href="#foodsExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          飲食紀錄
+        </a>
+        <a class="btn bg-light text-secondary" type="button" data-toggle="collapse" data-target="#sportsExample" aria-expanded="false" aria-controls="collapseExample">
+          運動紀錄
+        </a>
+      </span>
+      <div class="collapse" id="foodsExample">
+        <div class="">
+          <li>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">名稱</th>
+                  <th scope="col">品項</th>
+                  <th scope="col">時間</th>
+                </tr>
+              </thead>
+                <tbody>
+                  <% @foods_today.each do |f| %>
+                    <tr>
+                      <td scopr="col"><%= f.name %></td>
+                      <td scope="col"><%= f.eat_type %></td>
+                      <td scope="col"><%= f.created_at %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+            </table>
+          </li>
+        </div>
+      </div>
+      <div class="collapse" id="sportsExample">
+        <div class="">
+          <li>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">名稱</th>
+                  <th scope="col">品項</th>
+                  <th scope="col">時間</th>
+                </tr>
+              </thead>
+                <tbody>
+                  <% @sports.each do |s| %>
+                    <tr>
+                      <td scopr="col"><%= s.name %></td>
+                      <td scope="col"><%= s.min %></td>
+                      <td scope="col"><%= s.consume %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+            </table>
+          </li>
+        </div>
+      </div>
     </div>
+    <div class="col-12 col-md-6">
+        
+    </div>
+    <div class="col-12 col-md-6 justify-content-end">
+      
+  </div>
   </div>
 </container>
 
