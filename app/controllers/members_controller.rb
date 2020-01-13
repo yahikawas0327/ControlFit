@@ -23,7 +23,7 @@ class MembersController < ApplicationController
     @membersecret.each do |m|
       @bmr << m['bmr']
     end
-    @a = @bmr.sum - @calories.sum
+    @remain = @bmr.sum - @calories.sum
 
   end
 

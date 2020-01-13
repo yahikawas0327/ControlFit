@@ -70,8 +70,11 @@
           </ul>
         </div>
           <div class="nav-link mt-3 d-none d-sm-none d-md-block">
-            <%=  current_member.name if member_signed_in? %>
-            <%= @a %>
+            <% if member_signed_in? %>
+              <%=  current_member.name %>
+              熱量剩餘
+              <%= @remain %>
+            <% end %>
           </div>
         <ul class="col navbar-actions">
           <% if member_signed_in? %>
