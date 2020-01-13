@@ -26,7 +26,6 @@
     </div>
   </div>
 </container>
-
 <container>
   <div class="row">
     <div class="col-12 col-md-6 mb-5">
@@ -78,10 +77,10 @@
     <div class="col-12 col-md-6">
       <span>
         <a class="btn bg-light text-secondary" data-toggle="collapse" href="#foodsExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-          飲食紀錄
+          每日飲食紀錄
         </a>
         <a class="btn bg-light text-secondary" type="button" data-toggle="collapse" data-target="#sportsExample" aria-expanded="false" aria-controls="collapseExample">
-          運動紀錄
+          每日運動紀錄
         </a>
       </span>
       <div class="collapse" id="foodsExample">
@@ -115,8 +114,8 @@
               <thead>
                 <tr>
                   <th scope="col">名稱</th>
-                  <th scope="col">品項</th>
                   <th scope="col">時間</th>
+                  <th scope="col">消耗</th>
                 </tr>
               </thead>
                 <tbody>
@@ -124,7 +123,7 @@
                     <tr>
                       <td scopr="col"><%= s.name %></td>
                       <td scope="col"><%= s.min %></td>
-                      <td scope="col"><%= s.consume %></td>
+                      <td scope="col"><%= s.totalconsum %></td>
                     </tr>
                   <% end %>
                 </tbody>
@@ -133,12 +132,6 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-6">
-        
-    </div>
-    <div class="col-12 col-md-6 justify-content-end">
-      
-  </div>
   </div>
 </container>
 
