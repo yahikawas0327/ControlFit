@@ -25,22 +25,21 @@ class RecordDatabasesController < ApplicationController
 
         @search_food = params["search_food"]
         @food_databases = []
-
-        if @search_food.present?
-          @food_databases = FoodDatabase.where("name ILIKE ?", "%#{@search_food}%")
-          
-          respond_to do |format|
-            format.json { render json: @food_databases}
-            format.html { render :search_food}
-          end
-        else
-        end
         #---------------------------------------
         if current_member.present?
           @record_foods = FoodRecord.where(member_id: current_member.id, created_at: (Time.now.midnight)..(Time.now))
           food_sum
           @current_user_secret = Membersecret.find_by( member_id: current_member.id)
           daily_target
+          if @search_food.present?
+            @food_databases = FoodDatabase.where("name ILIKE ?", "%#{@search_food}%")            
+            respond_to do |format|
+              format.json { render json: @food_databases}
+              format.html { render :search_food}
+           end
+          else
+
+          end
         else       
         end
     end
@@ -49,11 +48,11 @@ class RecordDatabasesController < ApplicationController
       @search_sport = params["search_sport"]
       @sports = []
       if @search_sport.present?
-        @sports= Sport.where("name ILIKE ?", "%#{@search_sport}%")
-        respond_to do |format|
-          format.json { render json: @sports}
-          format.html { render :search_sport }
-        end      
+          @sports= Sport.where("name ILIKE ?", "%#{@search_sport}%")
+          respond_to do |format|
+            format.json { render json: @sports}
+            format.html { render :search_sport }
+          end      
       else 
       end
       
@@ -64,11 +63,9 @@ class RecordDatabasesController < ApplicationController
         respond_to do |format|
           format.json { render json: @record_sports}
           format.html { render :search_sport }
-
         end  
       else
       end
-
     end
      
     private 

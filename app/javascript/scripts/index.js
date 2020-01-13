@@ -37,6 +37,7 @@ document.addEventListener('turbolinks:load', () => {
     recommendLike()
     favorite()
     favoriteAdd()
+    fooduserguide()
     // Now time and day
     let time = moment().format('lll');
     $('.daytime').html(time);
@@ -621,10 +622,10 @@ function favorite(){
                        <button data-id="${response.data[i][0].id}" class="button is-success is-small is-light is-rounded js-like-list-add" ><i class="fas fa-plus-circle"></i></button><button class="button  is-danger is-small is-light is-rounded js-recommend-like" data-id="${response.data[i][0].id}" data-s= ture><i class="fas fa-heart"></i></button>
                        </td>
                   </tr>
-                       `}
+                       `}           
            $('#favorite_foodresult').html(result)
+           $('#favorite_food_record').toggle()
          })
-         $('#favorite_food_record').toggle()
   })
 
 }
@@ -678,4 +679,9 @@ function favoriteAdd(){
      `);
   })
 
+}
+function fooduserguide(){
+  $('.control_fit_food_record').on('click','.food-user-guide',function(evt){
+    $('#food-user-guide').toggle()
+  }) 
 }
