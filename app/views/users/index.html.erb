@@ -11,7 +11,7 @@
             <% end %>
             <div class="card-body">
               <h5 class="card-title"><%= m.name %></h5>
-              <%= link_to '來瞧瞧！', user_path(m) %>
+              <%= link_to 'GO ◉‿◉', user_path(m), class:'text-info' %>
               <% if current_member.following?(m) %>
                 <%= link_to relationship_path(m), remote: true ,method: :delete, 'pos-id': m.id, class: 'follow-red' do%>
                 <i class="fas fa-heart"></i>
