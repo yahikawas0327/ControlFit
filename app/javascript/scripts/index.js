@@ -499,12 +499,12 @@ function recommend(){
               for ( var i = 0; i < 5; i++) {
                    result +=  `
                      <tr class="recommend_food_result" id="${response.data[i].id}">
-                          <td>${i+1}</td>
+                          <td class="recommend_index">${i+1}</td>
                           <td class="recommend_name">${response.data[i].name}</td>
                           <td class="recommend_calories">${response.data[i].calories}</td>
-                          <td>${response.data[i].protein}</td>
-                          <td>${response.data[i].fat_content}</td>
-                          <td>${response.data[i].carbohydrate}</td>
+                          <td class="recommend_protein">${response.data[i].protein}</td>
+                          <td class="recommend_fat_content">${response.data[i].fat_content}</td>
+                          <td class="recommend_carbohydrate">${response.data[i].carbohydrate}</td>
                           <td><button data-id="${response.data[i].id}" class="button is-success is-small is-light is-rounded js-recommend-add" ><i class="fas fa-plus-circle"></i></button>
                           <button class="button  is-danger is-small is-light is-rounded js-recommend-like" data-id="${response.data[i].id}" data-s= false><i class="far fa-heart"></i></button>
                           </td>

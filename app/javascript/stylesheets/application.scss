@@ -1269,10 +1269,10 @@ a:hover{
 
 .userfoodrecord{
   width:500px;
-  // background-color:#C3E0C9;
   background-color: #EDFAFC;
   border-radius:10px;
   padding:10px;
+  margin-top: 10px;
 }
 .user-food-info{
   background-color: #ECEEEE;
@@ -1405,7 +1405,7 @@ a:hover{
   border-radius: 5px;
   justify-content: center;
 }
-.daily_food_status{
+.title.daily_food_status{
   font-size: 28px;
   font-weight:bold;
   display: inline;
@@ -1493,6 +1493,12 @@ a:hover{
 #Add_food_record.form-row{
   background-color:#edfafc ;
 }
+td.recommend-rwd{
+  display: none;
+}
+#Edit_food_record{
+  background-color:#edfafc ;
+}
 @media screen and (max-width: 767px){
   .search_food_result{
     .search_calories{
@@ -1571,7 +1577,45 @@ a:hover{
       width: 150px;
     }
   }
+  #recommend-food{
+    width: 100%;
+    .recommend_index{
+      display:none;
+    }
+    .recommend_carbohydrate{
+      display:none;
+    }
+    .recommend_calories{
+      display:none;
+    }
+    .recommend_protein{
+      display:none;
+    }
+    .recommend_fat_content{
+      display:none;
+    }
+    .recommend_name{
+      word-break: break-all;
+      width: 150px;
+    }
+
+  }
+
+  .col-10.col-sm-12.daily_food_status{
+    // width: 100%;
+    max-width: 100%;
+  }
+  .userfoodrecord {
+    width: 100%;
+  }
+  td.recommend{
+    display:none;
+  }
+  td.recommend-rwd {
+    display:block;
+  }
 }
+
 .favorite_name{
   word-break: break-all;
   width: 200px;
