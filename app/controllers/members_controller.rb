@@ -17,14 +17,6 @@ class MembersController < ApplicationController
     @sport.each do |s|
       @sprot_calories << s['totalconsum']
     end
-
-    @membersecret = Membersecret.where(member_id: current_member.id)
-    @bmr = []
-    @membersecret.each do |m|
-      @bmr << m['bmr']
-    end
-    @a = @bmr.sum - @calories.sum
-
   end
 
   def following

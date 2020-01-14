@@ -69,6 +69,13 @@
             </li>
           </ul>
         </div>
+          <div class="nav-link mt-3 d-none d-sm-none d-md-block">
+            <% if member_signed_in? %>
+              <%= link_to current_member.name, member_path, class:'text-info' %>
+              熱量剩餘
+              <%= @remain %>
+            <% end %>
+          </div>
         <ul class="col navbar-actions">
           <% if member_signed_in? %>
             <li class="nav-item dropdown">
