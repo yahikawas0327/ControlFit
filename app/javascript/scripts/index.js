@@ -18,7 +18,7 @@ document.addEventListener('turbolinks:load', () => {
     $('#daliy-food').hide()
     $('#recommend-food').hide()
     $('#favorite_food_record').hide()
-    // $('#food-user-guide').hide()
+    $('#food-user-guide').hide()
     search_item()           
     deleteEvent()
     editEvent()
@@ -99,7 +99,6 @@ function search_item(){
 // search food function
 function search(){
   $('.form-row').on('click','.js-search',function(evt){
-    $('#query-table').show()
     $('#Add_food_record_type').hide()
     evt.stopPropagation();
     let searchfood_hash = {searchfood: $('#searchfood').val()}
@@ -111,12 +110,12 @@ function search(){
             for ( var i = 0; i < query_data; i++) {
                result +=  `
               <tr class="search_food_result" id="${response.data[i].id}">
-                   <td>${i+1}</td>
+                   <td class="search_index">${i+1}</td>
                    <td class="search_name">${response.data[i].name}</td>
                    <td class="search_calories">${response.data[i].calories}</td>
-                   <td>${response.data[i].protein}</td>
-                   <td>${response.data[i].fat_content}</td>
-                   <td>${response.data[i].carbohydrate}</td>
+                   <td class="search_protein">${response.data[i].protein}</td>
+                   <td class="search_fat_content">${response.data[i].fat_content}</td>
+                   <td class="search_carbohydrate">${response.data[i].carbohydrate}</td>
                    <td>
                     <button data-id="${response.data[i].id}" class="button is-success is-small is-light is-rounded js-searchadd" ><i class="fas fa-plus-circle"></i></button>
                     <button class="button  is-danger is-small is-light is-rounded js-search-like" data-id="${response.data[i].id}" data-s= false ><i class="far fa-heart"></i></button>
@@ -125,7 +124,7 @@ function search(){
                 `
             }
             $('#foodresult').html(result)
-            
+            $('#query-table').show()
           }else{
             let result = ""
             let no_data = result + `
@@ -136,6 +135,7 @@ function search(){
               </tr>
             ` 
             $('#foodresult').html(no_data)
+            $('#query-table').show()
           }
          })
   })
@@ -625,12 +625,12 @@ function favorite(){
            for ( var i = 0; i < response.data.length; i++) {
                 result +=  `
                   <tr class="favorite_food_result" id="${response.data[i][0].id}">
-                       <td>${i+1}</td>
+                       <td class="favorite_index">${i+1}</td>
                        <td class="favorite_name">${response.data[i][0].name}</td>
                        <td class="favorite_calories">${response.data[i][0].calories}</td>
-                       <td>${response.data[i][0].protein}</td>
-                       <td>${response.data[i][0].fat_content}</td>
-                       <td>${response.data[i][0].carbohydrate}</td>
+                       <td class="favorite_protein">${response.data[i][0].protein}</td>
+                       <td class="favorite_fat_content">${response.data[i][0].fat_content}</td>
+                       <td class="favorite_carbohydrate">${response.data[i][0].carbohydrate}</td>
                        <td>
                        <button data-id="${response.data[i][0].id}" class="button is-success is-small is-light is-rounded js-like-list-add" ><i class="fas fa-plus-circle"></i></button><button class="button  is-danger is-small is-light is-rounded js-recommend-like" data-id="${response.data[i][0].id}" data-s= ture><i class="fas fa-heart"></i></button>
                        </td>

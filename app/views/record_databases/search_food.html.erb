@@ -2,33 +2,31 @@
   <div class="container-fluid">
     <div class="row search">
       <div class="col-12 col-sm-12" id="search_bar">
-          <div class="form-row">
-            <div class="column is-2"></div>
-            <div class="column is-8  ">
+          <div class="form-row food_user_name">
+            <div class="col-8 col-sm-12 food_user_name">
               <% if current_member.present? %>
-              <div class="col-md-6 mb-3 js-type food_user_name"><i class="fas fa-user-circle"></i> <%= current_member.name %> </div>
+              <div class="js-type food_user_name"><i class="fas fa-user-circle"></i> <%= current_member.name %> </div>
               <% else %>
-              <div class="col-md-6 mb-3"></div>
+              <div></div>
               <% end %>
             </div>
           </div>
-          <div class="form-row">
-            <div class="column is-2"></div>
+          <div class="form-row food_search_bar">
             <% if current_member.present? %>
-            <div class="column is-7 js-type d-flex">
+            <div class="col-6 col-sm-8 js-type d-flex">
               <input class="input" id="searchfood" type="text" placeholder="搜尋食物資料庫 加入今日紀錄">
               <button class="btn btn-outline-info is-light js-search" data-id="searchfood" > <i class="fas fa-search"></i></button>
             </div>
             <% else %>
-            <div class="column is-7 js-type d-flex">
+            <div class="col-6 col-sm-8 js-type d-flex">
               <input class="input" id="searchfood" type="text" placeholder="搜尋食物資料庫 加入今日紀錄" readonly>
               <button class="btn btn-outline-info is-light js-search" data-id="searchfood" disabled="disabled" value="這個按鈕已經禁用" > <i class="fas fa-search"></i></button>
             </div>
             <% end %>
           </div>
-          <div class="form-row">
-            <div class="column is-3"></div>
-            <div class="column is-6 add_item d-flex">
+          <div class="form-row food_add_bar">
+            <div class="col-2 col-sm-2  "></div>
+            <div class="col-8 col-sm-6 add_item d-flex">
               <% if current_member.present? %>
                <button  class="button is-primary is-small is-light is-rounded " id="Add_food_record_by_user"> 直接加入飲食紀錄 </button>
                <button class="button is-link is-danger is-small is-light is-rounded js-favorite" id="user_favorite_list"><i class="fas fa-heart food_favorite"></i> 最愛食物 </button>
@@ -38,22 +36,22 @@
               <% end %>            
             </div>
           </div>
-          <div class="form-row">
-            <div class="col-md-1md-3 "></div>
+          <div class="form-row food_search_result">
             <div class="col-md-11 md-3 " id="query-table">
             <table class="table table-hover" id="query-food">
               <thead>
                 <tr>
-                  <th colspan="6" scope="col"> <i class="fas fa-list"></i> 食物點將錄</th>
+                  <th colspan="2" scope="col"> <i class="fas fa-list"></i> 食物點將錄</th>
+                  <th class="search_rwd" colspan="4"></th>
                   <th scope="col"><button class="button is-primary is-small is-light js-endsearch" id="End_search" > <i class="fas fa-arrow-circle-left end_food_search"></i> 結束搜尋 </button></th>
                 </tr>
                 <tr class="table-info">
-                  <td scope="col"># </td>
+                  <td class="search_index" scope="col"># </td>
                   <td scope="col">食品名稱</td>
-                  <td scope="col">卡路里</td>
-                  <td scope="col">蛋白質</td>
-                  <td scope="col">體脂肪</td>
-                  <td scope="col">碳水化合物</td>
+                  <td class="search_calories" scope="col">卡路里</td>
+                  <td class="search_protein"  scope="col">蛋白質</td>
+                  <td class="search_fat_content"  scope="col">體脂肪</td>
+                  <td class="search_carbohydrate"  scope="col">碳水化合物</td>
                   <td scope="col"><i class="fas fa-clipboard"></i> 加入紀錄</td>
                 </tr>
               </thead>
@@ -63,20 +61,20 @@
             </div>
           </div>
           <div class="form-row" id="favorite_food_record">
-            <div class="col-md-1md-3 "></div>
             <div class="col-md-11 md-3 " id="favorite-table">
               <table class="table table-hover" id="favorite-food">
                 <thead>
                   <tr>
-                    <th colspan="7" scope="col"> <i class="fas fa-list-ul"></i>  最愛食物清單</th>
+                    <th colspan="2" scope="col"> <i class="fas fa-list-ul"></i>  最愛食物清單</th>
+                    <th class="favorite_index" colspan="5" scope="col"></th>
                   </tr>
                   <tr>
-                    <td scope="col"># </td>
-                    <td scope="col">食品名稱</td>
-                    <td scope="col">卡路里</td>
-                    <td scope="col">蛋白質</td>
-                    <td scope="col">體脂肪</td>
-                    <td scope="col">碳水化合物</td>
+                    <td class="favorite_index" scope="col"># </td>
+                    <td class="favorite_name"  scope="col">食品名稱</td>
+                    <td class="favorite_calories" scope="col">卡路里</td>
+                    <td class="favorite_protein" scope="col">蛋白質</td>
+                    <td class="favorite_fat_content" scope="col">體脂肪</td>
+                    <td class="favorite_carbohydrate" scope="col">碳水化合物</td>
                     <td scope="col"><i class="fas fa-clipboard"></i> 加入紀錄</td>
                   </tr>
                 </thead>
