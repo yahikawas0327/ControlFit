@@ -71,7 +71,11 @@
         </div>
           <div class="nav-link mt-3 d-none d-sm-none d-md-block">
             <% if member_signed_in? %>
-              <%= link_to current_member.name, member_path, class:'text-info' %>
+              <% if current_member.name? %>
+                <%= link_to current_member.name, member_path, class:'text-info' %>
+              <% else %>
+                <%= link_to current_member.email, member_path, class:'text-info' %>
+              <% end %>
               熱量剩餘
               <%= @remain %>
             <% end %>
