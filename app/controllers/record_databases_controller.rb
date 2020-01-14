@@ -30,7 +30,7 @@ class RecordDatabasesController < ApplicationController
           @record_foods = FoodRecord.where(member_id: current_member.id, created_at: (Time.now.midnight)..(Time.now))
           food_sum
           @current_user_secret = Membersecret.find_by( member_id: current_member.id)
-          daily_target
+          # daily_target
           if @search_food.present?
             @food_databases = FoodDatabase.where("name ILIKE ?", "%#{@search_food}%")            
             respond_to do |format|
@@ -77,9 +77,9 @@ class RecordDatabasesController < ApplicationController
      end
     end
 
-    def daily_target
-        tdee = @current_user_secret.tdee
-        @daily_delta = @sum - tdee
-    end
+    # def daily_target
+    #     tdee = @current_user_secret.tdee
+    #     @daily_delta = @sum - tdee
+    # end
     
 end
