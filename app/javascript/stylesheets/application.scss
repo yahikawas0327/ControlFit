@@ -382,6 +382,58 @@ a:hover{
   background-color: rgba(0,0,0,.3);
   box-sizing: border-box;
 }
+//service
+.service {
+  background-color: #fafafa;
+  padding: 50px 0 50px;
+  .main-service {
+    .subtitle {
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: #33ABE6;
+    }
+    .subtitle-about {
+      font-size: 24px;
+      margin: 0 0 10px;
+      letter-spacing: 1px;
+    }
+    .description {
+      margin-bottom: 50px;
+      font-size: 20px;
+    }
+  }
+  .col-12.service-block{
+    margin-bottom: 40px;
+    .icon-caption h2 a{
+      font-size: 16px;
+      color: #404040;
+      line-height: 32px;
+    }
+    h2:hover{
+      a {
+      color: #33ABE6;
+      transition: all .6s ease-in-out;
+      }
+    }
+    .icon{
+      float: left;
+      height: 50px;
+      padding: 0 15px 10px 0;
+      margin: 0 15px 0 0;
+      border-right: 1px solid #e3e3e3;
+      font-size: 26px;
+      color: #33ABE6;
+    }
+  }
+  .service-text{
+    margin: 15px 0 0;
+    font-size: 14px;
+  }
+  .clear-fix{
+    clear: both;
+  }
+}
+
 //team
 .section.team {
   .title {
@@ -1217,29 +1269,11 @@ a:hover{
   display: inline-block !important;
   color: #a9a9a9;
 }
-.following-btn{
-  width: 103.41px;
-  height: 38px;
+.follow-states{
+  width: 300px !important;
+  justify-content: space-between;
 }
-.unfollow-btn{
-  background-color: #dc143c;
-}
-.fa-chart-pie{
-  color: #add8e6;
-}
-.fa-utensils{
-  color: #f08080;
-}
-.fa-running{
-  color: #ee82ee;
-}
-.follow-btn{
-  width: 210px;
-  height: 35px;
-}
-.btn-follow{
-  background-color: #1e90ff;
-}
+
 @media screen and (min-width: 768px){
   .show-img{
     height: 200px;
@@ -1258,6 +1292,10 @@ a:hover{
     height: 100px;
     width: 100px;
     object-fit: cover;
+  }
+  .show-card{
+    height: 200px;
+    width:300px;
   }
 }
 .item.introduce {
@@ -1485,41 +1523,6 @@ a:hover{
 .card-image:hover .txt{
   opacity: 1;
 }
-@media screen and (max-width: 767px){
-  .show-food{
-    min-width: 300px;
-    margin-bottom: 50px;
-  }
-}
-@media screen and (min-width: 768px){
-  .show-top{
-    width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-  }
-}
-@media screen and (max-width: 767px){
-  .show-top{
-    width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: space-around;
-  }
-}
-.show-body{
-  padding: 0;
-}
-
-
-
-
-
-
-
-
-
-
 // Henry add 0114
 // .food_user_name{
 //   margin: auto;
