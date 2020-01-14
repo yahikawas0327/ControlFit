@@ -13,7 +13,11 @@
               <%= link_to '詳細資訊', user_path(m), class:'txt h2' %>
             </div>
             <div class="card-body">
-              <%= link_to m.name, user_path(m), class:'text-info' %>
+              <% if m.name? %>
+                <%= link_to m.name, user_path(m), class:'text-info' %>
+              <% else %>
+                <%= link_to m.email, user_path(m), class:'text-info' %>
+              <% end %>
               <% if current_member.following?(m) %>
                 <%= link_to relationship_path(m), remote: true ,method: :delete, 'pos-id': m.id, class: 'follow-red' do%>
                 <i class="fas fa-heart"></i>
