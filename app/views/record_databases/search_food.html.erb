@@ -140,46 +140,68 @@
                     <th colspan="3" scope="col">  <i class="far fa-address-card"></i> <%= current_member.name %></th>
                   </thead>
                   <tbody>
-                    <% if @current_user_secret.foodintention.blank? %>
-                    <tr>
-                      <th scope="row">您飲食習慣:</th>
-                      <td>還沒有資料喔 ! <i class="far fa-sad-cry"></i></br> 
-                          若需使用請使用<%= link_to "認識自己", blogs_path %>功能</td>
-                      <td></td>
-                    </tr>
+                    <% if @current_user_secret.blank? %>
+                      <tr>
+                        <th scope="row">您飲食習慣:</th>
+                        <td>還沒有資料喔 ! <i class="far fa-sad-cry"></i></br> 
+                            若需使用請使用<%= link_to "認識自己", blogs_path %>功能</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">您運動喜好:</th>
+                        <td>還沒有資料喔 ! <i class="far fa-sad-cry"></i></br>
+                            若需使用請使用 <%= link_to "認識自己", blogs_path %>功能</td>
+                        <td></td>
+                      </tr>
                     <% else %>
-                    <tr>
-                      <th scope="row">您飲食習慣:</th>
-                      <td><%=@current_user_secret.foodintention %></td>
-                      <td></td>
-                    </tr>
-                    <% end %>
-                    <% if @current_user_secret.sportintention.blank? %>
-                    <tr>
-                      <th scope="row">您運動喜好:</th>
-                      <td>還沒有資料喔 ! <i class="far fa-sad-cry"></i></br>
-                          若需使用請使用 <%= link_to "認識自己", blogs_path %>功能</td>
-                      <td></td>
-                    </tr>
-                    <% else %>
-                    <tr>
-                      <th scope="row">您運動喜好:</th>
-                      <td><%= @current_user_secret.sportintention %></td>
-                      <td></td>
-                    </tr>
-                    <% end %>
+                      <% if @current_user_secret.foodintention.blank? %>
+                        <tr>
+                          <th scope="row">您飲食習慣:</th>
+                          <td>還沒有資料喔 ! <i class="far fa-sad-cry"></i></br> 
+                              若需使用請使用<%= link_to "認識自己", blogs_path %>功能</td>
+                          <td></td>
+                        </tr>
+                      <% else %>
+                        <tr>
+                          <th scope="row">您飲食習慣:</th>
+                          <td><%=@current_user_secret.foodintention %></td>
+                          <td></td>
+                        </tr>
+                      <% end %>
+                      <% if @current_user_secret.sportintention.blank? %>
+                        <tr>
+                          <th scope="row">您運動喜好:</th>
+                          <td>還沒有資料喔 ! <i class="far fa-sad-cry"></i></br>
+                              若需使用請使用 <%= link_to "認識自己", blogs_path %>功能</td>
+                          <td></td>
+                        </tr>
+                      <% else %>
+                        <tr>
+                          <th scope="row">您運動喜好:</th>
+                          <td><%= @current_user_secret.sportintention %></td>
+                          <td></td>
+                        </tr>
+                      <% end %>
+                    <% end %> 
                   </tbody>
                   <tfoot>
                     <tr>
-                      <% if @current_user_secret.tdee.blank? %>
-                      <th scope="row">每日所需的熱量:</th>
-                      <td>還沒有資料喔 ! <i class="far fa-sad-cry"></i> </br>  
-                          若需使用請使用<%= link_to "認識自己", blogs_path %>功能 </td>
-                      <td></td>
+                      <% if @current_user_secret.blank? %>
+                        <th scope="row">每日所需的熱量:</th>
+                        <td>還沒有資料喔 ! <i class="far fa-sad-cry"></i> </br>  
+                            若需使用請使用<%= link_to "認識自己", blogs_path %>功能 </td>
+                        <td></td>
                       <% else %>
-                      <th scope="row">每日所需的熱量:</th>
-                      <td><li class="tdee"><%= @current_user_secret.tdee %> </li>大卡</td>
-                      <td></td>
+                        <% if @current_user_secret.tdee.blank? %>
+                        <th scope="row">每日所需的熱量:</th>
+                        <td>還沒有資料喔 ! <i class="far fa-sad-cry"></i> </br>  
+                            若需使用請使用<%= link_to "認識自己", blogs_path %>功能 </td>
+                        <td></td>
+                      <% else %>
+                        <th scope="row">每日所需的熱量:</th>
+                        <td><li class="tdee"><%= @current_user_secret.tdee %> </li>大卡</td>
+                        <td></td>
+                        <% end %>
                       <% end %>
                     </tr>
                   </tfoot>
