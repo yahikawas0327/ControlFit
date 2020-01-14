@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <section class="section personal-info">
   <div class="col-12 col-md-5">
     <h2 class="title text-center">健康個人檔案</h2>
@@ -91,3 +92,98 @@
   </div>
   </div>
 </section>
+=======
+<section class="section personal-info">
+  <div class="col-12 col-md-5">
+    <h2 class="title text-center">健康個人檔案</h2>
+    <div class="d-flex">
+      <div class="col-12 col-md-6 mb-3">
+        <% if current_member.cover_image.attached? %>
+            <%= image_tag current_member.cover_image.variant(resize_to_limit: [300, 300]), class:'rounded-circle show-img mb-3' %>
+          <% else %>
+            <img src="https://picsum.photos/300/300/?random=30" class="rounded-circle show-img"> 
+          <% end %>
+        </div>
+        <div class="col-12 col-md-6">
+        <%= render 'shared/states' %>
+        <table class="table table-hover table-info">
+          <thead>
+            <tr>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-info">
+              <th scope="row">姓名</th>
+              <td><%= current_member.name %></td>
+            </tr>
+            <tr>
+              <th scope="row">性別</th>
+              <td><%= current_member.gender %></td>
+            </tr>
+            <tr class="table-info">
+              <th scope="row">年齡</th>
+              <td><%= current_member.age %></td>
+            </tr>
+            <tr>
+              <th scope="row">身高</th>
+              <td><%= current_member.cm %> 公分</td>
+            </tr>
+            <tr class="table-info">
+              <th scope="row">體重</th>
+              <td><%= current_member.kg %> 公斤</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <span><%= render 'follow_form' if signed_in? %></span>
+    <div class="col-12 col-md-6 ml-5">
+    今日還可攝取熱量 = <%= @remain %>
+    <div style="width:400px;">
+      <canvas id="heyChart"></canvas>
+    </div>
+    <script>
+      var ctx = document.getElementById("heyChart");
+      var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ["熱量","運動"],
+          datasets: [{
+            label: ['熱量',],
+            data: [
+             '<%= @calories.sum %>',
+             '<%= @sprot_calories.sum %>',
+            ],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255,99,132,1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero:true,
+              }
+            }]
+          }
+        }
+      });
+    </script>
+  </div>
+  </div>
+</section>
+>>>>>>> origin/feature/willy
