@@ -4,27 +4,38 @@
       <div class="col-12 col-sm-12" id="search_bar">
           <div class="form-row">
             <div class="column is-2"></div>
-            <div class="column is-6 js-type">
+            <div class="column is-8  ">
               <% if current_member.present? %>
-              <div class="col-md-6 mb-3"><i class="fas fa-user-circle"></i> <%= current_member.name %> </div>
+              <div class="col-md-6 mb-3 js-type food_user_name"><i class="fas fa-user-circle"></i> <%= current_member.name %> </div>
               <% else %>
-              <div class="col-md-6 mb-3"><i class="fas fa-user-circle"></i></div>
+              <div class="col-md-6 mb-3"></div>
               <% end %>
             </div>
           </div>
           <div class="form-row">
-            <div class="column is-6 js-type d-flex">
-              <input class="input" id="searchfood" type="text" placeholder="來個食物 加入今日紀錄">
+            <div class="column is-2"></div>
+            <% if current_member.present? %>
+            <div class="column is-7 js-type d-flex">
+              <input class="input" id="searchfood" type="text" placeholder="搜尋食物資料庫 加入今日紀錄">
               <button class="btn btn-outline-info is-light js-search" data-id="searchfood" > <i class="fas fa-search"></i></button>
             </div>
+            <% else %>
+            <div class="column is-7 js-type d-flex">
+              <input class="input" id="searchfood" type="text" placeholder="搜尋食物資料庫 加入今日紀錄" readonly>
+              <button class="btn btn-outline-info is-light js-search" data-id="searchfood" disabled="disabled" value="這個按鈕已經禁用" > <i class="fas fa-search"></i></button>
+            </div>
+            <% end %>
           </div>
           <div class="form-row">
+            <div class="column is-3"></div>
             <div class="column is-6 add_item d-flex">
-              <ul>
-                <li>找不到資料嗎?</li>
-              </ul>
-              <button type="button" class="button is-info is-small is-light" id="Add_food_record_by_user"> 直接添加至紀錄 </button>
+              <% if current_member.present? %>
+               <button  class="button is-primary is-small is-light is-rounded " id="Add_food_record_by_user"> 直接加入飲食紀錄 </button>
                <button class="button is-link is-danger is-small is-light is-rounded js-favorite" id="user_favorite_list"><i class="fas fa-heart food_favorite"></i> 最愛食物 </button>
+               <% else %>
+               <button  class="button is-primary is-small is-light is-rounded " id="Add_food_record_by_user" disabled="disabled"> 直接加入飲食紀錄 </button>
+               <button class="button is-link is-danger is-small is-light is-rounded js-favorite" id="user_favorite_list" disabled="disabled"><i class="fas fa-heart food_favorite"></i> 最愛食物 </button>
+              <% end %>            
             </div>
           </div>
           <div class="form-row">
@@ -88,9 +99,42 @@
           <div class="row">
             <div class="col-1"></div>
             <div class="col-10">
-              <h2 class="title"> 今日飲食狀態點將錄 <i class="far fa-clipboard"></i> </h2>
+              <h2 class="title daily_food_status"> 今日飲食紀錄狀態 <i class="far fa-clipboard"></i>  </h2>
+              </br>
               <div class="userfoodrecord">
                 <% if current_member.present? %>
+                <table class="control_fit_food_record">
+                  <thead>
+                   <th colspan="3" scope="col"> ControlFit - 飲食紀錄使用須知 <i class="far fa-comment-dots food-user-guide"></i> </th>
+                  </thead>
+                  <tbody id="food-user-guide">
+                     <tr>
+                       <th> STEP1:</th>
+                       <td> 請使用者先註冊或登入。</td>
+                     </tr>
+                     <tr>
+                       <th> STEP2:</th>
+                       <td> 藉由搜尋列搜尋食物，並加入每日記錄。再者，可透過手動加入飲食紀錄</td>
+                     </tr>
+                     <tr>
+                       <th> STEP3:</th>
+                       <td> 若無食物資訊亦可透過手動輸入加入每日記錄。</td>
+                     </tr>
+                     <tr>
+                       <th> STEP4:</th>
+                       <td> 透過搜尋食物使用愛心功能加入最愛食物清單，下次即可使用最愛清單加入紀錄</td>
+                     </tr>
+                     <tr>
+                       <th> STEP5:</th>
+                       <td> 若對現在飲食沒想法可透過推薦食物名單找尋想吃的食物</td>
+                     </tr>
+                     <tr>
+                       <th> STEP6:</th>
+                       <td> 若對登入紀錄有疑慮可直接編輯/刪除這筆紀錄資料</td>
+                     </tr>
+                  </tbody>
+                 </table>
+                </br>
                 <table class="table user-food-info">
                   <thead>
                     <th colspan="3" scope="col">  <i class="far fa-address-card"></i> <%= current_member.name %></th>
@@ -98,13 +142,13 @@
                   <tbody>
                     <% if @current_user_secret.foodintention.blank? %>
                     <tr>
-                      <th scope="row">您飲食喜好:</th>
+                      <th scope="row">您飲食習慣:</th>
                       <td>還沒有資料喔 ! <i class="far fa-sad-cry"></i> </td>
                       <td></td>
                     </tr>
                     <% else %>
                     <tr>
-                      <th scope="row">您飲食喜好:</th>
+                      <th scope="row">您飲食習慣:</th>
                       <td><%=@current_user_secret.foodintention %></td>
                       <td></td>
                     </tr>
@@ -147,7 +191,47 @@
                   </tbody>
                 </table>
                 <% else %>
-                還沒有登入喔!!!!!!!!!
+                <div class="un-sign">
+                  <p>
+                    親愛的使用者您好: </br>
+                    您目前狀態 : 
+                    <div class="un-sign-status">尚未註冊</div>或<div class="un-sign-status">登入</div>。</br>
+                    可以透過按下 <%= link_to "註冊", new_member_registration_path %> 
+                    或是 <%= link_to "登入", new_member_session_path %> 使用飲食紀錄功能。
+                  </p>
+                  </br>
+                  <table class="control_fit_food_record">
+                    <thead>
+                      <th colspan="3" scope="col"> ControlFit - 飲食紀錄使用須知 <i class="far fa-comment-dots food-user-guide"></i> </th>
+                     </thead>
+                    <tbody id="food-user-guide">
+                      <tr>
+                        <th> STEP1:</th>
+                        <td> 請使用者先註冊或登入。</td>
+                      </tr>
+                      <tr>
+                        <th> STEP2:</th>
+                        <td> 藉由搜尋列搜尋食物，並加入每日記錄。</td>
+                      </tr>
+                      <tr>
+                        <th> STEP3:</th>
+                        <td> 若無食物資訊亦可透過手動輸入加入每日記錄。</td>
+                      </tr>
+                      <tr>
+                        <th> STEP4:</th>
+                        <td> 透過搜尋食物使用愛心功能加入最愛食物清單，下次即可使用最愛清單加入紀錄</td>
+                      </tr>
+                      <tr>
+                        <th> STEP5:</th>
+                        <td> 若對現在飲食沒想法可透過推薦食物名單找尋想吃的食物</td>
+                      </tr>
+                      <tr>
+                        <th> STEP6:</th>
+                        <td> 若對登入紀錄有疑慮可直接編輯/刪除這筆紀錄資料</td>
+                      </tr>
+                   </tbody>
+                  </table>
+                </div>
                 <% end %>     
               </div>
             </div>

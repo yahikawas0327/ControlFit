@@ -39,13 +39,15 @@ class BlogsController < ApplicationController
      physical_hash = { bmi: user_bmi,
                        bmi_range: user_bmi_range,
                        ree: user_ree,
-                       bmr: user_bmr}
+                       bmr: user_bmr,
+                       tdee: user_bmr}
      if user_secret.present?
         # 若資料存在及更新資料
         user_secret.update(:bmi => user_bmi , 
                             :bmistatus => user_bmi_range,
                             :ree => user_ree,
                             :bmr => user_bmr,
+                            :tdee => user_bmr,
                             :member_id => current_member.id)
      else
         # 若資料不存在則新建資料
@@ -53,6 +55,7 @@ class BlogsController < ApplicationController
                             :bmistatus => user_bmi_range,
                             :ree => user_ree,
                             :bmr => user_bmr,
+                            :tdee => user_bmr,
                             :member_id => current_member.id)
      end 
 
