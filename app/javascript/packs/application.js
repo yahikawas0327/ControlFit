@@ -29,6 +29,7 @@ import echarts from 'echarts/dist/echarts.common.js'
 import Chart from 'chart.js'
 
 window.jQuery = window.$ = $
+<<<<<<< HEAD
 
 
 $(document).on('turbolinks:load',function(){
@@ -49,3 +50,6 @@ $(document).on('turbolinks:load',function(){
     }
   })
 })
+=======
+import './bmi.js'
+>>>>>>> update user show css
