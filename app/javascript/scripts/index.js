@@ -103,7 +103,7 @@ function search(){
     $('#Add_food_record_type').hide()
     evt.stopPropagation();
     let searchfood_hash = {searchfood: $('#searchfood').val()}
-    axios.get('http://localhost:5000/search_food.json', {params:{ search_food: $('#searchfood').val()}})
+    axios.get('http://controlfit.online/search_food.json', {params:{ search_food: $('#searchfood').val()}})
          .then( response => {
           let query_data = response.data.length
           if (query_data !== 0){
@@ -276,7 +276,7 @@ function click_create_new_record_by_user(){
        }
        console.log(food_hash)
        $(this).parent().parent('.form-row').remove()
-   axios.post("http://localhost:5000/food_records", food_hash)
+   axios.post("http://controlfit.online/food_records", food_hash)
         .then( response => {
           console.log('response=>',response);
             let pre_time =  moment().format('LT'); 
@@ -391,7 +391,7 @@ function saveEvent(){
     $(`.js-edit[data-id="${this.dataset.id}"]`).removeAttr('disabled')
     $(this).parent().parent('.form-row').remove()
     let before_edit_sum = $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text()
-    axios.patch(`http://localhost:5000/food_records/${this.dataset.id}`, editfood_hash)
+    axios.patch(`http://controlfit.online/food_records/${this.dataset.id}`, editfood_hash)
 
          .then( response => {
               // console.log('response=>',response);
@@ -419,7 +419,7 @@ function deleteEvent(){
   $('#daliy-food').on('click','.js-del',function(evt){
     console.log(this.dataset.id);
     let delete_id = {id: this.dataset.id}
-    axios.delete(`http://localhost:5000/food_records/${this.dataset.id}`, delete_id )
+    axios.delete(`http://controlfit.online/food_records/${this.dataset.id}`, delete_id )
     .then( response => {
         console.log('response=>',response);
         let del_sum = $(`.js-del[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text()
@@ -450,7 +450,7 @@ function query_add(){
                }
     
      $(this).parent().parent('.form-row').remove()
-    axios.post("http://localhost:5000/food_records", food_hash)
+    axios.post("http://controlfit.online/food_records", food_hash)
          .then( response => {
                 console.log(response)
             let pre_time =  moment().format('LT'); 
@@ -493,7 +493,7 @@ function more(){
 function recommend(){
   $('.userfoodrecord').on('click','.js-recommend',function(evt){
     $('#recommend-food').toggle()
-    axios.get('http://localhost:5000/search_food/random.json')
+    axios.get('http://controlfit.online/search_food/random.json')
          .then( response => {
                var result = ""
               for ( var i = 0; i < 5; i++) {
@@ -619,7 +619,7 @@ function searchLike(){
 // favorite list 
 function favorite(){
   $('#user_favorite_list').on('click',function(){ 
-    axios.get('http://localhost:5000/search_food/list')
+    axios.get('http://controlfit.online/search_food/list')
          .then( response => {
            var result = ""
            for ( var i = 0; i < response.data.length; i++) {
