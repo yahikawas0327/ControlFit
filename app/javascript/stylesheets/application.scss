@@ -1240,6 +1240,15 @@ a:hover{
 .sport_fire{
   color: orangered;
 }
+.card-link-name{
+  color: red($color: #000000) !important;
+}
+.bmi-jquery{
+  font-size: 60px;
+}
+.bmi-modal{
+  width: 400px;
+}
 #Add_food_record_by_user{
   margin: 0 2px;
 }
@@ -1291,7 +1300,7 @@ a:hover{
   justify-content: center;
   padding: 5px;
 }
-#sport.section.sport{
+.section.sport{
   background-image: url(../../assets/images/bg_4.jpg);
   max-width: 100%;
   height: 800px;
