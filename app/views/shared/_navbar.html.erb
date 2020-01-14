@@ -50,7 +50,7 @@
             <li class="nav-item active">
               <a class="nav-link" href="<%= blogs_path %>">
                 <span>認識自己</span>
-            </a>
+               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<%= search_food_record_database_path %>">
@@ -71,7 +71,11 @@
         </div>
           <div class="nav-link mt-3 d-none d-sm-none d-md-block">
             <% if member_signed_in? %>
-              <%= link_to current_member.name, member_path, class:'text-info' %>
+              <% if current_member.name? %>
+                <%= link_to current_member.name, member_path, class:'text-info' %>
+              <% else %>
+                <%= link_to current_member.email, member_path, class:'text-info' %>
+              <% end %>
               熱量剩餘
               <%= @remain %>
             <% end %>

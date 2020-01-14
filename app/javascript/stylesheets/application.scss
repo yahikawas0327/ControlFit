@@ -285,21 +285,21 @@ a:hover{
       .nav-item{
         width: 100%!important;
         height: 80px;
-        display: flex;
-        justify-content: center;
         line-height: 1rem;
         left: 0;
         position: relative;
-        a{
+        a.nav-link {
           display: flex;
           justify-content: center;
-          align-items: center;
           flex-direction: column!important;
+          padding-left: 18px;
           width: 100%;
           height: 80px;
           color: rgba(0,0,0,.8)!important;
           font-size: 19px;
-          &:hover {
+        } 
+        a:hover {
+          span {
             color: #33ABE6;
             transition: all 0.3s ease-in-out;
           }
@@ -313,7 +313,7 @@ a:hover{
           color: rgba(0,0,0,.8)!important;
         }
       }
-      .nav-item + .nav-item:after {
+      .nav-item + .nav-item:before {
         content: '';
         position: absolute;
         width: 100%;
@@ -364,6 +364,11 @@ a:hover{
  .banner{
    width: 100%;
    background-size: 500px 740px;
+   .row {
+      width: 100%;
+      margin-right: -15px;
+      margin-left: -15px;
+   }
  }
 }
 .banner.cover-image:before{
@@ -888,7 +893,7 @@ a:hover{
       display: flex;
       align-items: center;
       .more-text {
-        font-size: 20px;
+        font-size: 18px;
       }
       .button {
         margin-left: 10px;
@@ -913,22 +918,55 @@ a:hover{
 @media screen and (max-width: 767px){
   .self-check {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-image: linear-gradient(100deg, transparent 50%, rgba(204, 204, 204, 0.95) 50%), url(https://images.unsplash.com/photo-1559064368-6f6d5ef84110?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=60);
     background-size: cover;
     background-repeat: no-repeat;
     .row {
-      width: 1300px;
-      height: 500px;
+      width: 100%;
+      height: 100%;
       justify-content: center;
       margin: auto;
       flex-wrap: wrap;
       .item {
-        width: 400px;
-        height: 500px;
-        margin: 0 10px;
+        width: 400px!important;
+        height: 495px;
+        margin: 0 10px 20px;
+        background-color:#fafafa;
+        border-radius: 5px;
         label {
           color: #404040;
+        }
+      }
+      .basic {
+        .button-group {
+          .button {
+            width: 140px!important;
+            margin: 0 10px;
+          }
+        }
+      }
+      .result {
+        .table,
+        .more {
+          width: 350px;
+        } 
+        .more {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          .button {
+            margin-top: 15px;
+            width: 150px!important;
+          }
+        }
+      }
+      .deeper-check {
+        .col {
+          width: 345px;
+        }
+        .title {
+          font-size: 19px;
         }
       }
     }    
@@ -941,6 +979,12 @@ a:hover{
   .search {
     width: 100%;
     margin: 20px 0 20px;
+    #Add_food_record_type .form-row {
+      background-color: #17a2b8;
+      padding-top: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
     h2 {
       text-align: center;
     }
@@ -966,7 +1010,7 @@ a:hover{
     }
   }
     table.table-hover {
-      width: 680px;
+      width: 650px;
    }
   .row.result {
     width: 100%;
@@ -976,6 +1020,20 @@ a:hover{
       margin: 0 20px;
       h2 {
         text-align: center;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px){
+  .food {
+    .container-fluid {
+      display: flex;
+      flex-wrap: wrap;
+      .result {
+        table.table-hover {
+          width: 345px;
+       }
       }
     }
   }
@@ -1013,9 +1071,6 @@ a:hover{
       .row.sport-record {
         flex-direction: column;
         .columns {
-          width: 90%;
-          font-size: 1rem;
-          margin-left: 10px;
           .column.is-8 {
             button {
               margin-left: 10px;
@@ -1043,6 +1098,64 @@ a:hover{
         }
         td {
         vertical-align: middle;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px){
+  .sport {
+    .daily-record {
+      .table {
+        th, td {
+          font-size: 16px;
+        }
+        td {
+        vertical-align: middle;
+        }
+      }
+      .row.sport-record {
+        .columns {
+          width: 90%;
+          font-size: 1rem;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 767px){
+  .section.sport {
+    padding: 0;
+    .select-sport {
+      margin-bottom: 30px;
+    }
+    .daily-record {
+      .row.sport-record {
+        .columns {
+          font-size: 14px;
+          .column {
+            justify-content: center;
+          }
+        }
+        .table#query-sport {
+          width: 380px;
+          table-layout: fixed;
+          word-break: break-all;
+          th, td {
+          font-size: 12px;
+          }
+        }
+        .actual-record {
+          padding: 0;
+          .table#record-sport{
+            width: 380px;
+            table-layout: fixed;
+            word-break: break-all;
+            th, td {
+              font-size: 12px;
+            }
+          }
         }
       }
     }
