@@ -1163,7 +1163,7 @@ a:hover{
   // background-color:#C3E0C9;
   background-color: #EDFAFC;
   border-radius:10px;
-  padding: 10px;
+  padding:10px;
 }
 .user-food-info{
   background-color: #ECEEEE;
@@ -1171,6 +1171,14 @@ a:hover{
   border-radius:10px;
   justify-content: center;
 }
+.control_fit_food_record{
+  // background-color: #EDFBE3;
+  margin:5px 5px;
+  padding: 2px 2px;
+  border-radius:7px;
+  // margin: auto;
+
+ }
 .tdee{
   display: inline-block;
   color:red;
@@ -1245,4 +1253,62 @@ a:hover{
 }
 .bmi-modal{
   width: 400px;
+=======
+#Add_food_record_by_user{
+  margin: 0 2px;
+}
+.un-sign{
+  width: 99%;
+  background-color:#F0F0F0 ;
+  padding: 5px;
+  padding-left:10px;
+  border-radius:10px;
+  .user-guide{
+    margin-top:10px;
+  }
+  .control_fit_food_record{
+   margin: 5px 2px;
+   padding: 1px 1px;
+   border-radius: 8px;
+   margin: auto;
+  }
+  .un-sign-status{
+    color:red;
+    font-weight:bold;
+    display: inline-block;
+    flex-wrap: wrap;
+  }
+  
+}
+.section.food{
+  background-image: url(../../assets/images/bg_2.jpg);
+  height: 100%;
+  object-fit: cover;
+  // background: linear-gradient(to right,#82DDEA 25%, #B8ECF3 70%);
+  
+}
+.food_user_name{
+  // color: #4DCFE1;
+  font-size: 28px;
+  font-weight:bold;
+  display: inline;
+  background-color: #edfafc;
+  border-radius: 5px;
+}
+.daily_food_status{
+  font-size: 28px;
+  font-weight:bold;
+  display: inline;
+  background-color: #F5FCEF;
+  border-radius: 5px;
+  margin: auto;
+  justify-content: center;
+  padding: 5px;
+}
+#sport.section.sport{
+  background-image: url(../../assets/images/bg_4.jpg);
+  max-width: 100%;
+  height: 800px;
+  // object-fit: cover
+  // background: linear-gradient(to right,#82DDEA 25%, #B8ECF3 70%); 
 }
