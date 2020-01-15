@@ -1,6 +1,6 @@
 <container>
-  <div class="row mt-3 mb-5">
-    <div class="col-md-12 m-auto d-flex justify-content-center">
+  <div class="row mt-3 mb-5 show-top">
+    <div class="show-top">
       <% if @member.cover_image.attached? %>
         <%= image_tag @member.cover_image.variant(resize_to_limit: [300, 300]), class:'rounded-circle show-img' %>
       <% else %>
@@ -74,7 +74,7 @@
         });
       </script> 
     </div> 
-    <div class="col-12 col-md-5">
+    <div class="col-12 col-md-5 show-food">
       <span>
         <a class="btn bg-light text-secondary mb-2" data-toggle="collapse" href="#foodsExample" role="button" aria-expanded="flase" aria-controls="collapseExample">
           今日飲食紀錄

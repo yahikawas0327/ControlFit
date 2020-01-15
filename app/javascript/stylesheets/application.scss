@@ -1469,7 +1469,25 @@ a:hover{
 .card-image:hover .txt{
   opacity: 1;
 }
-// Henry add 0114
+@media screen and (max-width: 767px){
+  .show-food{
+    min-width: 300px;
+    margin-bottom: 50px;
+  }
+}
+@media screen and (min-width: 768px){
+  .show-top{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 767px){
+  .show-top{
+    width: 100%;
+  }
+}// Henry add 0114
 // .food_user_name{
 //   margin: auto;
 //   justify-content: center;
