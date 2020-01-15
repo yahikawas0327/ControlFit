@@ -45,7 +45,7 @@
             <span class="brand"><%= image_tag("brand05.png") %></span>
           </a>
         </div>
-        <div class="collapse navbar-collapse" id="navbar-main">
+        <div class="col collapse navbar-collapse" id="navbar-main">
           <ul class="navbar-nav">
             <li class="nav-item active">
               <a class="nav-link" href="<%= blogs_path %>">
@@ -69,15 +69,15 @@
             </li>
           </ul>
         </div>
-          <div class="nav-link mt-3 d-none d-sm-none d-md-block">
-            <% if member_signed_in? %>
-              <% if current_member.name? %>
-                <%= link_to current_member.name, member_path, class:'text-info' %>
-              <% else %>
-                <%= link_to current_member.email, member_path, class:'text-info' %>
-              <% end %>
+        <div class="nav-link mt-3 d-none d-sm-none d-md-block">
+          <% if member_signed_in? %>
+            <% if current_member.name? %>
+              <%= link_to current_member.name, member_path, class:'text-info' %>
+            <% else %>
+              <%= link_to current_member.email, member_path, class:'text-info' %>
             <% end %>
-          </div>
+          <% end %>
+        </div>
         <ul class="col navbar-actions">
           <% if member_signed_in? %>
             <li class="nav-item dropdown">
