@@ -1217,8 +1217,21 @@ a:hover{
   display: inline-block !important;
   color: #a9a9a9;
 }
-.follow-states{
-  // justify-content: space-between;
+.following-btn{
+  width: 103.41px;
+  height: 38px;
+}
+.unfollow-btn{
+  background-color: #dc143c;
+}
+.fa-chart-pie{
+  color: #add8e6;
+}
+.fa-utensils{
+  color: #f08080;
+}
+.fa-running{
+  color: #ee82ee;
 }
 .follow-btn{
   width: 210px;
