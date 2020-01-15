@@ -1218,8 +1218,11 @@ a:hover{
   color: #a9a9a9;
 }
 .follow-states{
-  width: 300px !important;
-  justify-content: space-between;
+  // justify-content: space-between;
+}
+.follow-btn{
+  width: 210px;
+  height: 35px;
 }
 
 @media screen and (min-width: 768px){
@@ -1238,10 +1241,6 @@ a:hover{
     height: 100px;
     width: 100px;
     object-fit: cover;
-  }
-  .show-card{
-    height: 200px;
-    width:300px;
   }
 }
 .item.introduce {
@@ -1486,8 +1485,25 @@ a:hover{
 @media screen and (max-width: 767px){
   .show-top{
     width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
   }
-}// Henry add 0114
+}
+.show-body{
+  padding: 0;
+}
+
+
+
+
+
+
+
+
+
+
+// Henry add 0114
 // .food_user_name{
 //   margin: auto;
 //   justify-content: center;
