@@ -948,10 +948,11 @@ a:hover{
   background-size: cover;
   background-repeat: no-repeat;
   .row {
-    width: 1300px;
+    width: 100%;
     height: 500px;
     justify-content: center;
     margin: auto;
+    flex-wrap: nowrap;
     .item {
       width: 400px;
       height: 500px;
