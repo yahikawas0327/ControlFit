@@ -349,7 +349,7 @@ a:hover{
   }  
 }
 @media screen and (min-width: 768px){
-  
+
 }
 @media screen and (max-width: 767px){
  .banner{
@@ -912,7 +912,6 @@ a:hover{
 .section.edit-info {
   width: 100vw;
   height: 100%;
-  background-image: linear-gradient(90deg, rgba(245, 243, 243, 1) 50%, transparent 50%), url(https://images.unsplash.com/photo-1539798488725-7387f3229c49?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60);
   select#member_gender{
     margin-left: 10px;
     width: 100px;
@@ -925,6 +924,7 @@ a:hover{
 @media screen and (min-width: 768px){
   .section.edit-info {
     padding-left: 100px;
+    background-image: linear-gradient(90deg, rgba(245, 243, 243, 1) 50%, transparent 50%), url(https://images.unsplash.com/photo-1539798488725-7387f3229c49?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60);
   }
 }
 @media screen and (max-width: 767px){ 
@@ -942,8 +942,6 @@ a:hover{
         height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
       }
     }
   }
