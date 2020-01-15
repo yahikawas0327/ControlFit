@@ -1666,10 +1666,20 @@ a:hover{
 #Edit_food_record{
   background-color:#edfafc ;
 }
+.row.daily-record{
+  justify-content: center;
+}
 table.table.user-food-info.dailyfood-rwd{
   display: none;
 }
+.recommend_name{
+  word-break: break-all;
+  width: 150px;
+}
 @media screen and (max-width: 767px){
+  #foodusertable.daily-record{
+    margin: 0 -2px;
+  }
   .search_food_result{
     .search_calories{
       display: none;
@@ -1767,9 +1777,9 @@ table.table.user-food-info.dailyfood-rwd{
     .recommend_fat_content{
       display:none;
     }
-    .recommend_name{
+    td.recommend_name{
       word-break: break-all;
-      width: 150px;
+      width: 250px;
     }
 
   }
@@ -1789,6 +1799,12 @@ table.table.user-food-info.dailyfood-rwd{
     width:120px;
     word-break: break-all;
   }
+  th.time{
+    display: none;
+  }
+  td.time{
+    display: none;
+  }
   table.table.user-food-info.dailyfood-normal{
     display: none;
   }
@@ -1803,15 +1819,17 @@ table.table.user-food-info.dailyfood-rwd{
     width: 100%;
     text-align: center;
   }
+  .form-row.foodlist{
+    margin-left: -10px;
+    margin-right: -45px;
+  }
 }
 
 .favorite_name{
   word-break: break-all;
   width: 200px;
 }
-.row.daily-record{
-  justify-content: center;
-}
+
 
 table#daliy-food.table.table-sm{
   width: 650px;
@@ -1821,7 +1839,4 @@ table#recommend-food.table.table-sm{
   width: 650px;
   text-align: center;
 }
-.recommend_name{
-  word-break: break-all;
-  width: 150px;
-}
+

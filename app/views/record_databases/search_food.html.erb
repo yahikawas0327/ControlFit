@@ -93,7 +93,7 @@
     </div>
     <div class="row result">
       <div class="col-12 col-sm-12">
-        <div class="daily-record">
+        <div class="daily-record" id="foodusertable">
           <div class="row daily-record">
             <div class="col-10 col-sm-12 daily_food_status">
               <h2 class="title daily_food_status"> 今日飲食紀錄狀態 <i class="far fa-clipboard"></i>  </h2>
@@ -285,17 +285,17 @@
             </div>
           </div>
           </br>
-          <div class="form-row">
+          <div class="form-row foodlist">
           <table class="table table-sm" id="daliy-food">
             <thead class="dailyfood-normal">
               <tr>
                 <% if @record_foods.present? %>
-                <th  colspan="3" scope="col"> <i class="fas fa-clipboard-list"></i> : 今日飲食點將錄   共 : <div class="totalcount" > <%= @record_foods.size %></div> 筆</th>
-                <th  colspan="1"></th>
+                <th  colspan="3" scope="col"> <i class="fas fa-clipboard-list"></i> : 今日飲食紀錄共 : <div class="totalcount" > <%= @record_foods.size %></div> 筆</th>
+                <th  class="time" colspan="1"></th>
                 <th  colspan="3">  <i class="fas fa-utensils"></i> : 共 <div class="totalsum" > <%= @sum %></div>  大卡  </th>
                 <% else %>
-                <th  colspan="3" scope="col"> <i class="fas fa-clipboard-list"></i> : 今日飲食點將錄   共 : <div class="totalcount" > 0 </div>  筆 </th>
-                <th  colspan="1" ></th>
+                <th  colspan="3" scope="col"> <i class="fas fa-clipboard-list"></i> : 今日飲食紀錄共 : <div class="totalcount" > 0 </div>  筆 </th>
+                <th  class="time" colspan="1"></th>
                 <th  colspan="3"> <i class="fas fa-utensils"></i> : 共 <div class="totalsum" > 0 </div>  大卡  </th>
                 <% end %>
               </tr>
