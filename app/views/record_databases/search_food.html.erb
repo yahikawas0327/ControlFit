@@ -65,8 +65,8 @@
               <table class="table table-hover" id="favorite-food">
                 <thead>
                   <tr>
-                    <th colspan="2" scope="col"> <i class="fas fa-list-ul"></i>  最愛食物清單</th>
-                    <th class="favorite_index" colspan="5" scope="col"></th>
+                    <th colspan="3" scope="col"> <i class="fas fa-list-ul"></i>  最愛食物清單</th>
+                    <th class="favorite_normal" colspan="4" scope="col"></th>
                   </tr>
                   <tr>
                     <td class="favorite_index" scope="col"># </td>
@@ -94,7 +94,7 @@
     <div class="row result">
       <div class="col-12 col-sm-12">
         <div class="daily-record">
-          <div class="row">
+          <div class="row daily-record">
             <div class="col-10 col-sm-12 daily_food_status">
               <h2 class="title daily_food_status"> 今日飲食紀錄狀態 <i class="far fa-clipboard"></i>  </h2>
               </br>
@@ -132,20 +132,20 @@
                   </tbody>
                  </table>
                 </br>
-                <table class="table user-food-info">
+                <table class="table user-food-info " id="fooduserstatus">
                   <thead>
                     <th colspan="3" scope="col">  <i class="far fa-address-card"></i> <%= current_member.name %></th>
                   </thead>
                   <tbody>
                     <% if @current_user_secret.blank? %>
                       <tr>
-                        <th scope="row">您飲食習慣:</th>
+                        <th class="eat-habit" scope="row">您飲食習慣:</th>
                         <td>還沒有資料喔 ! <i class="far fa-sad-cry"></i></br> 
                             若需使用請使用<%= link_to "認識自己", blogs_path %>功能</td>
                         <td></td>
                       </tr>
                       <tr>
-                        <th scope="row">您運動喜好:</th>
+                        <th class="sport-habit" scope="row">您運動喜好:</th>
                         <td>還沒有資料喔 ! <i class="far fa-sad-cry"></i></br>
                             若需使用請使用 <%= link_to "認識自己", blogs_path %>功能</td>
                         <td></td>
@@ -153,28 +153,28 @@
                     <% else %>
                       <% if @current_user_secret.foodintention.blank? %>
                         <tr>
-                          <th scope="row">您飲食習慣:</th>
+                          <th class="eat-habit" scope="row">您飲食習慣:</th>
                           <td>還沒有資料喔 ! <i class="far fa-sad-cry"></i></br> 
                               若需使用請使用<%= link_to "認識自己", blogs_path %>功能</td>
                           <td></td>
                         </tr>
                       <% else %>
                         <tr>
-                          <th scope="row">您飲食習慣:</th>
+                          <th class="eat-habit" scope="row">您飲食習慣:</th>
                           <td><%=@current_user_secret.foodintention %></td>
                           <td></td>
                         </tr>
                       <% end %>
                       <% if @current_user_secret.sportintention.blank? %>
                         <tr>
-                          <th scope="row">您運動喜好:</th>
+                          <th class="sport-habit" scope="row">您運動喜好:</th>
                           <td>還沒有資料喔 ! <i class="far fa-sad-cry"></i></br>
                               若需使用請使用 <%= link_to "認識自己", blogs_path %>功能</td>
                           <td></td>
                         </tr>
                       <% else %>
                         <tr>
-                          <th scope="row">您運動喜好:</th>
+                          <th class="sport-habit" scope="row">您運動喜好:</th>
                           <td><%= @current_user_secret.sportintention %></td>
                           <td></td>
                         </tr>
@@ -203,7 +203,7 @@
                     </tr>
                   </tfoot>
                 </table>
-                <table class="table user-food-info">
+                <table class="table user-food-info dailyfood-normal">
                   <thead>
                     <th colspan="1" scope="col"> <i class="fas fa-clipboard-list"></i> 本日記錄 </th>
                     <th colspan="1" scope="col"> 共 : <li class="count_message"> <%= @record_foods.size %></li> 筆 </th>
@@ -214,6 +214,26 @@
                       <td></td>
                       <td><button class="button is-link is-warning is-small is-light is-rounded js-more"><i class="fas fa-comment-dots"></i>更多資訊</button></td>
                       <td class="recommend"> <button class="button is-link is-success is-small is-light is-rounded js-recommend"><i class="far fa-thumbs-up"></i> 推薦食物清單</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table class="table user-food-info dailyfood-rwd">
+                  <thead>
+                    <th colspan="3" scope="col"> <i class="fas fa-clipboard-list"></i> 本日記錄 </th>
+                  </thead>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th colspan="2" scope="col" > 共紀錄 :</td>
+                      <td colspan="1" scope="col" > <%= @record_foods.size %></li> 筆</td>
+                    </tr>
+                    <tr>
+                      <th colspan="2" scope="col" > 共吸收 : </td>
+                      <td colspan="1" scope="col" > <li class="sum_message"><%= @sum %></li> 大卡</td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td><button class="button is-link is-warning is-small is-light is-rounded js-more"><i class="fas fa-comment-dots"></i>更多資訊</button></td>
                       <td class="recommend-rwd"> <button class="button is-link is-success is-small is-light is-rounded js-recommend"><i class="far fa-thumbs-up"></i> 推薦食物</button></td>
                     </tr>
                   </tbody>
@@ -267,7 +287,7 @@
           </br>
           <div class="form-row">
           <table class="table table-sm" id="daliy-food">
-            <thead>
+            <thead class="dailyfood-normal">
               <tr>
                 <% if @record_foods.present? %>
                 <th  colspan="3" scope="col"> <i class="fas fa-clipboard-list"></i> : 今日飲食點將錄   共 : <div class="totalcount" > <%= @record_foods.size %></div> 筆</th>
@@ -283,7 +303,7 @@
             <tbody id="dailyfood">
               <tr class="table-secondary"> 
                 <th scope="col">編號</th>
-                <th scope="col">時間</th>
+                <th class="time" scope="col">時間</th>
                 <th scope="col">類型</th>
                 <th scope="col">食品名稱</th>
                 <th scope="col">份數</th>
@@ -308,11 +328,6 @@
               <% else %>
               <% end %>
             </tbody>
-            <tfoot>
-              <% if @record_foods.present? %>
-              <% else %>
-              <% end %>
-            </tfoot>
           </table>
           <table class="table table-sm" id="recommend-food">
             <thead>

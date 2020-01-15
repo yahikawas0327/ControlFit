@@ -1403,7 +1403,7 @@ a:hover{
   background-color: #EDFAFC;
   border-radius:10px;
   padding:10px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 .user-food-info{
   background-color: #ECEEEE;
@@ -1535,6 +1535,7 @@ a:hover{
   background-color: #edfafc;
   border-radius: 5px;
   justify-content: center;
+  padding: 2px 5px;
 }
 .title.daily_food_status{
   font-size: 28px;
@@ -1548,7 +1549,10 @@ a:hover{
 }
 .section.sport{
   background-image: url(../../assets/images/bg_4.jpg);
-  max-width: 100%;
+  // max-width: 100%;
+  // height: 100%;
+  object-fit: cover;
+  margin: 0;
   height: 800px;
   // object-fit: cover
   // background: linear-gradient(to right,#82DDEA 25%, #B8ECF3 70%); 
@@ -1659,11 +1663,11 @@ a:hover{
 #Add_food_record.form-row{
   background-color:#edfafc ;
 }
-td.recommend-rwd{
-  display: none;
-}
 #Edit_food_record{
   background-color:#edfafc ;
+}
+table.table.user-food-info.dailyfood-rwd{
+  display: none;
 }
 @media screen and (max-width: 767px){
   .search_food_result{
@@ -1705,9 +1709,9 @@ td.recommend-rwd{
     width: 100%;
   }
   #favorite_foodresult {
-    .favorite_index{
-      display:none;
-    }
+    // .favorite_index{
+    //   display:none;
+    // }
     .favorite_carbohydrate{
       display:none;
     }
@@ -1723,7 +1727,10 @@ td.recommend-rwd{
   }
   #favorite-food{
     width: 100%;
-    .favorite_index{
+    // .favorite_index{
+    //   display:none;
+    // }
+    .favorite_normal{
       display:none;
     }
     .favorite_carbohydrate{
@@ -1766,23 +1773,55 @@ td.recommend-rwd{
     }
 
   }
-
   .col-10.col-sm-12.daily_food_status{
     // width: 100%;
     max-width: 100%;
+    flex: none;
   }
   .userfoodrecord {
     width: 100%;
   }
-  td.recommend{
-    display:none;
+  th.eat-habit{
+    width:120px;
+    word-break: break-all;
   }
-  td.recommend-rwd {
-    display:block;
+  th.sport-habit{
+    width:120px;
+    word-break: break-all;
+  }
+  table.table.user-food-info.dailyfood-normal{
+    display: none;
+  }
+  table.table.user-food-info.dailyfood-rwd{
+    display: block;
+  }
+  table#recommend-food.table.table-sm{
+    width: 100%;
+    text-align: center;
+  }
+  table#recommend-food.table.table-sm{
+    width: 100%;
+    text-align: center;
   }
 }
 
 .favorite_name{
   word-break: break-all;
   width: 200px;
+}
+.row.daily-record{
+  justify-content: center;
+}
+
+table#daliy-food.table.table-sm{
+  width: 650px;
+  text-align: center;
+}
+table#recommend-food.table.table-sm{
+  width: 650px;
+  text-align: center;
+}
+.recommend_name{
+  word-break: break-all;
+  width: 150px;
 }
