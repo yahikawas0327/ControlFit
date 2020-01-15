@@ -29,18 +29,13 @@ class RecordDatabasesController < ApplicationController
         if current_member.present?
           @record_foods = FoodRecord.where(member_id: current_member.id, created_at: (Time.now.midnight)..(Time.now))
           food_sum
-          current_user_secret = Membersecret.find_by( member_id: current_member.id)
-          # daily_target
+          @current_user_secret = Membersecret.find_by( member_id: current_member.id)
           if @search_food.present?
             @food_databases = FoodDatabase.where("name ILIKE ?", "%#{@search_food}%")            
             respond_to do |format|
               format.json { render json: @food_databases}
               format.html { render :search_food}
            end
-          else
-          end
-          if current_user_secret.present?
-             @current_user_secret = Membersecret.find_by( member_id: current_member.id)
           else
           end
         else       
@@ -79,10 +74,4 @@ class RecordDatabasesController < ApplicationController
         @sum = @sum + record_food.total_calorie
      end
     end
-
-    # def daily_target
-    #     tdee = @current_user_secret.tdee
-    #     @daily_delta = @sum - tdee
-    # end
-    
 end

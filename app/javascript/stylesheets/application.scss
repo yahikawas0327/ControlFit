@@ -980,7 +980,8 @@ a:hover{
     width: 100%;
     margin: 20px 0 20px;
     #Add_food_record_type .form-row {
-      background-color: #17a2b8;
+      // background-color: #17a2b8;
+      background-color: #edfafc;
       padding-top: 15px;
       border-radius: 5px;
       margin-top: 20px;
@@ -1262,16 +1263,16 @@ a:hover{
 .food_create{
   padding-right: 5px;
 }
-.food_favorite{
+.fas.fa-heart.food_favorite{
   padding-right: 5px;
 }
 
 .userfoodrecord{
   width:500px;
-  // background-color:#C3E0C9;
   background-color: #EDFAFC;
   border-radius:10px;
   padding:10px;
+  margin-top: 10px;
 }
 .user-food-info{
   background-color: #ECEEEE;
@@ -1395,15 +1396,16 @@ a:hover{
   // background: linear-gradient(to right,#82DDEA 25%, #B8ECF3 70%);
   
 }
-.food_user_name{
+.js-type.food_user_name{
   // color: #4DCFE1;
   font-size: 28px;
   font-weight:bold;
   display: inline;
   background-color: #edfafc;
   border-radius: 5px;
+  justify-content: center;
 }
-.daily_food_status{
+.title.daily_food_status{
   font-size: 28px;
   font-weight:bold;
   display: inline;
@@ -1452,4 +1454,169 @@ a:hover{
 }
 .card-image:hover .txt{
   opacity: 1;
+}
+// Henry add 0114
+// .food_user_name{
+//   margin: auto;
+//   justify-content: center;
+// }
+.col-8.col-sm-12.food_user_name{
+  margin: auto;
+}
+.form-row.food_user_name{
+  text-align: center;
+  margin-bottom: 5px;
+  // margin: auto;
+
+}
+.form-row.food_search_bar{
+  text-align: center;
+  margin-bottom: 5px;
+}
+.col-6.col-sm-8.js-type.d-flex{
+  margin: auto;
+}
+.form-row.food_add_button{
+  text-align: center;
+  margin-bottom: 5px;
+}
+.form-row.food_add_bar{
+  margin-bottom: 10px;
+}
+.form-row.food_search_result{
+  margin-bottom: 10px;
+  text-align: center;
+}
+.col-10.col-sm-12.food_search_result{
+  margin: auto;
+}
+#Add_food_record.form-row{
+  background-color:#edfafc ;
+}
+td.recommend-rwd{
+  display: none;
+}
+#Edit_food_record{
+  background-color:#edfafc ;
+}
+@media screen and (max-width: 767px){
+  .search_food_result{
+    .search_calories{
+      display: none;
+    }
+    .search_protein{
+      display: none;
+    }
+    .search_fat_content{
+      display: none;
+    }
+    .search_carbohydrate{
+      display: none;
+    }
+    .search_name{
+      word-break: break-all;
+      width: 150px;
+    }
+  }
+  .table-info{
+    .search_calories{
+      display: none;
+    }
+    .search_protein{
+      display: none;
+    }
+    .search_fat_content{
+      display: none;
+    }
+    .search_carbohydrate{
+      display: none;
+    }
+  }
+  .search_rwd{
+    display:none;
+  }
+  #query-food{
+    width: 100%;
+  }
+  #favorite_foodresult {
+    .favorite_index{
+      display:none;
+    }
+    .favorite_carbohydrate{
+      display:none;
+    }
+    .favorite_calories{
+      display:none;
+    }
+    .favorite_protein{
+      display:none;
+    }
+    .favorite_fat_content{
+      display:none;
+    }
+  }
+  #favorite-food{
+    width: 100%;
+    .favorite_index{
+      display:none;
+    }
+    .favorite_carbohydrate{
+      display:none;
+    }
+    .favorite_calories{
+      display:none;
+    }
+    .favorite_protein{
+      display:none;
+    }
+    .favorite_fat_content{
+      display:none;
+    }
+    .favorite_name{
+      word-break: break-all;
+      width: 150px;
+    }
+  }
+  #recommend-food{
+    width: 100%;
+    .recommend_index{
+      display:none;
+    }
+    .recommend_carbohydrate{
+      display:none;
+    }
+    .recommend_calories{
+      display:none;
+    }
+    .recommend_protein{
+      display:none;
+    }
+    .recommend_fat_content{
+      display:none;
+    }
+    .recommend_name{
+      word-break: break-all;
+      width: 150px;
+    }
+
+  }
+
+  .col-10.col-sm-12.daily_food_status{
+    // width: 100%;
+    max-width: 100%;
+  }
+  .userfoodrecord {
+    width: 100%;
+  }
+  td.recommend{
+    display:none;
+  }
+  td.recommend-rwd {
+    display:block;
+  }
+}
+
+.favorite_name{
+  word-break: break-all;
+  width: 200px;
 }
