@@ -14,8 +14,27 @@
       </div> 
       <div class="col-md-8 daily-record">
         <div class="row sport-record">
-          <h2 class="title"> 今日運動狀態點將錄 <i class="far fa-clipboard"></i> </h2>
-          <div class="daily_sport_status">
+          <h2 class="title sport-record"> 今日運動紀錄狀態 <i class="far fa-clipboard"></i> </h2>
+          <div v-if="member_status === true" class="daily_sport_status">
+            <table class="control_fit_sport_record">
+              <thead>
+                <th colspan="3" scope="col"> ControlFit - 運動紀錄使用須知 <i class="far fa-comment-dots" @click="sport_user_guide"></i> </th>
+               </thead>
+              <tbody v-show="noticeshow === true">
+                <tr>
+                  <th> STEP1: </th>
+                  <td> 請使用者先註冊或登入。</td>
+                </tr>
+                <tr>
+                  <th> STEP2: </th>
+                  <td> 藉由搜尋列搜尋運動，並輸入運動分鐘加至每日記錄。</td>
+                </tr>
+                <tr>
+                  <th> STEP3: </th>
+                  <td> 若對登入紀錄有疑慮可直接編輯/刪除這筆紀錄資料。</td>
+                </tr>
+             </tbody>
+            </table>
             <table class="table user-sport-info">
               <thead>
                 <th colspan="2" scope="col">  <i class="far fa-address-card"></i>  {{user_info.name}}</th>
@@ -35,6 +54,34 @@
               </tbody>
             </table>
           </div>
+          <div v-else class="daily_sport_status">
+             <div class="sport-un-sign-status">
+              <p> 親愛的使用者您好:</br>
+                  您目前狀態 : <div class="un-sign-status">尚未註冊</div>或<div class="un-sign-status">登入</div>。</br>
+                可以透過按下 <%= link_to "註冊", new_member_registration_path %> 
+                或是 <%= link_to "登入", new_member_session_path %> 使用運動紀錄功能。
+              </p>
+              <table class="control_fit_sport_record">
+                <thead>
+                  <th colspan="3" scope="col"> ControlFit - 運動紀錄使用須知 <i class="far fa-comment-dots" @click="sport_user_guide"></i> </th>
+                 </thead>
+                <tbody v-show="noticeshow === true">
+                  <tr>
+                    <th> STEP1: </th>
+                    <td> 請使用者先註冊或登入。</td>
+                  </tr>
+                  <tr>
+                    <th> STEP2: </th>
+                    <td> 藉由搜尋列搜尋運動，並輸入運動分鐘加至每日記錄。</td>
+                  </tr>
+                  <tr>
+                    <th> STEP3: </th>
+                    <td> 若對登入紀錄有疑慮可直接編輯/刪除這筆紀錄資料。</td>
+                  </tr>
+               </tbody>
+              </table>
+             </div>
+          </div>
           <div class="col table-sm">
             <table v-if='search_status===true'  class="table table-hover table-striped" id="query-sport">
               <thead>
@@ -48,9 +95,9 @@
                   <td> 運動項目 </td>
                   <td> 甩多少 </td>
                   <td> 體重   </td>
-                  <td> 奮鬥時間<br>(分鐘) </td>
+                  <td> 奮鬥時間</br>(分鐘) </td>
                   <td> 預計成果 </td>
-                  <td> 記起來! </td>
+                  <td width="80px"> 記起來! </td>
                 </tr>
                 <tr v-for="(sport, idx) in sports" class="table-secondary">
                   <td>{{idx+1}}</td>
@@ -59,11 +106,13 @@
                   <td width="80px"> <input class="input is-danger"  v-model="weight" type="number" placeholder="不能說的秘密" disabled="disabled"></td>
                   <td width="110px"> <input class="input is-primary" v-model="min" type="number" placeholder="誠實的打下去"></td>
                   <td :keyup="consume">{{sport.computed}}</td>
-                  <td><button @click="sport_record(idx)"  class="fas fa-plus-circle"></button></td>
+                  <td width="80px" >
+                    <button @click="sport_record(idx)"  class="button is-success is-small is-light"> <i class="fas fa-plus-circle"> </i></button>
+                  </td>
                 </tr>
                 <tfoot>
-                  <td colspan="6"> </td>
-                  <td> <button @click="end_search" class="button is-danger is-big is-light">結束紀錄表</button></td>
+                  <td colspan="3"> </td>
+                  <td align="right" colspan="4"> <button @click="end_search" class="button is-danger is-big is-light">結束紀錄表</button></td>
                 </tfoot>
               </tbody>
             </table>
@@ -92,7 +141,7 @@
                   <td v-if="editstatus[index] !== true">{{record.min}}</td>
                   <td width="110px" v-else ><input class="input is-primary" v-model= "daily_sport[index].min" type="number" placeholder=""></td>
                   <td>{{record.totalconsum}}</td>
-                  <td>
+                  <td width="80px">
                     <button @click="edit_record(index)" class="button is-warning is-small is-light"> <i class="fas fa-pencil-alt"> </i></button>
                     <button v-if="editstatus[index] === true" @click="update_record(index)"class="button is-success is-small is-light"> <i class="fas fa-save"></i></button>
                     <button @click="delete_record(index)"class="button is-danger is-small is-light"> <i class="fas fa-trash"> </i></button>
