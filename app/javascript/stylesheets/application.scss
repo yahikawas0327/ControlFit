@@ -1665,6 +1665,7 @@ a:hover{
 }
 #Edit_food_record{
   background-color:#edfafc ;
+  border-radius: 10px;
 }
 .row.daily-record{
   justify-content: center;
@@ -1680,6 +1681,12 @@ table.table.user-food-info.dailyfood-rwd{
   #foodusertable.daily-record{
     margin: 0 -2px;
   }
+  #fooduserRWDstatus.daily-record{
+   width: 400px;
+   margin: 0 ;
+   margin-left: -15px;
+  }
+
   .search_food_result{
     .search_calories{
       display: none;
@@ -1805,6 +1812,22 @@ table.table.user-food-info.dailyfood-rwd{
   td.time{
     display: none;
   }
+  th.index{
+    display: none;
+  }
+  td.index{
+    display: none;
+  }
+  th.qty{
+    display: none;
+  }
+  td.qty{
+    display: none;
+  }
+  td.name{
+    width: 150px;
+    // word-break: break-all;
+  }
   table.table.user-food-info.dailyfood-normal{
     display: none;
   }
@@ -1825,6 +1848,7 @@ table.table.user-food-info.dailyfood-rwd{
   }
 }
 
+//---------------------------//
 .favorite_name{
   word-break: break-all;
   width: 200px;
@@ -1839,4 +1863,11 @@ table#recommend-food.table.table-sm{
   width: 650px;
   text-align: center;
 }
-
+.form-row.editfoodrecord{
+  justify-content: center;
+  margin-top: 5px;
+}
+.form-row.recommendfoodrecord{
+  justify-content: center;
+  margin-top: 5px;
+}

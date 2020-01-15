@@ -94,7 +94,7 @@
     <div class="row result">
       <div class="col-12 col-sm-12">
         <div class="daily-record" id="foodusertable">
-          <div class="row daily-record">
+          <div class="row daily-record" id="fooduserRWDstatus">
             <div class="col-10 col-sm-12 daily_food_status">
               <h2 class="title daily_food_status"> 今日飲食紀錄狀態 <i class="far fa-clipboard"></i>  </h2>
               </br>
@@ -290,23 +290,23 @@
             <thead class="dailyfood-normal">
               <tr>
                 <% if @record_foods.present? %>
-                <th  colspan="3" scope="col"> <i class="fas fa-clipboard-list"></i> : 今日飲食紀錄共 : <div class="totalcount" > <%= @record_foods.size %></div> 筆</th>
-                <th  class="time" colspan="1"></th>
-                <th  colspan="3">  <i class="fas fa-utensils"></i> : 共 <div class="totalsum" > <%= @sum %></div>  大卡  </th>
+                <th  colspan="2" scope="col"> <i class="fas fa-clipboard-list"></i> : 飲食紀錄共 : <div class="totalcount" > <%= @record_foods.size %></div> 筆</th>
+                <th  class="time" colspan="3"></th>
+                <th  colspan="2">  <i class="fas fa-utensils"></i> : 共 <div class="totalsum" > <%= @sum %></div>  大卡  </th>
                 <% else %>
-                <th  colspan="3" scope="col"> <i class="fas fa-clipboard-list"></i> : 今日飲食紀錄共 : <div class="totalcount" > 0 </div>  筆 </th>
-                <th  class="time" colspan="1"></th>
-                <th  colspan="3"> <i class="fas fa-utensils"></i> : 共 <div class="totalsum" > 0 </div>  大卡  </th>
+                <th  colspan="2" scope="col"> <i class="fas fa-clipboard-list"></i> : 飲食紀錄共 : <div class="totalcount" > 0 </div>  筆 </th>
+                <th  class="time" colspan="3"></th>
+                <th  colspan="2"> <i class="fas fa-utensils"></i> : 共 <div class="totalsum" > 0 </div>  大卡  </th>
                 <% end %>
               </tr>
             </thead>
             <tbody id="dailyfood">
               <tr class="table-secondary"> 
-                <th scope="col">編號</th>
+                <th class="index"scope="col">編號</th>
                 <th class="time" scope="col">時間</th>
                 <th scope="col">類型</th>
                 <th scope="col">食品名稱</th>
-                <th scope="col">份數</th>
+                <th class="qty" scope="col">份數</th>
                 <th scope="col">吃多少</th>
                 <th scope="col">懺悔時間</th>
               </tr>
