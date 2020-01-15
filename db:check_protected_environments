@@ -1,0 +1,27 @@
+D, [2020-01-15T02:07:27.799419 #4] DEBUG -- :   [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+D, [2020-01-15T02:07:27.821504 #4] DEBUG -- :   [1m[35m (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+D, [2020-01-15T02:07:27.831777 #4] DEBUG -- :   [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+D, [2020-01-15T02:07:27.839016 #4] DEBUG -- :   [1m[35m (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+D, [2020-01-15T02:07:27.845389 #4] DEBUG -- :   [1m[35m (3.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+D, [2020-01-15T02:07:27.848212 #4] DEBUG -- :   [1m[35m (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+rails aborted!
+ActiveRecord::ProtectedEnvironmentError: You are attempting to run a destructive action against your 'production' database.
+If you are sure you want to continue, run the same command with the environment variable:
+DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+/app/vendor/bundle/ruby/2.6.0/gems/activerecord-6.0.2.1/lib/active_record/tasks/database_tasks.rb:63:in `check_protected_environments!'
+/app/vendor/bundle/ruby/2.6.0/gems/activerecord-6.0.2.1/lib/active_record/railties/databases.rake:15:in `block (2 levels) in <main>'
+/app/vendor/bundle/ruby/2.6.0/gems/railties-6.0.2.1/lib/rails/commands/rake/rake_command.rb:23:in `block in perform'
+/app/vendor/bundle/ruby/2.6.0/gems/railties-6.0.2.1/lib/rails/commands/rake/rake_command.rb:20:in `perform'
+/app/vendor/bundle/ruby/2.6.0/gems/railties-6.0.2.1/lib/rails/command.rb:48:in `invoke'
+/app/vendor/bundle/ruby/2.6.0/gems/railties-6.0.2.1/lib/rails/commands.rb:18:in `<main>'
+/app/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.4.5/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:22:in `require'
+/app/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.4.5/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:22:in `block in require_with_bootsnap_lfi'
+/app/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.4.5/lib/bootsnap/load_path_cache/loaded_features_index.rb:92:in `register'
+/app/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.4.5/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:21:in `require_with_bootsnap_lfi'
+/app/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.4.5/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/app/vendor/bundle/ruby/2.6.0/gems/activesupport-6.0.2.1/lib/active_support/dependencies.rb:325:in `block in require'
+/app/vendor/bundle/ruby/2.6.0/gems/activesupport-6.0.2.1/lib/active_support/dependencies.rb:291:in `load_dependency'
+/app/vendor/bundle/ruby/2.6.0/gems/activesupport-6.0.2.1/lib/active_support/dependencies.rb:325:in `require'
+/app/bin/rails:9:in `<main>'
+Tasks: TOP => db:drop => db:check_protected_environments
+(See full trace by running task with --trace)

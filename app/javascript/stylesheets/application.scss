@@ -1217,11 +1217,29 @@ a:hover{
   display: inline-block !important;
   color: #a9a9a9;
 }
-.follow-states{
-  width: 300px !important;
-  justify-content: space-between;
+.following-btn{
+  width: 103.41px;
+  height: 38px;
 }
-
+.unfollow-btn{
+  background-color: #dc143c;
+}
+.fa-chart-pie{
+  color: #add8e6;
+}
+.fa-utensils{
+  color: #f08080;
+}
+.fa-running{
+  color: #ee82ee;
+}
+.follow-btn{
+  width: 210px;
+  height: 35px;
+}
+.btn-follow{
+  background-color: #1e90ff;
+}
 @media screen and (min-width: 768px){
   .show-img{
     height: 200px;
@@ -1238,10 +1256,6 @@ a:hover{
     height: 100px;
     width: 100px;
     object-fit: cover;
-  }
-  .show-card{
-    height: 200px;
-    width:300px;
   }
 }
 .item.introduce {
@@ -1469,6 +1483,41 @@ a:hover{
 .card-image:hover .txt{
   opacity: 1;
 }
+@media screen and (max-width: 767px){
+  .show-food{
+    min-width: 300px;
+    margin-bottom: 50px;
+  }
+}
+@media screen and (min-width: 768px){
+  .show-top{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 767px){
+  .show-top{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+  }
+}
+.show-body{
+  padding: 0;
+}
+
+
+
+
+
+
+
+
+
+
 // Henry add 0114
 // .food_user_name{
 //   margin: auto;

@@ -1,9 +1,9 @@
 <% @member ||= current_member %>
 <div class="community follow-states">
   <span class="following">
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="btn bg-light following-btn" data-toggle="modal" data-target="#exampleModal">
       <%= @member.following.count %>
-      Following
+      追蹤中
     </button>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -33,9 +33,9 @@
     </div>
   </span>
   <span class="followers">
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">
+    <button type="button" class="btn bg-light following-btn" data-toggle="modal" data-target="#exampleModal1">
       <%= @member.followers.count %>
-      Followers
+      粉絲
     </button>
     <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
