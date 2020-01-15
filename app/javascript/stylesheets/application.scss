@@ -123,6 +123,7 @@ a:hover{
     }
     .navbar-actions {
       min-width: 80px;
+      display: flex;
       a:hover {
         color: #33ABE6;
         transition: all 0.3s ease-in-out;
