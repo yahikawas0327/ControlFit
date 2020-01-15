@@ -2,7 +2,7 @@
   <div class="col-12 col-md-6">
     <h2 class="title text-center">健康個人檔案</h2>
     <div class="row">
-      <div class="col-12 col-md-5 mb-3 d-flex justify-content-end basic-data">
+      <div class="col-12 col-md-5 mb-3 d-flex basic-data">
         <% if current_member.cover_image.attached? %>
             <%= image_tag current_member.cover_image.variant(resize_to_limit: [300, 300]), class:'rounded-circle show-img mb-3' %>
           <% else %>
@@ -42,7 +42,7 @@
       </div>
     </div>
     <span><%= render 'follow_form' if signed_in? %></span>
-    <div class="col-12 col-md-10 ml-5">
+    <div class="col-12 col-md-10 calorie-intake">
       <span>今日還可攝取熱量 = <%= @remain %></span>
       <canvas id="heyChart"></canvas>
     </div>
