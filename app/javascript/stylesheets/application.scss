@@ -1,16 +1,16 @@
+
 // @import "bootstrap-sprockets";
 @import "bootstrap";
 
-html {
+html, body {
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
 }
 body {
   display: flex;
   flex-direction: column;
   font-size: 14px;
   color: #4F4F4F;
-  min-height: 100%;
 }
 header {
   width: 100%;
@@ -383,84 +383,29 @@ a:hover{
   background-color: rgba(0,0,0,.3);
   box-sizing: border-box;
 }
-//service
-.service {
-  background-color: #fafafa;
-  padding: 50px 0 50px;
-  .main-service {
-    .subtitle {
-      margin: 0 0 10px;
-      font-size: 14px;
-      color: #33ABE6;
-    }
-    .subtitle-about {
-      font-size: 24px;
-      margin: 0 0 10px;
-      letter-spacing: 1px;
-    }
-    .description {
-      margin-bottom: 50px;
-      font-size: 20px;
-    }
-  }
-  .col-12.service-block{
-    margin-bottom: 40px;
-    .icon-caption h2 a{
-      font-size: 18px;
-      color: #404040;
-      line-height: 32px;
-    }
-    h2:hover{
-      a {
-      color: #33ABE6;
-      transition: all .6s ease-in-out;
-      }
-    }
-    .icon{
-      float: left;
-      height: 50px;
-      padding: 0 15px 10px 0;
-      margin: 0 15px 0 0;
-      border-right: 1px solid #e3e3e3;
-      font-size: 26px;
-      color: #33ABE6;
-    }
-  }
-  .service-text{
-    margin: 15px 0 0;
-    font-size: 14px;
-  }
-  .clear-fix{
-    clear: both;
-  }
-}
 //team
 .section.team {
   .title {
     .subtitle {
       color: #33ABE6;
       margin-bottom: 8px;
-      font-size: 14px;
+      font-size: 18px;
     }
     .subtitle-about {
       color: #404040;
-      font-size: 24px;
+      font-size: 30px;
     }
     .description {
       padding: 15px 0 30px;
       margin: 0 0 12px 0;
       color: #606060;
-      font-size: 20px;
+      font-size: 26px;
     }  
   }
   .people {
     .team-member{
       position: relative;
       cursor: pointer;
-      img {
-        height: 280px;
-        width: 220px;
-      }
       &:hover{
         overflow: visible;
         .team-header{
@@ -530,7 +475,6 @@ a:hover{
     }
   }
 }
-
 // footer
 .section.footer {
   background: #F4F4F4;
@@ -824,6 +768,9 @@ a:hover{
 }  
 //personal-info
 .section.personal-info {
+  width: 1400px;
+  height: 100%;
+  background-image: linear-gradient(90deg, rgb(252, 252, 252) 50%, transparent 50%), url(https://images.unsplash.com/photo-1507761862811-98432ab53cde?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60);
   .community {
     height: 60px;
     .following {
@@ -846,53 +793,9 @@ a:hover{
     }
   }
 }
-@media screen and (min-width: 768px){
-  .section.personal-info {
-    background-image: linear-gradient(90deg, rgb(252, 252, 252) 50%, transparent 50%), url(https://images.unsplash.com/photo-1507761862811-98432ab53cde?ixlib=rb-1.2.1&auto=format&fit=crop&w=697&q=60);
-    .row {
-      padding: 0 30px;
-      .basic-data {
-        justify-content: flex-end;
-      }
-    }
-    .calorie-intake {
-      margin: 30px 0 0 50px;
-    }
-  }
-}
-@media screen and (max-width: 767px){
-  .section.personal-info {
-    .row {
-      .basic-data {
-        justify-content: center;
-        .show-img {
-          width: 180px;
-          height: 180px;
-        }
-      }
-      .community.follow-states {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        width: 100%!important;
-      }
-    }
-    .calorie-intake {
-      margin-top: 30px;
-      span {
-        display: block;
-        text-align: center;
-      }
-      #heychart {
-        width: 350px;
-      }
-    }
-  }
-}
-
 //edit-info
 .section.edit-info {
-  width: 100vw;
+  width: 1400px;
   height: 100%;
   background-image: linear-gradient(90deg, rgba(245, 243, 243, 1) 50%, transparent 50%), url(https://images.unsplash.com/photo-1539798488725-7387f3229c49?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60);
   select#member_gender{
@@ -905,6 +808,7 @@ a:hover{
   }
 }
 @media screen and (min-width: 768px){
+  .section.personal-info,
   .section.edit-info {
     padding-left: 100px;
   }
@@ -932,6 +836,8 @@ a:hover{
 }
 //self-check
 .self-check {
+  width: 100%;
+  height: 100vh;
   background-image: linear-gradient(100deg, transparent 50%, rgba(204, 204, 204, 0.95) 50%), url(https://images.unsplash.com/photo-1559064368-6f6d5ef84110?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=60);
   background-size: cover;
   background-repeat: no-repeat;
@@ -1120,6 +1026,7 @@ a:hover{
     }
   }
 }
+
 @media screen and (max-width: 767px){
   .food {
     .container-fluid {
@@ -1334,8 +1241,6 @@ a:hover{
 .btn-follow{
   background-color: #1e90ff;
 }
-
-
 @media screen and (min-width: 768px){
   .show-img{
     height: 200px;
@@ -1345,6 +1250,8 @@ a:hover{
   .show-card{
     height: 200px;
     width:300px;
+    padding-top: 30px;
+    padding-left: 20px;
   }
 }
 @media screen and (max-width: 767px){
@@ -1353,14 +1260,7 @@ a:hover{
     width: 100px;
     object-fit: cover;
   }
-  .show-card{
-    height: 200px;
-    width:300px;
-    padding-top: 30px;
-    padding-left: 20px;
-  }
 }
-
 .item.introduce {
   background-color:#F0F0F0;
   height: 100%;
@@ -1403,7 +1303,7 @@ a:hover{
   background-color: #EDFAFC;
   border-radius:10px;
   padding:10px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .user-food-info{
   background-color: #ECEEEE;
@@ -1475,8 +1375,7 @@ a:hover{
   background-color:#F0F0F0;
   width: 95%;
   margin: auto;
-  margin-top: 15px;  
-  margin-bottom: 15px;
+  margin: 10px;
   justify-content: center;
   border-radius:10px;
 }
@@ -1536,7 +1435,6 @@ a:hover{
   background-color: #edfafc;
   border-radius: 5px;
   justify-content: center;
-  padding: 2px 5px;
 }
 .title.daily_food_status{
   font-size: 28px;
@@ -1549,11 +1447,8 @@ a:hover{
   padding: 5px;
 }
 .section.sport{
-  background-image: url(../../assets/images/bg_7.jpg);
-  // max-width: 100%;
-  // height: 100%;
-  object-fit: cover;
-  margin: 0;
+  background-image: url(../../assets/images/bg_4.jpg);
+  max-width: 100%;
   height: 800px;
   // object-fit: cover
   // background: linear-gradient(to right,#82DDEA 25%, #B8ECF3 70%); 
@@ -1664,30 +1559,13 @@ a:hover{
 #Add_food_record.form-row{
   background-color:#edfafc ;
 }
-#Edit_food_record{
-  background-color:#edfafc ;
-  border-radius: 10px;
-}
-.row.daily-record{
-  justify-content: center;
-}
-table.table.user-food-info.dailyfood-rwd{
+td.recommend-rwd{
   display: none;
 }
-.recommend_name{
-  word-break: break-all;
-  width: 150px;
+#Edit_food_record{
+  background-color:#edfafc ;
 }
 @media screen and (max-width: 767px){
-  #foodusertable.daily-record{
-    margin: 0 -2px;
-  }
-  #fooduserRWDstatus.daily-record{
-   width: 400px;
-   margin: 0 ;
-   margin-left: -15px;
-  }
-
   .search_food_result{
     .search_calories{
       display: none;
@@ -1727,9 +1605,9 @@ table.table.user-food-info.dailyfood-rwd{
     width: 100%;
   }
   #favorite_foodresult {
-    // .favorite_index{
-    //   display:none;
-    // }
+    .favorite_index{
+      display:none;
+    }
     .favorite_carbohydrate{
       display:none;
     }
@@ -1745,10 +1623,7 @@ table.table.user-food-info.dailyfood-rwd{
   }
   #favorite-food{
     width: 100%;
-    // .favorite_index{
-    //   display:none;
-    // }
-    .favorite_normal{
+    .favorite_index{
       display:none;
     }
     .favorite_carbohydrate{
@@ -1785,77 +1660,31 @@ table.table.user-food-info.dailyfood-rwd{
     .recommend_fat_content{
       display:none;
     }
-    td.recommend_name{
+    .recommend_name{
       word-break: break-all;
-      width: 250px;
+      width: 150px;
     }
 
   }
+
   .col-10.col-sm-12.daily_food_status{
     // width: 100%;
     max-width: 100%;
-    flex: none;
   }
   .userfoodrecord {
     width: 100%;
   }
-  th.eat-habit{
-    width:120px;
-    word-break: break-all;
+  td.recommend{
+    display:none;
   }
-  th.sport-habit{
-    width:120px;
-    word-break: break-all;
-  }
-  th.time{
-    display: none;
-  }
-  td.time{
-    display: none;
-  }
-  th.index{
-    display: none;
-  }
-  td.index{
-    display: none;
-  }
-  th.qty{
-    display: none;
-  }
-  td.qty{
-    display: none;
-  }
-  td.name{
-    width: 150px;
-    // word-break: break-all;
-  }
-  table.table.user-food-info.dailyfood-normal{
-    display: none;
-  }
-  table.table.user-food-info.dailyfood-rwd{
-    display: block;
-  }
-  table#recommend-food.table.table-sm{
-    width: 100%;
-    text-align: center;
-  }
-  table#recommend-food.table.table-sm{
-    width: 100%;
-    text-align: center;
-  }
-  .form-row.foodlist{
-    margin-left: -10px;
-    margin-right: -45px;
+  td.recommend-rwd {
+    display:block;
   }
 }
-
-//---------------------------//
 .favorite_name{
   word-break: break-all;
   width: 200px;
 }
-
-
 table#daliy-food.table.table-sm{
   width: 650px;
   text-align: center;
