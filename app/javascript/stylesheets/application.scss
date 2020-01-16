@@ -1343,6 +1343,8 @@ a:hover{
   .show-card{
     height: 200px;
     width:300px;
+    padding-top: 30px;
+    padding-left: 20px;
   }
 }
 @media screen and (max-width: 767px){
@@ -1745,4 +1747,55 @@ td.recommend-rwd{
 .favorite_name{
   word-break: break-all;
   width: 200px;
+}
+.following-btn{
+  width: 103.41px;
+  height: 38px;
+}
+.unfollow-btn{
+  background-color: #dc143c;
+}
+.fa-chart-pie{
+  color: #add8e6;
+}
+.fa-utensils{
+  color: #f08080;
+}
+.fa-running{
+  color: #ee82ee;
+}
+.follow-btn{
+  width: 210px;
+  height: 35px;
+}
+.btn-follow{
+  background-color: #1e90ff;
+}
+@media screen and (max-width: 767px){
+  .show-food{
+    min-width: 300px;
+    margin-bottom: 50px;
+  }
+}
+@media screen and (min-width: 768px){
+  .show-top{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 767px){
+  .show-top{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+  }
+}
+.show-body{
+  padding: 0;
+}
+.bmi-range{
+  font-size: 16px;
 }
