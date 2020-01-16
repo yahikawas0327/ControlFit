@@ -1334,13 +1334,13 @@ a:hover{
   color: #a9a9a9;
 }
 .follow-states{
-  width: 300px !important;
   justify-content: space-between;
+  margin-bottom: 10px;
 }
 @media screen and (min-width: 768px){
   .show-img{
-    height: 200px;
-    width: 200px;
+    height: 50px;
+    width: 50px;
     object-fit: cover;
   }
   .show-card{
@@ -1900,6 +1900,7 @@ h2.title.sport-record{
 }
 .unfollow-btn{
   background-color: #dc143c;
+  color: white;
 }
 .fa-chart-pie{
   color: #add8e6;
@@ -1916,6 +1917,7 @@ h2.title.sport-record{
 }
 .btn-follow{
   background-color: #1e90ff;
+  color: white;
 }
 @media screen and (max-width: 767px){
   .show-food{
@@ -1928,7 +1930,9 @@ h2.title.sport-record{
     width: 100%;
     margin: auto;
     display: flex;
-    justify-content: center;
+  }
+  .show-title{
+    height: 70px;
   }
 }
 @media screen and (max-width: 767px){
