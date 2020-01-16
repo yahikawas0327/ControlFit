@@ -1330,14 +1330,13 @@ a:hover{
   color: #a9a9a9;
 }
 .follow-states{
-  width: 300px !important;
   justify-content: space-between;
 }
 
 @media screen and (min-width: 768px){
   .show-img{
-    height: 200px;
-    width: 200px;
+    height: 50px;
+    width: 50px;
     object-fit: cover;
   }
   .show-card{
@@ -1782,7 +1781,6 @@ td.recommend-rwd{
     width: 100%;
     margin: auto;
     display: flex;
-    justify-content: center;
   }
 }
 @media screen and (max-width: 767px){
