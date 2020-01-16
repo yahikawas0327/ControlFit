@@ -1,36 +1,40 @@
-
 <div class="container">
-  <div class="mt-3 mb-5">
-    <div class="show-top">
-      <% if @member.cover_image.attached? %>
-        <%= image_tag @member.cover_image.variant(resize_to_limit: [300, 300]), class:'rounded-circle show-img' %>
-      <% else %>
-        <img src="https://picsum.photos/300/300/?random=1" class="rounded-circle show-img"> 
-      <% end %>
-      <div>
-        <div class="mb-3 m-auto show-card">
-          <div class="row no-gutters">
-            <div class="col-md-12">
-              <div class="show-body">
-                <div class="mb-3">
-                  <h5 class="h5 font-weight-bold"><%= @member.name %></h5>
-                  <%= render 'members/follow_form' %>
+  <div class="row show-title">
+    <div class="col-12 col-md-6">
+      <div class="mt-md-3 mb-md-5">
+        <div class="d-flex mb-3 mt-3 justify-content-md-center">
+          <% if @member.cover_image.attached? %>
+            <%= image_tag @member.cover_image.variant(resize_to_limit: [300, 300]), class:'rounded-circle show-img' %>
+          <% else %>
+            <img src="https://picsum.photos/50/50/?random=34" class="rounded-circle show-img"> 
+          <% end %>
+          <div>
+            <div class="mb-md-3 m-auto">
+              <div class="row no-gutters">
+                <div class="col-md-12">
+                  <div class="show-body">
+                    <div class="d-md-flex">
+                      <h5 class="h5 font-weight-bold mt-md-2 ml-md-1"><%= @member.name %></h5>
+                    <span class="ml-md-1"><%= render 'shared/states' %></span>
+                      <%= render 'members/follow_form' %>
+                    </div>
+                    <p class="card-text"></p>
+                    <p class="card-text"><small class="text-muted"></small></p>
+                  </div>
                 </div>
-                <span><%= render 'shared/states' %></span>
-                <p class="card-text"></p>
-                <p class="card-text"><small class="text-muted"></small></p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="col-md-6"></div>
   </div>
 </div>
 <div class="container">
-  <div class="row d-flex justify-content-around m-auto">
-    <div class="col-12 col-md-5 mb-5">
-      <span class="h2">攝取比例<i class="fas fa-chart-pie"></i></span>
+  <div class="row d-flex justify-content-center m-auto">
+    <div class="col-12 col-md-6 mb-md-5 mt-3">
+      <span class="h2">攝取比例&ensp;<i class="fas fa-chart-pie"></i></span>
       <div>
         <canvas id="heyChart"></canvas>
       </div>
@@ -75,24 +79,15 @@
         });
       </script> 
     </div> 
-    <div class="col-12 col-md-5 show-food">
-      <span>
-        <a class="btn bg-light text-secondary mb-2" data-toggle="collapse" href="#foodsExample" role="button" aria-expanded="flase" aria-controls="collapseExample">
-          今日飲食紀錄
-        </a>
-        <a class="btn bg-light text-secondary mb-2" type="button" data-toggle="collapse" data-target="#sportsExample" aria-expanded="false" aria-controls="collapseExample">
-          今日運動紀錄
-        </a>
-      </span>
+    <div class="col-12 col-md-6 show-food mt-3">
       <div class="collapse show" id="foodsExample">
-        <div class="h3">今日飲食紀錄<i class="fas fa-utensils"></i></div>
+        <div class="h3">今日飲食紀錄&ensp;<i class="fas fa-utensils"></i></div>
         <li>
           <table class="table">
             <thead>
               <tr>
                 <th scope="col">名稱</th>
                 <th scope="col">熱量</th>
-                <th scope="col">品項</th>
                 <th scope="col">時間</th>
               </tr>
             </thead>
@@ -101,7 +96,6 @@
                   <tr>
                     <td scopr="col"><%= f.name %></td>
                     <td scopr="col"><%= f.calories %></td>
-                    <td scope="col"><%= f.eat_type %></td>
                     <td scope="col"><%= f.created_at.strftime("%T") %></td>
                   </tr>
                 <% end %>
@@ -109,8 +103,8 @@
           </table>
         </li>
       </div>
-      <div class="collapse" id="sportsExample">
-        <div class="h3">今日運動紀錄<i class="fas fa-running"></i></div>
+      <div class="collapse show" id="sportsExample">
+        <div class="h3">今日運動紀錄&ensp;<i class="fas fa-running"></i></div>
         <li>
           <table class="table">
             <thead>
@@ -135,4 +129,3 @@
     </div>
   </div>
 </div>
-
