@@ -1331,6 +1331,7 @@ a:hover{
 }
 .follow-states{
   justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 @media screen and (min-width: 768px){
@@ -1753,6 +1754,7 @@ td.recommend-rwd{
 }
 .unfollow-btn{
   background-color: #dc143c;
+  color: white;
 }
 .fa-chart-pie{
   color: #add8e6;
@@ -1769,6 +1771,7 @@ td.recommend-rwd{
 }
 .btn-follow{
   background-color: #1e90ff;
+  color: white;
 }
 @media screen and (max-width: 767px){
   .show-food{
@@ -1781,6 +1784,9 @@ td.recommend-rwd{
     width: 100%;
     margin: auto;
     display: flex;
+  }
+  .show-title{
+    height: 70px;
   }
 }
 @media screen and (max-width: 767px){
