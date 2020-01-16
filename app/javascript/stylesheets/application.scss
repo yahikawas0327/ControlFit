@@ -1530,7 +1530,7 @@ a:hover{
 }
 .js-type.food_user_name{
   // color: #4DCFE1;
-  font-size: 28px;
+  font-size: 24px;
   font-weight:bold;
   display: inline;
   background-color: #F5FCEF;
@@ -2133,4 +2133,10 @@ tr.query_food_color{
 }
 tr.search_food_result{
   background-color:#EDFAFC ;
+}
+body{
+  font-family: ariel, Microsoft JhengHei, STHeiti; 
+}
+div#main{
+  font-family: ariel, Microsoft JhengHei, STHeiti; 
 }
