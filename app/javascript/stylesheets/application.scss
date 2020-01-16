@@ -1549,10 +1549,10 @@ a:hover{
 .section.sport{
   background-image: url(../../assets/images/bg_7.jpg);
   // max-width: 100%;  
-  // height: 100%;
+  height: 100%;
   object-fit: cover;
   margin: 0;
-  height: 800px;
+  // height: 800px;
   // object-fit: cover
   // background: linear-gradient(to right,#82DDEA 25%, #B8ECF3 70%); 
 }
@@ -1870,6 +1870,8 @@ h2.title.sport-record{
   margin-top: 10px;
   background-color: #EDFAFC;
 }
+
+// Willy code 
 .following-btn{
   width: 103.41px;
   height: 38px;
@@ -1920,4 +1922,98 @@ h2.title.sport-record{
 }
 .bmi-range{
   font-size: 16px;
+}
+
+//Henry code 0116
+table#record-sport.table.table-hover{
+  width: 680px;
+  margin: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: #EDFAFC;
+}
+
+.col-md-6.mb-3.sport_usr_name{
+  margin: auto;
+  max-width: 43%;
+}
+.sport-user-name{
+  background-color: #F5FCEF;
+  font-size: 25px;
+  text-align: center;
+  padding: 5px 2px;
+  border-radius: 10px;
+  i{
+    padding-right: 5px;
+  }
+}
+.sport .row.full .select-sport .sport-sub{
+  background-color:#EDFAFC ;
+  border-radius: 10px;
+  padding: 3px 10px;
+  margin-left: 15px;
+  display: inline-block;
+}
+.sportextend{
+  height: 600px;
+}
+.table.user-sport-info.rwd{
+  display: none;
+}
+tr.rwd-sport-query{
+  display: none;
+ }
+@media screen and (max-width: 767px){
+  .sportextend{
+    height: 370px;
+  }
+  .col-md-6.mb-3.sport_usr_name{
+    max-width: 60%;
+    .sport-user-name{
+     margin-top: 20px;
+     padding: 2px 2px;
+     font-size: 20px;
+    }
+  }
+  h2.title.sport-record{
+    font-size: 20px;
+  }
+  .daily_sport_status{
+    width:90%;
+  }
+  .table.user-sport-info{
+    display: none;
+  }
+  .table.user-sport-info.rwd{
+    display: block;
+    padding: 0 15px;
+  }
+  .sport-index{
+    display: none;
+  }  
+  .sport-record-time{
+    display: none;
+  }
+  tr.table-primary td.sport-time{
+    text-align: center;
+  }
+  .col.actual-record{
+    padding: 0 15px !important;
+  }
+  table#record-sport.table.table-hover{
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+  table#query-sport.table.table-hover.table-striped{
+    width: 100% !important;
+   .user-weight{
+     display: none;
+   }
+   .user-sport-min{
+    display: none;
+   }
+  tr.rwd-sport-query{
+    display: block;
+   }
+  }
 }
