@@ -1620,6 +1620,7 @@ a:hover{
 .form-row.food_search_result{
   margin-bottom: 10px;
   text-align: center;
+  justify-content: center;
 }
 .col-10.col-sm-12.food_search_result{
   margin: auto;
@@ -1690,7 +1691,7 @@ td.name{
       width: 150px;
     }
   }
-  .table-info{
+  .query_food_color{
     .search_calories{
       display: none;
     }
@@ -1730,10 +1731,6 @@ td.name{
   #favorite-food{
     width: 110%;
     margin-left: -16px;
-    border-radius: 10px;
-    // .favorite_index{
-    //   display:none;
-    // }
     .favorite_normal{
       display:none;
     }    
@@ -2004,6 +2001,15 @@ input#searchfood.input{
 .col-6.col-sm-8.js-type{
   margin: auto;
 }
+#favorite_food_record.form-row{
+  justify-content:center;
+}
+#favorite-food{
+  border-radius: 10px;
+}
+#query-food{
+  border-radius: 10px;
+}
 @media screen and (max-width: 767px){
   .sportextend{
     height: 370px;
@@ -2086,6 +2092,11 @@ input#searchfood.input{
     margin-left: -10px;
     padding: 0 10px;
   }
+  .item.introduce{
+    max-width: 118%;
+    border-radius: 10px;
+  }
+
 }
 tr.sport-daily-reocrd{
   background-color: #8DE0EB;
@@ -2112,5 +2123,14 @@ tr.dailyfood-color{
   background-color: #17a2b8;
 }
 tr.daily_food_result{
+  background-color:#EDFAFC ;
+}
+td.favorite_normal-size{
+  width: 120px;
+}
+tr.query_food_color{
+  background-color: #17a2b8;
+}
+tr.search_food_result{
   background-color:#EDFAFC ;
 }

@@ -635,7 +635,7 @@ function favorite(){
                        <td class="favorite_protein">${response.data[i][0].protein}</td>
                        <td class="favorite_fat_content">${response.data[i][0].fat_content}</td>
                        <td class="favorite_carbohydrate">${response.data[i][0].carbohydrate}</td>
-                       <td>
+                       <td class="favorite_normal-size">
                        <button data-id="${response.data[i][0].id}" class="button is-success is-small is-light is-rounded js-like-list-add" ><i class="fas fa-plus-circle"></i></button><button class="button  is-danger is-small is-light is-rounded js-recommend-like" data-id="${response.data[i][0].id}" data-s= ture><i class="fas fa-heart"></i></button>
                        </td>
                   </tr>
