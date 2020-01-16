@@ -134,6 +134,9 @@ a:hover{
       .dropdown-menu {
         width: 100%;
         left: -140px;
+        .d-block {
+          word-wrap: break-word;
+        }
         a {
           color: #2b2a2a;
         }
@@ -241,7 +244,8 @@ a:hover{
           width: 120px;
           left: auto;
           right: 0;
-          span {
+          .d-block {
+            word-wrap: break-word;
             padding-left: 16px;
           }
         }
@@ -865,17 +869,21 @@ a:hover{
 }
 @media screen and (min-width: 768px){
   .section.personal-info {
-    background-image: linear-gradient(90deg, rgb(252, 252, 252) 50%, transparent 50%), url(https://images.unsplash.com/photo-1507761862811-98432ab53cde?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60);
-    background-position: top right;
     background-color:  rgb(252, 252, 252);
     .row {
-      padding: 0 30px;
+      padding: 0 35px;
       .basic-data {
-        justify-content: flex-end;
+        justify-content: center;
       }
     }
     .calorie-intake {
-      margin: 30px 0 0 50px;
+      margin: auto;
+      margin-top: 20px;
+      span {
+        display: block;
+        text-align: right;
+        margin-bottom: 20px;
+      }
     }
   }
 }
@@ -906,6 +914,9 @@ a:hover{
         width: 350px;
       }
     }
+    .personal-photo {
+      display: none;
+    }
   }
 }
 
@@ -924,8 +935,25 @@ a:hover{
 }
 @media screen and (min-width: 768px){
   .section.edit-info {
-    padding-left: 100px;
-    background-image: linear-gradient(90deg, rgba(245, 243, 243, 1) 50%, transparent 50%), url(https://images.unsplash.com/photo-1539798488725-7387f3229c49?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60);
+    background-color: rgb(252, 252, 252);
+    background-size: cover;
+    h2 {
+      text-align: center;
+    }
+    .container.edit {
+      margin-top: 30px;
+      .row{
+        margin: 30px 0 0 50px;
+        justify-content: center;
+      }
+    }
+    .container.photo {
+      padding: 0;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 }
 @media screen and (max-width: 767px){ 
@@ -944,6 +972,9 @@ a:hover{
         display: flex;
         flex-direction: column;
       }
+    }
+    .container.photo {
+      display: none;
     }
   }
 }

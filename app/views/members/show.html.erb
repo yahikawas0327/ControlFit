@@ -1,5 +1,5 @@
-<section class="section personal-info">
-  <div class="col-12 col-md-6">
+<section class="section personal-info d-flex">
+  <div class="container col-12 col-md-6">
     <h2 class="title text-center">健康個人檔案</h2>
     <div class="row">
       <div class="col-12 col-md-5 mb-3 d-flex basic-data">
@@ -42,7 +42,7 @@
       </div>
     </div>
     <span><%= render 'follow_form' if signed_in? %></span>
-    <div class="col-12 col-md-10 calorie-intake">
+    <div class="col-12 col-md-11 calorie-intake">
       <span>今日還可攝取熱量 = <%= @remain %></span>
       <canvas id="heyChart"></canvas>
     </div>
@@ -86,5 +86,8 @@
         }
       });
     </script>
+  </div>
+  <div class="container col-md-6 personal-photo">
+    <%= image_tag("personal.jpg",alt:"photo") %>
   </div>
 </section>
