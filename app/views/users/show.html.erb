@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <container>
   <div class="mt-3 mb-5">
     <div class="show-top">
@@ -139,3 +140,141 @@
 
 
 
+=======
+<div class="container">
+  <div class="mt-3 mb-5">
+    <div class="show-top">
+      <% if @member.cover_image.attached? %>
+        <%= image_tag @member.cover_image.variant(resize_to_limit: [300, 300]), class:'rounded-circle show-img' %>
+      <% else %>
+        <img src="https://picsum.photos/300/300/?random=1" class="rounded-circle show-img"> 
+      <% end %>
+      <div>
+        <div class="mb-3 m-auto show-card">
+          <div class="row no-gutters">
+            <div class="col-md-12">
+              <div class="show-body">
+                <div class="mb-3">
+                  <h5 class="h5 font-weight-bold"><%= @member.name %></h5>
+                  <%= render 'members/follow_form' %>
+                </div>
+                <span><%= render 'shared/states' %></span>
+                <p class="card-text"></p>
+                <p class="card-text"><small class="text-muted"></small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row d-flex justify-content-around m-auto">
+    <div class="col-12 col-md-5 mb-5">
+      <span class="h2">攝取比例<i class="fas fa-chart-pie"></i></span>
+      <div>
+        <canvas id="heyChart"></canvas>
+      </div>
+      <script>
+        var ctx = document.getElementById("heyChart");
+        var myChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ["攝取熱量", "運動消耗"],
+            datasets: [{
+              label: ['消耗'],
+              data: [
+                '<%= @calories.sum %>',
+                '<%= @sprot_calories.sum %>',
+            ],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+              ],
+              borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero:true,
+                }
+              }]
+            }
+          }
+        });
+      </script> 
+    </div> 
+    <div class="col-12 col-md-5 show-food">
+      <span>
+        <a class="btn bg-light text-secondary mb-2" data-toggle="collapse" href="#foodsExample" role="button" aria-expanded="flase" aria-controls="collapseExample">
+          今日飲食紀錄
+        </a>
+        <a class="btn bg-light text-secondary mb-2" type="button" data-toggle="collapse" data-target="#sportsExample" aria-expanded="false" aria-controls="collapseExample">
+          今日運動紀錄
+        </a>
+      </span>
+      <div class="collapse show" id="foodsExample">
+        <div class="h3">今日飲食紀錄<i class="fas fa-utensils"></i></div>
+        <li>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">名稱</th>
+                <th scope="col">熱量</th>
+                <th scope="col">品項</th>
+                <th scope="col">時間</th>
+              </tr>
+            </thead>
+              <tbody>
+                <% @foods_today.each do |f| %>
+                  <tr>
+                    <td scopr="col"><%= f.name %></td>
+                    <td scopr="col"><%= f.calories %></td>
+                    <td scope="col"><%= f.eat_type %></td>
+                    <td scope="col"><%= f.created_at.strftime("%T") %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>
+        </li>
+      </div>
+      <div class="collapse" id="sportsExample">
+        <div class="h3">今日運動紀錄<i class="fas fa-running"></i></div>
+        <li>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">名稱</th>
+                <th scope="col">時間</th>
+                <th scope="col">消耗</th>
+              </tr>
+            </thead>
+              <tbody>
+                <% @sports.each do |s| %>
+                  <tr>
+                    <td scopr="col"><%= s.name %></td>
+                    <td scope="col"><%= s.min %></td>
+                    <td scope="col"><%= s.totalconsum %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>
+        </li>
+      </div>
+    </div>
+  </div>
+</div>
+>>>>>>> origin/master
