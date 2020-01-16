@@ -1097,9 +1097,11 @@ a:hover{
     #Add_food_record_type .form-row {
       // background-color: #17a2b8;
       background-color: #edfafc;
-      padding-top: 15px;
-      border-radius: 5px;
-      margin-top: 20px;
+      // padding-top: 15px;
+      border-radius: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+      // margin-top: 20px;
     }
     h2 {
       text-align: center;
@@ -1462,7 +1464,7 @@ a:hover{
   padding-right: 10px;
 }
 .daily_sport_status{
-  width: 70%;
+  width: 700px;
   background-color:#EDFAFC;
   border-radius:10px;
   text-align: center;
@@ -1531,10 +1533,10 @@ a:hover{
   font-size: 28px;
   font-weight:bold;
   display: inline;
-  background-color: #edfafc;
+  background-color: #F5FCEF;
   border-radius: 5px;
   justify-content: center;
-  padding: 2px 5px;
+  padding: 3px 10px;
 }
 .title.daily_food_status{
   font-size: 28px;
@@ -1596,6 +1598,7 @@ a:hover{
 // }
 .col-8.col-sm-12.food_user_name{
   margin: auto;
+  margin-bottom: 10px;
 }
 .form-row.food_user_name{
   text-align: center;
@@ -1606,9 +1609,6 @@ a:hover{
 .form-row.food_search_bar{
   text-align: center;
   margin-bottom: 5px;
-}
-.col-6.col-sm-8.js-type.d-flex{
-  margin: auto;
 }
 .form-row.food_add_button{
   text-align: center;
@@ -1626,6 +1626,8 @@ a:hover{
 }
 #Add_food_record.form-row{
   background-color:#edfafc ;
+  border-radius: 10px;
+  padding: 0 10px;
 }
 #Edit_food_record{
   background-color:#edfafc ;
@@ -1654,7 +1656,10 @@ td.name{
    margin: 0 ;
    margin-left: -10px;
   }
-
+  .form-row.food_add_bar{
+    margin-top: 10px;
+    margin-left: -48px;
+  }
   .search_food_result{
     .search_calories{
       display: none;
@@ -1711,7 +1716,9 @@ td.name{
     }
   }
   #favorite-food{
-    width: 100%;
+    width: 110%;
+    margin-left: -16px;
+    border-radius: 10px;
     // .favorite_index{
     //   display:none;
     // }
@@ -1826,10 +1833,12 @@ td.name{
 table#daliy-food.table.table-sm{
   width: 650px;
   text-align: center;
+  border-radius: 10px;
 }
 table#recommend-food.table.table-sm{
   width: 650px;
   text-align: center;
+  border-radius: 10px;
 }
 .form-row.editfoodrecord{
   justify-content: center;
@@ -1859,7 +1868,7 @@ table.control_fit_sport_record{
 }
 h2.title.sport-record{
   background-color: #F5FCEF;
-  padding: 2px 10px;
+  padding: 7px 15px;
   border-radius: 10px;
 }
 
@@ -1926,7 +1935,7 @@ h2.title.sport-record{
 
 //Henry code 0116
 table#record-sport.table.table-hover{
-  width: 680px;
+  width: 700px;
   margin: auto;
   border-radius: 10px;
   margin-top: 10px;
@@ -1935,7 +1944,7 @@ table#record-sport.table.table-hover{
 
 .col-md-6.mb-3.sport_usr_name{
   margin: auto;
-  max-width: 43%;
+  max-width: 27%;
 }
 .sport-user-name{
   background-color: #F5FCEF;
@@ -1947,11 +1956,15 @@ table#record-sport.table.table-hover{
     padding-right: 5px;
   }
 }
+.sport .row.full .select-sport{
+  padding-right: 5px;
+  padding-left: 5px;
+}
 .sport .row.full .select-sport .sport-sub{
   background-color:#EDFAFC ;
   border-radius: 10px;
   padding: 3px 10px;
-  margin-left: 15px;
+  margin-left: 125px;
   display: inline-block;
 }
 .sportextend{
@@ -1963,6 +1976,17 @@ table#record-sport.table.table-hover{
 tr.rwd-sport-query{
   display: none;
  }
+.input-group.sport-rwd{
+  width: 500px;
+  margin: auto;
+}
+input#searchfood.input{
+  max-width: 100%;
+  width: 450px;
+}
+.col-6.col-sm-8.js-type{
+  margin: auto;
+}
 @media screen and (max-width: 767px){
   .sportextend{
     height: 370px;
@@ -2016,4 +2040,41 @@ tr.rwd-sport-query{
     display: block;
    }
   }
+  .input-group.sport-rwd{
+    width: 320px;
+    margin: auto;
+  }
+  .sport .row.full .select-sport .sport-sub{
+    margin-left: 37px;
+  }
+  .col-6.col-sm-8.js-type{
+    margin-left:20px;
+    padding: 0;
+    max-width: 90%;
+  }
+  input#searchfood.input{
+    max-width: 200%;
+    width: 250px;
+  }
+}
+tr.sport-daily-reocrd{
+  background-color: #8DE0EB;
+}
+tr.sport-daily-reocrd-cotent{
+  background-color:#EDFAFC ;
+}
+button.btn.btn-outline-info.js-search{
+  background-color: #17a2b8;
+}
+tr.favorite_food_table_color{
+  background-color: #17a2b8;
+}
+tr.favorite_food_result{
+  background-color:#EDFAFC ;
+}
+tbody#recommend{
+  background-color:#EDFAFC ;
+}
+tr.recommend_food_color{
+  background-color: #17a2b8;
 }
