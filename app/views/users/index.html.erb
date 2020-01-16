@@ -1,36 +1,39 @@
-<div class="container">
-  <div class="row row-cols-1 row-cols-md-4 mt-2">
-    <% @member.each do |m| %>
-      <% if m != current_member %>
-        <div class="col mb-4">
-          <div class="card">
-            <div class="card-image">
-              <% if m.cover_image.attached? %>
-                <%= image_tag m.cover_image.variant(resize_to_limit: [300, 300]), class:'card-image' %>
-              <% else %>
-                <img src="https://picsum.photos/300/300/?random=23", class="card-image">
-              <% end %>
-              <%= link_to '詳細資訊', user_path(m), class:'txt h2' %>
-            </div>
-            <div class="card-body">
-              <% if m.name? %>
-                <%= link_to m.name, user_path(m), class:'text-info' %>
-              <% else %>
-                <%= link_to m.email, user_path(m), class:'text-info' %>
-              <% end %>
-              <% if current_member.following?(m) %>
-                <%= link_to relationship_path(m), remote: true ,method: :delete, 'pos-id': m.id, class: 'follow-red' do%>
-                <i class="fas fa-heart"></i>
+
+<section class="section">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-4 mt-2">
+      <% @member.each do |m| %>
+        <% if m != current_member %>
+          <div class="col mb-4">
+            <div class="card">
+              <div class="card-image">
+                <% if m.cover_image.attached? %>
+                  <%= image_tag m.cover_image.variant(resize_to_limit: [300, 300]), class:'card-image' %>
+                <% else %>
+                  <img src="https://picsum.photos/300/300/?random=23", class="card-image">
                 <% end %>
-              <% else %>
-                <%= link_to relationships_path(followed_id: m.id), remote: true ,method: :post, 'pos-id': m.id, class: 'follow-gray' do%>
-                <i class="far fa-heart"></i>
+                <%= link_to '詳細資訊', user_path(m), class:'txt h2' %>
+              </div>
+              <div class="card-body">
+                <% if m.name? %>
+                  <%= link_to m.name, user_path(m), class:'text-info' %>
+                <% else %>
+                  <%= link_to m.email, user_path(m), class:'text-info' %>
                 <% end %>
-              <% end %>
+                <% if current_member.following?(m) %>
+                  <%= link_to relationship_path(m), remote: true ,method: :delete, 'pos-id': m.id, class: 'follow-red' do%>
+                  <i class="fas fa-heart"></i>
+                  <% end %>
+                <% else %>
+                  <%= link_to relationships_path(followed_id: m.id), remote: true ,method: :post, 'pos-id': m.id, class: 'follow-gray' do%>
+                  <i class="far fa-heart"></i>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-</div>
+</section>
