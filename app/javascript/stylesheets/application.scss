@@ -1491,41 +1491,6 @@ a:hover{
 .card-image:hover .txt{
   opacity: 1;
 }
-@media screen and (max-width: 767px){
-  .show-food{
-    min-width: 300px;
-    margin-bottom: 50px;
-  }
-}
-@media screen and (min-width: 768px){
-  .show-top{
-    width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-  }
-}
-@media screen and (max-width: 767px){
-  .show-top{
-    width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: space-around;
-  }
-}
-.show-body{
-  padding: 0;
-}
-
-
-
-
-
-
-
-
-
-
 // Henry add 0114
 // .food_user_name{
 //   margin: auto;
@@ -1577,6 +1542,10 @@ table.table.user-food-info.dailyfood-rwd{
 .recommend_name{
   word-break: break-all;
   width: 150px;
+}
+td.name{
+  width: 150px;
+  // word-break: break-all;
 }
 @media screen and (max-width: 767px){
   #foodusertable.daily-record{
