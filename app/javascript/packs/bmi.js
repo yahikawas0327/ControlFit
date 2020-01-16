@@ -1,7 +1,6 @@
 import $ from 'jquery'
 
 $(document).on('turbolinks:load',function(){
-  console.log('123')
   $('.bmi-submit').on('click',function(event){
     event.preventDefault();
     let h = $(".cm").val();

@@ -40,7 +40,7 @@
             <% end %>
          </span>
         </ul>
-        <div class="col logo">
+        <div class="logo">
           <a class="nav-link brand" href="<%= root_path %>" > 
             <span class="brand"><%= image_tag("brand05.png") %></span>
           </a>
@@ -69,16 +69,16 @@
             </li>
           </ul>
         </div>
-          <div class="nav-link mt-3 d-none d-sm-none d-md-block">
-            <% if member_signed_in? %>
-              <% if current_member.name? %>
-                <%= link_to current_member.name, member_path, class:'text-info' %>
-              <% else %>
-                <%= link_to current_member.email, member_path, class:'text-info' %>
-              <% end %>
+        <div class="nav-link d-none d-sm-none d-md-block">
+          <% if member_signed_in? %>
+            <% if current_member.name? %>
+              <%= link_to current_member.name, member_path, class:'text-info' %>
+            <% else %>
+              <%= link_to current_member.email, member_path, class:'text-info' %>
             <% end %>
-          </div>
-        <ul class="col navbar-actions">
+          <% end %>
+        </div>
+        <ul class="navbar-actions">
           <% if member_signed_in? %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
