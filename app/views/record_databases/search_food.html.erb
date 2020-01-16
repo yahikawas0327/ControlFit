@@ -87,8 +87,6 @@
           </div>
           <div class="form-row" id="Add_food_record_type">
           </div>
-          <div class="form-row" id="Edit_food_record">
-          </div>
       </div>
     </div>
     <div class="row result">
@@ -301,7 +299,7 @@
               </tr>
             </thead>
             <tbody id="dailyfood">
-              <tr class="table-secondary"> 
+              <tr class="dailyfood-color"> 
                 <th class="index"scope="col">編號</th>
                 <th class="time" scope="col">時間</th>
                 <th scope="col">類型</th>
@@ -328,6 +326,11 @@
               <% else %>
               <% end %>
             </tbody>
+            <tfoot>
+              <th  colspan="2"></th>
+              <th  class="time" colspan="3"></th>
+              <th  colspan="2"></th>
+            </tfoot>
           </table>
           <table class="table table-sm" id="recommend-food">
             <thead>
@@ -356,7 +359,12 @@
           </div>
 
         </div>
+        <div class="form-row" id="Edit_food_record">
+        </div>
+        <div class="form-row" id="Recommend_food_add">
+        </div>
       </div>
+
     </div>
   </div>
 </section>

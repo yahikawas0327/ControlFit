@@ -285,8 +285,8 @@ function click_create_new_record_by_user(){
                 $('#dailyfood').append(
                   `
                   <tr class="daily_food_result" >
-                    <td> <button class="button is-success is-small is-light is-rounded "><i class="fab fa-hotjar"></i>New</button></td>
-                      <td> ${pre_time} </td>
+                    <td class="index"> <button class="button is-success is-small is-light is-rounded "><i class="fab fa-hotjar"></i>New</button></td>
+                      <td class="time"> ${pre_time} </td>
                       <td class="type">${response.data.eat_type}</td>                  
                       <td class="name">${response.data.name}</td>
                       <td class="qty"> ${response.data.qty}</td>
@@ -459,8 +459,8 @@ function query_add(){
                 $('#dailyfood').append(
                   `
                   <tr class="daily_food_result" >
-                      <td> <button class="button is-success is-small is-light is-rounded "><i class="fab fa-hotjar"></i>New</button></td>
-                      <td> ${pre_time} </td>
+                      <td class="index"> <button class="button is-success is-small is-light is-rounded "><i class="fab fa-hotjar"></i>New</button></td>
+                      <td class="time"> ${pre_time} </td>
                       <td class="type">${response.data.eat_type}</td>                  
                       <td class="name">${response.data.name}</td>
                       <td class="qty"> ${response.data.qty}</td>
@@ -526,10 +526,9 @@ function recommendAdd(){
     let recommend_food_name = $(this).parent().siblings('.recommend_name:eq(0)').text()
     let recommend_food_calorie = $(this).parent().siblings('.recommend_calories:eq(0)').text()
     $(this).attr('disabled', 'disabled')
-    $('#Add_food_record').append( `
+    $('#Recommend_food_add').append( `
      <div class="form-row recommendfoodrecord" >
-     <div class="col-md-1 md-3"></div>
-     <div class="col-md-3 mb-3 ">
+     <div class="col-md-4 mb-3 ">
       <label for="disabledTextInput">食物名稱</label>
       <input class="form-control" type="text" placeholder="${recommend_food_name}" readonly>
      </div>

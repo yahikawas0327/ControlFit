@@ -1629,9 +1629,21 @@ a:hover{
   border-radius: 10px;
   padding: 0 10px;
 }
-#Edit_food_record{
+#Edit_food_record.form-row{
   background-color:#edfafc ;
   border-radius: 10px;
+  width:92% ;
+  margin: auto;
+  margin-left: 14px;
+  text-align: center;
+}
+#Recommend_food_add.form-row{
+  background-color:#edfafc ;
+  border-radius: 10px;
+  width:92% ;
+  margin: auto;
+  margin-left: 14px;
+  text-align: center;
 }
 .row.daily-record{
   justify-content: center;
@@ -1831,7 +1843,7 @@ td.name{
 }
 
 table#daliy-food.table.table-sm{
-  width: 650px;
+  width: 90%;
   text-align: center;
   border-radius: 10px;
 }
@@ -1847,6 +1859,7 @@ table#recommend-food.table.table-sm{
 .form-row.recommendfoodrecord{
   justify-content: center;
   margin-top: 5px;
+  margin-left: -10px;
 }
 
 .sport-un-sign-status{
@@ -2056,6 +2069,19 @@ input#searchfood.input{
     max-width: 200%;
     width: 250px;
   }
+  table#daliy-food.table.table-sm{
+    width: 100% ;
+  }
+  #Edit_food_record.form-row{
+    width: 117%;
+    margin-left: -10px;
+    padding: 0 10px;
+  }  
+  #Recommend_food_add.form-row{
+    width: 117%;
+    margin-left: -10px;
+    padding: 0 10px;
+  }
 }
 tr.sport-daily-reocrd{
   background-color: #8DE0EB;
@@ -2077,4 +2103,10 @@ tbody#recommend{
 }
 tr.recommend_food_color{
   background-color: #17a2b8;
+}
+tr.dailyfood-color{
+  background-color: #17a2b8;
+}
+tr.daily_food_result{
+  background-color:#EDFAFC ;
 }
