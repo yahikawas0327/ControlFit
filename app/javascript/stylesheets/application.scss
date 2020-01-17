@@ -868,7 +868,10 @@ a:hover{
     }
   }
 }
-
+.member-show-img {
+  width: 200px;
+  height: 200px;
+}
 @media screen and (min-width: 768px){
   .section.personal-info {
     background-color:  rgb(252, 252, 252);
@@ -876,10 +879,6 @@ a:hover{
       padding: 0 35px;
       .basic-data {
         justify-content: center;
-        .show-img {
-          width: 180px;
-          height: 180px;
-        }
       }
     }
     .calorie-intake {
