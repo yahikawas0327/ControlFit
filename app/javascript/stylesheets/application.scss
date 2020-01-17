@@ -2182,7 +2182,7 @@ input#searchfood.input{
     margin-bottom: 10px;
   }
   table#query-sport.table.table-hover.table-striped{
-    width: 100% !important;
+//     width: 100% !important;
    .user-weight{
      display: none;
    }
@@ -2294,4 +2294,18 @@ tr.sport-query-color{
 }
 tr.sport-query-data{
   background-color:#EDFAFC !important;
+}
+@media screen and (max-width: 767px){
+  div#Add_food_record_type.form-row{
+    width: 115%;
+    margin-left: -23px;
+  }
+  #query-food{
+    width: 119%;
+    margin-left: -27px;
+  }
+  table#query-sport.table.table-hover.table-striped{
+    width: 103%;
+    margin-left: -6px;
+  }
 }
