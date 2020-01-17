@@ -10,6 +10,7 @@ import { element, func } from 'prop-types';
 import echarts from "echarts";
 
 // const axios = require('axios');
+// http://localhost:5000
  
 document.addEventListener('turbolinks:load', () => {
     // 增加 Query system event
@@ -39,6 +40,7 @@ document.addEventListener('turbolinks:load', () => {
     favorite()
     favoriteAdd()
     fooduserguide()
+    favoriteRwd()
     // Now time and day
     let time = moment().format('lll');
     $('.daytime').html(time);
@@ -102,7 +104,7 @@ function search(){
     $('#Add_food_record_type').hide()
     evt.stopPropagation();
     let searchfood_hash = {searchfood: $('#searchfood').val()}
-    axios.get('https://controlfit.online/search_food.json', {params:{ search_food: $('#searchfood').val()}})
+    axios.get('http://localhost:5000/search_food.json', {params:{ search_food: $('#searchfood').val()}})
          .then( response => {
           let query_data = response.data.length
           if (query_data !== 0){
@@ -276,15 +278,15 @@ function click_create_new_record_by_user(){
        }
        console.log(food_hash)
        $(this).parent().parent('.form-row').remove()
-   axios.post("https://controlfit.online/food_records", food_hash)
+   axios.post("http://localhost:5000/food_records", food_hash)
         .then( response => {
           console.log('response=>',response);
             let pre_time =  moment().format('LT'); 
                 $('#dailyfood').append(
                   `
                   <tr class="daily_food_result" >
-                    <td> <button class="button is-success is-small is-light is-rounded "><i class="fab fa-hotjar"></i>New</button></td>
-                      <td> ${pre_time} </td>
+                    <td class="index"> <button class="button is-success is-small is-light is-rounded "><i class="fab fa-hotjar"></i>New</button></td>
+                      <td class="time"> ${pre_time} </td>
                       <td class="type">${response.data.eat_type}</td>                  
                       <td class="name">${response.data.name}</td>
                       <td class="qty"> ${response.data.qty}</td>
@@ -339,7 +341,7 @@ function editEvent(){
     let edit_food_calorie = $(this).parent().siblings('.foodsum:eq(0)').text()
     let edit_food_type = $(this).parent().siblings('.type:eq(0)').text()
     $('#Edit_food_record').append( `
-    <div class="form-row">
+    <div class="form-row editfoodrecord">
     <div class="col-md-3 mb-3 ">
     <label for="disabledTextInput">食物名稱</label>
     <input class="form-control" type="text" placeholder="${edit_food_name}" readonly>
@@ -391,7 +393,7 @@ function saveEvent(){
     $(`.js-edit[data-id="${this.dataset.id}"]`).removeAttr('disabled')
     $(this).parent().parent('.form-row').remove()
     let before_edit_sum = $(`.js-edit[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text()
-    axios.patch(`https://controlfit.online/food_records/${this.dataset.id}`, editfood_hash)
+    axios.patch(`http://localhost:5000/food_records/${this.dataset.id}`, editfood_hash)
 
          .then( response => {
               // console.log('response=>',response);
@@ -419,7 +421,7 @@ function deleteEvent(){
   $('#daliy-food').on('click','.js-del',function(evt){
     console.log(this.dataset.id);
     let delete_id = {id: this.dataset.id}
-    axios.delete(`https://controlfit.online/food_records/${this.dataset.id}`, delete_id )
+    axios.delete(`http://localhost:5000/food_records/${this.dataset.id}`, delete_id )
     .then( response => {
         console.log('response=>',response);
         let del_sum = $(`.js-del[data-id="${this.dataset.id}"]`).parent().siblings('.foodsum:eq(0)').text()
@@ -450,15 +452,15 @@ function query_add(){
                }
     
      $(this).parent().parent('.form-row').remove()
-    axios.post("https://controlfit.online/food_records", food_hash)
+    axios.post("http://localhost:5000/food_records", food_hash)
          .then( response => {
                 console.log(response)
             let pre_time =  moment().format('LT'); 
                 $('#dailyfood').append(
                   `
                   <tr class="daily_food_result" >
-                      <td> <button class="button is-success is-small is-light is-rounded "><i class="fab fa-hotjar"></i>New</button></td>
-                      <td> ${pre_time} </td>
+                      <td class="index"> <button class="button is-success is-small is-light is-rounded "><i class="fab fa-hotjar"></i>New</button></td>
+                      <td class="time"> ${pre_time} </td>
                       <td class="type">${response.data.eat_type}</td>                  
                       <td class="name">${response.data.name}</td>
                       <td class="qty"> ${response.data.qty}</td>
@@ -486,6 +488,7 @@ function query_add(){
 function more(){
   $('.userfoodrecord').on('click','.js-more',function(evt){
     $('#daliy-food').toggle()
+    $('#fooduserstatus').toggle()
   }) 
 }
 
@@ -493,7 +496,7 @@ function more(){
 function recommend(){
   $('.userfoodrecord').on('click','.js-recommend',function(evt){
     $('#recommend-food').toggle()
-    axios.get('https://controlfit.online/search_food/random.json')
+    axios.get('http://localhost:5000/search_food/random.json')
          .then( response => {
                var result = ""
               for ( var i = 0; i < 5; i++) {
@@ -511,6 +514,7 @@ function recommend(){
                      </tr>
                           `}
               $('#recommend').html(result)
+              $('#fooduserstatus').toggle()
               })
     }) 
 }
@@ -522,10 +526,9 @@ function recommendAdd(){
     let recommend_food_name = $(this).parent().siblings('.recommend_name:eq(0)').text()
     let recommend_food_calorie = $(this).parent().siblings('.recommend_calories:eq(0)').text()
     $(this).attr('disabled', 'disabled')
-    $('#Add_food_record').append( `
-     <div class="form-row" >
-     <div class="col-md-1 md-3"></div>
-     <div class="col-md-3 mb-3 ">
+    $('#Recommend_food_add').append( `
+     <div class="form-row recommendfoodrecord" >
+     <div class="col-md-4 mb-3 ">
       <label for="disabledTextInput">食物名稱</label>
       <input class="form-control" type="text" placeholder="${recommend_food_name}" readonly>
      </div>
@@ -618,8 +621,9 @@ function searchLike(){
 
 // favorite list 
 function favorite(){
-  $('#user_favorite_list').on('click',function(){ 
-    axios.get('https://controlfit.online/search_food/list')
+  $('#user_favorite_list').on('click',function(){
+ 
+    axios.get('http://localhost:5000/search_food/list')
          .then( response => {
            var result = ""
            for ( var i = 0; i < response.data.length; i++) {
@@ -631,7 +635,7 @@ function favorite(){
                        <td class="favorite_protein">${response.data[i][0].protein}</td>
                        <td class="favorite_fat_content">${response.data[i][0].fat_content}</td>
                        <td class="favorite_carbohydrate">${response.data[i][0].carbohydrate}</td>
-                       <td>
+                       <td class="favorite_normal-size">
                        <button data-id="${response.data[i][0].id}" class="button is-success is-small is-light is-rounded js-like-list-add" ><i class="fas fa-plus-circle"></i></button><button class="button  is-danger is-small is-light is-rounded js-recommend-like" data-id="${response.data[i][0].id}" data-s= ture><i class="fas fa-heart"></i></button>
                        </td>
                   </tr>
