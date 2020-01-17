@@ -489,7 +489,7 @@ function query_add(){
 function more(){
   $('.userfoodrecord').on('click','.js-more',function(evt){
     $('#daliy-food').toggle()
-    $('#fooduserstatus').toggle()
+//     $('#fooduserstatus').toggle()
   }) 
 }
 
