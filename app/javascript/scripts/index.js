@@ -334,7 +334,7 @@ function editEvent(){
   $('#daliy-food').on('click','.js-edit',function(evt){
     console.log(this)
     $(this).attr('disabled', 'disabled')
-    alert(this.dataset.id);
+    alert("記錯的沒關係!再修正");
     let edit_food_id = this.dataset.id
     let edit_food_qty = $(this).parent().siblings('.qty:eq(0)').text()
     let edit_food_name = $(this).parent().siblings('.name:eq(0)').text()
@@ -420,6 +420,7 @@ function saveEvent(){
 function deleteEvent(){    
   $('#daliy-food').on('click','.js-del',function(evt){
     console.log(this.dataset.id);
+    alert('貼心提醒!按下去資料不復返')
     let delete_id = {id: this.dataset.id}
     axios.delete(`http://localhost:5000/food_records/${this.dataset.id}`, delete_id )
     .then( response => {
