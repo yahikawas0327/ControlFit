@@ -590,7 +590,6 @@ a:hover{
   width: 100%;
   height: 800px;
   top: 0;
-  margin: 20px 0;
   .login-block{
     display: flex;
     align-items: center;
@@ -599,7 +598,7 @@ a:hover{
     height: 100%;
   }
   .title{
-    margin: 0 50px;
+    margin: 0 30px;
     height: 80px;
     display: block;
   }
@@ -780,16 +779,63 @@ a:hover{
 }  
 //be-member
 .be-member{
-  padding: 0!important;
   .row{
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
-    margin: 20px 0;
-    padding: 30px 0;
     h2{
-      margin-bottom: 30px;
+      height: 80px;
+    }
+    .btn-google{
+      display: inline-block;
+      background: #fff;
+      color: rgba(0,0,0,0.54);
+      box-shadow: rgba(0,0,0,0.2) 1px 1px 5px 0;
+      border-color: transparent;
+      border-radius: 3px;
+      width: 400px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .google-icon{
+        display: inline-block;
+        background: url('https://d2k1ftgv7pobq7.cloudfront.net/meta/c/p/res/images/8215f6659adc202403198fef903a447e/sign-in-with-google.svg') no-repeat;
+        border-radius: 1px;
+        width: 20px;
+        height: 20px;
+      }
+      .label{
+        padding: 3px;
+      }
+      span.label:hover{
+        text-decoration: none;
+      } 
+    }
+    .separator{
+      width: 400px;
+      height: 30px;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      margin: 30px 0;
+    }
+    .separator:before{
+      display: inline-block;
+      content: "";
+      width: calc(50% - 0em);
+      height: 0px;
+      border-bottom: 1px solid rgb(204, 204, 204);
+      margin-right: .5rem;
+    }
+    .separator::after{
+      display: inline-block;
+      content: "";
+      width: calc(50% - 0em);
+      height: 0px;
+      border-bottom: 1px solid rgb(204, 204, 204);
+      margin-left: .5rem;
     }
     .form-group .form-control{
       width: 400px;
@@ -838,6 +884,8 @@ a:hover{
     .row{
       .form-group .form-control, 
       .btn,
+      .btn-google,
+      .separator,
       hr {
         width: 360px;
       }  
