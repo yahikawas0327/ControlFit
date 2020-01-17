@@ -1129,7 +1129,7 @@ a:hover{
       flex-wrap: wrap;
       .item {
         width: 400px!important;
-        height: 495px;
+        height: 100%;
         margin: 0 10px 20px;
         background-color:#fafafa;
         border-radius: 5px;
@@ -1474,7 +1474,8 @@ a:hover{
   border: 1px solid #F0F0F0;
   border-radius:10px;
   margin: auto;
-  margin-top: 10px;    
+  margin-top: 10px;
+  margin-bottom:10px;
   }
   .status{
     margin-left: 2px;
@@ -1558,7 +1559,7 @@ a:hover{
   padding-right: 10px;
 }
 .daily_sport_status{
-  width: 700px;
+  width: 95%; // 0117 modify
   background-color:#EDFAFC;
   border-radius:10px;
   text-align: center;
@@ -2051,7 +2052,7 @@ h2.title.sport-record{
 
 //Henry code 0116
 table#record-sport.table.table-hover{
-  width: 700px;
+  width: 98%; // 0117 modify
   margin: auto;
   border-radius: 10px;
   margin-top: 10px;
@@ -2060,7 +2061,7 @@ table#record-sport.table.table-hover{
 
 .col-md-6.mb-3.sport_usr_name{
   margin: auto;
-  max-width: 27%;
+  max-width: 40%; // 0117 modify
 }
 .sport-user-name{
   background-color: #F5FCEF;
@@ -2201,7 +2202,7 @@ input#searchfood.input{
 
 }
 tr.sport-daily-reocrd{
-  background-color: #8DE0EB;
+  background-color: #17a2b8;
 }
 tr.sport-daily-reocrd-cotent{
   background-color:#EDFAFC ;
@@ -2247,4 +2248,23 @@ div#main{
     font-size: 22px;
     padding: 8px;
   }
+  div#fooduserRWDstatus.row.daily-record{
+    width: 380px;
+    margin-left: -25px;
+  }
+  table#favorite-food.table.table-hover{
+    width: 120%;
+    margin-left: -30px;
+  }
+  .daily_sport_status{
+    width: 92%;
+  }
+
+}
+// 0117 update 
+tr.sport-query-color{
+  background-color: #17a2b8;
+}
+tr.sport-query-data{
+  background-color:#EDFAFC ;
 }
