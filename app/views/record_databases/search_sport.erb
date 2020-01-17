@@ -27,7 +27,7 @@
           <table v-if='search_status===true'  class="table table-hover table-striped" id="query-sport">
             <thead>
               <tr>
-                <th colspan="4"><i class="fas fa-running"></i>  運動30分鐘所消耗熱量(60kg為例) 單位: 大卡</th>
+                <th colspan="4"><i class="fas fa-running"></i>  運動30分鐘所消耗熱量(60kg為例) 單位:大卡</th>
                 <th class="sport-index" colspan="2"></th>
               </tr>
             </thead>
@@ -41,7 +41,7 @@
                 <td> 預計成果 </td>
                 <td class="query-sport-item" width="80px"> 記起來! </td>
               </tr>
-              <tr v-for="(sport, idx) in sports" class="table-secondary">
+              <tr v-for="(sport, idx) in sports" class="sport-query-data">
                 <td class="sport-index">{{idx+1}}</td>
                 <td class="sport-item">{{sport.name}}</td>
                 <td >{{sport.consume_60kg}}</td>
