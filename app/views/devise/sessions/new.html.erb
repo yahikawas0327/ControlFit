@@ -19,11 +19,6 @@
       	<div class="form-group password">
       	  <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control', placeholder: "至少6位數密碼，請區分大小寫" %>
       	</div>
-      	<div class="form-group foreget">
-      	  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-      	    <%= link_to "已忘記密碼?", new_password_path(resource_name), class: 'forget-pw' %><br />
-      	  <% end %>
-      	</div>
       	<div class="form-group">
       	  <%= f.submit "登入", class: 'btn btn-primary btn-login' %>
       	</div>
