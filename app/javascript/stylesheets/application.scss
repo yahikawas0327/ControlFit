@@ -1525,6 +1525,10 @@ a:hover{
   background-image: url(../../assets/images/bg_2.jpg);
   height: 100%;
   object-fit: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
   // background: linear-gradient(to right,#82DDEA 25%, #B8ECF3 70%);
   
 }
@@ -1554,6 +1558,10 @@ a:hover{
   height: 100%;
   object-fit: cover;
   margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
   // height: 800px;
   // object-fit: cover
   // background: linear-gradient(to right,#82DDEA 25%, #B8ECF3 70%); 
@@ -1982,7 +1990,7 @@ table#record-sport.table.table-hover{
   display: inline-block;
 }
 .sportextend{
-  height: 600px;
+  height: 750px;
 }
 .table.user-sport-info.rwd{
   display: none;
