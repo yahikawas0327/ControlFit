@@ -48,7 +48,7 @@ document.addEventListener('turbolinks:load', () => {
       submit: function(){
         var self = this;
         if (this.member_status===true && this.premessage !== this.message){
-          axios.get('http://localhost:5000/search_sport.json',{
+          axios.get('https://controlfit.online/search_sport.json',{
                    params:{ search_sport: this.message}})
                .then(function(response){
                   if (response.data.length ===0){alert("沒有資料喔!")}else{
@@ -74,19 +74,24 @@ document.addEventListener('turbolinks:load', () => {
         // 將紀錄資料送至後端資料庫
         let daily_sport_length = this.daily_sport.length
         console.log(daily_sport_length)
-        var self =this;
-        axios.post("http://localhost:5000/exercise_records",sport_hash)
-             .then(function(response){
-                self.daily_sport.push(response.data)
-                var NowDate = new Date(self.daily_sport[daily_sport_length].created_at)
-                self.editstatus[daily_sport_length]=false
-                self.savestatus[daily_sport_length]=false
-                self.daily_sport[daily_sport_length].created_at = moment().calendar();
-                self.daily_count += 1;
-                self.daily_sum += Number(self.sports[idx].computed)
-                console.log(response.data)
-                console.log(self.daily_sport[daily_sport_length])
-              })
+        if (this.weight !== null){
+          var self =this;
+          axios.post("https://controlfit.online/exercise_records",sport_hash)
+               .then(function(response){
+                  self.daily_sport.push(response.data)
+                  var NowDate = new Date(self.daily_sport[daily_sport_length].created_at)
+                  self.editstatus[daily_sport_length]=false
+                  self.savestatus[daily_sport_length]=false
+                  self.daily_sport[daily_sport_length].created_at = moment().calendar();
+                  self.daily_count += 1;
+                  self.daily_sum += Number(self.sports[idx].computed)
+                  console.log(response.data)
+                  console.log(self.daily_sport[daily_sport_length])
+                })
+        }else{
+          alert("很抱歉沒有您的體重資訊!! 請個人資料進行更新")
+
+        }
       },
       updateCurrentTime() {
         this.currentTime = moment().format('LTS');
@@ -106,7 +111,7 @@ document.addEventListener('turbolinks:load', () => {
         console.log(index)
         // console.log(deletedata)
         this.daily_sum = Number(this.daily_sum) - Number(this.daily_sport[index].totalconsum)
-        axios.delete(`http://localhost:5000/exercise_records/${this.daily_sport[index].id}`, delete_id)
+        axios.delete(`https://controlfit.online/exercise_records/${this.daily_sport[index].id}`, delete_id)
              .then(function(response){
              })
         this.daily_sport = this.daily_sport.filter(function(item, index, array){
@@ -129,7 +134,7 @@ document.addEventListener('turbolinks:load', () => {
                                min: this.daily_sport[index].min,
                                totalconsum: newtotalconsum }
               console.log(update_daily)
-          axios.patch(`http://localhost:5000/exercise_records/${this.daily_sport[index].id}`, update_daily)
+          axios.patch(`https://controlfit.online/exercise_records/${this.daily_sport[index].id}`, update_daily)
                .then(function(response){
                })
         } else{
@@ -163,7 +168,7 @@ document.addEventListener('turbolinks:load', () => {
       setInterval(() => this.updateCurrentTime(), 1 * 1000);
       // User information
       var self =this;
-      axios.get('http://localhost:5000/blogs/new.json')
+      axios.get('https://controlfit.online/blogs/new.json')
            .then(function(response){
             if (response.data.member_exist === true){
                  self.user_info = response.data
@@ -171,7 +176,7 @@ document.addEventListener('turbolinks:load', () => {
                  self.user_id   = response.data.user_id
                  self.member_status = true
               if (self.user_id !== 0 ){
-                  axios.get('http://localhost:5000/search_sport.json',{params:{ member_id: self.user_id}})
+                  axios.get('https://controlfit.online/search_sport.json',{params:{ member_id: self.user_id}})
                        .then(function(response){
                           let daily_sport = response.data
                          for (var i in daily_sport ){
@@ -186,7 +191,7 @@ document.addEventListener('turbolinks:load', () => {
                            self.daily_sum = Number(daily_sport[i].totalconsum) + self.daily_sum
                         }
                   })
-                  axios.get(`http://localhost:5000/blogs/${self.user_id}/secret`)
+                  axios.get(`https://controlfit.online/blogs/${self.user_id}/secret`)
                        .then(function(response){
                          self.foodintention  = response.data.foodintention;
                          self.sportintention = response.data.sportintention;
@@ -236,7 +241,7 @@ document.addEventListener('turbolinks:load', () => {
             });
             if (physical_validate === true) {
               var self = this;
-              axios.post('http://localhost:5000/blogs', physical_hash)
+              axios.post('https://controlfit.online/blogs', physical_hash)
               .then(function(response){
                 let body = response.data
                 self.BMI =body.bmi;
@@ -275,7 +280,7 @@ document.addEventListener('turbolinks:load', () => {
         });
         if (this.member_status === true){
           if(update_physical_validate === true){
-             axios.patch(`http://localhost:5000/blogs/${this.user_info.user_id}`, update_physical_data)
+             axios.patch(`https://controlfit.online/blogs/${this.user_info.user_id}`, update_physical_data)
                   .then(function(response){
                           console.log(response)})            
           }else{
@@ -290,7 +295,7 @@ document.addEventListener('turbolinks:load', () => {
                           sport: this.sportintention,
                           tdee : this.TDEE}
         if (this.member_status === true){
-             axios.patch(`http://localhost:5000/blogs/${this.user_info.user_id}/tdee`, intention)
+             axios.patch(`https://controlfit.online/blogs/${this.user_info.user_id}/tdee`, intention)
                   .then(function(response){})                     
         }else{}
       },
@@ -330,7 +335,7 @@ document.addEventListener('turbolinks:load', () => {
     },
     created() {
       var self= this;
-      axios.get('http://localhost:5000/blogs/new.json')
+      axios.get('https://controlfit.online/blogs/new.json')
            .then(function(response){
             if (response.data.member_exist === true){
               self.user_info = response.data
@@ -367,40 +372,40 @@ document.addEventListener('turbolinks:load', () => {
     },
     created(){  
       var self = this;
-      axios.get('http://localhost:5000/blogs/new.json')
+      axios.get('https://controlfit.online/blogs/new.json')
            .then(function(response){
             if (response.data.member_exist === true){
                  self.user_id   = response.data.user_id
                  self.member_status = true
                  if (self.user_id !== 0 ){
                     // day
-                      axios.get('http://localhost:5000/member/foodday')
+                      axios.get('https://controlfit.online/member/foodday')
                            .then(function(response){
                                 })
                            .catch((error) => {})
-                      axios.get('http://localhost:5000/member/sportday')
+                      axios.get('https://controlfit.online/member/sportday')
                            .then(function(response){
                             console.log(response)
                             })
                            .catch((error) => {})
                    //week
-                      axios.get('http://localhost:5000/member/foodweek')
+                      axios.get('https://controlfit.online/member/foodweek')
                            .then(function(response){
                                  console.log(response)
                                 })
                            .catch((error) => {})
-                      axios.get('http://localhost:5000/member/sportweek')
+                      axios.get('https://controlfit.online/member/sportweek')
                            .then(function(response){
                                 console.log(response)
                               })
                            .catch((error) => {})
                    //month
-                      axios.get('http://localhost:5000/member/foodmonth')
+                      axios.get('https://controlfit.online/member/foodmonth')
                            .then(function(response){
                                  console.log(response)
                                 })
                            .catch((error) => {})  
-                      axios.get('http://localhost:5000/member/sportmonth')
+                      axios.get('https://controlfit.online/member/sportmonth')
                            .then(function(response){
                             console.log(response)
                                 })
