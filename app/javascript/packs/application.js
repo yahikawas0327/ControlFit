@@ -1,5 +1,3 @@
-
-
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
@@ -30,3 +28,4 @@ import Chart from 'chart.js'
 
 window.jQuery = window.$ = $
 import './bmi.js'
+

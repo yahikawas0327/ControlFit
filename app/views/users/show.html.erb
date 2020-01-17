@@ -2,7 +2,7 @@
   <div class="row show-title">
     <div class="col-12 col-md-6">
       <div class="mt-md-3 mb-md-5">
-        <div class="d-flex mb-3 mt-3 justify-content-md-center">
+        <div class="d-flex mb-3 mt-3 justify-content-md-start">
           <% if @member.cover_image.attached? %>
             <%= image_tag @member.cover_image.variant(resize_to_limit: [300, 300]), class:'rounded-circle show-img' %>
           <% else %>
@@ -14,7 +14,13 @@
                 <div class="col-md-12">
                   <div class="show-body">
                     <div class="d-md-flex">
-                      <h5 class="h5 font-weight-bold mt-md-2 ml-md-1"><%= @member.name %></h5>
+                      <h5 class="h5 font-weight-bold mt-md-2 ml-md-1">
+                        <% if @member.name? %>
+                          <%= @member.name %>
+                        <% else %>
+                          NoName
+                        <% end %>
+                      </h5>
                     <span class="ml-md-1"><%= render 'shared/states' %></span>
                       <%= render 'members/follow_form' %>
                     </div>
