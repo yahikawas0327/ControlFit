@@ -6,11 +6,11 @@ class Member < ApplicationRecord
          :omniauthable, omniauth_providers: %i[google_oauth2]
   
   # has
-  has_many :food_records
-  has_many :sport_records
-  has_many :statistics
-  has_one  :membersecret
-  has_one_attached :cover_image
+  has_many :food_records, dependent:   :destroy
+  has_many :sport_records, dependent:   :destroy
+  has_many :statistics, dependent:   :destroy
+  has_one  :membersecret, dependent:   :destroy
+  has_one_attached :cover_image, dependent:   :destroy
 
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
