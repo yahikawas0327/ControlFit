@@ -331,8 +331,6 @@ a:hover{
   width: 100%;
   height: 100vh;
   top: 60px;
-  background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.3)),url('../../assets/images/banner.jpg');
-  background-size: 100% 100%;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
@@ -356,12 +354,17 @@ a:hover{
   }  
 }
 @media screen and (min-width: 768px){
-
+  .banner {
+    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.3)),url('../../assets/images/banner.jpg');
+    background-size: 100% 100%;
+  }
 }
 
 @media screen and (max-width: 767px){
  .banner{
    width: 100%;
+   background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.3)),url('../../assets/images/banner.jpg');
+   background-size: cover;
    .row {
       width: 100%;
       h2,
@@ -1667,32 +1670,56 @@ a:hover{
 .bmi-jquery{
   font-size: 60px;
 }
-
-.card-image{
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
+@media screen and (min-width: 768px){
+  .card-image{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+  .card-image .txt{
+    height: 300px;
+    position:absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 20px;
+    background-color: rgba(0,0,0,.6);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .5s;
+    
+  }
+  .card-image:hover .txt{
+    opacity: 1;
+  }
 }
-.card-image .txt{
-  height: 300px;
-  position:absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  padding: 20px;
-  background-color: rgba(0,0,0,.6);
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  opacity: 0;
-  transition: opacity .5s;
-  
-}
-.card-image:hover .txt{
-  opacity: 1;
+@media screen and (max-width: 767px){
+  .card-image{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+  .card-image .txt{
+    height: 300px;
+    position:absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 20px;
+    background-color: rgba(0,0,0,.6);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    opacity: 0;
+  }
 }
 // Henry add 0114
 // .food_user_name{
@@ -2155,7 +2182,7 @@ input#searchfood.input{
     margin-bottom: 10px;
   }
   table#query-sport.table.table-hover.table-striped{
-    // width: 100% !important;
+//     width: 100% !important;
    .user-weight{
      display: none;
    }
