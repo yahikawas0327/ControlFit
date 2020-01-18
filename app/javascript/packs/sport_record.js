@@ -74,19 +74,24 @@ document.addEventListener('turbolinks:load', () => {
         // 將紀錄資料送至後端資料庫
         let daily_sport_length = this.daily_sport.length
         console.log(daily_sport_length)
-        var self =this;
-        axios.post("https://controlfit.online/exercise_records",sport_hash)
-             .then(function(response){
-                self.daily_sport.push(response.data)
-                var NowDate = new Date(self.daily_sport[daily_sport_length].created_at)
-                self.editstatus[daily_sport_length]=false
-                self.savestatus[daily_sport_length]=false
-                self.daily_sport[daily_sport_length].created_at = moment().calendar();
-                self.daily_count += 1;
-                self.daily_sum += Number(self.sports[idx].computed)
-                console.log(response.data)
-                console.log(self.daily_sport[daily_sport_length])
-              })
+        if (this.weight !== null){
+          var self =this;
+          axios.post("https://controlfit.online/exercise_records",sport_hash)
+               .then(function(response){
+                  self.daily_sport.push(response.data)
+                  var NowDate = new Date(self.daily_sport[daily_sport_length].created_at)
+                  self.editstatus[daily_sport_length]=false
+                  self.savestatus[daily_sport_length]=false
+                  self.daily_sport[daily_sport_length].created_at = moment().calendar();
+                  self.daily_count += 1;
+                  self.daily_sum += Number(self.sports[idx].computed)
+                  console.log(response.data)
+                  console.log(self.daily_sport[daily_sport_length])
+                })
+        }else{
+          alert("很抱歉沒有您的體重資訊!! 請個人資料進行更新")
+
+        }
       },
       updateCurrentTime() {
         this.currentTime = moment().format('LTS');
