@@ -84,7 +84,9 @@ document.addEventListener('turbolinks:load', () => {
                   self.savestatus[daily_sport_length]=false
                   self.daily_sport[daily_sport_length].created_at = moment().calendar();
                   self.daily_count += 1;
-                  self.daily_sum += Number(self.sports[idx].computed)
+                  var new_sum = (Number(self.daily_sum)+ Number(self.sports[idx].computed)).toFixed(2)
+                  // self.daily_sum += Number(self.sports[idx].computed)
+                  self.daily_sum = new_sum
                   console.log(response.data)
                   console.log(self.daily_sport[daily_sport_length])
                 })
